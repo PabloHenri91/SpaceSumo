@@ -13,6 +13,8 @@
 		840661461C7502AF00D8C1CD /* ChooseSector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661451C7502AF00D8C1CD /* ChooseSector.swift */; };
 		840661471C7502AF00D8C1CD /* ChooseSector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661451C7502AF00D8C1CD /* ChooseSector.swift */; };
 		840661481C7502AF00D8C1CD /* ChooseSector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661451C7502AF00D8C1CD /* ChooseSector.swift */; };
+		846A46B41C75E2350028DBA8 /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
+		846A46B51C75E2360028DBA8 /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
 		848678C41C748B0C0049BB1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848678C31C748B0C0049BB1F /* AppDelegate.swift */; };
 		848678CA1C748B0C0049BB1F /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848678C91C748B0C0049BB1F /* GameViewController.swift */; };
 		848678CD1C748B0C0049BB1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848678CB1C748B0C0049BB1F /* Main.storyboard */; };
@@ -53,8 +55,6 @@
 		848679381C748F2C0049BB1F /* CropBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791A1C748F2C0049BB1F /* CropBox.swift */; };
 		848679391C748F2C0049BB1F /* CropBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791A1C748F2C0049BB1F /* CropBox.swift */; };
 		8486793A1C748F2C0049BB1F /* CropBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791A1C748F2C0049BB1F /* CropBox.swift */; };
-		8486793B1C748F2C0049BB1F /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
-		8486793C1C748F2C0049BB1F /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
 		8486793D1C748F2C0049BB1F /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
 		8486793E1C748F2C0049BB1F /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791C1C748F2C0049BB1F /* Event.swift */; };
 		8486793F1C748F2C0049BB1F /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791C1C748F2C0049BB1F /* Event.swift */; };
@@ -438,10 +438,10 @@
 				848679201C748F2C0049BB1F /* GeometryExtensions.swift in Sources */,
 				848679351C748F2C0049BB1F /* Box.swift in Sources */,
 				848679321C748F2C0049BB1F /* Button.swift in Sources */,
-				8486793B1C748F2C0049BB1F /* ScrollNode.swift in Sources */,
 				8486792F1C748F2C0049BB1F /* GameCamera.swift in Sources */,
 				848679471C748F2C0049BB1F /* Music.swift in Sources */,
 				840661421C74FB4F00D8C1CD /* Hangar.swift in Sources */,
+				846A46B51C75E2360028DBA8 /* ScrollNode.swift in Sources */,
 				848679411C748F2C0049BB1F /* GameColors.swift in Sources */,
 				848679591C74C1810049BB1F /* MainMenuScene.swift in Sources */,
 				848679381C748F2C0049BB1F /* CropBox.swift in Sources */,
@@ -467,9 +467,9 @@
 				848679211C748F2C0049BB1F /* GeometryExtensions.swift in Sources */,
 				848679361C748F2C0049BB1F /* Box.swift in Sources */,
 				848679331C748F2C0049BB1F /* Button.swift in Sources */,
-				8486793C1C748F2C0049BB1F /* ScrollNode.swift in Sources */,
 				848679301C748F2C0049BB1F /* GameCamera.swift in Sources */,
 				840661431C74FB4F00D8C1CD /* Hangar.swift in Sources */,
+				846A46B41C75E2350028DBA8 /* ScrollNode.swift in Sources */,
 				848679481C748F2C0049BB1F /* Music.swift in Sources */,
 				848679421C748F2C0049BB1F /* GameColors.swift in Sources */,
 				848679391C748F2C0049BB1F /* CropBox.swift in Sources */,

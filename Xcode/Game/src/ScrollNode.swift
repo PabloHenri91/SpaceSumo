@@ -39,6 +39,12 @@ class ScrollNode: Control {
             self.spacing = spacing
             super.init()
             
+            self.screenPosition = CGPoint(x: x, y: y)
+            self.yAlign = yAlign
+            self.xAlign = xAlign
+            
+            self.resetPosition()
+            
             self.cells = cells
             self.canScroll = true//TODO: vindo por parametro
             
@@ -47,19 +53,22 @@ class ScrollNode: Control {
                 
                 let size = control.calculateAccumulatedFrame().size
                 
+                control.xAlign = .left
+                control.yAlign = .up
+                
                 switch(scrollDirection) {
                 case scrollDirections.horizontal:
                     self.width = Int(size.width)
-                    control.screenPosition = CGPoint(x: x + (((self.width * 2) + spacing) * (i - index)), y: y)
-                    control.resetPosition()
+                    control.screenPosition = CGPoint(x: 0 + (((self.width * Int(Config.screenScale)) + spacing) * (i - index)), y: 0)
                     break
                     
                 case scrollDirections.vertical:
                     self.height = Int(size.height)
-                    control.screenPosition = CGPoint(x: x, y: y + (((self.height * 2) + spacing) * (i - index)))
-                    control.resetPosition()
+                    control.screenPosition = CGPoint(x: 0, y: 0 + (((self.height * Int(Config.screenScale)) + spacing) * (i - index)))
                     break
                 }
+                
+                control.resetPosition()
                 
                 control.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 10, height: 10))
                 control.physicsBody!.affectedByGravity = false
@@ -67,6 +76,9 @@ class ScrollNode: Control {
                 control.physicsBody!.linearDamping = 4
                 
                 self.addChild(control)
+                
+                //TODO: nao remover da lista mas marcar que nao deve ser alinhado automaticamente
+                Control.controlList.remove(control)
                 i++
             }
             
@@ -80,6 +92,12 @@ class ScrollNode: Control {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    class func resetScrollNodes() {
+        for scrollNode in ScrollNode.scrollNodeList {
+            scrollNode.resetPosition()
+        }
     }
     
     class func update() {

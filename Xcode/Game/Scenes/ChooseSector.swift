@@ -32,6 +32,14 @@ class ChooseSector: GameScene {
         self.buttonBack = Button(textureName: "buttonGraySquare", icon: "back", x: 10, y: 146, xAlign: .left, yAlign: .down)
         self.addChild(self.buttonBack)
         
+        var cells = Array<Control>()
+        
+        for var i = 0; i < 10; i++ {
+            cells.append(Control(textureName: "boxWhite64x64"))
+        }
+        
+        self.addChild(ScrollNode(cells: cells, x: 135, y: 62, xAlign: .center, yAlign: .center, spacing: 19, scrollDirection: .horizontal))
+        
         //Serve para setar o foco inicial no tvOS
         GameScene.selectedButton = self.buttonBack
     }

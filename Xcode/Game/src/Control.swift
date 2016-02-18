@@ -97,7 +97,7 @@ class Control: SKNode {
         }
         Button.resetButtons()
         //Switch.resetSwitches()
-        //ScrollNode.resetScrollNodes()
+        ScrollNode.resetScrollNodes()
         //Textfield.resetTextfields()
     }
     
