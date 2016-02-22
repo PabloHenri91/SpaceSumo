@@ -14,7 +14,7 @@ class ChooseSector: GameScene {
         case chooseSector
         
         //Estados de saida da scene
-        case mainMenu
+        case hangar
     }
     
     //Estados iniciais
@@ -23,6 +23,10 @@ class ChooseSector: GameScene {
     
     //buttons
     var buttonBack:Button!
+    
+    var sectorScrollNode:ScrollNode!
+    
+    var nextSector = 0
     
     override func didMoveToView(view: SKView) {
         super.didMoveToView(view)
@@ -34,11 +38,14 @@ class ChooseSector: GameScene {
         
         var cells = Array<Control>()
         
+        //TODO: 10 setores???
         for var i = 0; i < 10; i++ {
-            cells.append(Control(textureName: "boxWhite64x64"))
+            cells.append(SectorCell(type: i))
         }
         
-        self.addChild(ScrollNode(cells: cells, x: 135, y: 62, xAlign: .center, yAlign: .center, spacing: 19, scrollDirection: .horizontal))
+        self.sectorScrollNode = ScrollNode(cells: cells, x: 135, y: 62, xAlign: .center, yAlign: .center, spacing: 19, scrollDirection: .horizontal)
+        
+        self.addChild(self.sectorScrollNode)
         
         //Serve para setar o foco inicial no tvOS
         GameScene.selectedButton = self.buttonBack
@@ -58,9 +65,11 @@ class ChooseSector: GameScene {
             
             //Próximo estado
             switch (self.nextState) {
-            case states.mainMenu:
-                self.view?.presentScene(MainMenuScene(), transition: self.transition)
+            case states.hangar:
+                let scene = HangarScene(nextSector: self.nextSector)
+                self.view?.presentScene(scene, transition: self.transition)
                 break
+                
             default:
                 break
             }
@@ -73,11 +82,26 @@ class ChooseSector: GameScene {
         //Estado atual
         if(self.state == self.nextState) {
             for touch in touches {
+                let location = touch.locationInNode(self)
                 switch (self.state) {
                 case states.chooseSector:
-                    if(self.buttonBack.containsPoint(touch.locationInNode(self))) {
-                        self.nextState = states.mainMenu
+                    if(self.buttonBack.containsPoint(location)) {
+                        self.nextState = states.hangar
                         return
+                    }
+                    
+                    if(self.sectorScrollNode.containsPoint(location)) {
+                        
+                        for cell in self.sectorScrollNode.cells {
+                            if(cell.containsPoint(touch.locationInNode(self.sectorScrollNode))) {
+                                let sectorCell = cell as! SectorCell
+                                
+                                self.nextSector = sectorCell.type
+                                self.nextState = states.hangar
+                                
+                                return
+                            }
+                        }
                     }
                     break
                 default:
@@ -89,10 +113,11 @@ class ChooseSector: GameScene {
     
     #if os(tvOS)
     override func pressBegan(press: UIPress) -> Bool {
+    
         
         switch press.type {
         case .Menu:
-            return true
+            break
             
         case .Select:
             self.touchesEnded(taps: Set<UITouch>([UITouch()]))

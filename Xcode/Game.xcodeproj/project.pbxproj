@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		840661421C74FB4F00D8C1CD /* Hangar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661411C74FB4F00D8C1CD /* Hangar.swift */; };
-		840661431C74FB4F00D8C1CD /* Hangar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661411C74FB4F00D8C1CD /* Hangar.swift */; };
-		840661441C74FB4F00D8C1CD /* Hangar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661411C74FB4F00D8C1CD /* Hangar.swift */; };
+		840661421C74FB4F00D8C1CD /* HangarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661411C74FB4F00D8C1CD /* HangarScene.swift */; };
+		840661431C74FB4F00D8C1CD /* HangarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661411C74FB4F00D8C1CD /* HangarScene.swift */; };
+		840661441C74FB4F00D8C1CD /* HangarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661411C74FB4F00D8C1CD /* HangarScene.swift */; };
 		840661461C7502AF00D8C1CD /* ChooseSector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661451C7502AF00D8C1CD /* ChooseSector.swift */; };
 		840661471C7502AF00D8C1CD /* ChooseSector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661451C7502AF00D8C1CD /* ChooseSector.swift */; };
 		840661481C7502AF00D8C1CD /* ChooseSector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661451C7502AF00D8C1CD /* ChooseSector.swift */; };
@@ -77,13 +77,21 @@
 		848679581C74C1100049BB1F /* MissionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848679551C74C1100049BB1F /* MissionScene.swift */; };
 		848679591C74C1810049BB1F /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848679511C74C0750049BB1F /* MainMenuScene.swift */; };
 		8486795A1C74C1820049BB1F /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848679511C74C0750049BB1F /* MainMenuScene.swift */; };
-		8486795C1C74C9BF0049BB1F /* ButtonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486795B1C74C9BF0049BB1F /* ButtonTest.swift */; };
-		8486795D1C74C9BF0049BB1F /* ButtonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486795B1C74C9BF0049BB1F /* ButtonTest.swift */; };
-		8486795E1C74C9BF0049BB1F /* ButtonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486795B1C74C9BF0049BB1F /* ButtonTest.swift */; };
+		84944CDE1C763EC8006F49CE /* OptionsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84944CDD1C763EC8006F49CE /* OptionsScene.swift */; };
+		84944CE01C763F54006F49CE /* CreditsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84944CDF1C763F54006F49CE /* CreditsScene.swift */; };
+		84944CE21C7641D7006F49CE /* SectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84944CE11C7641D7006F49CE /* SectorCell.swift */; };
+		84944CE31C7641D7006F49CE /* SectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84944CE11C7641D7006F49CE /* SectorCell.swift */; };
+		84944CE41C7641D7006F49CE /* SectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84944CE11C7641D7006F49CE /* SectorCell.swift */; };
+		84944CE61C764535006F49CE /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84944CE51C764535006F49CE /* Label.swift */; };
+		84944CE71C764535006F49CE /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84944CE51C764535006F49CE /* Label.swift */; };
+		84944CE81C764535006F49CE /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84944CE51C764535006F49CE /* Label.swift */; };
+		84944CEA1C7646C2006F49CE /* kenpixel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84944CE91C7646C2006F49CE /* kenpixel.ttf */; };
+		84944CEB1C7646C2006F49CE /* kenpixel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84944CE91C7646C2006F49CE /* kenpixel.ttf */; };
+		84944CEC1C7646C2006F49CE /* kenpixel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84944CE91C7646C2006F49CE /* kenpixel.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		840661411C74FB4F00D8C1CD /* Hangar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hangar.swift; sourceTree = "<group>"; };
+		840661411C74FB4F00D8C1CD /* HangarScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangarScene.swift; sourceTree = "<group>"; };
 		840661451C7502AF00D8C1CD /* ChooseSector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseSector.swift; sourceTree = "<group>"; };
 		848678C11C748B0C0049BB1F /* Game iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Game iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		848678C31C748B0C0049BB1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -121,7 +129,11 @@
 		8486794A1C74903F0049BB1F /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		848679511C74C0750049BB1F /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		848679551C74C1100049BB1F /* MissionScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionScene.swift; sourceTree = "<group>"; };
-		8486795B1C74C9BF0049BB1F /* ButtonTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTest.swift; sourceTree = "<group>"; };
+		84944CDD1C763EC8006F49CE /* OptionsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsScene.swift; sourceTree = "<group>"; };
+		84944CDF1C763F54006F49CE /* CreditsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsScene.swift; sourceTree = "<group>"; };
+		84944CE11C7641D7006F49CE /* SectorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectorCell.swift; sourceTree = "<group>"; };
+		84944CE51C764535006F49CE /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		84944CE91C7646C2006F49CE /* kenpixel.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = kenpixel.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +224,7 @@
 		8486790C1C748DBC0049BB1F /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				84944CE91C7646C2006F49CE /* kenpixel.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -219,11 +232,12 @@
 		8486790D1C748DC60049BB1F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				8486795B1C74C9BF0049BB1F /* ButtonTest.swift */,
 				840661451C7502AF00D8C1CD /* ChooseSector.swift */,
-				840661411C74FB4F00D8C1CD /* Hangar.swift */,
+				840661411C74FB4F00D8C1CD /* HangarScene.swift */,
 				848679511C74C0750049BB1F /* MainMenuScene.swift */,
 				848679551C74C1100049BB1F /* MissionScene.swift */,
+				84944CDD1C763EC8006F49CE /* OptionsScene.swift */,
+				84944CDF1C763F54006F49CE /* CreditsScene.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -253,6 +267,7 @@
 				848679121C748F2C0049BB1F /* GeometryExtensions.swift */,
 				8486791F1C748F2C0049BB1F /* Music.swift */,
 				8486791B1C748F2C0049BB1F /* ScrollNode.swift */,
+				84944CE51C764535006F49CE /* Label.swift */,
 			);
 			name = _src;
 			path = src;
@@ -270,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				8486794A1C74903F0049BB1F /* World.swift */,
+				84944CE11C7641D7006F49CE /* SectorCell.swift */,
 			);
 			name = _Game;
 			path = Game;
@@ -394,6 +410,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				848679091C748CD30049BB1F /* Media.xcassets in Resources */,
+				84944CEA1C7646C2006F49CE /* kenpixel.ttf in Resources */,
 				848678D21C748B0C0049BB1F /* LaunchScreen.storyboard in Resources */,
 				848678CF1C748B0C0049BB1F /* Assets.xcassets in Resources */,
 				848678CD1C748B0C0049BB1F /* Main.storyboard in Resources */,
@@ -405,6 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8486790A1C748CD30049BB1F /* Media.xcassets in Resources */,
+				84944CEB1C7646C2006F49CE /* kenpixel.ttf in Resources */,
 				848678E91C748B1F0049BB1F /* Main.storyboard in Resources */,
 				848678EB1C748B1F0049BB1F /* Assets.xcassets in Resources */,
 				848678E61C748B1F0049BB1F /* Game.xcassets in Resources */,
@@ -415,6 +433,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84944CEC1C7646C2006F49CE /* kenpixel.ttf in Resources */,
 				848678FD1C748B470049BB1F /* Assets.xcassets in Resources */,
 				8486790B1C748CD30049BB1F /* Media.xcassets in Resources */,
 				848679001C748B470049BB1F /* MainMenu.xib in Resources */,
@@ -429,10 +448,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				840661461C7502AF00D8C1CD /* ChooseSector.swift in Sources */,
+				84944CDE1C763EC8006F49CE /* OptionsScene.swift in Sources */,
 				8486794B1C74903F0049BB1F /* World.swift in Sources */,
 				8486792C1C748F2C0049BB1F /* Control.swift in Sources */,
-				8486795C1C74C9BF0049BB1F /* ButtonTest.swift in Sources */,
 				848678CA1C748B0C0049BB1F /* GameViewController.swift in Sources */,
+				84944CE01C763F54006F49CE /* CreditsScene.swift in Sources */,
 				848679561C74C1100049BB1F /* MissionScene.swift in Sources */,
 				848678C41C748B0C0049BB1F /* AppDelegate.swift in Sources */,
 				848679201C748F2C0049BB1F /* GeometryExtensions.swift in Sources */,
@@ -440,7 +460,9 @@
 				848679321C748F2C0049BB1F /* Button.swift in Sources */,
 				8486792F1C748F2C0049BB1F /* GameCamera.swift in Sources */,
 				848679471C748F2C0049BB1F /* Music.swift in Sources */,
-				840661421C74FB4F00D8C1CD /* Hangar.swift in Sources */,
+				840661421C74FB4F00D8C1CD /* HangarScene.swift in Sources */,
+				84944CE61C764535006F49CE /* Label.swift in Sources */,
+				84944CE21C7641D7006F49CE /* SectorCell.swift in Sources */,
 				846A46B51C75E2360028DBA8 /* ScrollNode.swift in Sources */,
 				848679411C748F2C0049BB1F /* GameColors.swift in Sources */,
 				848679591C74C1810049BB1F /* MainMenuScene.swift in Sources */,
@@ -459,16 +481,17 @@
 				840661471C7502AF00D8C1CD /* ChooseSector.swift in Sources */,
 				8486794C1C74903F0049BB1F /* World.swift in Sources */,
 				8486792D1C748F2C0049BB1F /* Control.swift in Sources */,
-				8486795D1C74C9BF0049BB1F /* ButtonTest.swift in Sources */,
 				848678E41C748B1F0049BB1F /* GameViewController.swift in Sources */,
+				84944CE71C764535006F49CE /* Label.swift in Sources */,
 				848679571C74C1100049BB1F /* MissionScene.swift in Sources */,
 				848678DE1C748B1F0049BB1F /* AppDelegate.swift in Sources */,
 				848679531C74C0750049BB1F /* MainMenuScene.swift in Sources */,
 				848679211C748F2C0049BB1F /* GeometryExtensions.swift in Sources */,
 				848679361C748F2C0049BB1F /* Box.swift in Sources */,
+				84944CE31C7641D7006F49CE /* SectorCell.swift in Sources */,
 				848679331C748F2C0049BB1F /* Button.swift in Sources */,
 				848679301C748F2C0049BB1F /* GameCamera.swift in Sources */,
-				840661431C74FB4F00D8C1CD /* Hangar.swift in Sources */,
+				840661431C74FB4F00D8C1CD /* HangarScene.swift in Sources */,
 				846A46B41C75E2350028DBA8 /* ScrollNode.swift in Sources */,
 				848679481C748F2C0049BB1F /* Music.swift in Sources */,
 				848679421C748F2C0049BB1F /* GameColors.swift in Sources */,
@@ -487,14 +510,15 @@
 				8486793A1C748F2C0049BB1F /* CropBox.swift in Sources */,
 				8486792B1C748F2C0049BB1F /* GameScene.swift in Sources */,
 				848679461C748F2C0049BB1F /* GameFonts.swift in Sources */,
+				84944CE41C7641D7006F49CE /* SectorCell.swift in Sources */,
 				8486792E1C748F2C0049BB1F /* Control.swift in Sources */,
+				84944CE81C764535006F49CE /* Label.swift in Sources */,
 				8486795A1C74C1820049BB1F /* MainMenuScene.swift in Sources */,
 				8486793D1C748F2C0049BB1F /* ScrollNode.swift in Sources */,
 				848678F71C748B470049BB1F /* AppDelegate.swift in Sources */,
-				840661441C74FB4F00D8C1CD /* Hangar.swift in Sources */,
+				840661441C74FB4F00D8C1CD /* HangarScene.swift in Sources */,
 				848679491C748F2C0049BB1F /* Music.swift in Sources */,
 				848679281C748F2C0049BB1F /* Config.swift in Sources */,
-				8486795E1C74C9BF0049BB1F /* ButtonTest.swift in Sources */,
 				848679311C748F2C0049BB1F /* GameCamera.swift in Sources */,
 				848679431C748F2C0049BB1F /* GameColors.swift in Sources */,
 				848679341C748F2C0049BB1F /* Button.swift in Sources */,
@@ -578,7 +602,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.1;
 			};
 			name = Debug;
 		};
@@ -593,7 +616,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.1;
 			};
 			name = Release;
 		};
@@ -605,7 +627,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Game OS X/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "PabloHenri91.Game-OS-X";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -620,7 +641,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Game OS X/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "PabloHenri91.Game-OS-X";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -663,7 +683,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -702,7 +723,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

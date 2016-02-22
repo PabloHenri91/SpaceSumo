@@ -15,7 +15,9 @@ class MainMenuScene: GameScene {
         case mainMenu
         
         //Estados de saida da scene
-        case chooseSector
+        case options
+        case credits
+        case hangar
     }
     
     //Estados iniciais
@@ -24,6 +26,8 @@ class MainMenuScene: GameScene {
     
     //buttons
     var buttonPlay:Button!
+    var buttonOptions:Button!
+    var buttonCredits:Button!
     
     override func didMoveToView(view: SKView) {
         super.didMoveToView(view)
@@ -32,6 +36,12 @@ class MainMenuScene: GameScene {
         
         self.buttonPlay = Button(textureName: "buttonYellow", icon: "play", x: 119, y: 79, xAlign: .center, yAlign: .center)
         self.addChild(self.buttonPlay)
+        
+        self.buttonOptions = Button(textureName: "buttonGreenSquare", icon: "settings", x: 250, y: 146, xAlign: .right, yAlign: .down)
+        self.addChild(self.buttonOptions)
+        
+        self.buttonCredits = Button(textureName: "buttonGreenSquare", icon: "info", x: 292, y: 146, xAlign: .right, yAlign: .down)
+        self.addChild(self.buttonCredits)
         
         //Serve para setar o foco inicial no tvOS
         GameScene.selectedButton = self.buttonPlay
@@ -52,8 +62,10 @@ class MainMenuScene: GameScene {
             
             //Próximo estado
             switch (self.nextState) {
-            case states.chooseSector:
-                self.view?.presentScene(ChooseSector(), transition: self.transition)
+            case states.hangar:
+                let nextSector = 0//TODO: vindo do coredata???
+                let scene = HangarScene(nextSector: nextSector)
+                self.view?.presentScene(scene, transition: self.transition)
                 break
             default:
                 break
@@ -70,7 +82,7 @@ class MainMenuScene: GameScene {
                 switch (self.state) {
                 case states.mainMenu:
                     if(self.buttonPlay.containsPoint(touch.locationInNode(self))) {
-                        self.nextState = states.chooseSector
+                        self.nextState = states.hangar
                         return
                     }
                     break
