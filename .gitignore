@@ -49,3 +49,6 @@ Carthage/Build
 
 fastlane/report.xml
 fastlane/screenshots
+
+Xcode/socket.io-client-swift/*
+Xcode/Server/node_modules/*

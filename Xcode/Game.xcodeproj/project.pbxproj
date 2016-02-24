@@ -88,6 +88,69 @@
 		84944CEA1C7646C2006F49CE /* kenpixel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84944CE91C7646C2006F49CE /* kenpixel.ttf */; };
 		84944CEB1C7646C2006F49CE /* kenpixel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84944CE91C7646C2006F49CE /* kenpixel.ttf */; };
 		84944CEC1C7646C2006F49CE /* kenpixel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84944CE91C7646C2006F49CE /* kenpixel.ttf */; };
+		84AADFF31C7B5C0400AE04DD /* SocketAckEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFDE1C7B5C0400AE04DD /* SocketAckEmitter.swift */; };
+		84AADFF41C7B5C0400AE04DD /* SocketAckEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFDE1C7B5C0400AE04DD /* SocketAckEmitter.swift */; };
+		84AADFF51C7B5C0400AE04DD /* SocketAckEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFDE1C7B5C0400AE04DD /* SocketAckEmitter.swift */; };
+		84AADFF61C7B5C0400AE04DD /* SocketAckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFDF1C7B5C0400AE04DD /* SocketAckManager.swift */; };
+		84AADFF71C7B5C0400AE04DD /* SocketAckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFDF1C7B5C0400AE04DD /* SocketAckManager.swift */; };
+		84AADFF81C7B5C0400AE04DD /* SocketAckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFDF1C7B5C0400AE04DD /* SocketAckManager.swift */; };
+		84AADFF91C7B5C0400AE04DD /* SocketAnyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE01C7B5C0400AE04DD /* SocketAnyEvent.swift */; };
+		84AADFFA1C7B5C0400AE04DD /* SocketAnyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE01C7B5C0400AE04DD /* SocketAnyEvent.swift */; };
+		84AADFFB1C7B5C0400AE04DD /* SocketAnyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE01C7B5C0400AE04DD /* SocketAnyEvent.swift */; };
+		84AADFFC1C7B5C0400AE04DD /* SocketClientSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE11C7B5C0400AE04DD /* SocketClientSpec.swift */; };
+		84AADFFD1C7B5C0400AE04DD /* SocketClientSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE11C7B5C0400AE04DD /* SocketClientSpec.swift */; };
+		84AADFFE1C7B5C0400AE04DD /* SocketClientSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE11C7B5C0400AE04DD /* SocketClientSpec.swift */; };
+		84AADFFF1C7B5C0400AE04DD /* SocketEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE21C7B5C0400AE04DD /* SocketEngine.swift */; };
+		84AAE0001C7B5C0400AE04DD /* SocketEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE21C7B5C0400AE04DD /* SocketEngine.swift */; };
+		84AAE0011C7B5C0400AE04DD /* SocketEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE21C7B5C0400AE04DD /* SocketEngine.swift */; };
+		84AAE0021C7B5C0400AE04DD /* SocketEngineClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE31C7B5C0400AE04DD /* SocketEngineClient.swift */; };
+		84AAE0031C7B5C0400AE04DD /* SocketEngineClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE31C7B5C0400AE04DD /* SocketEngineClient.swift */; };
+		84AAE0041C7B5C0400AE04DD /* SocketEngineClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE31C7B5C0400AE04DD /* SocketEngineClient.swift */; };
+		84AAE0051C7B5C0400AE04DD /* SocketEnginePacketType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE41C7B5C0400AE04DD /* SocketEnginePacketType.swift */; };
+		84AAE0061C7B5C0400AE04DD /* SocketEnginePacketType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE41C7B5C0400AE04DD /* SocketEnginePacketType.swift */; };
+		84AAE0071C7B5C0400AE04DD /* SocketEnginePacketType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE41C7B5C0400AE04DD /* SocketEnginePacketType.swift */; };
+		84AAE0081C7B5C0400AE04DD /* SocketEnginePollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE51C7B5C0400AE04DD /* SocketEnginePollable.swift */; };
+		84AAE0091C7B5C0400AE04DD /* SocketEnginePollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE51C7B5C0400AE04DD /* SocketEnginePollable.swift */; };
+		84AAE00A1C7B5C0400AE04DD /* SocketEnginePollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE51C7B5C0400AE04DD /* SocketEnginePollable.swift */; };
+		84AAE00B1C7B5C0400AE04DD /* SocketEngineSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE61C7B5C0400AE04DD /* SocketEngineSpec.swift */; };
+		84AAE00C1C7B5C0400AE04DD /* SocketEngineSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE61C7B5C0400AE04DD /* SocketEngineSpec.swift */; };
+		84AAE00D1C7B5C0400AE04DD /* SocketEngineSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE61C7B5C0400AE04DD /* SocketEngineSpec.swift */; };
+		84AAE00E1C7B5C0400AE04DD /* SocketEngineWebsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE71C7B5C0400AE04DD /* SocketEngineWebsocket.swift */; };
+		84AAE00F1C7B5C0400AE04DD /* SocketEngineWebsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE71C7B5C0400AE04DD /* SocketEngineWebsocket.swift */; };
+		84AAE0101C7B5C0400AE04DD /* SocketEngineWebsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE71C7B5C0400AE04DD /* SocketEngineWebsocket.swift */; };
+		84AAE0111C7B5C0400AE04DD /* SocketEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE81C7B5C0400AE04DD /* SocketEventHandler.swift */; };
+		84AAE0121C7B5C0400AE04DD /* SocketEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE81C7B5C0400AE04DD /* SocketEventHandler.swift */; };
+		84AAE0131C7B5C0400AE04DD /* SocketEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE81C7B5C0400AE04DD /* SocketEventHandler.swift */; };
+		84AAE0141C7B5C0400AE04DD /* SocketIOClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE91C7B5C0400AE04DD /* SocketIOClient.swift */; };
+		84AAE0151C7B5C0400AE04DD /* SocketIOClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE91C7B5C0400AE04DD /* SocketIOClient.swift */; };
+		84AAE0161C7B5C0400AE04DD /* SocketIOClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE91C7B5C0400AE04DD /* SocketIOClient.swift */; };
+		84AAE0171C7B5C0400AE04DD /* SocketIOClientOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFEA1C7B5C0400AE04DD /* SocketIOClientOption.swift */; };
+		84AAE0181C7B5C0400AE04DD /* SocketIOClientOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFEA1C7B5C0400AE04DD /* SocketIOClientOption.swift */; };
+		84AAE0191C7B5C0400AE04DD /* SocketIOClientOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFEA1C7B5C0400AE04DD /* SocketIOClientOption.swift */; };
+		84AAE01A1C7B5C0400AE04DD /* SocketIOClientStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFEB1C7B5C0400AE04DD /* SocketIOClientStatus.swift */; };
+		84AAE01B1C7B5C0400AE04DD /* SocketIOClientStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFEB1C7B5C0400AE04DD /* SocketIOClientStatus.swift */; };
+		84AAE01C1C7B5C0400AE04DD /* SocketIOClientStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFEB1C7B5C0400AE04DD /* SocketIOClientStatus.swift */; };
+		84AAE01D1C7B5C0400AE04DD /* SocketLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFEC1C7B5C0400AE04DD /* SocketLogger.swift */; };
+		84AAE01E1C7B5C0400AE04DD /* SocketLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFEC1C7B5C0400AE04DD /* SocketLogger.swift */; };
+		84AAE01F1C7B5C0400AE04DD /* SocketLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFEC1C7B5C0400AE04DD /* SocketLogger.swift */; };
+		84AAE0201C7B5C0400AE04DD /* SocketPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFED1C7B5C0400AE04DD /* SocketPacket.swift */; };
+		84AAE0211C7B5C0400AE04DD /* SocketPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFED1C7B5C0400AE04DD /* SocketPacket.swift */; };
+		84AAE0221C7B5C0400AE04DD /* SocketPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFED1C7B5C0400AE04DD /* SocketPacket.swift */; };
+		84AAE0231C7B5C0400AE04DD /* SocketParsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFEE1C7B5C0400AE04DD /* SocketParsable.swift */; };
+		84AAE0241C7B5C0400AE04DD /* SocketParsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFEE1C7B5C0400AE04DD /* SocketParsable.swift */; };
+		84AAE0251C7B5C0400AE04DD /* SocketParsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFEE1C7B5C0400AE04DD /* SocketParsable.swift */; };
+		84AAE0261C7B5C0400AE04DD /* SocketStringReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFEF1C7B5C0400AE04DD /* SocketStringReader.swift */; };
+		84AAE0271C7B5C0400AE04DD /* SocketStringReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFEF1C7B5C0400AE04DD /* SocketStringReader.swift */; };
+		84AAE0281C7B5C0400AE04DD /* SocketStringReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFEF1C7B5C0400AE04DD /* SocketStringReader.swift */; };
+		84AAE0291C7B5C0400AE04DD /* SocketTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFF01C7B5C0400AE04DD /* SocketTypes.swift */; };
+		84AAE02A1C7B5C0400AE04DD /* SocketTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFF01C7B5C0400AE04DD /* SocketTypes.swift */; };
+		84AAE02B1C7B5C0400AE04DD /* SocketTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFF01C7B5C0400AE04DD /* SocketTypes.swift */; };
+		84AAE02C1C7B5C0400AE04DD /* SwiftRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFF11C7B5C0400AE04DD /* SwiftRegex.swift */; };
+		84AAE02D1C7B5C0400AE04DD /* SwiftRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFF11C7B5C0400AE04DD /* SwiftRegex.swift */; };
+		84AAE02E1C7B5C0400AE04DD /* SwiftRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFF11C7B5C0400AE04DD /* SwiftRegex.swift */; };
+		84AAE02F1C7B5C0400AE04DD /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFF21C7B5C0400AE04DD /* WebSocket.swift */; };
+		84AAE0301C7B5C0400AE04DD /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFF21C7B5C0400AE04DD /* WebSocket.swift */; };
+		84AAE0311C7B5C0400AE04DD /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFF21C7B5C0400AE04DD /* WebSocket.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -134,6 +197,30 @@
 		84944CE11C7641D7006F49CE /* SectorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectorCell.swift; sourceTree = "<group>"; };
 		84944CE51C764535006F49CE /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		84944CE91C7646C2006F49CE /* kenpixel.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = kenpixel.ttf; sourceTree = "<group>"; };
+		84AADFDE1C7B5C0400AE04DD /* SocketAckEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckEmitter.swift; sourceTree = "<group>"; };
+		84AADFDF1C7B5C0400AE04DD /* SocketAckManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckManager.swift; sourceTree = "<group>"; };
+		84AADFE01C7B5C0400AE04DD /* SocketAnyEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAnyEvent.swift; sourceTree = "<group>"; };
+		84AADFE11C7B5C0400AE04DD /* SocketClientSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketClientSpec.swift; sourceTree = "<group>"; };
+		84AADFE21C7B5C0400AE04DD /* SocketEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEngine.swift; sourceTree = "<group>"; };
+		84AADFE31C7B5C0400AE04DD /* SocketEngineClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEngineClient.swift; sourceTree = "<group>"; };
+		84AADFE41C7B5C0400AE04DD /* SocketEnginePacketType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEnginePacketType.swift; sourceTree = "<group>"; };
+		84AADFE51C7B5C0400AE04DD /* SocketEnginePollable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEnginePollable.swift; sourceTree = "<group>"; };
+		84AADFE61C7B5C0400AE04DD /* SocketEngineSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEngineSpec.swift; sourceTree = "<group>"; };
+		84AADFE71C7B5C0400AE04DD /* SocketEngineWebsocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEngineWebsocket.swift; sourceTree = "<group>"; };
+		84AADFE81C7B5C0400AE04DD /* SocketEventHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEventHandler.swift; sourceTree = "<group>"; };
+		84AADFE91C7B5C0400AE04DD /* SocketIOClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOClient.swift; sourceTree = "<group>"; };
+		84AADFEA1C7B5C0400AE04DD /* SocketIOClientOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOClientOption.swift; sourceTree = "<group>"; };
+		84AADFEB1C7B5C0400AE04DD /* SocketIOClientStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOClientStatus.swift; sourceTree = "<group>"; };
+		84AADFEC1C7B5C0400AE04DD /* SocketLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketLogger.swift; sourceTree = "<group>"; };
+		84AADFED1C7B5C0400AE04DD /* SocketPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketPacket.swift; sourceTree = "<group>"; };
+		84AADFEE1C7B5C0400AE04DD /* SocketParsable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketParsable.swift; sourceTree = "<group>"; };
+		84AADFEF1C7B5C0400AE04DD /* SocketStringReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketStringReader.swift; sourceTree = "<group>"; };
+		84AADFF01C7B5C0400AE04DD /* SocketTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketTypes.swift; sourceTree = "<group>"; };
+		84AADFF11C7B5C0400AE04DD /* SwiftRegex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftRegex.swift; sourceTree = "<group>"; };
+		84AADFF21C7B5C0400AE04DD /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
+		84AAE0331C7B924500AE04DD /* Game iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Game iOS-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		84AAE0341C7B924500AE04DD /* Game tvOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Game tvOS-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		84AAE0351C7B924500AE04DD /* Game OS X-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Game OS X-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +248,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		847F793E1C7B539E001CE8B1 /* SocketIOClientSwift */ = {
+			isa = PBXGroup;
+			children = (
+				84AADFDE1C7B5C0400AE04DD /* SocketAckEmitter.swift */,
+				84AADFDF1C7B5C0400AE04DD /* SocketAckManager.swift */,
+				84AADFE01C7B5C0400AE04DD /* SocketAnyEvent.swift */,
+				84AADFE11C7B5C0400AE04DD /* SocketClientSpec.swift */,
+				84AADFE21C7B5C0400AE04DD /* SocketEngine.swift */,
+				84AADFE31C7B5C0400AE04DD /* SocketEngineClient.swift */,
+				84AADFE41C7B5C0400AE04DD /* SocketEnginePacketType.swift */,
+				84AADFE51C7B5C0400AE04DD /* SocketEnginePollable.swift */,
+				84AADFE61C7B5C0400AE04DD /* SocketEngineSpec.swift */,
+				84AADFE71C7B5C0400AE04DD /* SocketEngineWebsocket.swift */,
+				84AADFE81C7B5C0400AE04DD /* SocketEventHandler.swift */,
+				84AADFE91C7B5C0400AE04DD /* SocketIOClient.swift */,
+				84AADFEA1C7B5C0400AE04DD /* SocketIOClientOption.swift */,
+				84AADFEB1C7B5C0400AE04DD /* SocketIOClientStatus.swift */,
+				84AADFEC1C7B5C0400AE04DD /* SocketLogger.swift */,
+				84AADFED1C7B5C0400AE04DD /* SocketPacket.swift */,
+				84AADFEE1C7B5C0400AE04DD /* SocketParsable.swift */,
+				84AADFEF1C7B5C0400AE04DD /* SocketStringReader.swift */,
+				84AADFF01C7B5C0400AE04DD /* SocketTypes.swift */,
+				84AADFF11C7B5C0400AE04DD /* SwiftRegex.swift */,
+				84AADFF21C7B5C0400AE04DD /* WebSocket.swift */,
+			);
+			name = SocketIOClientSwift;
+			path = "socket.io-client-swift/Source";
+			sourceTree = "<group>";
+		};
 		848678C21C748B0C0049BB1F /* Game iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,8 +319,8 @@
 			children = (
 				848679071C748C0A0049BB1F /* Game */,
 				848678C21C748B0C0049BB1F /* Game iOS */,
-				848678DC1C748B1F0049BB1F /* Game tvOS */,
 				848678F51C748B470049BB1F /* Game OS X */,
+				848678DC1C748B1F0049BB1F /* Game tvOS */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -212,6 +328,9 @@
 		848679071C748C0A0049BB1F /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				84AAE0331C7B924500AE04DD /* Game iOS-Bridging-Header.h */,
+				84AAE0341C7B924500AE04DD /* Game tvOS-Bridging-Header.h */,
+				84AAE0351C7B924500AE04DD /* Game OS X-Bridging-Header.h */,
 				8486790F1C748DFC0049BB1F /* _src */,
 				8486790E1C748DE50049BB1F /* Sound Effects */,
 				8486790D1C748DC60049BB1F /* Scenes */,
@@ -294,6 +413,7 @@
 		84B9C8E91C7487160080CE52 = {
 			isa = PBXGroup;
 			children = (
+				847F793E1C7B539E001CE8B1 /* SocketIOClientSwift */,
 				848679051C748B5D0049BB1F /* Game */,
 				84B9C8F31C7487160080CE52 /* Products */,
 			);
@@ -449,28 +569,49 @@
 			files = (
 				840661461C7502AF00D8C1CD /* ChooseSector.swift in Sources */,
 				84944CDE1C763EC8006F49CE /* OptionsScene.swift in Sources */,
+				84AADFF91C7B5C0400AE04DD /* SocketAnyEvent.swift in Sources */,
+				84AAE00B1C7B5C0400AE04DD /* SocketEngineSpec.swift in Sources */,
 				8486794B1C74903F0049BB1F /* World.swift in Sources */,
+				84AAE0291C7B5C0400AE04DD /* SocketTypes.swift in Sources */,
+				84AAE01A1C7B5C0400AE04DD /* SocketIOClientStatus.swift in Sources */,
+				84AAE0231C7B5C0400AE04DD /* SocketParsable.swift in Sources */,
 				8486792C1C748F2C0049BB1F /* Control.swift in Sources */,
 				848678CA1C748B0C0049BB1F /* GameViewController.swift in Sources */,
+				84AADFFF1C7B5C0400AE04DD /* SocketEngine.swift in Sources */,
 				84944CE01C763F54006F49CE /* CreditsScene.swift in Sources */,
+				84AADFF31C7B5C0400AE04DD /* SocketAckEmitter.swift in Sources */,
 				848679561C74C1100049BB1F /* MissionScene.swift in Sources */,
 				848678C41C748B0C0049BB1F /* AppDelegate.swift in Sources */,
 				848679201C748F2C0049BB1F /* GeometryExtensions.swift in Sources */,
 				848679351C748F2C0049BB1F /* Box.swift in Sources */,
+				84AAE0021C7B5C0400AE04DD /* SocketEngineClient.swift in Sources */,
 				848679321C748F2C0049BB1F /* Button.swift in Sources */,
+				84AAE0261C7B5C0400AE04DD /* SocketStringReader.swift in Sources */,
 				8486792F1C748F2C0049BB1F /* GameCamera.swift in Sources */,
 				848679471C748F2C0049BB1F /* Music.swift in Sources */,
+				84AADFF61C7B5C0400AE04DD /* SocketAckManager.swift in Sources */,
 				840661421C74FB4F00D8C1CD /* HangarScene.swift in Sources */,
 				84944CE61C764535006F49CE /* Label.swift in Sources */,
 				84944CE21C7641D7006F49CE /* SectorCell.swift in Sources */,
 				846A46B51C75E2360028DBA8 /* ScrollNode.swift in Sources */,
+				84AAE02C1C7B5C0400AE04DD /* SwiftRegex.swift in Sources */,
+				84AADFFC1C7B5C0400AE04DD /* SocketClientSpec.swift in Sources */,
 				848679411C748F2C0049BB1F /* GameColors.swift in Sources */,
 				848679591C74C1810049BB1F /* MainMenuScene.swift in Sources */,
+				84AAE0171C7B5C0400AE04DD /* SocketIOClientOption.swift in Sources */,
+				84AAE00E1C7B5C0400AE04DD /* SocketEngineWebsocket.swift in Sources */,
+				84AAE0141C7B5C0400AE04DD /* SocketIOClient.swift in Sources */,
+				84AAE02F1C7B5C0400AE04DD /* WebSocket.swift in Sources */,
+				84AAE0201C7B5C0400AE04DD /* SocketPacket.swift in Sources */,
 				848679381C748F2C0049BB1F /* CropBox.swift in Sources */,
 				848679291C748F2C0049BB1F /* GameScene.swift in Sources */,
+				84AAE01D1C7B5C0400AE04DD /* SocketLogger.swift in Sources */,
 				8486793E1C748F2C0049BB1F /* Event.swift in Sources */,
+				84AAE0051C7B5C0400AE04DD /* SocketEnginePacketType.swift in Sources */,
 				848679441C748F2C0049BB1F /* GameFonts.swift in Sources */,
+				84AAE0111C7B5C0400AE04DD /* SocketEventHandler.swift in Sources */,
 				848679261C748F2C0049BB1F /* Config.swift in Sources */,
+				84AAE0081C7B5C0400AE04DD /* SocketEnginePollable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,24 +620,45 @@
 			buildActionMask = 2147483647;
 			files = (
 				840661471C7502AF00D8C1CD /* ChooseSector.swift in Sources */,
+				84AAE01B1C7B5C0400AE04DD /* SocketIOClientStatus.swift in Sources */,
+				84AAE0061C7B5C0400AE04DD /* SocketEnginePacketType.swift in Sources */,
 				8486794C1C74903F0049BB1F /* World.swift in Sources */,
 				8486792D1C748F2C0049BB1F /* Control.swift in Sources */,
 				848678E41C748B1F0049BB1F /* GameViewController.swift in Sources */,
+				84AAE0271C7B5C0400AE04DD /* SocketStringReader.swift in Sources */,
+				84AAE02A1C7B5C0400AE04DD /* SocketTypes.swift in Sources */,
 				84944CE71C764535006F49CE /* Label.swift in Sources */,
+				84AADFFA1C7B5C0400AE04DD /* SocketAnyEvent.swift in Sources */,
+				84AAE0091C7B5C0400AE04DD /* SocketEnginePollable.swift in Sources */,
+				84AAE0001C7B5C0400AE04DD /* SocketEngine.swift in Sources */,
+				84AAE0151C7B5C0400AE04DD /* SocketIOClient.swift in Sources */,
 				848679571C74C1100049BB1F /* MissionScene.swift in Sources */,
 				848678DE1C748B1F0049BB1F /* AppDelegate.swift in Sources */,
+				84AADFFD1C7B5C0400AE04DD /* SocketClientSpec.swift in Sources */,
 				848679531C74C0750049BB1F /* MainMenuScene.swift in Sources */,
+				84AAE02D1C7B5C0400AE04DD /* SwiftRegex.swift in Sources */,
+				84AAE00C1C7B5C0400AE04DD /* SocketEngineSpec.swift in Sources */,
 				848679211C748F2C0049BB1F /* GeometryExtensions.swift in Sources */,
+				84AADFF41C7B5C0400AE04DD /* SocketAckEmitter.swift in Sources */,
 				848679361C748F2C0049BB1F /* Box.swift in Sources */,
 				84944CE31C7641D7006F49CE /* SectorCell.swift in Sources */,
+				84AADFF71C7B5C0400AE04DD /* SocketAckManager.swift in Sources */,
 				848679331C748F2C0049BB1F /* Button.swift in Sources */,
 				848679301C748F2C0049BB1F /* GameCamera.swift in Sources */,
+				84AAE01E1C7B5C0400AE04DD /* SocketLogger.swift in Sources */,
 				840661431C74FB4F00D8C1CD /* HangarScene.swift in Sources */,
 				846A46B41C75E2350028DBA8 /* ScrollNode.swift in Sources */,
+				84AAE0211C7B5C0400AE04DD /* SocketPacket.swift in Sources */,
+				84AAE0181C7B5C0400AE04DD /* SocketIOClientOption.swift in Sources */,
 				848679481C748F2C0049BB1F /* Music.swift in Sources */,
+				84AAE0031C7B5C0400AE04DD /* SocketEngineClient.swift in Sources */,
 				848679421C748F2C0049BB1F /* GameColors.swift in Sources */,
 				848679391C748F2C0049BB1F /* CropBox.swift in Sources */,
+				84AAE0301C7B5C0400AE04DD /* WebSocket.swift in Sources */,
+				84AAE0121C7B5C0400AE04DD /* SocketEventHandler.swift in Sources */,
 				8486792A1C748F2C0049BB1F /* GameScene.swift in Sources */,
+				84AAE00F1C7B5C0400AE04DD /* SocketEngineWebsocket.swift in Sources */,
+				84AAE0241C7B5C0400AE04DD /* SocketParsable.swift in Sources */,
 				8486793F1C748F2C0049BB1F /* Event.swift in Sources */,
 				848679451C748F2C0049BB1F /* GameFonts.swift in Sources */,
 				848679271C748F2C0049BB1F /* Config.swift in Sources */,
@@ -509,24 +671,45 @@
 			files = (
 				8486793A1C748F2C0049BB1F /* CropBox.swift in Sources */,
 				8486792B1C748F2C0049BB1F /* GameScene.swift in Sources */,
+				84AAE02B1C7B5C0400AE04DD /* SocketTypes.swift in Sources */,
+				84AAE0101C7B5C0400AE04DD /* SocketEngineWebsocket.swift in Sources */,
+				84AAE0221C7B5C0400AE04DD /* SocketPacket.swift in Sources */,
+				84AADFFB1C7B5C0400AE04DD /* SocketAnyEvent.swift in Sources */,
+				84AAE00D1C7B5C0400AE04DD /* SocketEngineSpec.swift in Sources */,
 				848679461C748F2C0049BB1F /* GameFonts.swift in Sources */,
 				84944CE41C7641D7006F49CE /* SectorCell.swift in Sources */,
 				8486792E1C748F2C0049BB1F /* Control.swift in Sources */,
 				84944CE81C764535006F49CE /* Label.swift in Sources */,
 				8486795A1C74C1820049BB1F /* MainMenuScene.swift in Sources */,
 				8486793D1C748F2C0049BB1F /* ScrollNode.swift in Sources */,
+				84AAE0311C7B5C0400AE04DD /* WebSocket.swift in Sources */,
+				84AAE0281C7B5C0400AE04DD /* SocketStringReader.swift in Sources */,
 				848678F71C748B470049BB1F /* AppDelegate.swift in Sources */,
+				84AADFF51C7B5C0400AE04DD /* SocketAckEmitter.swift in Sources */,
 				840661441C74FB4F00D8C1CD /* HangarScene.swift in Sources */,
+				84AAE01F1C7B5C0400AE04DD /* SocketLogger.swift in Sources */,
+				84AAE00A1C7B5C0400AE04DD /* SocketEnginePollable.swift in Sources */,
+				84AAE0011C7B5C0400AE04DD /* SocketEngine.swift in Sources */,
+				84AAE01C1C7B5C0400AE04DD /* SocketIOClientStatus.swift in Sources */,
 				848679491C748F2C0049BB1F /* Music.swift in Sources */,
 				848679281C748F2C0049BB1F /* Config.swift in Sources */,
+				84AADFFE1C7B5C0400AE04DD /* SocketClientSpec.swift in Sources */,
 				848679311C748F2C0049BB1F /* GameCamera.swift in Sources */,
+				84AAE0191C7B5C0400AE04DD /* SocketIOClientOption.swift in Sources */,
+				84AAE02E1C7B5C0400AE04DD /* SwiftRegex.swift in Sources */,
 				848679431C748F2C0049BB1F /* GameColors.swift in Sources */,
 				848679341C748F2C0049BB1F /* Button.swift in Sources */,
+				84AADFF81C7B5C0400AE04DD /* SocketAckManager.swift in Sources */,
 				840661481C7502AF00D8C1CD /* ChooseSector.swift in Sources */,
 				848679221C748F2C0049BB1F /* GeometryExtensions.swift in Sources */,
+				84AAE0041C7B5C0400AE04DD /* SocketEngineClient.swift in Sources */,
 				848679371C748F2C0049BB1F /* Box.swift in Sources */,
+				84AAE0161C7B5C0400AE04DD /* SocketIOClient.swift in Sources */,
+				84AAE0071C7B5C0400AE04DD /* SocketEnginePacketType.swift in Sources */,
+				84AAE0131C7B5C0400AE04DD /* SocketEventHandler.swift in Sources */,
 				8486794D1C74903F0049BB1F /* World.swift in Sources */,
 				848679581C74C1100049BB1F /* MissionScene.swift in Sources */,
+				84AAE0251C7B5C0400AE04DD /* SocketParsable.swift in Sources */,
 				848679401C748F2C0049BB1F /* Event.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -573,10 +756,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Game iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "PabloHenri91.Game-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Game iOS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -584,10 +770,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Game iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "PabloHenri91.Game-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Game iOS-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -596,11 +784,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Game tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "PabloHenri91.Game-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Game tvOS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 3;
 			};
 			name = Debug;
@@ -610,11 +801,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Game tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "PabloHenri91.Game-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Game tvOS-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 3;
 			};
 			name = Release;
@@ -623,6 +816,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Game OS X/Info.plist";
@@ -630,6 +824,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "PabloHenri91.Game-OS-X";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "Game OS X-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -637,6 +833,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Game OS X/Info.plist";
@@ -644,6 +841,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "PabloHenri91.Game-OS-X";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "Game OS X-Bridging-Header.h";
 			};
 			name = Release;
 		};

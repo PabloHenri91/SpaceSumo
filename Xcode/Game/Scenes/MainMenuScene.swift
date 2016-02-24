@@ -29,6 +29,8 @@ class MainMenuScene: GameScene {
     var buttonOptions:Button!
     var buttonCredits:Button!
     
+    var socket:SocketIOClient!
+    
     override func didMoveToView(view: SKView) {
         super.didMoveToView(view)
         
@@ -63,11 +65,38 @@ class MainMenuScene: GameScene {
             //Próximo estado
             switch (self.nextState) {
             case states.hangar:
+                
+                self.socket = SocketIOClient(socketURL: NSURL(string:"http://localhost:8900")!)
+                //self.socket = SocketIOClient(socketURL: NSURL(string:"http://172.16.3.149:8900")!)
+                
+                self.addHandlers()
+                self.socket.connect()
+                
                 let nextSector = 0//TODO: vindo do coredata???
                 let scene = HangarScene(nextSector: nextSector)
                 self.view?.presentScene(scene, transition: self.transition)
                 break
             default:
+                break
+            }
+        }
+    }
+    
+    func addHandlers() {
+        
+        //socket.on("") { (data:[AnyObject], socketAckEmitter:SocketAckEmitter) -> Void in
+        //    print(data.description)
+        //}
+        
+        self.socket.onAny { (socketAnyEvent:SocketAnyEvent) -> Void in
+            switch(socketAnyEvent.event) {
+            case "connect":
+                self.socket.emit("update", "x", "y")
+                break
+            case "update":
+                break
+            default:
+                print(socketAnyEvent.description)
                 break
             }
         }
