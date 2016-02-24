@@ -221,6 +221,7 @@
 		84AAE0331C7B924500AE04DD /* Game iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Game iOS-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		84AAE0341C7B924500AE04DD /* Game tvOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Game tvOS-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		84AAE0351C7B924500AE04DD /* Game OS X-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Game OS X-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		84B31C5A1C7DE1AE006D5390 /* main.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = main.js; path = Server/main.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -410,9 +411,18 @@
 			path = Game;
 			sourceTree = "<group>";
 		};
+		84B31C591C7DE18E006D5390 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				84B31C5A1C7DE1AE006D5390 /* main.js */,
+			);
+			name = Server;
+			sourceTree = "<group>";
+		};
 		84B9C8E91C7487160080CE52 = {
 			isa = PBXGroup;
 			children = (
+				84B31C591C7DE18E006D5390 /* Server */,
 				847F793E1C7B539E001CE8B1 /* SocketIOClientSwift */,
 				848679051C748B5D0049BB1F /* Game */,
 				84B9C8F31C7487160080CE52 /* Products */,
