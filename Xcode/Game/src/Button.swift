@@ -265,61 +265,69 @@ class Button: Control {
                     if(abs(Control.totalDx) > abs(Control.totalDy)) {
                         if(Control.totalDx > 0) {
                             for button in buttonList {
-                                let buttonPosition = button.positionInScene()
-                                let selectedButtonPosition = selectedButton.positionInScene()
-                                
-                                if(buttonPosition.x > selectedButtonPosition.x) {
-                                    let distanceToSelectedButon = CGPoint.distance(buttonPosition, selectedButtonPosition)
-                                    if(distanceToSelectedButon < distanceToNextButon) {
-                                        GameScene.nextButton = button
-                                        distanceToNextButon = distanceToSelectedButon
+                                if button.hidden == false {
+                                    let buttonPosition = button.positionInScene()
+                                    let selectedButtonPosition = selectedButton.positionInScene()
+                                    
+                                    if(buttonPosition.x > selectedButtonPosition.x) {
+                                        let distanceToSelectedButon = CGPoint.distance(buttonPosition, selectedButtonPosition)
+                                        if(distanceToSelectedButon < distanceToNextButon) {
+                                            GameScene.nextButton = button
+                                            distanceToNextButon = distanceToSelectedButon
+                                        }
                                     }
+                                    button.buttonRelease()
                                 }
-                                button.buttonRelease()
                             }
                         } else {
                             for button in buttonList {
-                                let buttonPosition = button.positionInScene()
-                                let selectedButtonPosition = selectedButton.positionInScene()
-                                
-                                if(buttonPosition.x < selectedButtonPosition.x) {
-                                    let distanceToSelectedButon = CGPoint.distance(buttonPosition, selectedButtonPosition)
-                                    if(distanceToSelectedButon < distanceToNextButon) {
-                                        GameScene.nextButton = button
-                                        distanceToNextButon = distanceToSelectedButon
+                                if button.hidden == false {
+                                    let buttonPosition = button.positionInScene()
+                                    let selectedButtonPosition = selectedButton.positionInScene()
+                                    
+                                    if(buttonPosition.x < selectedButtonPosition.x) {
+                                        let distanceToSelectedButon = CGPoint.distance(buttonPosition, selectedButtonPosition)
+                                        if(distanceToSelectedButon < distanceToNextButon) {
+                                            GameScene.nextButton = button
+                                            distanceToNextButon = distanceToSelectedButon
+                                        }
                                     }
+                                    button.buttonRelease()
                                 }
-                                button.buttonRelease()
                             }
                         }
                     } else {
                         if(Control.totalDy > 0)  {
                             for button in buttonList {
-                                let buttonPosition = button.positionInScene()
-                                let selectedButtonPosition = selectedButton.positionInScene()
-                                
-                                if(buttonPosition.y > selectedButtonPosition.y) {
-                                    let distanceToSelectedButon = CGPoint.distance(buttonPosition, selectedButtonPosition)
-                                    if(distanceToSelectedButon < distanceToNextButon) {
-                                        GameScene.nextButton = button
-                                        distanceToNextButon = distanceToSelectedButon
+                                if button.hidden == false {
+                                    let buttonPosition = button.positionInScene()
+                                    let selectedButtonPosition = selectedButton.positionInScene()
+                                    
+                                    if(buttonPosition.y > selectedButtonPosition.y) {
+                                        let distanceToSelectedButon = CGPoint.distance(buttonPosition, selectedButtonPosition)
+                                        if(distanceToSelectedButon < distanceToNextButon) {
+                                            GameScene.nextButton = button
+                                            distanceToNextButon = distanceToSelectedButon
+                                        }
                                     }
+                                    button.buttonRelease()
                                 }
-                                button.buttonRelease()
                             }
                         } else {
                             for button in buttonList {
-                                let buttonPosition = button.positionInScene()
-                                let selectedButtonPosition = selectedButton.positionInScene()
-                                
-                                if(buttonPosition.y < selectedButtonPosition.y) {
-                                    let distanceToSelectedButon = CGPoint.distance(buttonPosition, selectedButtonPosition)
-                                    if(distanceToSelectedButon < distanceToNextButon) {
-                                        GameScene.nextButton = button
-                                        distanceToNextButon = distanceToSelectedButon
+                                if button.hidden == false {
+                                    let buttonPosition = button.positionInScene()
+                                    let selectedButtonPosition = selectedButton.positionInScene()
+                                    
+                                    if(buttonPosition.y < selectedButtonPosition.y) {
+                                        let distanceToSelectedButon = CGPoint.distance(buttonPosition, selectedButtonPosition)
+                                        if(distanceToSelectedButon < distanceToNextButon) {
+                                            GameScene.nextButton = button
+                                            distanceToNextButon = distanceToSelectedButon
+                                        }
                                     }
+                                    button.buttonRelease()
                                 }
-                                button.buttonRelease()
                             }
                         }
                     }

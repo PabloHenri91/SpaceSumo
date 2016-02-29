@@ -46,17 +46,15 @@ Game.prototype.addHandlers = function() {
     var self = this;
 
     this.io.sockets.on("connection", function(socket) {
-        self.addPlayer(new Player(socket));
+        self.connection(new Player(socket));
     });
 };
 
-Game.prototype.addPlayer = function(player) {
-    console.log("addPlayer(player)");
+Game.prototype.connection = function(player) {
+    console.log("connection(player)");
 
     player.game = this;
     this.players.push(player);
-
-    player.socket.emit("Hello0", "Hello1");
 };
 
 // Start the game server
