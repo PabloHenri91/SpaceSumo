@@ -99,6 +99,8 @@ class Control: SKNode {
         //Switch.resetSwitches()
         ScrollNode.resetScrollNodes()
         //Textfield.resetTextfields()
+        
+        self.gameScene.blackSpriteNode.size = self.gameScene.size
     }
     
     func resetPosition() {

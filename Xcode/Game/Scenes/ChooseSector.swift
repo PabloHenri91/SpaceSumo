@@ -66,7 +66,7 @@ class ChooseSector: GameScene {
             //Próximo estado
             switch (self.nextState) {
             case states.hangar:
-                let scene = HangarScene(nextSector: self.nextSector)
+                let scene = HangarScene(nextSector: self.nextSector, socket: self.socket)
                 self.view?.presentScene(scene, transition: self.transition)
                 break
                 

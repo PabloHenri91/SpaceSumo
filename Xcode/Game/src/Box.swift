@@ -16,8 +16,8 @@ class Box: Control {
         texture.filteringMode = .Nearest
         
         let position = CGPoint(
-            x: x == -1 ? Config.sceneSize.width - texture.size().width : CGFloat(x),
-            y: y == -1 ? Config.sceneSize.height  - texture.size().height : CGFloat(y))
+            x: x == -1 ? Config.sceneSize.width/2 - texture.size().width/2 : CGFloat(x),
+            y: y == -1 ? Config.sceneSize.height/2  - texture.size().height/2 : CGFloat(y))
         
         let spriteNode = SKSpriteNode(texture: texture)
         spriteNode.texture?.filteringMode = .Nearest

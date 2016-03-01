@@ -30,6 +30,11 @@ class GameScene: SKScene {
     
     var transition = SKTransition.crossFadeWithDuration(0.5)
     
+    //Multiplayer Online
+    var socket:SocketIOClient!
+    
+    var blackSpriteNode:BlackSpriteNode!
+    
     override init() {
         
         //self.playerData = MemoryCard.sharedInstance.playerData
@@ -52,6 +57,9 @@ class GameScene: SKScene {
         #endif
         
         GameScene.selectedButton = nil
+        
+        self.blackSpriteNode = BlackSpriteNode()
+        self.addChild(self.blackSpriteNode)
     }
     
     override func didMoveToView(view: SKView) {

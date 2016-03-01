@@ -151,6 +151,9 @@
 		84AAE02F1C7B5C0400AE04DD /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFF21C7B5C0400AE04DD /* WebSocket.swift */; };
 		84AAE0301C7B5C0400AE04DD /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFF21C7B5C0400AE04DD /* WebSocket.swift */; };
 		84AAE0311C7B5C0400AE04DD /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFF21C7B5C0400AE04DD /* WebSocket.swift */; };
+		84B762CB1C85CA7F0016C24B /* BlackSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B762CA1C85CA7F0016C24B /* BlackSpriteNode.swift */; };
+		84B762CC1C85CA7F0016C24B /* BlackSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B762CA1C85CA7F0016C24B /* BlackSpriteNode.swift */; };
+		84B762CD1C85CA7F0016C24B /* BlackSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B762CA1C85CA7F0016C24B /* BlackSpriteNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -222,6 +225,7 @@
 		84AAE0341C7B924500AE04DD /* Game tvOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Game tvOS-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		84AAE0351C7B924500AE04DD /* Game OS X-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Game OS X-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		84B31C5A1C7DE1AE006D5390 /* main.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = main.js; path = Server/main.js; sourceTree = "<group>"; };
+		84B762CA1C85CA7F0016C24B /* BlackSpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackSpriteNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,7 +279,7 @@
 				84AADFF21C7B5C0400AE04DD /* WebSocket.swift */,
 			);
 			name = SocketIOClientSwift;
-			path = "socket.io-client-swift/Source";
+			path = "../../Socket.IO-Client-Swift/Source";
 			sourceTree = "<group>";
 		};
 		848678C21C748B0C0049BB1F /* Game iOS */ = {
@@ -385,9 +389,10 @@
 				8486791E1C748F2C0049BB1F /* GameFonts.swift */,
 				848679151C748F2C0049BB1F /* GameScene.swift */,
 				848679121C748F2C0049BB1F /* GeometryExtensions.swift */,
+				84944CE51C764535006F49CE /* Label.swift */,
 				8486791F1C748F2C0049BB1F /* Music.swift */,
 				8486791B1C748F2C0049BB1F /* ScrollNode.swift */,
-				84944CE51C764535006F49CE /* Label.swift */,
+				84B762CA1C85CA7F0016C24B /* BlackSpriteNode.swift */,
 			);
 			name = _src;
 			path = src;
@@ -603,6 +608,7 @@
 				840661421C74FB4F00D8C1CD /* HangarScene.swift in Sources */,
 				84944CE61C764535006F49CE /* Label.swift in Sources */,
 				84944CE21C7641D7006F49CE /* SectorCell.swift in Sources */,
+				84B762CB1C85CA7F0016C24B /* BlackSpriteNode.swift in Sources */,
 				846A46B51C75E2360028DBA8 /* ScrollNode.swift in Sources */,
 				84AAE02C1C7B5C0400AE04DD /* SwiftRegex.swift in Sources */,
 				84AADFFC1C7B5C0400AE04DD /* SocketClientSpec.swift in Sources */,
@@ -665,6 +671,7 @@
 				848679421C748F2C0049BB1F /* GameColors.swift in Sources */,
 				848679391C748F2C0049BB1F /* CropBox.swift in Sources */,
 				84AAE0301C7B5C0400AE04DD /* WebSocket.swift in Sources */,
+				84B762CC1C85CA7F0016C24B /* BlackSpriteNode.swift in Sources */,
 				84AAE0121C7B5C0400AE04DD /* SocketEventHandler.swift in Sources */,
 				8486792A1C748F2C0049BB1F /* GameScene.swift in Sources */,
 				84AAE00F1C7B5C0400AE04DD /* SocketEngineWebsocket.swift in Sources */,
@@ -719,6 +726,7 @@
 				84AAE0131C7B5C0400AE04DD /* SocketEventHandler.swift in Sources */,
 				8486794D1C74903F0049BB1F /* World.swift in Sources */,
 				848679581C74C1100049BB1F /* MissionScene.swift in Sources */,
+				84B762CD1C85CA7F0016C24B /* BlackSpriteNode.swift in Sources */,
 				84AAE0251C7B5C0400AE04DD /* SocketParsable.swift in Sources */,
 				848679401C748F2C0049BB1F /* Event.swift in Sources */,
 			);

@@ -31,8 +31,6 @@ class MainMenuScene: GameScene {
     var buttonCredits:Button!
     var buttonOfflineMode:Button!
     
-    var socket:SocketIOClient!
-    
     var labelConnectStatus:Label!
     
     override func didMoveToView(view: SKView) {
@@ -77,11 +75,11 @@ class MainMenuScene: GameScene {
                 self.socket.removeAllHandlers()
                 
                 let nextSector = 0//TODO: vindo do coredata???
-                let scene = HangarScene(nextSector: nextSector)
+                let scene = HangarScene(nextSector: nextSector, socket: self.socket)
                 self.view?.presentScene(scene, transition: self.transition)
                 break
             case states.connect:
-                self.socket = SocketIOClient(socketURL: NSURL(string:"http://localhost:8900")!)
+                self.socket = SocketIOClient(socketURL: NSURL(string:"http://Pablos-MacBook-Pro.local:8900")!)
                 self.addHandlers()
                 
                 let box = Control(textureName: "boxWhite128x64", x:103, y:64, xAlign:.center, yAlign:.center)
