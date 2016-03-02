@@ -45,6 +45,12 @@ class GameScene: SKScene {
         Button.buttonList = Set<Button>()
         ScrollNode.scrollNodeList = Set<ScrollNode>()
         
+        for textField in TextField.textFieldList {
+            textField.removeFromParent()
+        }
+        
+        TextField.textFieldList = Set<TextField>()
+        
         #if os(iOS) || os(tvOS)
             Control.touchesArray = [UITouch: Double]()
         #endif

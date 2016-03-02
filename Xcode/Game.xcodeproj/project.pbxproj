@@ -13,6 +13,7 @@
 		840661461C7502AF00D8C1CD /* ChooseSector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661451C7502AF00D8C1CD /* ChooseSector.swift */; };
 		840661471C7502AF00D8C1CD /* ChooseSector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661451C7502AF00D8C1CD /* ChooseSector.swift */; };
 		840661481C7502AF00D8C1CD /* ChooseSector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661451C7502AF00D8C1CD /* ChooseSector.swift */; };
+		844AB3301C85D81A0033D00B /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB32F1C85D81A0033D00B /* TextField.swift */; };
 		846A46B41C75E2350028DBA8 /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
 		846A46B51C75E2360028DBA8 /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
 		848678C41C748B0C0049BB1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848678C31C748B0C0049BB1F /* AppDelegate.swift */; };
@@ -159,6 +160,7 @@
 /* Begin PBXFileReference section */
 		840661411C74FB4F00D8C1CD /* HangarScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangarScene.swift; sourceTree = "<group>"; };
 		840661451C7502AF00D8C1CD /* ChooseSector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseSector.swift; sourceTree = "<group>"; };
+		844AB32F1C85D81A0033D00B /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		848678C11C748B0C0049BB1F /* Game iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Game iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		848678C31C748B0C0049BB1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		848678C91C748B0C0049BB1F /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -357,11 +359,11 @@
 			isa = PBXGroup;
 			children = (
 				840661451C7502AF00D8C1CD /* ChooseSector.swift */,
+				84944CDF1C763F54006F49CE /* CreditsScene.swift */,
 				840661411C74FB4F00D8C1CD /* HangarScene.swift */,
 				848679511C74C0750049BB1F /* MainMenuScene.swift */,
 				848679551C74C1100049BB1F /* MissionScene.swift */,
 				84944CDD1C763EC8006F49CE /* OptionsScene.swift */,
-				84944CDF1C763F54006F49CE /* CreditsScene.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -378,6 +380,7 @@
 			children = (
 				848679101C748E0F0049BB1F /* _CoreData */,
 				848679111C748E1E0049BB1F /* _Game */,
+				84B762CA1C85CA7F0016C24B /* BlackSpriteNode.swift */,
 				848679191C748F2C0049BB1F /* Box.swift */,
 				848679181C748F2C0049BB1F /* Button.swift */,
 				848679141C748F2C0049BB1F /* Config.swift */,
@@ -392,7 +395,7 @@
 				84944CE51C764535006F49CE /* Label.swift */,
 				8486791F1C748F2C0049BB1F /* Music.swift */,
 				8486791B1C748F2C0049BB1F /* ScrollNode.swift */,
-				84B762CA1C85CA7F0016C24B /* BlackSpriteNode.swift */,
+				844AB32F1C85D81A0033D00B /* TextField.swift */,
 			);
 			name = _src;
 			path = src;
@@ -409,8 +412,8 @@
 		848679111C748E1E0049BB1F /* _Game */ = {
 			isa = PBXGroup;
 			children = (
-				8486794A1C74903F0049BB1F /* World.swift */,
 				84944CE11C7641D7006F49CE /* SectorCell.swift */,
+				8486794A1C74903F0049BB1F /* World.swift */,
 			);
 			name = _Game;
 			path = Game;
@@ -602,6 +605,7 @@
 				84AAE0021C7B5C0400AE04DD /* SocketEngineClient.swift in Sources */,
 				848679321C748F2C0049BB1F /* Button.swift in Sources */,
 				84AAE0261C7B5C0400AE04DD /* SocketStringReader.swift in Sources */,
+				844AB3301C85D81A0033D00B /* TextField.swift in Sources */,
 				8486792F1C748F2C0049BB1F /* GameCamera.swift in Sources */,
 				848679471C748F2C0049BB1F /* Music.swift in Sources */,
 				84AADFF61C7B5C0400AE04DD /* SocketAckManager.swift in Sources */,
