@@ -29,7 +29,12 @@ class Trainer: Control {
                         dispatch_async(dispatch_get_main_queue()) {
                             let texture = SKTexture(image: image)
                             let spriteNode = SKSpriteNode(texture: texture)
-                            let icon = Control(spriteNode: spriteNode, x:16, y:16, size:CGSize(width: 32, height: 32))
+                            
+                            
+                            let size = spriteNode.texture!.size()
+                            let scale = max(32/size.width, 32/size.height)
+                            
+                            let icon = Control(spriteNode: spriteNode, x:16, y:16, size:CGSize(width: size.width * scale, height: size.height * scale))
                             self.addChild(icon)
                         }
                     }

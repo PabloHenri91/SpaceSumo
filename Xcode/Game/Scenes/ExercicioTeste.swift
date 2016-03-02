@@ -22,7 +22,7 @@ class ExercicioTeste: GameScene {
     
     //Estados iniciais
     var state = states.exercicioTeste
-    var nextState = states.login
+    var nextState = states.exercicioTeste
     
     var textFieldUser:TextField!
     var textFieldPassword:TextField!
@@ -70,7 +70,7 @@ class ExercicioTeste: GameScene {
                 break
             case states.login:
                 
-                self.login("", password: "")
+                self.login(self.textFieldUser.textField.text!, password: self.textFieldPassword.textField.text!)
                 
                 break
             default:
