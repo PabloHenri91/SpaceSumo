@@ -5,7 +5,6 @@
 //  Created by Pablo Henrique Bertaco on 3/1/16.
 //  Copyright © 2016 Pablo Henrique Bertaco. All rights reserved.
 
-import UIKit
 import SpriteKit
 
 class BlackSpriteNode: SKSpriteNode {

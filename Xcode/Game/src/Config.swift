@@ -22,11 +22,13 @@ class Config: NSObject {
     
     static var HUDZPosition:CGFloat = 1000
     
+    static var scale:CGFloat!
+    
     class func updateSceneSize() -> CGSize {
         
         let xScale = skViewBoundsSize.width / sceneSize.width
         let yScale = skViewBoundsSize.height / sceneSize.height
-        let scale = min(xScale, yScale)
+        Config.scale = min(xScale, yScale)
         
         Config.translate = CGPoint(
             x: Int(((skViewBoundsSize.width - (sceneSize.width * scale))/2)/scale),

@@ -13,6 +13,9 @@
 		840661461C7502AF00D8C1CD /* ChooseSector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661451C7502AF00D8C1CD /* ChooseSector.swift */; };
 		840661471C7502AF00D8C1CD /* ChooseSector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661451C7502AF00D8C1CD /* ChooseSector.swift */; };
 		840661481C7502AF00D8C1CD /* ChooseSector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661451C7502AF00D8C1CD /* ChooseSector.swift */; };
+		844AB3301C85D81A0033D00B /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB32F1C85D81A0033D00B /* TextField.swift */; };
+		844AB3321C85DC7D0033D00B /* ExercicioTeste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB3311C85DC7D0033D00B /* ExercicioTeste.swift */; };
+		844AB3381C8600820033D00B /* ExercicioTeste2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB3371C8600820033D00B /* ExercicioTeste2.swift */; };
 		846A46B41C75E2350028DBA8 /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
 		846A46B51C75E2360028DBA8 /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
 		848678C41C748B0C0049BB1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848678C31C748B0C0049BB1F /* AppDelegate.swift */; };
@@ -88,6 +91,60 @@
 		84944CEA1C7646C2006F49CE /* kenpixel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84944CE91C7646C2006F49CE /* kenpixel.ttf */; };
 		84944CEB1C7646C2006F49CE /* kenpixel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84944CE91C7646C2006F49CE /* kenpixel.ttf */; };
 		84944CEC1C7646C2006F49CE /* kenpixel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84944CE91C7646C2006F49CE /* kenpixel.ttf */; };
+		8497CDCD1C86274800B77705 /* Trainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497CDCC1C86274800B77705 /* Trainer.swift */; };
+		8497CDD51C862C3900B77705 /* Game_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497CDD41C862C3900B77705 /* Game_iOSTests.swift */; };
+		8497CDDC1C862CA200B77705 /* ExercicioTeste2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB3371C8600820033D00B /* ExercicioTeste2.swift */; };
+		8497CDDD1C862CD600B77705 /* ExercicioTeste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB3311C85DC7D0033D00B /* ExercicioTeste.swift */; };
+		8497CDDE1C862E2100B77705 /* Trainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8497CDCC1C86274800B77705 /* Trainer.swift */; };
+		8497CDDF1C862E2700B77705 /* PokemonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849EEDA11C860F0B00384B1F /* PokemonCell.swift */; };
+		8497CDE01C862E4D00B77705 /* SectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84944CE11C7641D7006F49CE /* SectorCell.swift */; };
+		8497CDE11C862E4D00B77705 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486794A1C74903F0049BB1F /* World.swift */; };
+		8497CDE21C862E4D00B77705 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848679191C748F2C0049BB1F /* Box.swift */; };
+		8497CDE31C862E4D00B77705 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848679181C748F2C0049BB1F /* Button.swift */; };
+		8497CDE41C862E4D00B77705 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848679141C748F2C0049BB1F /* Config.swift */; };
+		8497CDE51C862E4D00B77705 /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848679161C748F2C0049BB1F /* Control.swift */; };
+		8497CDE61C862E4D00B77705 /* CropBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791A1C748F2C0049BB1F /* CropBox.swift */; };
+		8497CDE71C862E4D00B77705 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791C1C748F2C0049BB1F /* Event.swift */; };
+		8497CDE81C862E4D00B77705 /* GameCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848679171C748F2C0049BB1F /* GameCamera.swift */; };
+		8497CDE91C862E4D00B77705 /* GameColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791D1C748F2C0049BB1F /* GameColors.swift */; };
+		8497CDEA1C862E4D00B77705 /* GameFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791E1C748F2C0049BB1F /* GameFonts.swift */; };
+		8497CDEB1C862E4D00B77705 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848679151C748F2C0049BB1F /* GameScene.swift */; };
+		8497CDEC1C862E4D00B77705 /* GeometryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848679121C748F2C0049BB1F /* GeometryExtensions.swift */; };
+		8497CDED1C862E4D00B77705 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84944CE51C764535006F49CE /* Label.swift */; };
+		8497CDEE1C862E4D00B77705 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791F1C748F2C0049BB1F /* Music.swift */; };
+		8497CDEF1C862E4D00B77705 /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
+		8497CDF01C862E4D00B77705 /* BlackSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B762CA1C85CA7F0016C24B /* BlackSpriteNode.swift */; };
+		8497CDF11C862E4D00B77705 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB32F1C85D81A0033D00B /* TextField.swift */; };
+		8497CDF21C862E5B00B77705 /* ChooseSector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661451C7502AF00D8C1CD /* ChooseSector.swift */; };
+		8497CDF31C862E5B00B77705 /* CreditsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84944CDF1C763F54006F49CE /* CreditsScene.swift */; };
+		8497CDF41C862E5B00B77705 /* HangarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661411C74FB4F00D8C1CD /* HangarScene.swift */; };
+		8497CDF51C862E5B00B77705 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848679511C74C0750049BB1F /* MainMenuScene.swift */; };
+		8497CDF61C862E5B00B77705 /* MissionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848679551C74C1100049BB1F /* MissionScene.swift */; };
+		8497CDF71C862E5B00B77705 /* OptionsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84944CDD1C763EC8006F49CE /* OptionsScene.swift */; };
+		8497CDF81C862E6200B77705 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848678C31C748B0C0049BB1F /* AppDelegate.swift */; };
+		8497CDF91C862E6200B77705 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848678C91C748B0C0049BB1F /* GameViewController.swift */; };
+		8497CDFA1C862E7200B77705 /* SocketIOClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE91C7B5C0400AE04DD /* SocketIOClient.swift */; };
+		8497CDFB1C862E8600B77705 /* SocketAckEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFDE1C7B5C0400AE04DD /* SocketAckEmitter.swift */; };
+		8497CDFC1C862E8600B77705 /* SocketAckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFDF1C7B5C0400AE04DD /* SocketAckManager.swift */; };
+		8497CDFD1C862E8600B77705 /* SocketAnyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE01C7B5C0400AE04DD /* SocketAnyEvent.swift */; };
+		8497CDFE1C862E8600B77705 /* SocketClientSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE11C7B5C0400AE04DD /* SocketClientSpec.swift */; };
+		8497CDFF1C862E8600B77705 /* SocketEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE21C7B5C0400AE04DD /* SocketEngine.swift */; };
+		8497CE001C862E8600B77705 /* SocketEngineClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE31C7B5C0400AE04DD /* SocketEngineClient.swift */; };
+		8497CE011C862E8600B77705 /* SocketEnginePacketType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE41C7B5C0400AE04DD /* SocketEnginePacketType.swift */; };
+		8497CE021C862E8600B77705 /* SocketEnginePollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE51C7B5C0400AE04DD /* SocketEnginePollable.swift */; };
+		8497CE031C862E8600B77705 /* SocketEngineSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE61C7B5C0400AE04DD /* SocketEngineSpec.swift */; };
+		8497CE041C862E8600B77705 /* SocketEngineWebsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE71C7B5C0400AE04DD /* SocketEngineWebsocket.swift */; };
+		8497CE051C862E8600B77705 /* SocketEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFE81C7B5C0400AE04DD /* SocketEventHandler.swift */; };
+		8497CE061C862E8600B77705 /* SocketIOClientOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFEA1C7B5C0400AE04DD /* SocketIOClientOption.swift */; };
+		8497CE071C862E8600B77705 /* SocketIOClientStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFEB1C7B5C0400AE04DD /* SocketIOClientStatus.swift */; };
+		8497CE081C862E8600B77705 /* SocketLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFEC1C7B5C0400AE04DD /* SocketLogger.swift */; };
+		8497CE091C862E8600B77705 /* SocketPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFED1C7B5C0400AE04DD /* SocketPacket.swift */; };
+		8497CE0A1C862E8600B77705 /* SocketParsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFEE1C7B5C0400AE04DD /* SocketParsable.swift */; };
+		8497CE0B1C862E8600B77705 /* SocketStringReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFEF1C7B5C0400AE04DD /* SocketStringReader.swift */; };
+		8497CE0C1C862E8600B77705 /* SocketTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFF01C7B5C0400AE04DD /* SocketTypes.swift */; };
+		8497CE0D1C862E8600B77705 /* SwiftRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFF11C7B5C0400AE04DD /* SwiftRegex.swift */; };
+		8497CE0E1C862E8600B77705 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFF21C7B5C0400AE04DD /* WebSocket.swift */; };
+		849EEDA21C860F0B00384B1F /* PokemonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849EEDA11C860F0B00384B1F /* PokemonCell.swift */; };
 		84AADFF31C7B5C0400AE04DD /* SocketAckEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFDE1C7B5C0400AE04DD /* SocketAckEmitter.swift */; };
 		84AADFF41C7B5C0400AE04DD /* SocketAckEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFDE1C7B5C0400AE04DD /* SocketAckEmitter.swift */; };
 		84AADFF51C7B5C0400AE04DD /* SocketAckEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFDE1C7B5C0400AE04DD /* SocketAckEmitter.swift */; };
@@ -156,9 +213,22 @@
 		84B762CD1C85CA7F0016C24B /* BlackSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B762CA1C85CA7F0016C24B /* BlackSpriteNode.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		8497CDD71C862C3900B77705 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84B9C8EA1C7487160080CE52 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 848678C01C748B0C0049BB1F;
+			remoteInfo = "Game iOS";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		840661411C74FB4F00D8C1CD /* HangarScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangarScene.swift; sourceTree = "<group>"; };
 		840661451C7502AF00D8C1CD /* ChooseSector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseSector.swift; sourceTree = "<group>"; };
+		844AB32F1C85D81A0033D00B /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		844AB3311C85DC7D0033D00B /* ExercicioTeste.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExercicioTeste.swift; sourceTree = "<group>"; };
+		844AB3371C8600820033D00B /* ExercicioTeste2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExercicioTeste2.swift; sourceTree = "<group>"; };
 		848678C11C748B0C0049BB1F /* Game iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Game iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		848678C31C748B0C0049BB1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		848678C91C748B0C0049BB1F /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -200,6 +270,11 @@
 		84944CE11C7641D7006F49CE /* SectorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectorCell.swift; sourceTree = "<group>"; };
 		84944CE51C764535006F49CE /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		84944CE91C7646C2006F49CE /* kenpixel.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = kenpixel.ttf; sourceTree = "<group>"; };
+		8497CDCC1C86274800B77705 /* Trainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trainer.swift; sourceTree = "<group>"; };
+		8497CDD21C862C3900B77705 /* Game iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Game iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8497CDD41C862C3900B77705 /* Game_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game_iOSTests.swift; sourceTree = "<group>"; };
+		8497CDD61C862C3900B77705 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		849EEDA11C860F0B00384B1F /* PokemonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonCell.swift; sourceTree = "<group>"; };
 		84AADFDE1C7B5C0400AE04DD /* SocketAckEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckEmitter.swift; sourceTree = "<group>"; };
 		84AADFDF1C7B5C0400AE04DD /* SocketAckManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckManager.swift; sourceTree = "<group>"; };
 		84AADFE01C7B5C0400AE04DD /* SocketAnyEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAnyEvent.swift; sourceTree = "<group>"; };
@@ -244,6 +319,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		848678F11C748B470049BB1F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8497CDCF1C862C3900B77705 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -357,11 +439,13 @@
 			isa = PBXGroup;
 			children = (
 				840661451C7502AF00D8C1CD /* ChooseSector.swift */,
+				84944CDF1C763F54006F49CE /* CreditsScene.swift */,
+				844AB3311C85DC7D0033D00B /* ExercicioTeste.swift */,
+				844AB3371C8600820033D00B /* ExercicioTeste2.swift */,
 				840661411C74FB4F00D8C1CD /* HangarScene.swift */,
 				848679511C74C0750049BB1F /* MainMenuScene.swift */,
 				848679551C74C1100049BB1F /* MissionScene.swift */,
 				84944CDD1C763EC8006F49CE /* OptionsScene.swift */,
-				84944CDF1C763F54006F49CE /* CreditsScene.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -393,6 +477,7 @@
 				8486791F1C748F2C0049BB1F /* Music.swift */,
 				8486791B1C748F2C0049BB1F /* ScrollNode.swift */,
 				84B762CA1C85CA7F0016C24B /* BlackSpriteNode.swift */,
+				844AB32F1C85D81A0033D00B /* TextField.swift */,
 			);
 			name = _src;
 			path = src;
@@ -409,11 +494,22 @@
 		848679111C748E1E0049BB1F /* _Game */ = {
 			isa = PBXGroup;
 			children = (
-				8486794A1C74903F0049BB1F /* World.swift */,
+				849EEDA11C860F0B00384B1F /* PokemonCell.swift */,
 				84944CE11C7641D7006F49CE /* SectorCell.swift */,
+				8486794A1C74903F0049BB1F /* World.swift */,
+				8497CDCC1C86274800B77705 /* Trainer.swift */,
 			);
 			name = _Game;
 			path = Game;
+			sourceTree = "<group>";
+		};
+		8497CDD31C862C3900B77705 /* Game iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				8497CDD41C862C3900B77705 /* Game_iOSTests.swift */,
+				8497CDD61C862C3900B77705 /* Info.plist */,
+			);
+			path = "Game iOSTests";
 			sourceTree = "<group>";
 		};
 		84B31C591C7DE18E006D5390 /* Server */ = {
@@ -430,6 +526,7 @@
 				84B31C591C7DE18E006D5390 /* Server */,
 				847F793E1C7B539E001CE8B1 /* SocketIOClientSwift */,
 				848679051C748B5D0049BB1F /* Game */,
+				8497CDD31C862C3900B77705 /* Game iOSTests */,
 				84B9C8F31C7487160080CE52 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -440,6 +537,7 @@
 				848678C11C748B0C0049BB1F /* Game iOS.app */,
 				848678DB1C748B1F0049BB1F /* Game tvOS.app */,
 				848678F41C748B470049BB1F /* Game OS X.app */,
+				8497CDD21C862C3900B77705 /* Game iOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -498,6 +596,24 @@
 			productReference = 848678F41C748B470049BB1F /* Game OS X.app */;
 			productType = "com.apple.product-type.application";
 		};
+		8497CDD11C862C3900B77705 /* Game iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8497CDD91C862C3900B77705 /* Build configuration list for PBXNativeTarget "Game iOSTests" */;
+			buildPhases = (
+				8497CDCE1C862C3900B77705 /* Sources */,
+				8497CDCF1C862C3900B77705 /* Frameworks */,
+				8497CDD01C862C3900B77705 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8497CDD81C862C3900B77705 /* PBXTargetDependency */,
+			);
+			name = "Game iOSTests";
+			productName = "Game iOSTests";
+			productReference = 8497CDD21C862C3900B77705 /* Game iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -517,6 +633,10 @@
 					848678F31C748B470049BB1F = {
 						CreatedOnToolsVersion = 7.2;
 					};
+					8497CDD11C862C3900B77705 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 848678C01C748B0C0049BB1F;
+					};
 				};
 			};
 			buildConfigurationList = 84B9C8ED1C7487160080CE52 /* Build configuration list for PBXProject "Game" */;
@@ -535,6 +655,7 @@
 				848678C01C748B0C0049BB1F /* Game iOS */,
 				848678DA1C748B1F0049BB1F /* Game tvOS */,
 				848678F31C748B470049BB1F /* Game OS X */,
+				8497CDD11C862C3900B77705 /* Game iOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -575,6 +696,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8497CDD01C862C3900B77705 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -585,6 +713,7 @@
 				840661461C7502AF00D8C1CD /* ChooseSector.swift in Sources */,
 				84944CDE1C763EC8006F49CE /* OptionsScene.swift in Sources */,
 				84AADFF91C7B5C0400AE04DD /* SocketAnyEvent.swift in Sources */,
+				8497CDCD1C86274800B77705 /* Trainer.swift in Sources */,
 				84AAE00B1C7B5C0400AE04DD /* SocketEngineSpec.swift in Sources */,
 				8486794B1C74903F0049BB1F /* World.swift in Sources */,
 				84AAE0291C7B5C0400AE04DD /* SocketTypes.swift in Sources */,
@@ -597,11 +726,15 @@
 				84AADFF31C7B5C0400AE04DD /* SocketAckEmitter.swift in Sources */,
 				848679561C74C1100049BB1F /* MissionScene.swift in Sources */,
 				848678C41C748B0C0049BB1F /* AppDelegate.swift in Sources */,
+				849EEDA21C860F0B00384B1F /* PokemonCell.swift in Sources */,
+				844AB3321C85DC7D0033D00B /* ExercicioTeste.swift in Sources */,
 				848679201C748F2C0049BB1F /* GeometryExtensions.swift in Sources */,
+				844AB3381C8600820033D00B /* ExercicioTeste2.swift in Sources */,
 				848679351C748F2C0049BB1F /* Box.swift in Sources */,
 				84AAE0021C7B5C0400AE04DD /* SocketEngineClient.swift in Sources */,
 				848679321C748F2C0049BB1F /* Button.swift in Sources */,
 				84AAE0261C7B5C0400AE04DD /* SocketStringReader.swift in Sources */,
+				844AB3301C85D81A0033D00B /* TextField.swift in Sources */,
 				8486792F1C748F2C0049BB1F /* GameCamera.swift in Sources */,
 				848679471C748F2C0049BB1F /* Music.swift in Sources */,
 				84AADFF61C7B5C0400AE04DD /* SocketAckManager.swift in Sources */,
@@ -732,7 +865,74 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8497CDCE1C862C3900B77705 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8497CE091C862E8600B77705 /* SocketPacket.swift in Sources */,
+				8497CDFE1C862E8600B77705 /* SocketClientSpec.swift in Sources */,
+				8497CE0A1C862E8600B77705 /* SocketParsable.swift in Sources */,
+				8497CE071C862E8600B77705 /* SocketIOClientStatus.swift in Sources */,
+				8497CDE81C862E4D00B77705 /* GameCamera.swift in Sources */,
+				8497CDDF1C862E2700B77705 /* PokemonCell.swift in Sources */,
+				8497CDF11C862E4D00B77705 /* TextField.swift in Sources */,
+				8497CDDD1C862CD600B77705 /* ExercicioTeste.swift in Sources */,
+				8497CDDE1C862E2100B77705 /* Trainer.swift in Sources */,
+				8497CE0E1C862E8600B77705 /* WebSocket.swift in Sources */,
+				8497CDF01C862E4D00B77705 /* BlackSpriteNode.swift in Sources */,
+				8497CE021C862E8600B77705 /* SocketEnginePollable.swift in Sources */,
+				8497CDF31C862E5B00B77705 /* CreditsScene.swift in Sources */,
+				8497CDF21C862E5B00B77705 /* ChooseSector.swift in Sources */,
+				8497CE061C862E8600B77705 /* SocketIOClientOption.swift in Sources */,
+				8497CE0D1C862E8600B77705 /* SwiftRegex.swift in Sources */,
+				8497CDE01C862E4D00B77705 /* SectorCell.swift in Sources */,
+				8497CE011C862E8600B77705 /* SocketEnginePacketType.swift in Sources */,
+				8497CDFB1C862E8600B77705 /* SocketAckEmitter.swift in Sources */,
+				8497CDFD1C862E8600B77705 /* SocketAnyEvent.swift in Sources */,
+				8497CDF61C862E5B00B77705 /* MissionScene.swift in Sources */,
+				8497CDEC1C862E4D00B77705 /* GeometryExtensions.swift in Sources */,
+				8497CDDC1C862CA200B77705 /* ExercicioTeste2.swift in Sources */,
+				8497CDEE1C862E4D00B77705 /* Music.swift in Sources */,
+				8497CE031C862E8600B77705 /* SocketEngineSpec.swift in Sources */,
+				8497CE051C862E8600B77705 /* SocketEventHandler.swift in Sources */,
+				8497CDFF1C862E8600B77705 /* SocketEngine.swift in Sources */,
+				8497CDE21C862E4D00B77705 /* Box.swift in Sources */,
+				8497CDE51C862E4D00B77705 /* Control.swift in Sources */,
+				8497CDFC1C862E8600B77705 /* SocketAckManager.swift in Sources */,
+				8497CDFA1C862E7200B77705 /* SocketIOClient.swift in Sources */,
+				8497CDED1C862E4D00B77705 /* Label.swift in Sources */,
+				8497CDE11C862E4D00B77705 /* World.swift in Sources */,
+				8497CE001C862E8600B77705 /* SocketEngineClient.swift in Sources */,
+				8497CE0B1C862E8600B77705 /* SocketStringReader.swift in Sources */,
+				8497CDE91C862E4D00B77705 /* GameColors.swift in Sources */,
+				8497CDF81C862E6200B77705 /* AppDelegate.swift in Sources */,
+				8497CDEF1C862E4D00B77705 /* ScrollNode.swift in Sources */,
+				8497CE041C862E8600B77705 /* SocketEngineWebsocket.swift in Sources */,
+				8497CDE41C862E4D00B77705 /* Config.swift in Sources */,
+				8497CDF71C862E5B00B77705 /* OptionsScene.swift in Sources */,
+				8497CDF91C862E6200B77705 /* GameViewController.swift in Sources */,
+				8497CDEB1C862E4D00B77705 /* GameScene.swift in Sources */,
+				8497CDE61C862E4D00B77705 /* CropBox.swift in Sources */,
+				8497CE0C1C862E8600B77705 /* SocketTypes.swift in Sources */,
+				8497CDF51C862E5B00B77705 /* MainMenuScene.swift in Sources */,
+				8497CE081C862E8600B77705 /* SocketLogger.swift in Sources */,
+				8497CDE31C862E4D00B77705 /* Button.swift in Sources */,
+				8497CDD51C862C3900B77705 /* Game_iOSTests.swift in Sources */,
+				8497CDF41C862E5B00B77705 /* HangarScene.swift in Sources */,
+				8497CDEA1C862E4D00B77705 /* GameFonts.swift in Sources */,
+				8497CDE71C862E4D00B77705 /* Event.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8497CDD81C862C3900B77705 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 848678C01C748B0C0049BB1F /* Game iOS */;
+			targetProxy = 8497CDD71C862C3900B77705 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		848678CB1C748B0C0049BB1F /* Main.storyboard */ = {
@@ -863,6 +1063,33 @@
 			};
 			name = Release;
 		};
+		8497CDDA1C862C3900B77705 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = "Game iOSTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "PabloHenri91.Game-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Game iOS.app/Game iOS";
+			};
+			name = Debug;
+		};
+		8497CDDB1C862C3900B77705 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Game iOSTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "PabloHenri91.Game-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Game iOS.app/Game iOS";
+			};
+			name = Release;
+		};
 		84B9C9061C7487160080CE52 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -977,6 +1204,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		8497CDD91C862C3900B77705 /* Build configuration list for PBXNativeTarget "Game iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8497CDDA1C862C3900B77705 /* Debug */,
+				8497CDDB1C862C3900B77705 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		84B9C8ED1C7487160080CE52 /* Build configuration list for PBXProject "Game" */ = {
 			isa = XCConfigurationList;

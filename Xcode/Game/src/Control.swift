@@ -98,7 +98,7 @@ class Control: SKNode {
         Button.resetButtons()
         //Switch.resetSwitches()
         ScrollNode.resetScrollNodes()
-        //Textfield.resetTextfields()
+        TextField.resetTextFields()
         
         self.gameScene.blackSpriteNode.size = self.gameScene.size
     }

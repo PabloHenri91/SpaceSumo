@@ -24,7 +24,7 @@ class GameViewController: UIViewController {
         
         Config.skViewBoundsSize = skView.bounds.size
         Config.updateSceneSize()
-        let scene = MainMenuScene()
+        let scene = ExercicioTeste()
         
         /* Set the scale mode to scale to fit the window */
         scene.scaleMode = .AspectFill
