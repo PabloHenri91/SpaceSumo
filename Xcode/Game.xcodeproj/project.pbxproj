@@ -13,6 +13,7 @@
 		840661461C7502AF00D8C1CD /* ChooseSector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661451C7502AF00D8C1CD /* ChooseSector.swift */; };
 		840661471C7502AF00D8C1CD /* ChooseSector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661451C7502AF00D8C1CD /* ChooseSector.swift */; };
 		840661481C7502AF00D8C1CD /* ChooseSector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661451C7502AF00D8C1CD /* ChooseSector.swift */; };
+		84148FC41C87158500CF689C /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB32F1C85D81A0033D00B /* TextField.swift */; };
 		844AB3301C85D81A0033D00B /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB32F1C85D81A0033D00B /* TextField.swift */; };
 		846A46B41C75E2350028DBA8 /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
 		846A46B51C75E2360028DBA8 /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
@@ -672,6 +673,7 @@
 				84AAE0181C7B5C0400AE04DD /* SocketIOClientOption.swift in Sources */,
 				848679481C748F2C0049BB1F /* Music.swift in Sources */,
 				84AAE0031C7B5C0400AE04DD /* SocketEngineClient.swift in Sources */,
+				84148FC41C87158500CF689C /* TextField.swift in Sources */,
 				848679421C748F2C0049BB1F /* GameColors.swift in Sources */,
 				848679391C748F2C0049BB1F /* CropBox.swift in Sources */,
 				84AAE0301C7B5C0400AE04DD /* WebSocket.swift in Sources */,
