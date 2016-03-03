@@ -31,6 +31,8 @@ class GameViewController: UIViewController {
         
         skView.presentScene(scene)
         
+        print(skView.frame)
+        
     }
     
     override func viewWillLayoutSubviews() {
