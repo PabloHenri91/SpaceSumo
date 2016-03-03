@@ -22,28 +22,58 @@ class Game_iOSTests: XCTestCase {
         
         Config.skViewBoundsSize = self.view.bounds.size
         Config.updateSceneSize()
-        
-        self.scene = MainMenuScene()
-        
-        self.view.presentScene(self.scene)
-        
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+        //super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testMainMenuScene() {
+        self.scene = MainMenuScene()
+        self.view.presentScene(self.scene)
     }
     
+    func testMainMenuConnect() {
+        
+        self.scene = MainMenuScene()
+        self.view.presentScene(self.scene)
+        
+        XCTAssertTrue({
+            if let scene = self.scene as? MainMenuScene {
+                scene.nextState = MainMenuScene.states.connect
+                scene.update(GameScene.currentTime)
+                
+                return true
+            } else {
+                return false
+            }
+            }())
+    }
+    
+    
+    func testMainMenuHangar() {
+        
+        self.scene = MainMenuScene()
+        self.view.presentScene(self.scene)
+        
+        XCTAssertTrue({
+            if let scene = self.scene as? MainMenuScene {
+                scene.nextState = MainMenuScene.states.connect
+                scene.update(GameScene.currentTime)
+                scene.nextState = MainMenuScene.states.hangar
+                scene.update(GameScene.currentTime)
+                return true
+            } else {
+                return false
+            }
+            }())
+    }
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measureBlock {
-            // Put the code you want to measure the time of here.
+            self.scene = MainMenuScene()
+            self.view.presentScene(self.scene)
         }
     }
-    
 }

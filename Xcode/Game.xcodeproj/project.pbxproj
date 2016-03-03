@@ -615,6 +615,7 @@
 					};
 					848678C01C748B0C0049BB1F = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = JZ3J7RVLD7;
 					};
 					848678DA1C748B1F0049BB1F = {
 						CreatedOnToolsVersion = 7.2;
@@ -980,6 +981,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Game iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "PabloHenri91.Game-iOS";
@@ -994,6 +996,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Game iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "PabloHenri91.Game-iOS";
@@ -1163,6 +1166,7 @@
 				846946AB1C88713D004E3BE2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		848678D61C748B0C0049BB1F /* Build configuration list for PBXNativeTarget "Game iOS" */ = {
 			isa = XCConfigurationList;
