@@ -13,10 +13,11 @@
 		840661461C7502AF00D8C1CD /* ChooseSector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661451C7502AF00D8C1CD /* ChooseSector.swift */; };
 		840661471C7502AF00D8C1CD /* ChooseSector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661451C7502AF00D8C1CD /* ChooseSector.swift */; };
 		840661481C7502AF00D8C1CD /* ChooseSector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661451C7502AF00D8C1CD /* ChooseSector.swift */; };
-		84148FC41C87158500CF689C /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB32F1C85D81A0033D00B /* TextField.swift */; };
-		844AB3301C85D81A0033D00B /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB32F1C85D81A0033D00B /* TextField.swift */; };
+		84148FC41C87158500CF689C /* GameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB32F1C85D81A0033D00B /* GameTextField.swift */; };
+		844AB3301C85D81A0033D00B /* GameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB32F1C85D81A0033D00B /* GameTextField.swift */; };
 		846A46B41C75E2350028DBA8 /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
 		846A46B51C75E2360028DBA8 /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
+		8483B5C11C885C3200556D40 /* GameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB32F1C85D81A0033D00B /* GameTextField.swift */; };
 		848678C41C748B0C0049BB1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848678C31C748B0C0049BB1F /* AppDelegate.swift */; };
 		848678CA1C748B0C0049BB1F /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848678C91C748B0C0049BB1F /* GameViewController.swift */; };
 		848678CD1C748B0C0049BB1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848678CB1C748B0C0049BB1F /* Main.storyboard */; };
@@ -161,7 +162,7 @@
 /* Begin PBXFileReference section */
 		840661411C74FB4F00D8C1CD /* HangarScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangarScene.swift; sourceTree = "<group>"; };
 		840661451C7502AF00D8C1CD /* ChooseSector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseSector.swift; sourceTree = "<group>"; };
-		844AB32F1C85D81A0033D00B /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		844AB32F1C85D81A0033D00B /* GameTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameTextField.swift; sourceTree = "<group>"; };
 		848678C11C748B0C0049BB1F /* Game iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Game iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		848678C31C748B0C0049BB1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		848678C91C748B0C0049BB1F /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -396,7 +397,7 @@
 				84944CE51C764535006F49CE /* Label.swift */,
 				8486791F1C748F2C0049BB1F /* Music.swift */,
 				8486791B1C748F2C0049BB1F /* ScrollNode.swift */,
-				844AB32F1C85D81A0033D00B /* TextField.swift */,
+				844AB32F1C85D81A0033D00B /* GameTextField.swift */,
 			);
 			name = _src;
 			path = src;
@@ -606,7 +607,7 @@
 				84AAE0021C7B5C0400AE04DD /* SocketEngineClient.swift in Sources */,
 				848679321C748F2C0049BB1F /* Button.swift in Sources */,
 				84AAE0261C7B5C0400AE04DD /* SocketStringReader.swift in Sources */,
-				844AB3301C85D81A0033D00B /* TextField.swift in Sources */,
+				844AB3301C85D81A0033D00B /* GameTextField.swift in Sources */,
 				8486792F1C748F2C0049BB1F /* GameCamera.swift in Sources */,
 				848679471C748F2C0049BB1F /* Music.swift in Sources */,
 				84AADFF61C7B5C0400AE04DD /* SocketAckManager.swift in Sources */,
@@ -673,7 +674,7 @@
 				84AAE0181C7B5C0400AE04DD /* SocketIOClientOption.swift in Sources */,
 				848679481C748F2C0049BB1F /* Music.swift in Sources */,
 				84AAE0031C7B5C0400AE04DD /* SocketEngineClient.swift in Sources */,
-				84148FC41C87158500CF689C /* TextField.swift in Sources */,
+				84148FC41C87158500CF689C /* GameTextField.swift in Sources */,
 				848679421C748F2C0049BB1F /* GameColors.swift in Sources */,
 				848679391C748F2C0049BB1F /* CropBox.swift in Sources */,
 				84AAE0301C7B5C0400AE04DD /* WebSocket.swift in Sources */,
@@ -709,6 +710,7 @@
 				84AAE0281C7B5C0400AE04DD /* SocketStringReader.swift in Sources */,
 				848678F71C748B470049BB1F /* AppDelegate.swift in Sources */,
 				84AADFF51C7B5C0400AE04DD /* SocketAckEmitter.swift in Sources */,
+				8483B5C11C885C3200556D40 /* GameTextField.swift in Sources */,
 				840661441C74FB4F00D8C1CD /* HangarScene.swift in Sources */,
 				84AAE01F1C7B5C0400AE04DD /* SocketLogger.swift in Sources */,
 				84AAE00A1C7B5C0400AE04DD /* SocketEnginePollable.swift in Sources */,

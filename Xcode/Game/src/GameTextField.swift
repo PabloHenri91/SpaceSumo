@@ -8,9 +8,15 @@
 
 import SpriteKit
 
-class TextField: Control, UITextFieldDelegate {
+#if os(OSX)
+    public typealias UITextField = NSTextField
+    public typealias UITextFieldDelegate = NSTextFieldDelegate
+    public typealias UIView = NSView
+#endif
+
+class GameTextField: Control, UITextFieldDelegate {
     
-    static var textFieldList = Set<TextField>()
+    static var textFieldList = Set<GameTextField>()
     
     var textField:UITextField!
     
@@ -43,17 +49,17 @@ class TextField: Control, UITextFieldDelegate {
         
         self.textField = UITextField(frame: CGRect(x: 0, y: 0 , width: 150, height: 50))
         self.textField.backgroundColor = SKColor.clearColor()
-        self.textField.textAlignment = .Center
+        //TODO: self.textField.textAlignment = .Center
         self.textField.delegate = self
         view.addSubview(self.textField)
         
         self.resetPosition()
         
-        TextField.textFieldList.insert(self)
+        GameTextField.textFieldList.insert(self)
     }
     
     static func resetTextFields() {
-        for textField in TextField.textFieldList {
+        for textField in GameTextField.textFieldList {
             textField.resetPosition()
         }
     }
@@ -72,6 +78,7 @@ class TextField: Control, UITextFieldDelegate {
         
     }
     
+    #if os(iOS)
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.scene?.view?.endEditing(true)
         if let text = self.textField.text {
@@ -79,9 +86,10 @@ class TextField: Control, UITextFieldDelegate {
         }
         return true
     }
+    #endif
     
     override func removeFromParent() {
-        TextField.textFieldList.remove(self)
+        GameTextField.textFieldList.remove(self)
         super.removeFromParent()
         self.textField.removeFromSuperview()
     }
