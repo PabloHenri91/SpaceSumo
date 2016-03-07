@@ -10,6 +10,8 @@ import SpriteKit
 
 class Parallax: SKNode {
     
+    static var parallaxSet = Set<Parallax>()
+    
     var spriteNodesBack = [SKSpriteNode]()
     var spriteNodesFront = [SKSpriteNode]()
     
@@ -17,11 +19,31 @@ class Parallax: SKNode {
     let textureStarsFront:SKTexture
     
     override init() {
+        
         self.textureStarsBack = SKTexture(imageNamed: "stars")
         self.textureStarsBack.filteringMode = .Nearest
         self.textureStarsFront = SKTexture(imageNamed: "starsFront")
         self.textureStarsFront.filteringMode = .Nearest
+        
         super.init()
+        
+        self.reset()
+        
+        Parallax.parallaxSet.insert(self)
+    }
+    
+    static func resetParallaxes() {
+        for parallax in Parallax.parallaxSet {
+            parallax.reset()
+        }
+    }
+    
+    func reset() {
+        
+        self.spriteNodesBack = [SKSpriteNode]()
+        self.spriteNodesFront = [SKSpriteNode]()
+        
+        self.removeAllChildren()
         
         self.zPosition = -Config.HUDZPosition
         
@@ -77,5 +99,10 @@ class Parallax: SKNode {
                 i++
             }
         }
+    }
+    
+    override func removeFromParent() {
+        Parallax.parallaxSet.remove(self)
+        super.removeFromParent()
     }
 }

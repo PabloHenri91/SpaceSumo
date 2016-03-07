@@ -99,6 +99,7 @@ class Control: SKNode {
         //Switch.resetSwitches()
         ScrollNode.resetScrollNodes()
         GameTextField.resetTextFields()
+        Parallax.resetParallaxes()
         
         self.gameScene.blackSpriteNode.size = self.gameScene.size
     }
