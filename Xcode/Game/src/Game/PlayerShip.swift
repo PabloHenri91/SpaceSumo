@@ -18,6 +18,8 @@ class PlayerShip: Control {
     
     var lastLaser:NSTimeInterval = 0
     
+    var force:CGFloat = 50
+    
     override init() {
         super.init()
         
@@ -45,6 +47,10 @@ class PlayerShip: Control {
         spriteNode.texture?.filteringMode = .Linear
         
         self.addChild(spriteNode)
+        
+        let size = spriteNode.texture!.size()
+        let scale = min(32/size.width, 32/size.height)
+        spriteNode.size = CGSize(width: size.width * scale, height: size.height * scale)
         
         self.screenPosition = CGPoint(x: 0, y: 0)
         self.yAlign = .center
@@ -119,13 +125,13 @@ class PlayerShip: Control {
                         while(totalRotation < -CGFloat(M_PI)) { totalRotation += CGFloat(M_PI * 2) }
                         while(totalRotation >  CGFloat(M_PI)) { totalRotation -= CGFloat(M_PI * 2) }
                         
-                        self.physicsBody?.applyAngularImpulse(totalRotation * 0.001)
+                        self.physicsBody?.applyAngularImpulse(totalRotation * 0.0001)
                     }
                 }
                 
                 if applyForce {
                     if(abs(totalRotation) < 1) {
-                        self.physicsBody?.applyForce(CGVector(dx: -sin(self.zRotation) * 100, dy: cos(self.zRotation) * 100))
+                        self.physicsBody?.applyForce(CGVector(dx: -sin(self.zRotation) * self.force, dy: cos(self.zRotation) * self.force))
                     }
                 }
             }

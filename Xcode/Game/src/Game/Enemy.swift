@@ -14,7 +14,7 @@ class Enemy: Control {
     static var noEnemiesOnScreen = true
     
     var maxAngularVelocity:CGFloat = 3
-    var force:CGFloat = 100
+    var force:CGFloat = 50
     var onScreen = false
     var enemyNode:SKNode
     var totalRotationToEnemyNode:CGFloat = 0
@@ -64,6 +64,10 @@ class Enemy: Control {
         spriteNode.texture?.filteringMode = .Linear
         
         self.addChild(spriteNode)
+        
+        let size = spriteNode.texture!.size()
+        let scale = min(32/size.width, 32/size.height)
+        spriteNode.size = CGSize(width: size.width * scale, height: size.height * scale)
         
         self.zPosition = -2
         
@@ -218,7 +222,7 @@ class Enemy: Control {
             while(totalRotation < -CGFloat(M_PI)) { totalRotation += CGFloat(M_PI * 2) }
             while(totalRotation >  CGFloat(M_PI)) { totalRotation -= CGFloat(M_PI * 2) }
             
-            self.physicsBody?.applyAngularImpulse(totalRotation * 0.001)
+            self.physicsBody?.applyAngularImpulse(totalRotation * 0.0001)
         }
         
         return totalRotation

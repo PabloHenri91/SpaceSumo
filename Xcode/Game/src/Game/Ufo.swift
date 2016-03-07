@@ -13,7 +13,7 @@ class Ufo: Control {
     static var ufoSet = Set<Ufo>()
     static var noUfosOnScreen = true
     
-    var force:CGFloat = 100
+    var force:CGFloat = 50
     var onScreen = false
     var enemyNode:SKNode
     var movingType = 0
@@ -57,9 +57,12 @@ class Ufo: Control {
         
         let spriteNode = SKSpriteNode(imageNamed: textureName)
         spriteNode.texture?.filteringMode = .Linear
-        spriteNode.size = CGSize(width: 32, height: 32)
         
         self.addChild(spriteNode)
+        
+        let size = spriteNode.texture!.size()
+        let scale = min(32/size.width, 32/size.height)
+        spriteNode.size = CGSize(width: size.width * scale, height: size.height * scale)
         
         self.zPosition = -2
         
