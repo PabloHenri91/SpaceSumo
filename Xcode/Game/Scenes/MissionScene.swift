@@ -186,10 +186,12 @@ class MissionScene: GameScene {
                 let location = touch.locationInNode(self)
                 switch (self.state) {
                 case states.mission:
-                    if(self.buttonBack.containsPoint(location)) {
-                        self.nextState = states.hangar
-                        return
-                    }
+                    #if os(iOS) || os(OSX)
+                        if(self.buttonBack.containsPoint(location)) {
+                            self.nextState = states.hangar
+                            return
+                        }
+                    #endif
                     
                     break
                 default:
@@ -198,5 +200,25 @@ class MissionScene: GameScene {
             }
         }
     }
+    
+    #if os(tvOS)
+    override func pressBegan(press: UIPress) -> Bool {
+        
+        
+        switch press.type {
+        case .Menu:
+            self.nextState = states.hangar
+            break
+            
+        case .Select:
+            self.touchesEnded(taps: Set<UITouch>([UITouch()]))
+            break
+        default:
+            break
+        }
+        
+        return false
+    }
+    #endif
 
 }

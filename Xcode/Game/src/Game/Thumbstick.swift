@@ -31,7 +31,7 @@ class Thumbstick: Control {
         super.init()
         
         #if os(tvOS)
-            self.screenPosition = CGPoint(x: 58, y: 317)
+            self.screenPosition = CGPoint(x: 128, y: 128)
             self.yAlign = yAlign
             self.xAlign = xAlign
             
