@@ -38,16 +38,16 @@ class MainMenuScene: GameScene {
         
         self.addChild(Control(textureName: "background", z:-1000, xAlign: .center, yAlign: .center))
         
-        self.buttonPlay = Button(textureName: "buttonYellow", icon: "play", x: 119, y: 79, xAlign: .center, yAlign: .center)
+        self.buttonPlay = Button(textureName: "buttonYellow", icon: "play", x: 192, y: 120, xAlign: .center, yAlign: .center)
         self.addChild(self.buttonPlay)
         
-        self.buttonOptions = Button(textureName: "buttonGreenSquare", icon: "settings", x: 250, y: 146, xAlign: .right, yAlign: .down)
+        self.buttonOptions = Button(textureName: "buttonGreenSquare", icon: "settings", x: 438, y: 228, xAlign: .right, yAlign: .down)
         self.addChild(self.buttonOptions)
         
-        self.buttonCredits = Button(textureName: "buttonGreenSquare", icon: "info", x: 292, y: 146, xAlign: .right, yAlign: .down)
+        self.buttonCredits = Button(textureName: "buttonGreenSquare", icon: "info", x: 396, y: 228, xAlign: .right, yAlign: .down)
         self.addChild(self.buttonCredits)
         
-        self.buttonOfflineMode = Button(textureName: "buttonGray", text:"offline mode", x:119, y:146, xAlign: .center, yAlign: .down)
+        self.buttonOfflineMode = Button(textureName: "buttonGray", text:"offline mode", x:192, y:228, xAlign: .center, yAlign: .down)
         self.addChild(self.buttonOfflineMode)
         self.buttonOfflineMode.hidden = true
         
@@ -74,15 +74,17 @@ class MainMenuScene: GameScene {
                 
                 self.socket.removeAllHandlers()
                 
-                let nextSector = 0//TODO: vindo do coredata???
-                let scene = HangarScene(nextSector: nextSector, socket: self.socket)
+                let scene = HangarScene()
                 self.view?.presentScene(scene, transition: self.transition)
                 break
             case states.connect:
-                self.socket = SocketIOClient(socketURL: NSURL(string:"http://Pablos-MacBook-Pro.local:8900")!)
+                
+                SocketIOClient.sharedInstance = SocketIOClient(socketURL: NSURL(string:"http://Pablos-MacBook-Pro.local:8900")!)
+                self.socket = SocketIOClient.sharedInstance
+                
                 self.addHandlers()
                 
-                let box = Control(textureName: "boxWhite128x64", x:103, y:64, xAlign:.center, yAlign:.center)
+                let box = Control(textureName: "boxWhite128x64", x:176, y:103, xAlign:.center, yAlign:.center)
                 box.zPosition = box.zPosition * 4
                 self.labelConnectStatus = Label(text: "connecting to server...", x:64, y:32)
                 box.addChild(self.labelConnectStatus)
@@ -96,7 +98,7 @@ class MainMenuScene: GameScene {
                         scene.socket.disconnect()
                     }
                     
-                })
+                    })
                 break
                 
             default:
@@ -110,7 +112,7 @@ class MainMenuScene: GameScene {
         self.socket.onAny { [weak self] (socketAnyEvent:SocketAnyEvent) -> Void in
             
             guard let scene = self else { return }
-                
+            
             if(scene.state == states.connect && scene.nextState == states.connect) {
                 
                 print(socketAnyEvent.description)

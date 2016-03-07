@@ -28,11 +28,12 @@ class HangarScene: GameScene {
     //buttons
     var buttonBack:Button!
     
-    var buttonPlay:Button!
-    var buttonChooseSector:Button!
+    var buttonLevelUp:Button!
+    var buttonGo:Button!
+    var buttonWeapons:Button!
     var buttonMultiplayer:Button!
-    var buttonSupplyRoom:Button!
     var buttonGameInfo:Button!
+    var buttonChooseMission:Button!
     
     var nextSector = 0
     
@@ -42,10 +43,8 @@ class HangarScene: GameScene {
     
     var lastSocketErrorMessage = ""
     
-    init(nextSector:Int, socket:SocketIOClient) {
+    override init() {
         super.init()
-        
-        self.socket = socket
         
         if self.socket.status == .Connected {
             self.offlineMode = false
@@ -54,7 +53,7 @@ class HangarScene: GameScene {
             self.socket.disconnect()
         }
         
-        self.nextSector = nextSector
+        self.nextSector = 0
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -67,29 +66,32 @@ class HangarScene: GameScene {
         
         self.addChild(Control(textureName: "background", z:-1000, xAlign: .center, yAlign: .center))
         
-        self.buttonBack = Button(textureName: "buttonGraySquare", icon: "back", x: 10, y: 146, xAlign: .left, yAlign: .down)
+        self.buttonBack = Button(textureName: "buttonGraySquare", icon: "back", x: 10, y: 228, xAlign: .left, yAlign: .down)
         self.addChild(self.buttonBack)
         
-        self.buttonChooseSector = Button(textureName: "buttonGreen", text:"CHOOSE MISSION", x: 66, y: 16, xAlign: .center, yAlign: .center)
-        self.addChild(self.buttonChooseSector)
+        self.buttonLevelUp = Button(textureName: "buttonGreen", text:"leve up!", x: 139, y: 20, xAlign: .center, yAlign: .center)
+        self.addChild(self.buttonLevelUp)
         
-        self.buttonMultiplayer = Button(textureName: "buttonGreen", text:"MULTIPLAYER", x: 66, y: 58, xAlign: .center, yAlign: .center)
+        self.buttonGo = Button(textureName: "buttonYellow", text:"go!", x: 245, y: 20, xAlign: .center, yAlign: .center)
+        self.addChild(self.buttonGo)
+        
+        self.buttonWeapons = Button(textureName: "buttonGreen", text:"weapons", x: 139, y: 62, xAlign: .center, yAlign: .center)
+        self.addChild(self.buttonWeapons)
+        
+        self.buttonMultiplayer = Button(textureName: "buttonGreen", text:"multiplayer", x: 245, y: 62, xAlign: .center, yAlign: .center)
         self.addChild(self.buttonMultiplayer)
         
-        self.buttonSupplyRoom = Button(textureName: "buttonGreen", text:"SUPPLY ROOM", x: 66, y: 100, xAlign: .center, yAlign: .center)
-        self.addChild(self.buttonSupplyRoom)
-        
-        self.buttonGameInfo = Button(textureName: "buttonGreen", text:"GAME INFO", x: 66, y: 142, xAlign: .center, yAlign: .center)
+        self.buttonGameInfo = Button(textureName: "buttonGreen", text:"game info", x: 139, y: 104, xAlign: .center, yAlign: .center)
         self.addChild(self.buttonGameInfo)
         
-        self.buttonPlay = Button(textureName: "buttonYellow", text:"GO!", x: 172, y: 16, xAlign: .center, yAlign: .center)
-        self.addChild(self.buttonPlay)
+        self.buttonChooseMission = Button(textureName: "buttonGreen", text:"choose mission", x: 245, y: 104, xAlign: .center, yAlign: .center)
+        self.addChild(self.buttonChooseMission)
         
-        let sectorCell = SectorCell(type: self.nextSector, x:172, y:58, xAlign: .center, yAlign: .center)
+        let sectorCell = SectorCell(type: self.nextSector, x:351, y:20, xAlign: .center, yAlign: .center)
         self.addChild(sectorCell)
         
         //Serve para setar o foco inicial no tvOS
-        GameScene.selectedButton = self.buttonPlay
+        GameScene.selectedButton = self.buttonGo
     }
     
     override func update(currentTime: NSTimeInterval) {
@@ -130,6 +132,9 @@ class HangarScene: GameScene {
             //Próximo estado
             switch (self.nextState) {
             case states.mainMenu:
+                if(!self.offlineMode) {
+                    self.socket.disconnect()
+                }
                 self.view?.presentScene(MainMenuScene(), transition: self.transition)
                 break
                 
@@ -204,12 +209,12 @@ class HangarScene: GameScene {
                         return
                     }
                     
-                    if(self.buttonChooseSector.containsPoint(location)) {
+                    if(self.buttonChooseMission.containsPoint(location)) {
                         self.nextState = states.chooseSector
                         return
                     }
                     
-                    if(self.buttonPlay.containsPoint(location)) {
+                    if(self.buttonGo.containsPoint(location)) {
                         self.nextState = states.mission
                         return
                     }

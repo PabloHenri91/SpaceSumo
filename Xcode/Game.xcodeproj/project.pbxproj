@@ -13,6 +13,27 @@
 		840661461C7502AF00D8C1CD /* ChooseSector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661451C7502AF00D8C1CD /* ChooseSector.swift */; };
 		840661471C7502AF00D8C1CD /* ChooseSector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661451C7502AF00D8C1CD /* ChooseSector.swift */; };
 		840661481C7502AF00D8C1CD /* ChooseSector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661451C7502AF00D8C1CD /* ChooseSector.swift */; };
+		8407F62E1C8DE7CB004F253F /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407F6281C8DE7CB004F253F /* Enemy.swift */; };
+		8407F62F1C8DE7CB004F253F /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407F6281C8DE7CB004F253F /* Enemy.swift */; };
+		8407F6301C8DE7CB004F253F /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407F6281C8DE7CB004F253F /* Enemy.swift */; };
+		8407F6311C8DE7CB004F253F /* Laser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407F6291C8DE7CB004F253F /* Laser.swift */; };
+		8407F6321C8DE7CB004F253F /* Laser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407F6291C8DE7CB004F253F /* Laser.swift */; };
+		8407F6331C8DE7CB004F253F /* Laser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407F6291C8DE7CB004F253F /* Laser.swift */; };
+		8407F6341C8DE7CB004F253F /* Parallax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407F62A1C8DE7CB004F253F /* Parallax.swift */; };
+		8407F6351C8DE7CB004F253F /* Parallax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407F62A1C8DE7CB004F253F /* Parallax.swift */; };
+		8407F6361C8DE7CB004F253F /* Parallax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407F62A1C8DE7CB004F253F /* Parallax.swift */; };
+		8407F6371C8DE7CB004F253F /* PlayerShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407F62B1C8DE7CB004F253F /* PlayerShip.swift */; };
+		8407F6381C8DE7CB004F253F /* PlayerShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407F62B1C8DE7CB004F253F /* PlayerShip.swift */; };
+		8407F6391C8DE7CB004F253F /* PlayerShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407F62B1C8DE7CB004F253F /* PlayerShip.swift */; };
+		8407F63A1C8DE7CB004F253F /* Thumbstick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407F62C1C8DE7CB004F253F /* Thumbstick.swift */; };
+		8407F63B1C8DE7CB004F253F /* Thumbstick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407F62C1C8DE7CB004F253F /* Thumbstick.swift */; };
+		8407F63C1C8DE7CB004F253F /* Thumbstick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407F62C1C8DE7CB004F253F /* Thumbstick.swift */; };
+		8407F63D1C8DE7CB004F253F /* Ufo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407F62D1C8DE7CB004F253F /* Ufo.swift */; };
+		8407F63E1C8DE7CB004F253F /* Ufo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407F62D1C8DE7CB004F253F /* Ufo.swift */; };
+		8407F63F1C8DE7CB004F253F /* Ufo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407F62D1C8DE7CB004F253F /* Ufo.swift */; };
+		8407F6411C8DE7EF004F253F /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407F6401C8DE7EF004F253F /* World.swift */; };
+		8407F6421C8DE7EF004F253F /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407F6401C8DE7EF004F253F /* World.swift */; };
+		8407F6431C8DE7EF004F253F /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407F6401C8DE7EF004F253F /* World.swift */; };
 		84148FC41C87158500CF689C /* GameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB32F1C85D81A0033D00B /* GameTextField.swift */; };
 		844AB3301C85D81A0033D00B /* GameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB32F1C85D81A0033D00B /* GameTextField.swift */; };
 		846A46B41C75E2350028DBA8 /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
@@ -71,9 +92,6 @@
 		848679471C748F2C0049BB1F /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791F1C748F2C0049BB1F /* Music.swift */; };
 		848679481C748F2C0049BB1F /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791F1C748F2C0049BB1F /* Music.swift */; };
 		848679491C748F2C0049BB1F /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791F1C748F2C0049BB1F /* Music.swift */; };
-		8486794B1C74903F0049BB1F /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486794A1C74903F0049BB1F /* World.swift */; };
-		8486794C1C74903F0049BB1F /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486794A1C74903F0049BB1F /* World.swift */; };
-		8486794D1C74903F0049BB1F /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486794A1C74903F0049BB1F /* World.swift */; };
 		848679531C74C0750049BB1F /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848679511C74C0750049BB1F /* MainMenuScene.swift */; };
 		848679561C74C1100049BB1F /* MissionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848679551C74C1100049BB1F /* MissionScene.swift */; };
 		848679571C74C1100049BB1F /* MissionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848679551C74C1100049BB1F /* MissionScene.swift */; };
@@ -162,6 +180,13 @@
 /* Begin PBXFileReference section */
 		840661411C74FB4F00D8C1CD /* HangarScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangarScene.swift; sourceTree = "<group>"; };
 		840661451C7502AF00D8C1CD /* ChooseSector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseSector.swift; sourceTree = "<group>"; };
+		8407F6281C8DE7CB004F253F /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
+		8407F6291C8DE7CB004F253F /* Laser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Laser.swift; sourceTree = "<group>"; };
+		8407F62A1C8DE7CB004F253F /* Parallax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parallax.swift; sourceTree = "<group>"; };
+		8407F62B1C8DE7CB004F253F /* PlayerShip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerShip.swift; sourceTree = "<group>"; };
+		8407F62C1C8DE7CB004F253F /* Thumbstick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thumbstick.swift; sourceTree = "<group>"; };
+		8407F62D1C8DE7CB004F253F /* Ufo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ufo.swift; sourceTree = "<group>"; };
+		8407F6401C8DE7EF004F253F /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		844AB32F1C85D81A0033D00B /* GameTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameTextField.swift; sourceTree = "<group>"; };
 		848678C11C748B0C0049BB1F /* Game iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Game iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		848678C31C748B0C0049BB1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -196,10 +221,9 @@
 		8486791D1C748F2C0049BB1F /* GameColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameColors.swift; sourceTree = "<group>"; };
 		8486791E1C748F2C0049BB1F /* GameFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameFonts.swift; sourceTree = "<group>"; };
 		8486791F1C748F2C0049BB1F /* Music.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
-		8486794A1C74903F0049BB1F /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		848679511C74C0750049BB1F /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		848679551C74C1100049BB1F /* MissionScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionScene.swift; sourceTree = "<group>"; };
-		84944CDD1C763EC8006F49CE /* OptionsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsScene.swift; sourceTree = "<group>"; };
+		84944CDD1C763EC8006F49CE /* OptionsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionsScene.swift; path = Scenes/OptionsScene.swift; sourceTree = "<group>"; };
 		84944CDF1C763F54006F49CE /* CreditsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsScene.swift; sourceTree = "<group>"; };
 		84944CE11C7641D7006F49CE /* SectorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectorCell.swift; sourceTree = "<group>"; };
 		84944CE51C764535006F49CE /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
@@ -345,6 +369,7 @@
 				8486790D1C748DC60049BB1F /* Scenes */,
 				8486790C1C748DBC0049BB1F /* Fonts */,
 				848679081C748CD30049BB1F /* Media.xcassets */,
+				84944CDD1C763EC8006F49CE /* OptionsScene.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -365,7 +390,6 @@
 				840661411C74FB4F00D8C1CD /* HangarScene.swift */,
 				848679511C74C0750049BB1F /* MainMenuScene.swift */,
 				848679551C74C1100049BB1F /* MissionScene.swift */,
-				84944CDD1C763EC8006F49CE /* OptionsScene.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -414,8 +438,14 @@
 		848679111C748E1E0049BB1F /* _Game */ = {
 			isa = PBXGroup;
 			children = (
+				8407F6401C8DE7EF004F253F /* World.swift */,
+				8407F6281C8DE7CB004F253F /* Enemy.swift */,
+				8407F6291C8DE7CB004F253F /* Laser.swift */,
+				8407F62A1C8DE7CB004F253F /* Parallax.swift */,
+				8407F62B1C8DE7CB004F253F /* PlayerShip.swift */,
+				8407F62C1C8DE7CB004F253F /* Thumbstick.swift */,
+				8407F62D1C8DE7CB004F253F /* Ufo.swift */,
 				84944CE11C7641D7006F49CE /* SectorCell.swift */,
-				8486794A1C74903F0049BB1F /* World.swift */,
 			);
 			name = _Game;
 			path = Game;
@@ -591,7 +621,6 @@
 				84944CDE1C763EC8006F49CE /* OptionsScene.swift in Sources */,
 				84AADFF91C7B5C0400AE04DD /* SocketAnyEvent.swift in Sources */,
 				84AAE00B1C7B5C0400AE04DD /* SocketEngineSpec.swift in Sources */,
-				8486794B1C74903F0049BB1F /* World.swift in Sources */,
 				84AAE0291C7B5C0400AE04DD /* SocketTypes.swift in Sources */,
 				84AAE01A1C7B5C0400AE04DD /* SocketIOClientStatus.swift in Sources */,
 				84AAE0231C7B5C0400AE04DD /* SocketParsable.swift in Sources */,
@@ -601,6 +630,7 @@
 				84944CE01C763F54006F49CE /* CreditsScene.swift in Sources */,
 				84AADFF31C7B5C0400AE04DD /* SocketAckEmitter.swift in Sources */,
 				848679561C74C1100049BB1F /* MissionScene.swift in Sources */,
+				8407F6311C8DE7CB004F253F /* Laser.swift in Sources */,
 				848678C41C748B0C0049BB1F /* AppDelegate.swift in Sources */,
 				848679201C748F2C0049BB1F /* GeometryExtensions.swift in Sources */,
 				848679351C748F2C0049BB1F /* Box.swift in Sources */,
@@ -612,12 +642,16 @@
 				848679471C748F2C0049BB1F /* Music.swift in Sources */,
 				84AADFF61C7B5C0400AE04DD /* SocketAckManager.swift in Sources */,
 				840661421C74FB4F00D8C1CD /* HangarScene.swift in Sources */,
+				8407F6341C8DE7CB004F253F /* Parallax.swift in Sources */,
+				8407F6411C8DE7EF004F253F /* World.swift in Sources */,
 				84944CE61C764535006F49CE /* Label.swift in Sources */,
 				84944CE21C7641D7006F49CE /* SectorCell.swift in Sources */,
 				84B762CB1C85CA7F0016C24B /* BlackSpriteNode.swift in Sources */,
 				846A46B51C75E2360028DBA8 /* ScrollNode.swift in Sources */,
 				84AAE02C1C7B5C0400AE04DD /* SwiftRegex.swift in Sources */,
+				8407F63A1C8DE7CB004F253F /* Thumbstick.swift in Sources */,
 				84AADFFC1C7B5C0400AE04DD /* SocketClientSpec.swift in Sources */,
+				8407F62E1C8DE7CB004F253F /* Enemy.swift in Sources */,
 				848679411C748F2C0049BB1F /* GameColors.swift in Sources */,
 				848679591C74C1810049BB1F /* MainMenuScene.swift in Sources */,
 				84AAE0171C7B5C0400AE04DD /* SocketIOClientOption.swift in Sources */,
@@ -626,9 +660,11 @@
 				84AAE02F1C7B5C0400AE04DD /* WebSocket.swift in Sources */,
 				84AAE0201C7B5C0400AE04DD /* SocketPacket.swift in Sources */,
 				848679381C748F2C0049BB1F /* CropBox.swift in Sources */,
+				8407F63D1C8DE7CB004F253F /* Ufo.swift in Sources */,
 				848679291C748F2C0049BB1F /* GameScene.swift in Sources */,
 				84AAE01D1C7B5C0400AE04DD /* SocketLogger.swift in Sources */,
 				8486793E1C748F2C0049BB1F /* Event.swift in Sources */,
+				8407F6371C8DE7CB004F253F /* PlayerShip.swift in Sources */,
 				84AAE0051C7B5C0400AE04DD /* SocketEnginePacketType.swift in Sources */,
 				848679441C748F2C0049BB1F /* GameFonts.swift in Sources */,
 				84AAE0111C7B5C0400AE04DD /* SocketEventHandler.swift in Sources */,
@@ -644,7 +680,6 @@
 				840661471C7502AF00D8C1CD /* ChooseSector.swift in Sources */,
 				84AAE01B1C7B5C0400AE04DD /* SocketIOClientStatus.swift in Sources */,
 				84AAE0061C7B5C0400AE04DD /* SocketEnginePacketType.swift in Sources */,
-				8486794C1C74903F0049BB1F /* World.swift in Sources */,
 				8486792D1C748F2C0049BB1F /* Control.swift in Sources */,
 				848678E41C748B1F0049BB1F /* GameViewController.swift in Sources */,
 				84AAE0271C7B5C0400AE04DD /* SocketStringReader.swift in Sources */,
@@ -655,19 +690,25 @@
 				84AAE0001C7B5C0400AE04DD /* SocketEngine.swift in Sources */,
 				84AAE0151C7B5C0400AE04DD /* SocketIOClient.swift in Sources */,
 				848679571C74C1100049BB1F /* MissionScene.swift in Sources */,
+				8407F6321C8DE7CB004F253F /* Laser.swift in Sources */,
 				848678DE1C748B1F0049BB1F /* AppDelegate.swift in Sources */,
 				84AADFFD1C7B5C0400AE04DD /* SocketClientSpec.swift in Sources */,
 				848679531C74C0750049BB1F /* MainMenuScene.swift in Sources */,
+				8407F63B1C8DE7CB004F253F /* Thumbstick.swift in Sources */,
+				8407F6421C8DE7EF004F253F /* World.swift in Sources */,
 				84AAE02D1C7B5C0400AE04DD /* SwiftRegex.swift in Sources */,
 				84AAE00C1C7B5C0400AE04DD /* SocketEngineSpec.swift in Sources */,
 				848679211C748F2C0049BB1F /* GeometryExtensions.swift in Sources */,
 				84AADFF41C7B5C0400AE04DD /* SocketAckEmitter.swift in Sources */,
 				848679361C748F2C0049BB1F /* Box.swift in Sources */,
 				84944CE31C7641D7006F49CE /* SectorCell.swift in Sources */,
+				8407F63E1C8DE7CB004F253F /* Ufo.swift in Sources */,
 				84AADFF71C7B5C0400AE04DD /* SocketAckManager.swift in Sources */,
+				8407F6351C8DE7CB004F253F /* Parallax.swift in Sources */,
 				848679331C748F2C0049BB1F /* Button.swift in Sources */,
 				848679301C748F2C0049BB1F /* GameCamera.swift in Sources */,
 				84AAE01E1C7B5C0400AE04DD /* SocketLogger.swift in Sources */,
+				8407F6381C8DE7CB004F253F /* PlayerShip.swift in Sources */,
 				840661431C74FB4F00D8C1CD /* HangarScene.swift in Sources */,
 				846A46B41C75E2350028DBA8 /* ScrollNode.swift in Sources */,
 				84AAE0211C7B5C0400AE04DD /* SocketPacket.swift in Sources */,
@@ -683,6 +724,7 @@
 				8486792A1C748F2C0049BB1F /* GameScene.swift in Sources */,
 				84AAE00F1C7B5C0400AE04DD /* SocketEngineWebsocket.swift in Sources */,
 				84AAE0241C7B5C0400AE04DD /* SocketParsable.swift in Sources */,
+				8407F62F1C8DE7CB004F253F /* Enemy.swift in Sources */,
 				8486793F1C748F2C0049BB1F /* Event.swift in Sources */,
 				848679451C748F2C0049BB1F /* GameFonts.swift in Sources */,
 				848679271C748F2C0049BB1F /* Config.swift in Sources */,
@@ -703,6 +745,7 @@
 				848679461C748F2C0049BB1F /* GameFonts.swift in Sources */,
 				84944CE41C7641D7006F49CE /* SectorCell.swift in Sources */,
 				8486792E1C748F2C0049BB1F /* Control.swift in Sources */,
+				8407F6391C8DE7CB004F253F /* PlayerShip.swift in Sources */,
 				84944CE81C764535006F49CE /* Label.swift in Sources */,
 				8486795A1C74C1820049BB1F /* MainMenuScene.swift in Sources */,
 				8486793D1C748F2C0049BB1F /* ScrollNode.swift in Sources */,
@@ -715,12 +758,17 @@
 				84AAE01F1C7B5C0400AE04DD /* SocketLogger.swift in Sources */,
 				84AAE00A1C7B5C0400AE04DD /* SocketEnginePollable.swift in Sources */,
 				84AAE0011C7B5C0400AE04DD /* SocketEngine.swift in Sources */,
+				8407F6361C8DE7CB004F253F /* Parallax.swift in Sources */,
+				8407F6431C8DE7EF004F253F /* World.swift in Sources */,
 				84AAE01C1C7B5C0400AE04DD /* SocketIOClientStatus.swift in Sources */,
+				8407F63F1C8DE7CB004F253F /* Ufo.swift in Sources */,
+				8407F63C1C8DE7CB004F253F /* Thumbstick.swift in Sources */,
 				848679491C748F2C0049BB1F /* Music.swift in Sources */,
 				848679281C748F2C0049BB1F /* Config.swift in Sources */,
 				84AADFFE1C7B5C0400AE04DD /* SocketClientSpec.swift in Sources */,
 				848679311C748F2C0049BB1F /* GameCamera.swift in Sources */,
 				84AAE0191C7B5C0400AE04DD /* SocketIOClientOption.swift in Sources */,
+				8407F6331C8DE7CB004F253F /* Laser.swift in Sources */,
 				84AAE02E1C7B5C0400AE04DD /* SwiftRegex.swift in Sources */,
 				848679431C748F2C0049BB1F /* GameColors.swift in Sources */,
 				848679341C748F2C0049BB1F /* Button.swift in Sources */,
@@ -729,10 +777,10 @@
 				848679221C748F2C0049BB1F /* GeometryExtensions.swift in Sources */,
 				84AAE0041C7B5C0400AE04DD /* SocketEngineClient.swift in Sources */,
 				848679371C748F2C0049BB1F /* Box.swift in Sources */,
+				8407F6301C8DE7CB004F253F /* Enemy.swift in Sources */,
 				84AAE0161C7B5C0400AE04DD /* SocketIOClient.swift in Sources */,
 				84AAE0071C7B5C0400AE04DD /* SocketEnginePacketType.swift in Sources */,
 				84AAE0131C7B5C0400AE04DD /* SocketEventHandler.swift in Sources */,
-				8486794D1C74903F0049BB1F /* World.swift in Sources */,
 				848679581C74C1100049BB1F /* MissionScene.swift in Sources */,
 				84B762CD1C85CA7F0016C24B /* BlackSpriteNode.swift in Sources */,
 				84AAE0251C7B5C0400AE04DD /* SocketParsable.swift in Sources */,

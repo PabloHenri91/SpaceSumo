@@ -31,7 +31,7 @@ class GameScene: SKScene {
     var transition = SKTransition.crossFadeWithDuration(0.5)
     
     //Multiplayer Online
-    var socket:SocketIOClient!
+    var socket = SocketIOClient.sharedInstance
     
     var blackSpriteNode:BlackSpriteNode!
     
@@ -90,7 +90,6 @@ class GameScene: SKScene {
         Control.dx = 0
         Control.dy = 0
     }
-    
     
      #if os(iOS) || os(tvOS)
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -172,19 +171,19 @@ class GameScene: SKScene {
 
 #if os(OSX)
     public extension NSResponder {
-        func touchesBegan(touches: Set<NSEvent>) {
+        func touchesBegan(touches: Set<UITouch>) {
             
         }
-        func touchesMoved(touches: Set<NSEvent>) {
+        func touchesMoved(touches: Set<UITouch>) {
             
         }
-        func touchesEnded(touches: Set<NSEvent>) {
+        func touchesEnded(touches: Set<UITouch>) {
             
         }
         func touchesCancelled() {
             
         }
-        func touchesEnded(taps touches: Set<NSEvent>) {
+        func touchesEnded(taps touches: Set<UITouch>) {
             
         }
     }

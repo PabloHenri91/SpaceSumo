@@ -43,7 +43,7 @@ class ChooseSector: GameScene {
             cells.append(SectorCell(type: i))
         }
         
-        self.sectorScrollNode = ScrollNode(cells: cells, x: 135, y: 62, xAlign: .center, yAlign: .center, spacing: 19, scrollDirection: .horizontal)
+        self.sectorScrollNode = ScrollNode(cells: cells, x: 135, y: 103, xAlign: .center, yAlign: .center, spacing: 19, scrollDirection: .horizontal)
         
         self.addChild(self.sectorScrollNode)
         
@@ -66,7 +66,8 @@ class ChooseSector: GameScene {
             //Próximo estado
             switch (self.nextState) {
             case states.hangar:
-                let scene = HangarScene(nextSector: self.nextSector, socket: self.socket)
+                let scene = HangarScene()
+                //TODO: setar setor escolhido
                 self.view?.presentScene(scene, transition: self.transition)
                 break
                 
