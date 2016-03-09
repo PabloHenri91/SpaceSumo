@@ -14,6 +14,9 @@ class PokemonCell: Control {
     
     var type:Int
     
+    
+    var like:SKSpriteNode!
+    
     init(type:Int, x:Int = 0, y:Int = 0, xAlign:Control.xAlignments = .left, yAlign:Control.yAlignments = .up) {
         
         self.type = type
@@ -41,6 +44,17 @@ class PokemonCell: Control {
         
         self.addChild(label)
         
+        self.like = SKSpriteNode(imageNamed: "like")
+        self.addChild(self.like)
+        
+        self.like.hidden = !(PokemonCell.types[type].pokemonData.favorite.boolValue)
+    }
+    
+    func changeLike() {
+        let pokemonData = PokemonCell.types[type].pokemonData
+        pokemonData.favorite = NSNumber(bool: !pokemonData.favorite.boolValue)
+        
+        self.like.hidden = !(PokemonCell.types[type].pokemonData.favorite.boolValue)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -58,7 +72,9 @@ class PokemonCellType {
     var type1:String!
     var type2:String?
     
-    init(number:Int, name:String, icon:String, image:String, level:Int, type1:String, type2:String?) {
+    var pokemonData:PokemonData!
+    
+    init(number:Int, name:String, icon:String, image:String, level:Int, type1:String, type2:String?, pokemonData:PokemonData) {
         self.number = number
         self.name = name
         self.icon = icon
@@ -66,6 +82,7 @@ class PokemonCellType {
         self.level = level
         self.type1 = type1
         self.type2 = type2
+        self.pokemonData = pokemonData
     }
 }
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F1605" minimumToolsVersion="Xcode 7.0">
+    <entity name="PlayerData" representedClassName=".PlayerData" syncable="YES">
+        <relationship name="pokemons" toMany="YES" deletionRule="Nullify" destinationEntity="PokemonData" inverseName="playerData" inverseEntity="PokemonData" syncable="YES"/>
+    </entity>
+    <entity name="PokemonData" representedClassName=".PokemonData" syncable="YES">
+        <attribute name="favorite" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="playerData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlayerData" inverseName="pokemons" inverseEntity="PlayerData" syncable="YES"/>
+    </entity>
+    <fetchRequest name="FetchRequest" entity="PlayerData"/>
+    <elements>
+        <element name="PlayerData" positionX="-63" positionY="-18" width="128" height="60"/>
+        <element name="PokemonData" positionX="-54" positionY="-9" width="128" height="90"/>
+    </elements>
+</model>

@@ -10,6 +10,8 @@ import SpriteKit
 
 class ExercicioTeste2: GameScene {
     
+    var playerData:PlayerData!
+    
     var dados:[String:AnyObject]!
     
     var onHandPokemonsScrollNode:ScrollNode!
@@ -17,6 +19,8 @@ class ExercicioTeste2: GameScene {
     init(dados:[String:AnyObject]) {
         super.init()
         self.dados = dados
+        
+        self.playerData = MemoryCard.sharedInstance.playerData
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -52,7 +56,27 @@ class ExercicioTeste2: GameScene {
             //pokemonData["status"] as! [String:AnyObject]
             //pokemonData["skills"] as! [[String:AnyObject]]
             
-            PokemonCell.types.append(PokemonCellType(number: number, name: name, icon: icon, image: image, level: level, type1: type1, type2: type2))
+            var pokemonCoreData:PokemonData?
+            
+            for item in self.playerData.pokemons {
+                if let pokemon = item as? PokemonData {
+                    if name == pokemon.name {
+                        pokemonCoreData = pokemon
+                        break
+                    }
+                }
+            }
+            
+            if let _ = pokemonCoreData { } else {
+                
+                pokemonCoreData = PokemonData.insertNew(inManagedObjectContext: MemoryCard.sharedInstance.managedObjectContext)
+                
+                pokemonCoreData!.name = name
+                
+                self.playerData.addPokemon(pokemonCoreData!)
+            }
+            
+            PokemonCell.types.append(PokemonCellType(number: number, name: name, icon: icon, image: image, level: level, type1: type1, type2: type2, pokemonData:pokemonCoreData!))
         }
         
         var cells = Array<Control>()
@@ -64,5 +88,22 @@ class ExercicioTeste2: GameScene {
         self.onHandPokemonsScrollNode = ScrollNode(cells: cells, x: 135, y: 99, xAlign: .center, yAlign: .center, spacing: 19, scrollDirection: .horizontal)
         
         self.addChild(self.onHandPokemonsScrollNode)
+    }
+    
+    override func touchesEnded(taps touches: Set<UITouch>) {
+        super.touchesEnded(taps: touches)
+        
+        //Estado atual
+        for touch in touches {
+            if(self.onHandPokemonsScrollNode.containsPoint(touch.locationInNode(self))) {
+                for cell in self.onHandPokemonsScrollNode.cells {
+                    if(cell.containsPoint(touch.locationInNode(self.onHandPokemonsScrollNode))) {
+                        (cell as! PokemonCell).changeLike()
+                        break
+                    }
+                }
+                return
+            }
+        }
     }
 }
