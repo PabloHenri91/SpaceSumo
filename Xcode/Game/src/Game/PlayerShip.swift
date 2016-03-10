@@ -67,6 +67,7 @@ class PlayerShip: Control {
         
         self.physicsBody?.linearDamping = 1
         self.physicsBody?.angularDamping = 1
+        self.physicsBody?.restitution = 0.5
         
         PlayerShip.playerShipSet.insert(self)
     }
@@ -79,11 +80,24 @@ class PlayerShip: Control {
         
         switch physicsBody.categoryBitMask {
             
-        case World.categoryBitMask.laser.rawValue:
+        case World.categoryBitMask.playerShip.rawValue:
+            print("didBeginContact: playerShip -> playerShip")
+            break
             
-            if let _ = physicsBody.node as? Laser {
-                
-            }
+        case World.categoryBitMask.myLaser.rawValue:
+            print("didBeginContact: playerShip -> myLaser")
+            break
+            
+        case World.categoryBitMask.laser.rawValue:
+            print("didBeginContact: playerShip -> laser")
+            break
+            
+        case World.categoryBitMask.ufo.rawValue:
+            print("didBeginContact: playerShip -> ufo")
+            break
+            
+        case World.categoryBitMask.enemy.rawValue:
+            print("didBeginContact: playerShip -> enemy")
             break
             
         default:
@@ -95,14 +109,12 @@ class PlayerShip: Control {
         
         switch physicsBody.categoryBitMask {
             
-        case World.categoryBitMask.laser.rawValue:
-            
-            if let _ = physicsBody.node as? Laser {
-                
-            }
+        case World.categoryBitMask.myLaser.rawValue:
+            (physicsBody.node as? Laser)?.resetBitMasks()
             break
             
         default:
+            fatalError()
             break
         }
     }
@@ -138,7 +150,7 @@ class PlayerShip: Control {
             
             //Laser
             
-            if currentTime - self.lastLaser > 1 {
+            if currentTime - self.lastLaser > 0.1 {
                 let laser = Laser(position: self.position, zRotation: self.zRotation, shooter: self.physicsBody!)
                 self.parent?.addChild(laser)
                 self.lastLaser = currentTime

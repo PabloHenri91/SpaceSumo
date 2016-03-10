@@ -78,12 +78,18 @@ class Enemy: Control {
         
         self.physicsBody?.linearDamping = 1
         self.physicsBody?.angularDamping = 1
+        self.physicsBody?.restitution = 0.5
         
         Enemy.enemySet.insert(self)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func didBeginContact(physicsBody:SKPhysicsBody, contact: SKPhysicsContact) {
+        physicsBody.node?.removeFromParent()
+        self.removeFromParent()
     }
     
     func isOnScree() -> Bool {

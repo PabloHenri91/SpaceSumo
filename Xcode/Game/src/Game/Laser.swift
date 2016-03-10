@@ -23,9 +23,9 @@ class Laser: Control {
         self.zPosition = -2
         
         self.physicsBody = SKPhysicsBody(rectangleOfSize: spriteNode.size)
-        self.physicsBody?.categoryBitMask = World.categoryBitMask.laser.rawValue
-        self.physicsBody?.collisionBitMask = World.collisionBitMask.laser
-        self.physicsBody?.contactTestBitMask = World.contactTestBitMask.laser
+        self.physicsBody?.categoryBitMask = World.categoryBitMask.myLaser.rawValue
+        self.physicsBody?.collisionBitMask = World.collisionBitMask.myLaser
+        self.physicsBody?.contactTestBitMask = World.contactTestBitMask.myLaser
         
         self.physicsBody?.linearDamping = 0
         self.physicsBody?.angularDamping = 0
@@ -45,27 +45,10 @@ class Laser: Control {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func didBeginContact(physicsBody:SKPhysicsBody, contact: SKPhysicsContact) {
-        
-        switch physicsBody.categoryBitMask {
-            
-        case World.categoryBitMask.ufo.rawValue:
-            if let ufo = physicsBody.node as? Ufo {
-                ufo.removeFromParent()
-                self.removeFromParent()
-            }
-            break
-            
-        case World.categoryBitMask.enemy.rawValue:
-            if let enemy = physicsBody.node as? Enemy {
-                enemy.removeFromParent()
-                self.removeFromParent()
-            }
-            break
-            
-        default:
-            break
-        }
+    func resetBitMasks() {
+        self.physicsBody?.categoryBitMask = World.categoryBitMask.laser.rawValue
+        self.physicsBody?.collisionBitMask = World.collisionBitMask.laser
+        self.physicsBody?.contactTestBitMask = World.contactTestBitMask.laser
     }
     
     func update(currentTime: NSTimeInterval) {
