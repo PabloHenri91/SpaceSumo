@@ -43,7 +43,7 @@ class HangarScene: GameScene {
     
     var lastSocketErrorMessage = ""
     
-    override init() {
+    init() {
         super.init()
         
         if self.socket.status == .Connected {
@@ -135,6 +135,7 @@ class HangarScene: GameScene {
                 if(!self.offlineMode) {
                     self.socket.disconnect()
                 }
+                
                 self.view?.presentScene(MainMenuScene(), transition: self.transition)
                 break
                 
@@ -143,7 +144,8 @@ class HangarScene: GameScene {
                 break
                 
             case states.mission:
-                let scene = MissionScene()
+                
+                let scene = MissionScene(size:CGSize(width: 1920.0/2, height: 1080.0/2))
                 self.view?.presentScene(scene, transition: self.transition)
                 break
                 

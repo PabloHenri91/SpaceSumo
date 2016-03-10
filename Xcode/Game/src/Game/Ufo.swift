@@ -22,19 +22,21 @@ class Ufo: Control {
     var destination = CGPoint.zero
     var needToMove = false
     
+    var lastLaser:NSTimeInterval = 0
+    
     init(enemyNode:SKNode) {
         self.enemyNode = enemyNode
         super.init()
         
         var distance = CGPoint.distance(self.position, enemyNode.position)
         
-        while(distance < 100) {
+        //while(false) {
             self.position = CGPoint(
                 x: Int.random(min: enemyNode.position.x - 100000, max: enemyNode.position.x + 100000),
                 y: Int.random(min: enemyNode.position.y - 100000, max: enemyNode.position.y + 100000))
             
             distance = CGPoint.distance(self.position, enemyNode.position)
-        }
+        //}
         
         var textureName:String!
         
@@ -85,6 +87,20 @@ class Ufo: Control {
     func didBeginContact(physicsBody:SKPhysicsBody, contact: SKPhysicsContact) {
         physicsBody.node?.removeFromParent()
         self.removeFromParent()
+    }
+    
+    func didEndContact(physicsBody:SKPhysicsBody, contact: SKPhysicsContact) {
+        
+        switch physicsBody.categoryBitMask {
+            
+        case World.categoryBitMask.myLaser.rawValue:
+            (physicsBody.node as? Laser)?.resetBitMasks()
+            break
+            
+        default:
+            fatalError()
+            break
+        }
     }
     
     func isOnScree() -> Bool {
@@ -196,6 +212,19 @@ class Ufo: Control {
                         self.physicsBody?.applyForce(CGVector(dx: -sin(auxRotation) * self.force, dy: cos(auxRotation) * self.force))
                     }
                 }
+            }
+            
+            //Laser
+            
+            let totalDx = self.destination.x - self.position.x
+            let totalDy = self.destination.y - self.position.y
+            
+            let auxRotation = -atan2(totalDx, totalDy)
+            
+            if currentTime - self.lastLaser > 0.1 {
+                let laser = Laser(position: self.position, zRotation: auxRotation, shooter: self.physicsBody!)
+                self.parent?.addChild(laser)
+                self.lastLaser = currentTime
             }
             
             

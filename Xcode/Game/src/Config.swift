@@ -18,7 +18,8 @@ class Config: NSObject {
     
     static let screenScale:CGFloat = 1 // 1x, 2x, 3x
     
-    static let sceneSize:CGSize = CGSize(width: 480/screenScale, height: 270/screenScale)
+    static let defaultSceneSize:CGSize = CGSize(width: 480/screenScale, height: 270/screenScale)
+    static var sceneSize:CGSize = defaultSceneSize
     
     static var HUDZPosition:CGFloat = 1000
     

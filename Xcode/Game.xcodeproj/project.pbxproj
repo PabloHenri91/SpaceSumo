@@ -195,7 +195,7 @@
 		848678CE1C748B0C0049BB1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		848678D11C748B0C0049BB1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		848678D31C748B0C0049BB1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		848678DB1C748B1F0049BB1F /* Game tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Game tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		848678DB1C748B1F0049BB1F /* SpaceGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		848678DD1C748B1F0049BB1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		848678E31C748B1F0049BB1F /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		848678E51C748B1F0049BB1F /* Game.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Game.xcassets; sourceTree = "<group>"; };
@@ -473,7 +473,7 @@
 			isa = PBXGroup;
 			children = (
 				848678C11C748B0C0049BB1F /* Game iOS.app */,
-				848678DB1C748B1F0049BB1F /* Game tvOS.app */,
+				848678DB1C748B1F0049BB1F /* SpaceGame.app */,
 				848678F41C748B470049BB1F /* Game OS X.app */,
 			);
 			name = Products;
@@ -499,9 +499,9 @@
 			productReference = 848678C11C748B0C0049BB1F /* Game iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		848678DA1C748B1F0049BB1F /* Game tvOS */ = {
+		848678DA1C748B1F0049BB1F /* SpaceGame */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 848678ED1C748B1F0049BB1F /* Build configuration list for PBXNativeTarget "Game tvOS" */;
+			buildConfigurationList = 848678ED1C748B1F0049BB1F /* Build configuration list for PBXNativeTarget "SpaceGame" */;
 			buildPhases = (
 				848678D71C748B1F0049BB1F /* Sources */,
 				848678D81C748B1F0049BB1F /* Frameworks */,
@@ -511,9 +511,9 @@
 			);
 			dependencies = (
 			);
-			name = "Game tvOS";
+			name = SpaceGame;
 			productName = "Game tvOS";
-			productReference = 848678DB1C748B1F0049BB1F /* Game tvOS.app */;
+			productReference = 848678DB1C748B1F0049BB1F /* SpaceGame.app */;
 			productType = "com.apple.product-type.application";
 		};
 		848678F31C748B470049BB1F /* Game OS X */ = {
@@ -548,6 +548,7 @@
 					};
 					848678DA1C748B1F0049BB1F = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = JZ3J7RVLD7;
 					};
 					848678F31C748B470049BB1F = {
 						CreatedOnToolsVersion = 7.2;
@@ -568,7 +569,7 @@
 			projectRoot = "";
 			targets = (
 				848678C01C748B0C0049BB1F /* Game iOS */,
-				848678DA1C748B1F0049BB1F /* Game tvOS */,
+				848678DA1C748B1F0049BB1F /* SpaceGame */,
 				848678F31C748B470049BB1F /* Game OS X */,
 			);
 		};
@@ -859,11 +860,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Pablo Henrique Bertaco (JZ3J7RVLD7)";
 				INFOPLIST_FILE = "Game tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "PabloHenri91.Game-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.PabloHenri91.SpaceGame--tvOS-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
+				SDKROOT = appletvos9.1;
 				SWIFT_OBJC_BRIDGING_HEADER = "Game tvOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 3;
@@ -876,11 +878,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Pablo Henrique Bertaco (JZ3J7RVLD7)";
 				INFOPLIST_FILE = "Game tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "PabloHenri91.Game-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.PabloHenri91.SpaceGame--tvOS-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
+				SDKROOT = appletvos9.1;
 				SWIFT_OBJC_BRIDGING_HEADER = "Game tvOS-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 3;
 			};
@@ -1016,7 +1019,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		848678ED1C748B1F0049BB1F /* Build configuration list for PBXNativeTarget "Game tvOS" */ = {
+		848678ED1C748B1F0049BB1F /* Build configuration list for PBXNativeTarget "SpaceGame" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				848678EE1C748B1F0049BB1F /* Debug */,

@@ -34,11 +34,13 @@ class MissionScene: GameScene {
     
     let thumbstick = Thumbstick()
     
-    let parallax = Parallax()
+    var parallax:Parallax!
     
     override func didMoveToView(view: SKView) {
+        
         super.didMoveToView(view)
         
+        self.parallax = Parallax()
         self.addChild(self.parallax)
         
         self.world = World(physicsWorld: self.physicsWorld)
@@ -101,6 +103,8 @@ class MissionScene: GameScene {
             //Próximo estado
             switch (self.nextState) {
             case states.hangar:
+                Config.sceneSize = CGSize(width: 480/Config.screenScale, height: 270/Config.screenScale)
+                Config.updateSceneSize()
                 self.view?.presentScene(HangarScene(), transition: self.transition)
                 break
                 

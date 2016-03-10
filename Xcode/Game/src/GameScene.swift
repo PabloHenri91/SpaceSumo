@@ -35,9 +35,12 @@ class GameScene: SKScene {
     
     var blackSpriteNode:BlackSpriteNode!
     
-    override init() {
+    override init(size:CGSize = Config.defaultSceneSize) {
         
         //self.playerData = MemoryCard.sharedInstance.playerData
+        
+        Config.sceneSize = size
+        Config.updateSceneSize()
         
         super.init(size: Config.currentSceneSize)
         
@@ -66,6 +69,8 @@ class GameScene: SKScene {
         
         self.blackSpriteNode = BlackSpriteNode()
         self.addChild(self.blackSpriteNode)
+        
+        Parallax.parallaxSet = Set<Parallax>()
     }
     
     override func didMoveToView(view: SKView) {

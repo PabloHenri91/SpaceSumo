@@ -20,6 +20,7 @@ class PlayerShip: Control {
     
     var force:CGFloat = 50
     
+    
     override init() {
         super.init()
         

@@ -180,6 +180,14 @@ class World: SKNode, SKPhysicsContactDelegate {
             (self.bodyA.node as? PlayerShip)?.didEndContact(self.bodyB, contact: contact)
             break
             
+        case World.categoryBitMask.myLaser.rawValue + World.categoryBitMask.ufo.rawValue:
+            (self.bodyB.node as? Ufo)?.didEndContact(self.bodyA, contact: contact)
+            break
+            
+        case World.categoryBitMask.myLaser.rawValue + World.categoryBitMask.enemy.rawValue:
+            (self.bodyB.node as? Enemy)?.didEndContact(self.bodyA, contact: contact)
+            break
+            
         case World.categoryBitMask.playerShip.rawValue + World.categoryBitMask.laser.rawValue:
             //laser ricocheteou no playerShip
             break
