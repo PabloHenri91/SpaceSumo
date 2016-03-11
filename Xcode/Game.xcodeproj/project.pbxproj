@@ -46,7 +46,6 @@
 		848678D21C748B0C0049BB1F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848678D01C748B0C0049BB1F /* LaunchScreen.storyboard */; };
 		848678DE1C748B1F0049BB1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848678DD1C748B1F0049BB1F /* AppDelegate.swift */; };
 		848678E41C748B1F0049BB1F /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848678E31C748B1F0049BB1F /* GameViewController.swift */; };
-		848678E61C748B1F0049BB1F /* Game.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 848678E51C748B1F0049BB1F /* Game.xcassets */; };
 		848678E91C748B1F0049BB1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848678E71C748B1F0049BB1F /* Main.storyboard */; };
 		848678EB1C748B1F0049BB1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 848678EA1C748B1F0049BB1F /* Assets.xcassets */; };
 		848678F71C748B470049BB1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848678F61C748B470049BB1F /* AppDelegate.swift */; };
@@ -195,14 +194,13 @@
 		848678CE1C748B0C0049BB1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		848678D11C748B0C0049BB1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		848678D31C748B0C0049BB1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		848678DB1C748B1F0049BB1F /* SpaceGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		848678DB1C748B1F0049BB1F /* Game tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Game tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		848678DD1C748B1F0049BB1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		848678E31C748B1F0049BB1F /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		848678E51C748B1F0049BB1F /* Game.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Game.xcassets; sourceTree = "<group>"; };
 		848678E81C748B1F0049BB1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		848678EA1C748B1F0049BB1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		848678EC1C748B1F0049BB1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		848678F41C748B470049BB1F /* Game OS X.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Game OS X.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		848678F41C748B470049BB1F /* Game OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Game OSX.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		848678F61C748B470049BB1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		848678FC1C748B470049BB1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		848678FF1C748B470049BB1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -228,6 +226,7 @@
 		84944CE11C7641D7006F49CE /* SectorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectorCell.swift; sourceTree = "<group>"; };
 		84944CE51C764535006F49CE /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		84944CE91C7646C2006F49CE /* kenpixel.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = kenpixel.ttf; sourceTree = "<group>"; };
+		84A47D8E1C92EB2900433807 /* SpaceGame.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SpaceGame.entitlements; sourceTree = "<group>"; };
 		84AADFDE1C7B5C0400AE04DD /* SocketAckEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckEmitter.swift; sourceTree = "<group>"; };
 		84AADFDF1C7B5C0400AE04DD /* SocketAckManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckManager.swift; sourceTree = "<group>"; };
 		84AADFE01C7B5C0400AE04DD /* SocketAnyEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAnyEvent.swift; sourceTree = "<group>"; };
@@ -328,7 +327,6 @@
 			children = (
 				848678DD1C748B1F0049BB1F /* AppDelegate.swift */,
 				848678E31C748B1F0049BB1F /* GameViewController.swift */,
-				848678E51C748B1F0049BB1F /* Game.xcassets */,
 				848678E71C748B1F0049BB1F /* Main.storyboard */,
 				848678EA1C748B1F0049BB1F /* Assets.xcassets */,
 				848678EC1C748B1F0049BB1F /* Info.plist */,
@@ -462,6 +460,7 @@
 		84B9C8E91C7487160080CE52 = {
 			isa = PBXGroup;
 			children = (
+				84A47D8E1C92EB2900433807 /* SpaceGame.entitlements */,
 				84B31C591C7DE18E006D5390 /* Server */,
 				847F793E1C7B539E001CE8B1 /* SocketIOClientSwift */,
 				848679051C748B5D0049BB1F /* Game */,
@@ -473,8 +472,8 @@
 			isa = PBXGroup;
 			children = (
 				848678C11C748B0C0049BB1F /* Game iOS.app */,
-				848678DB1C748B1F0049BB1F /* SpaceGame.app */,
-				848678F41C748B470049BB1F /* Game OS X.app */,
+				848678DB1C748B1F0049BB1F /* Game tvOS.app */,
+				848678F41C748B470049BB1F /* Game OSX.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -499,9 +498,9 @@
 			productReference = 848678C11C748B0C0049BB1F /* Game iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		848678DA1C748B1F0049BB1F /* SpaceGame */ = {
+		848678DA1C748B1F0049BB1F /* Game tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 848678ED1C748B1F0049BB1F /* Build configuration list for PBXNativeTarget "SpaceGame" */;
+			buildConfigurationList = 848678ED1C748B1F0049BB1F /* Build configuration list for PBXNativeTarget "Game tvOS" */;
 			buildPhases = (
 				848678D71C748B1F0049BB1F /* Sources */,
 				848678D81C748B1F0049BB1F /* Frameworks */,
@@ -511,14 +510,14 @@
 			);
 			dependencies = (
 			);
-			name = SpaceGame;
+			name = "Game tvOS";
 			productName = "Game tvOS";
-			productReference = 848678DB1C748B1F0049BB1F /* SpaceGame.app */;
+			productReference = 848678DB1C748B1F0049BB1F /* Game tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		848678F31C748B470049BB1F /* Game OS X */ = {
+		848678F31C748B470049BB1F /* Game OSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 848679021C748B480049BB1F /* Build configuration list for PBXNativeTarget "Game OS X" */;
+			buildConfigurationList = 848679021C748B480049BB1F /* Build configuration list for PBXNativeTarget "Game OSX" */;
 			buildPhases = (
 				848678F01C748B470049BB1F /* Sources */,
 				848678F11C748B470049BB1F /* Frameworks */,
@@ -528,9 +527,9 @@
 			);
 			dependencies = (
 			);
-			name = "Game OS X";
+			name = "Game OSX";
 			productName = "Game OS X";
-			productReference = 848678F41C748B470049BB1F /* Game OS X.app */;
+			productReference = 848678F41C748B470049BB1F /* Game OSX.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -545,6 +544,7 @@
 				TargetAttributes = {
 					848678C01C748B0C0049BB1F = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = JZ3J7RVLD7;
 					};
 					848678DA1C748B1F0049BB1F = {
 						CreatedOnToolsVersion = 7.2;
@@ -552,6 +552,12 @@
 					};
 					848678F31C748B470049BB1F = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = JZ3J7RVLD7;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -569,8 +575,8 @@
 			projectRoot = "";
 			targets = (
 				848678C01C748B0C0049BB1F /* Game iOS */,
-				848678DA1C748B1F0049BB1F /* SpaceGame */,
-				848678F31C748B470049BB1F /* Game OS X */,
+				848678DA1C748B1F0049BB1F /* Game tvOS */,
+				848678F31C748B470049BB1F /* Game OSX */,
 			);
 		};
 /* End PBXProject section */
@@ -596,7 +602,6 @@
 				84944CEB1C7646C2006F49CE /* kenpixel.ttf in Resources */,
 				848678E91C748B1F0049BB1F /* Main.storyboard in Resources */,
 				848678EB1C748B1F0049BB1F /* Assets.xcassets in Resources */,
-				848678E61C748B1F0049BB1F /* Game.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -832,9 +837,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Game iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "PabloHenri91.Game-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.PabloHenri91.SpaceGame--iOS-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Game iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -846,9 +852,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Game iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "PabloHenri91.Game-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.PabloHenri91.SpaceGame--iOS-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Game iOS-Bridging-Header.h";
 			};
@@ -894,11 +901,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_ENTITLEMENTS = SpaceGame.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Game OS X/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "PabloHenri91.Game-OS-X";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.PabloHenri91.SpaceGame--OS-X-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "Game OS X-Bridging-Header.h";
@@ -911,11 +919,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_ENTITLEMENTS = SpaceGame.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Game OS X/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "PabloHenri91.Game-OS-X";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.PabloHenri91.SpaceGame--OS-X-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "Game OS X-Bridging-Header.h";
@@ -1019,7 +1028,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		848678ED1C748B1F0049BB1F /* Build configuration list for PBXNativeTarget "SpaceGame" */ = {
+		848678ED1C748B1F0049BB1F /* Build configuration list for PBXNativeTarget "Game tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				848678EE1C748B1F0049BB1F /* Debug */,
@@ -1028,7 +1037,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		848679021C748B480049BB1F /* Build configuration list for PBXNativeTarget "Game OS X" */ = {
+		848679021C748B480049BB1F /* Build configuration list for PBXNativeTarget "Game OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				848679031C748B480049BB1F /* Debug */,

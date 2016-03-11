@@ -36,8 +36,8 @@ class Enemy: Control {
         
         //while(false) {
             self.position = CGPoint(
-                x: Int.random(min: enemyNode.position.x - 100000, max: enemyNode.position.x + 100000),
-                y: Int.random(min: enemyNode.position.y - 100000, max: enemyNode.position.y + 100000))
+                x: Int.random(min: enemyNode.position.x - 10000, max: enemyNode.position.x + 10000),
+                y: Int.random(min: enemyNode.position.y - 10000, max: enemyNode.position.y + 10000))
             
             distance = CGPoint.distance(self.position, enemyNode.position)
         //}
