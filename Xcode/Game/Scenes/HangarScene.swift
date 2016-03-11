@@ -7,8 +7,9 @@
 //
 
 import SpriteKit
+import MultipeerConnectivity
 
-class HangarScene: GameScene {
+class HangarScene: GameScene, MCNearbyServiceBrowserDelegate, MCSessionDelegate {
     
     enum states {
         //Estado principal
@@ -19,6 +20,7 @@ class HangarScene: GameScene {
         case chooseSector
         case mission
         case connectionClosed
+        case multiplayer
     }
     
     //Estados iniciais
@@ -64,6 +66,12 @@ class HangarScene: GameScene {
     override func didMoveToView(view: SKView) {
         super.didMoveToView(view)
         
+        GameScene.nearbyServiceBrowser.delegate = self
+        GameScene.nearbyServiceBrowser.startBrowsingForPeers()
+        print("startBrowsingForPeers")
+        
+        GameScene.session.delegate = self
+        
         self.addChild(Control(textureName: "background", z:-1000, xAlign: .center, yAlign: .center))
         
         self.buttonBack = Button(textureName: "buttonGraySquare", icon: "back", x: 10, y: 228, xAlign: .left, yAlign: .down)
@@ -94,8 +102,57 @@ class HangarScene: GameScene {
         GameScene.selectedButton = self.buttonGo
     }
     
+    func browser(browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
+        print("browser: " + browser.myPeerID.displayName + " foundPeer: " + peerID.displayName)
+        browser.invitePeer(peerID, toSession: GameScene.session, withContext: nil, timeout: 30)
+    }
+    
+    func browser(browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
+        print("browser: " + browser.myPeerID.displayName + " lostPeer: " + peerID.displayName)
+    }
+    
+    func browser(browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: NSError) {
+        print("browser: " + browser.myPeerID.displayName + " didNotStartBrowsingForPeers: " + error.description)
+    }
+    
+    
+    func session(session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, atURL localURL: NSURL, withError error: NSError?) {
+        
+    }
+    
+    func session(session: MCSession, didReceiveCertificate certificate: [AnyObject]?, fromPeer peerID: MCPeerID, certificateHandler: (Bool) -> Void) {
+        certificateHandler(true)
+        return
+    }
+    
+    func session(session: MCSession, didReceiveData data: NSData, fromPeer peerID: MCPeerID) {
+        
+        if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [String: AnyObject],
+            let event = dict["event"] as? String,
+            let object: AnyObject? = dict["object"] as? String {
+                dispatch_async(dispatch_get_main_queue()) {
+                    print(event)
+                    print(object)
+                }
+        }
+    }
+    
+    func session(session: MCSession, didReceiveStream stream: NSInputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
+        
+    }
+    
+    func session(session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, withProgress progress: NSProgress) {
+        
+    }
+    
+    func session(session: MCSession, peer peerID: MCPeerID, didChangeState state: MCSessionState) {
+        
+    }
+    
     override func update(currentTime: NSTimeInterval) {
         super.update(currentTime)
+        
+        print(GameScene.session.connectedPeers.description)
         
         //Estado atual
         if(self.state == self.nextState) {
@@ -169,6 +226,10 @@ class HangarScene: GameScene {
                 
                 break
                 
+            case states.multiplayer:
+                self.view?.presentScene(MultiplayerLobby(), transition: self.transition)
+                break
+                
             default:
                 break
             }
@@ -220,6 +281,12 @@ class HangarScene: GameScene {
                         self.nextState = states.mission
                         return
                     }
+                    
+                    if(self.buttonMultiplayer.containsPoint(location)) {
+                        self.nextState = states.multiplayer
+                        return
+                    }
+                    
                     break
                 default:
                     break

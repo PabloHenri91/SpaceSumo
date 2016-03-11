@@ -7,9 +7,11 @@
 //
 
 import SpriteKit
+import MultipeerConnectivity
 
 #if os(OSX)
 public typealias UITouch = NSEvent
+import Foundation
 #endif
 
 class GameScene: SKScene {
@@ -33,9 +35,23 @@ class GameScene: SKScene {
     //Multiplayer Online
     var socket = SocketIOClient.sharedInstance
     
+    #if os(iOS) || os(tvOS)
+    static var peerID = MCPeerID(displayName: UIDevice.currentDevice().name)
+    #endif
+    
+    #if os(OSX)
+    static var peerID = MCPeerID(displayName: NSHost.currentHost().localizedName!)
+    #endif
+    
+    static var session = MCSession(peer: peerID)
+    static var nearbyServiceBrowser = MCNearbyServiceBrowser(peer: peerID, serviceType: "SpaceGame")
+    static var nearbyServiceAdvertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: "SpaceGame")
+    
     var blackSpriteNode:BlackSpriteNode!
     
     override init(size:CGSize = Config.defaultSceneSize) {
+        
+        print(GameScene.peerID)
         
         //self.playerData = MemoryCard.sharedInstance.playerData
         

@@ -33,14 +33,15 @@ class Enemy: Control {
         super.init()
         
         var distance = CGPoint.distance(self.position, enemyNode.position)
+        let minDistance = CGPoint.distance(CGPoint.zero, CGPoint(x: Config.currentSceneSize.width, y: Config.currentSceneSize.height))
         
-        //while(false) {
+        while(distance < minDistance) {
             self.position = CGPoint(
-                x: Int.random(min: enemyNode.position.x - 10000, max: enemyNode.position.x + 10000),
-                y: Int.random(min: enemyNode.position.y - 10000, max: enemyNode.position.y + 10000))
+                x: Int.random(min: enemyNode.position.x - (minDistance * 2), max: enemyNode.position.x + (minDistance * 2)),
+                y: Int.random(min: enemyNode.position.y - (minDistance * 2), max: enemyNode.position.y + (minDistance * 2)))
             
             distance = CGPoint.distance(self.position, enemyNode.position)
-        //}
+        }
         
         var textureName:String!
         let i = Int.random(min: 1, max: 5).description
