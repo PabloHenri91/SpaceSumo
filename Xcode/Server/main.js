@@ -21,6 +21,7 @@ Game.prototype.addHandlers = function() {
         
         socket.on("update", function(data) {
             console.log("update");
+            console.log(data);
             
             socket.broadcast.emit("update", data);
         });
