@@ -9,7 +9,7 @@
 import SpriteKit
 import MultipeerConnectivity
 
-class HangarScene: GameScene, MCNearbyServiceBrowserDelegate, MCSessionDelegate {
+class HangarScene: GameScene {
     
     enum states {
         //Estado principal
@@ -45,32 +45,28 @@ class HangarScene: GameScene, MCNearbyServiceBrowserDelegate, MCSessionDelegate 
     
     var lastSocketErrorMessage = ""
     
+    var serverManager = ServerManager.sharedInstance
+    
     init() {
         super.init()
         
-        if self.socket.status == .Connected {
+        if  self.serverManager.socket.status == .Connected {
             self.offlineMode = false
             self.addHandlers()
         } else {
-            self.socket.disconnect()
+            self.serverManager.socket.disconnect()
         }
         
         self.nextSector = 0
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     
     override func didMoveToView(view: SKView) {
         super.didMoveToView(view)
-        
-        GameScene.nearbyServiceBrowser.delegate = self
-        GameScene.nearbyServiceBrowser.startBrowsingForPeers()
-        print("startBrowsingForPeers")
-        
-        GameScene.session.delegate = self
         
         self.addChild(Control(textureName: "background", z:-1000, xAlign: .center, yAlign: .center))
         
@@ -102,57 +98,8 @@ class HangarScene: GameScene, MCNearbyServiceBrowserDelegate, MCSessionDelegate 
         GameScene.selectedButton = self.buttonGo
     }
     
-    func browser(browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        print("browser: " + browser.myPeerID.displayName + " foundPeer: " + peerID.displayName)
-        browser.invitePeer(peerID, toSession: GameScene.session, withContext: nil, timeout: 30)
-    }
-    
-    func browser(browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
-        print("browser: " + browser.myPeerID.displayName + " lostPeer: " + peerID.displayName)
-    }
-    
-    func browser(browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: NSError) {
-        print("browser: " + browser.myPeerID.displayName + " didNotStartBrowsingForPeers: " + error.description)
-    }
-    
-    
-    func session(session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, atURL localURL: NSURL, withError error: NSError?) {
-        
-    }
-    
-    func session(session: MCSession, didReceiveCertificate certificate: [AnyObject]?, fromPeer peerID: MCPeerID, certificateHandler: (Bool) -> Void) {
-        certificateHandler(true)
-        return
-    }
-    
-    func session(session: MCSession, didReceiveData data: NSData, fromPeer peerID: MCPeerID) {
-        
-        if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [String: AnyObject],
-            let event = dict["event"] as? String,
-            let object: AnyObject? = dict["object"] as? String {
-                dispatch_async(dispatch_get_main_queue()) {
-                    print(event)
-                    print(object)
-                }
-        }
-    }
-    
-    func session(session: MCSession, didReceiveStream stream: NSInputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
-        
-    }
-    
-    func session(session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, withProgress progress: NSProgress) {
-        
-    }
-    
-    func session(session: MCSession, peer peerID: MCPeerID, didChangeState state: MCSessionState) {
-        
-    }
-    
     override func update(currentTime: NSTimeInterval) {
         super.update(currentTime)
-        
-        print(GameScene.session.connectedPeers.description)
         
         //Estado atual
         if(self.state == self.nextState) {
@@ -163,7 +110,7 @@ class HangarScene: GameScene, MCNearbyServiceBrowserDelegate, MCSessionDelegate 
                     
                 case states.hangar:
                     if(!self.offlineMode) {
-                        if (self.socket.status == .Closed){
+                        if (self.serverManager.socket.status == .Closed) {
                             self.nextState = states.connectionClosed
                         }
                     }
@@ -173,7 +120,7 @@ class HangarScene: GameScene, MCNearbyServiceBrowserDelegate, MCSessionDelegate 
                     break
                 }
                 
-                print(self.socket.status.description)
+                print(self.serverManager.socket.status.description)
                 
                 self.lastSecondUpdate = currentTime
             }
@@ -190,7 +137,7 @@ class HangarScene: GameScene, MCNearbyServiceBrowserDelegate, MCSessionDelegate 
             switch (self.nextState) {
             case states.mainMenu:
                 if(!self.offlineMode) {
-                    self.socket.disconnect()
+                    self.serverManager.socket.disconnect()
                 }
                 
                 self.view?.presentScene(MainMenuScene(), transition: self.transition)
@@ -222,7 +169,7 @@ class HangarScene: GameScene, MCNearbyServiceBrowserDelegate, MCSessionDelegate 
                 button.addHandler( { [weak self] in
                     guard let scene = self else { return }
                     scene.nextState = states.mainMenu
-                })
+                    })
                 
                 break
                 
@@ -237,7 +184,7 @@ class HangarScene: GameScene, MCNearbyServiceBrowserDelegate, MCSessionDelegate 
     }
     
     func addHandlers() {
-        self.socket.onAny { [weak self] (socketAnyEvent:SocketAnyEvent) -> Void in
+        self.serverManager.socket.onAny { [weak self] (socketAnyEvent:SocketAnyEvent) -> Void in
             
             guard let scene = self else { return }
             

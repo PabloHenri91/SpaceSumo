@@ -36,6 +36,9 @@
 		8407F6431C8DE7EF004F253F /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407F6401C8DE7EF004F253F /* World.swift */; };
 		84148FC41C87158500CF689C /* GameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB32F1C85D81A0033D00B /* GameTextField.swift */; };
 		844AB3301C85D81A0033D00B /* GameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB32F1C85D81A0033D00B /* GameTextField.swift */; };
+		84557B561C997E7200C8A11A /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84557B551C997E7100C8A11A /* ServerManager.swift */; };
+		84557B571C997E7200C8A11A /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84557B551C997E7100C8A11A /* ServerManager.swift */; };
+		84557B581C997E7200C8A11A /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84557B551C997E7100C8A11A /* ServerManager.swift */; };
 		846A46B41C75E2350028DBA8 /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
 		846A46B51C75E2360028DBA8 /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
 		8483B5C11C885C3200556D40 /* GameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB32F1C85D81A0033D00B /* GameTextField.swift */; };
@@ -196,6 +199,7 @@
 		8407F62D1C8DE7CB004F253F /* Ufo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ufo.swift; sourceTree = "<group>"; };
 		8407F6401C8DE7EF004F253F /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		844AB32F1C85D81A0033D00B /* GameTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameTextField.swift; sourceTree = "<group>"; };
+		84557B551C997E7100C8A11A /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
 		848678C11C748B0C0049BB1F /* Game iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Game iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		848678C31C748B0C0049BB1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		848678C91C748B0C0049BB1F /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -435,6 +439,7 @@
 				84944CE51C764535006F49CE /* Label.swift */,
 				8486791F1C748F2C0049BB1F /* Music.swift */,
 				8486791B1C748F2C0049BB1F /* ScrollNode.swift */,
+				84557B551C997E7100C8A11A /* ServerManager.swift */,
 			);
 			name = _src;
 			path = src;
@@ -673,6 +678,7 @@
 				84944CE21C7641D7006F49CE /* SectorCell.swift in Sources */,
 				84B762CB1C85CA7F0016C24B /* BlackSpriteNode.swift in Sources */,
 				846A46B51C75E2360028DBA8 /* ScrollNode.swift in Sources */,
+				84557B561C997E7200C8A11A /* ServerManager.swift in Sources */,
 				84AAE02C1C7B5C0400AE04DD /* SwiftRegex.swift in Sources */,
 				8407F63A1C8DE7CB004F253F /* Thumbstick.swift in Sources */,
 				84AADFFC1C7B5C0400AE04DD /* SocketClientSpec.swift in Sources */,
@@ -755,6 +761,7 @@
 				8407F62F1C8DE7CB004F253F /* Enemy.swift in Sources */,
 				8486793F1C748F2C0049BB1F /* Event.swift in Sources */,
 				848679451C748F2C0049BB1F /* GameFonts.swift in Sources */,
+				84557B571C997E7200C8A11A /* ServerManager.swift in Sources */,
 				848679271C748F2C0049BB1F /* Config.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -786,6 +793,7 @@
 				84AAE01F1C7B5C0400AE04DD /* SocketLogger.swift in Sources */,
 				84AAE00A1C7B5C0400AE04DD /* SocketEnginePollable.swift in Sources */,
 				84AAE0011C7B5C0400AE04DD /* SocketEngine.swift in Sources */,
+				84557B581C997E7200C8A11A /* ServerManager.swift in Sources */,
 				8407F6361C8DE7CB004F253F /* Parallax.swift in Sources */,
 				8407F6431C8DE7EF004F253F /* World.swift in Sources */,
 				84AAE01C1C7B5C0400AE04DD /* SocketIOClientStatus.swift in Sources */,

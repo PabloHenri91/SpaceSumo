@@ -33,6 +33,8 @@ class MainMenuScene: GameScene {
     
     var labelConnectStatus:Label!
     
+    var serverManager:ServerManager! //Por seguranca o serverManager nao deve ser iniciado ainda.
+    
     override func didMoveToView(view: SKView) {
         super.didMoveToView(view)
         
@@ -72,15 +74,10 @@ class MainMenuScene: GameScene {
             switch (self.nextState) {
             case states.hangar:
                 
-                self.socket.removeAllHandlers()
-                
                 let scene = HangarScene()
                 self.view?.presentScene(scene, transition: self.transition)
                 break
             case states.connect:
-                
-                SocketIOClient.sharedInstance = SocketIOClient(socketURL: NSURL(string:"http://Pablos-MacBook-Pro.local:8900")!)
-                self.socket = SocketIOClient.sharedInstance
                 
                 self.addHandlers()
                 
@@ -90,12 +87,12 @@ class MainMenuScene: GameScene {
                 box.addChild(self.labelConnectStatus)
                 self.addChild(box)
                 
-                self.socket.connect(timeoutAfter: 33, withTimeoutHandler: { [weak self] () -> Void in
+                self.serverManager.socket.connect(timeoutAfter: 33, withTimeoutHandler: { [weak self] () -> Void in
                     guard let scene = self else { return }
                     
                     if(scene.state == states.connect && scene.nextState == states.connect) {
                         scene.labelConnectStatus.setText("connection timed out")
-                        scene.socket.disconnect()
+                        ServerManager.sharedInstance.socket.disconnect()
                     }
                     
                     })
@@ -108,8 +105,8 @@ class MainMenuScene: GameScene {
     }
     
     func addHandlers() {
-        
-        self.socket.onAny { [weak self] (socketAnyEvent:SocketAnyEvent) -> Void in
+        self.serverManager = ServerManager.sharedInstance
+        self.serverManager.socket.onAny { [weak self] (socketAnyEvent:SocketAnyEvent) -> Void in
             
             guard let scene = self else { return }
             
@@ -132,7 +129,7 @@ class MainMenuScene: GameScene {
                     break
                     
                 case "reconnectAttempt":
-                    scene.labelConnectStatus.setText("Reconnect Attempt:  " + (scene.socket.reconnectAttempts + 1 - (socketAnyEvent.items?.firstObject as! Int)).description)
+                    scene.labelConnectStatus.setText("Reconnect Attempt:  " + (ServerManager.sharedInstance.socket.reconnectAttempts + 1 - (socketAnyEvent.items?.firstObject as! Int)).description)
                     break
                     
                 default:
