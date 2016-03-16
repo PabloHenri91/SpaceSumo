@@ -51,8 +51,6 @@ class GameScene: SKScene {
     
     override init(size:CGSize = Config.defaultSceneSize) {
         
-        print(GameScene.peerID)
-        
         //self.playerData = MemoryCard.sharedInstance.playerData
         
         Config.sceneSize = size
