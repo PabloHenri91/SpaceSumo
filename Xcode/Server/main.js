@@ -1,42 +1,10 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
-
 var app = require('http').createServer();
 
 app.listen(8900);
 
-function Player(socket) {
-    console.log("Player(socket)");
-    var self = this;
-
-    this.socket = socket;
-    this.name = "";
-    this.game = {};
-
-    //dados de update recebidos pelo player
-    this.socket.on("update", function(x, y) {
-        console.log("update");
-        self.socket.broadcast.emit("update", self["name"], x, y);
-    });
-}
-
-Player.prototype.joinGame = function(game) {
-    console.log("joinGame(game)");
-    this.game = game;
-}
-
 function Game() {
     console.log("Game()");
-
     this.io = require('socket.io')(app);
-
-    this.players = new Array();
-
     this.addHandlers();
 }
 
@@ -44,19 +12,38 @@ Game.prototype.addHandlers = function() {
     console.log("addHandlers()");
 
     var self = this;
+    var rooms = this.io.sockets.adapter.rooms
 
     this.io.sockets.on("connection", function(socket) {
-        self.connection(new Player(socket));
+        console.log("connection " + socket.id);
+        
+        socket.join(socket.id);
+        
+        socket.on("update", function(data) {
+            console.log("update");
+            
+            socket.broadcast.emit("update", data);
+        });
+        
+        socket.on("leaveRoom", function() {
+            console.log("leaveRoom");
+            
+            socket.leave(socket.id);
+        });
+
+        socket.on("getRooms", function() {
+            console.log("getRooms");
+            console.log(rooms);
+            
+            socket.emit("getRooms", rooms);
+        });
+        
+        //handler to remove the socket from memory when it disconnects
+        socket.on('disconnect', function() {
+            console.log("disconnect");
+        });
     });
-};
-
-Game.prototype.connection = function(player) {
-    console.log("connection(player)");
-
-    player.game = this;
-    this.players.push(player);
 };
 
 // Start the game server
 var game = new Game();
-

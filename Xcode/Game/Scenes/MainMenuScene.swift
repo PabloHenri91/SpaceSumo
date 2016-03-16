@@ -140,7 +140,6 @@ class MainMenuScene: GameScene {
                 print(socketAnyEvent.description)
             }
         }
-        
     }
     
     override func touchesEnded(taps touches: Set<UITouch>) {
