@@ -3,13 +3,13 @@ var app = require('http').createServer();
 app.listen(8900);
 
 function Game() {
-    //console.log('Game()');
+    console.log('Game()');
     this.io = require('socket.io')(app);
     this.addHandlers();
 }
 
 Game.prototype.addHandlers = function() {
-    //console.log('addHandlers()');
+    console.log('addHandlers()');
 
     var allRooms = this.io.sockets.adapter.rooms;
 
