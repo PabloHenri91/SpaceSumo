@@ -31,7 +31,7 @@ class MultiplayerLobby: GameScene {
         self.serverManager = ServerManager.sharedInstance
         
         self.addHandlers()
-        self.serverManager.socket.emit("leaveRoom")
+        self.serverManager.socket.emit("leaveRooms")
     }
     
     func addHandlers() {
@@ -42,6 +42,12 @@ class MultiplayerLobby: GameScene {
             print(socketAnyEvent.description)
             
             switch(socketAnyEvent.event) {
+                case "getAllRooms":
+                    print("getAllRooms")
+                break
+                case "hello":
+                    
+                break
                 
             default:
                 break
@@ -57,7 +63,7 @@ class MultiplayerLobby: GameScene {
             if (self.serverManager.socket.status == .Closed) {
                 //TODO: connectionClosed
             } else {
-                self.serverManager.socket.emit("getRooms")
+                self.serverManager.socket.emit("getAllRooms")
             }
             
             print(self.serverManager.socket.status.description)

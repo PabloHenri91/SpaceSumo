@@ -3,59 +3,74 @@ var app = require('http').createServer();
 app.listen(8900);
 
 function Game() {
-    console.log('Game()');
+    //console.log('Game()');
     this.io = require('socket.io')(app);
     this.addHandlers();
 }
 
 Game.prototype.addHandlers = function() {
-    console.log('addHandlers()');
+    //console.log('addHandlers()');
 
-    var self = this;
-    var allSockets = this.io.sockets
-    var allRooms = this.io.sockets.adapter.rooms
+    var allRooms = this.io.sockets.adapter.rooms;
 
     this.io.sockets.on('connection', function(socket) {
         console.log('connection ' + socket.id);
         
+        socket.name = socket.id;
         socket.join(socket.id);
         
+        socket.emit('userDisplayInfo');
+        console.log(socket.name + ' emit : userDisplayInfo');
+        
+        socket.emit('userInfo');
+        console.log(socket.name + ' emit userInfo: ');
+        
+        socket.on('userDisplayInfo', function (userDisplayInfo) {
+            console.log(socket.name + ' on userDisplayInfo: ' + userDisplayInfo);
+            
+            socket.name = userDisplayInfo;
+            socket.userDisplayInfo = userDisplayInfo;
+        });
+        
+        socket.on('userInfo', function (userInfo) {
+            console.log(socket.name + ' on userInfo: ' + userInfo);
+            
+            socket.userInfo = userInfo;
+        });
+        
         socket.on('update', function(data) {
-            console.log('update');
-            console.log(data);
-
-            for (i = 0; i < socket.rooms.length; i++) {
-                socket.broadcast.to(socket.rooms[i]).emit('update', data);
+            console.log(socket.name + ' on update: ' + data);
+            
+            for (var room in socket.adapter.sids[socket.id]) {
+                socket.broadcast.to(room).emit('update', data);
+                console.log(socket.name + ' emit update: ' + data);
             }
         });
         
         socket.on('leaveRooms', function() {
-            console.log('leaveRooms');
-
-            for (i = 0; i < socket.rooms.length; i++) {
-                socket.leave(socket.rooms[i]);
+            console.log(socket.name + ' on leaveRooms: ');
+            
+            for (var room in socket.adapter.sids[socket.id]) {
+                socket.leave(room);
             }
         });
 
         socket.on('getAllRooms', function() {
-            console.log('getAllRooms');
-            console.log(allRooms);
+            console.log(socket.name + ' on getAllRooms: ');
             
             socket.emit('getAllRooms', allRooms);
-
-            for (i = 0; i < allRooms.length; i++) {
-                allSockets[allRooms[i]].emit('hello')
-            }
+            console.log(socket.name + ' emit getAllRooms: ' + allRooms);
         });
 
         socket.on('joinRoom', function(room) {
-            console.log('joinRoom');
-
-            socket.join(room)
+            console.log(socket.name + ' on joinRoom: ' + room);
+            
+            socket.join(room);
         });
         
         socket.on('disconnect', function() {
-            console.log('disconnect' + socket.id);
+            console.log(socket.name + ' on disconnect: ');
+            
         });
     });
 };
