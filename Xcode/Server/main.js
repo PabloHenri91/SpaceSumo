@@ -3,45 +3,59 @@ var app = require('http').createServer();
 app.listen(8900);
 
 function Game() {
-    console.log("Game()");
+    console.log('Game()');
     this.io = require('socket.io')(app);
     this.addHandlers();
 }
 
 Game.prototype.addHandlers = function() {
-    console.log("addHandlers()");
+    console.log('addHandlers()');
 
     var self = this;
-    var rooms = this.io.sockets.adapter.rooms
+    var allSockets = this.io.sockets
+    var allRooms = this.io.sockets.adapter.rooms
 
-    this.io.sockets.on("connection", function(socket) {
-        console.log("connection " + socket.id);
+    this.io.sockets.on('connection', function(socket) {
+        console.log('connection ' + socket.id);
         
         socket.join(socket.id);
         
-        socket.on("update", function(data) {
-            console.log("update");
+        socket.on('update', function(data) {
+            console.log('update');
             console.log(data);
-            
-            socket.broadcast.emit("update", data);
+
+            for (i = 0; i < socket.rooms.length; i++) {
+                socket.broadcast.to(socket.rooms[i]).emit('update', data);
+            }
         });
         
-        socket.on("leaveRoom", function() {
-            console.log("leaveRoom");
-            
-            socket.leave(socket.id);
+        socket.on('leaveRooms', function() {
+            console.log('leaveRooms');
+
+            for (i = 0; i < socket.rooms.length; i++) {
+                socket.leave(socket.rooms[i]);
+            }
         });
 
-        socket.on("getRooms", function() {
-            console.log("getRooms");
-            console.log(rooms);
+        socket.on('getAllRooms', function() {
+            console.log('getAllRooms');
+            console.log(allRooms);
             
-            socket.emit("getRooms", rooms);
+            socket.emit('getAllRooms', allRooms);
+
+            for (i = 0; i < allRooms.length; i++) {
+                allSockets[allRooms[i]].emit('hello')
+            }
+        });
+
+        socket.on('joinRoom', function(room) {
+            console.log('joinRoom');
+
+            socket.join(room)
         });
         
-        //handler to remove the socket from memory when it disconnects
         socket.on('disconnect', function() {
-            console.log("disconnect");
+            console.log('disconnect' + socket.id);
         });
     });
 };
