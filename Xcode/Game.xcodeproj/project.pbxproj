@@ -37,7 +37,6 @@
 		84148FC41C87158500CF689C /* GameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB32F1C85D81A0033D00B /* GameTextField.swift */; };
 		844AB3301C85D81A0033D00B /* GameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB32F1C85D81A0033D00B /* GameTextField.swift */; };
 		84557B561C997E7200C8A11A /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84557B551C997E7100C8A11A /* ServerManager.swift */; };
-		84557B571C997E7200C8A11A /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84557B551C997E7100C8A11A /* ServerManager.swift */; };
 		84557B581C997E7200C8A11A /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84557B551C997E7100C8A11A /* ServerManager.swift */; };
 		846A46B41C75E2350028DBA8 /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
 		846A46B51C75E2360028DBA8 /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
@@ -761,7 +760,6 @@
 				8407F62F1C8DE7CB004F253F /* Enemy.swift in Sources */,
 				8486793F1C748F2C0049BB1F /* Event.swift in Sources */,
 				848679451C748F2C0049BB1F /* GameFonts.swift in Sources */,
-				84557B571C997E7200C8A11A /* ServerManager.swift in Sources */,
 				848679271C748F2C0049BB1F /* Config.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

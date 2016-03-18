@@ -37,7 +37,9 @@ class ServerManager: NSObject, MCNearbyServiceBrowserDelegate, MCNearbyServiceAd
     override init() {
         super.init()
         
-        self.socket = SocketIOClient(socketURL: NSURL(string:"http://Pablos-MacBook-Pro.local:8900")!)
+        //self.socket = SocketIOClient(socketURL: NSURL(string:"http://Pablos-MacBook-Pro.local:8900")!)
+        self.socket = SocketIOClient(socketURL: NSURL(string:"http://172.16.3.149:8900")!)
+        
         
         #if os(iOS)
             self.peerID = MCPeerID(displayName: UIDevice.currentDevice().name)

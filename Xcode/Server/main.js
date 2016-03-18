@@ -10,20 +10,20 @@ function Game() {
 
 Game.prototype.addHandlers = function() {
     console.log('addHandlers()');
-
+    
+    var connectedSockets = this.io.sockets.connected;
     var allRooms = this.io.sockets.adapter.rooms;
 
     this.io.sockets.on('connection', function(socket) {
         console.log('connection ' + socket.id);
         
         socket.name = socket.id;
-        socket.join(socket.id);
         
-        socket.emit('userDisplayInfo');
-        console.log(socket.name + ' emit : userDisplayInfo');
-        
-        socket.emit('userInfo');
-        console.log(socket.name + ' emit userInfo: ');
+        socket.on('createRoom', function () {
+            console.log(socket.name + ' on createRoom: ');
+            
+            socket.join(socket.id);
+        });
         
         socket.on('userDisplayInfo', function (userDisplayInfo) {
             console.log(socket.name + ' on userDisplayInfo: ' + userDisplayInfo);
@@ -58,8 +58,26 @@ Game.prototype.addHandlers = function() {
         socket.on('getAllRooms', function() {
             console.log(socket.name + ' on getAllRooms: ');
             
-            socket.emit('getAllRooms', allRooms);
-            console.log(socket.name + ' emit getAllRooms: ' + allRooms);
+            for (var roomId in allRooms) {
+                
+                var room = allRooms[roomId];
+                var message = {};
+                
+                message.roomId = roomId;
+                message.usersDisplayInfo = [];
+                
+                for (var socketsId in room.sockets) {
+                    var someSocket = connectedSockets[socketsId];
+                    
+                    message.usersDisplayInfo.push(someSocket.userDisplayInfo);
+                }
+                
+                socket.emit('getRoom', message);
+                console.log(socket.name + ' emit getRoom: ');
+                console.log(message);
+                
+                message = null;
+            }
         });
 
         socket.on('joinRoom', function(room) {

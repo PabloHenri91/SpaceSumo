@@ -7,7 +7,6 @@
 //
 
 import SpriteKit
-import MultipeerConnectivity
 
 class HangarScene: GameScene {
     
@@ -45,17 +44,21 @@ class HangarScene: GameScene {
     
     var lastSocketErrorMessage = ""
     
+    #if os(iOS) || os(OSX)
     var serverManager = ServerManager.sharedInstance
+    #endif
     
     init() {
         super.init()
         
-        if  self.serverManager.socket.status == .Connected {
-            self.offlineMode = false
-            self.addHandlers()
-        } else {
-            self.serverManager.socket.disconnect()
-        }
+        #if os(iOS) || os(OSX)
+            if  self.serverManager.socket.status == .Connected {
+                self.offlineMode = false
+                self.addHandlers()
+            } else {
+                self.serverManager.socket.disconnect()
+            }
+        #endif
         
         self.nextSector = 0
     }
@@ -96,6 +99,11 @@ class HangarScene: GameScene {
         
         //Serve para setar o foco inicial no tvOS
         GameScene.selectedButton = self.buttonGo
+        
+        #if os(iOS) || os(OSX)
+            self.addHandlers()
+            self.serverManager.socket.emit("createRoom")
+        #endif
     }
     
     override func update(currentTime: NSTimeInterval) {
@@ -105,22 +113,23 @@ class HangarScene: GameScene {
         if(self.state == self.nextState) {
             
             if currentTime - self.lastSecondUpdate > 1 { // Executado uma vez por segundo
-                
-                switch (self.state) {
-                    
-                case states.hangar:
-                    if(!self.offlineMode) {
-                        if (self.serverManager.socket.status == .Closed) {
-                            self.nextState = states.connectionClosed
+                #if os(iOS) || os(OSX)
+                    switch (self.state) {
+                        
+                    case states.hangar:
+                        if(!self.offlineMode) {
+                            
+                            if (self.serverManager.socket.status == .Closed) {
+                                self.nextState = states.connectionClosed
+                            }
                         }
+                        break
+                        
+                    default:
+                        break
                     }
-                    break
-                    
-                default:
-                    break
-                }
-                
-                print(self.serverManager.socket.status.description)
+                    print(self.serverManager.socket.status.description)
+                #endif
                 
                 self.lastSecondUpdate = currentTime
             }
@@ -137,7 +146,9 @@ class HangarScene: GameScene {
             switch (self.nextState) {
             case states.mainMenu:
                 if(!self.offlineMode) {
-                    self.serverManager.socket.disconnect()
+                    #if os(iOS) || os(OSX)
+                        self.serverManager.socket.disconnect()
+                    #endif
                 }
                 
                 self.view?.presentScene(MainMenuScene(), transition: self.transition)
@@ -184,25 +195,32 @@ class HangarScene: GameScene {
     }
     
     func addHandlers() {
-        self.serverManager.socket.onAny { [weak self] (socketAnyEvent:SocketAnyEvent) -> Void in
-            
-            guard let scene = self else { return }
-            
-            switch (socketAnyEvent.event) {
-            case "error":
-                if let message = socketAnyEvent.items?.firstObject as? String {
-                    scene.lastSocketErrorMessage = message
-                } else {
-                    scene.lastSocketErrorMessage = "Something went very very wrong.. oops!!"
-                }
-                break
+        #if os(iOS) || os(OSX)
+            self.serverManager.socket.onAny { [weak self] (socketAnyEvent:SocketAnyEvent) -> Void in
                 
-            default:
-                break
+                guard let scene = self else { return }
+                
+                if(scene.state == states.hangar && scene.nextState == states.hangar) {
+                    
+                    switch (socketAnyEvent.event) {
+                    case "error":
+                        if let message = socketAnyEvent.items?.firstObject as? String {
+                            scene.lastSocketErrorMessage = message
+                        } else {
+                            scene.lastSocketErrorMessage = "Something went very very wrong.. oops!!"
+                        }
+                        break
+                        
+                    default:
+                        print(socketAnyEvent.description)
+                        break
+                    }
+                } else {
+                    print("Evento recebido fora do estado esperado")
+                    print(socketAnyEvent.description)
+                }
             }
-            
-            print(socketAnyEvent.description)
-        }
+        #endif
     }
     
     override func touchesEnded(taps touches: Set<UITouch>) {

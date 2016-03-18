@@ -7,14 +7,27 @@
 //
 
 import SpriteKit
-import MultipeerConnectivity
 
 class MultiplayerLobby: GameScene {
+    
+    enum states {
+        //Estado principal
+        case multiplayerLobby
+        
+        //Estados de saida da scene
+        case hangar
+    }
+    
+    //Estados iniciais
+    var state = states.multiplayerLobby
+    var nextState = states.multiplayerLobby
     
     //buttons
     var buttonBack:Button!
     
+    #if os(iOS) || os(OSX)
     var serverManager:ServerManager!
+    #endif
     
     var lastSecondUpdate:NSTimeInterval = 0
 
@@ -28,59 +41,67 @@ class MultiplayerLobby: GameScene {
             self.addChild(self.buttonBack)
         #endif
         
-        self.serverManager = ServerManager.sharedInstance
-        
-        self.addHandlers()
-        self.serverManager.socket.emit("leaveRooms")
+        #if os(iOS) || os(OSX)
+            self.serverManager = ServerManager.sharedInstance
+            
+            self.addHandlers()
+            self.serverManager.socket.emit("leaveRooms")
+        #endif
     }
     
     func addHandlers() {
-        self.serverManager.socket.onAny { [weak self] (socketAnyEvent:SocketAnyEvent) -> Void in
-            
-            guard let scene = self else { return }
-            
-            print(socketAnyEvent.description)
-            
-            switch(socketAnyEvent.event) {
-                case "getAllRooms":
-                    print("getAllRooms")
-                break
-                case "hello":
-                    
-                break
+        #if os(iOS) || os(OSX)
+            self.serverManager.socket.onAny { [weak self] (socketAnyEvent:SocketAnyEvent) -> Void in
                 
-            default:
-                break
+                guard let scene = self else { return }
+                
+                if(scene.state == states.multiplayerLobby && scene.nextState == states.multiplayerLobby) {
+                    
+                    switch(socketAnyEvent.event) {
+                        
+                    case "getRoom":
+                        break
+                        
+                    default:
+                        print(socketAnyEvent.description)
+                        break
+                    }
+                } else {
+                    print("Evento recebido fora do estado esperado")
+                    print(socketAnyEvent.description)
+                }
             }
-        }
+        #endif
     }
     
     override func update(currentTime: NSTimeInterval) {
         super.update(currentTime)
         
         if currentTime - self.lastSecondUpdate > 1 { // Executado uma vez por segundo
-                
-            if (self.serverManager.socket.status == .Closed) {
-                //TODO: connectionClosed
-            } else {
-                self.serverManager.socket.emit("getAllRooms")
-            }
             
-            print(self.serverManager.socket.status.description)
+            #if os(iOS) || os(OSX)
+                if (self.serverManager.socket.status == .Closed) {
+                    //TODO: connectionClosed
+                } else {
+                    self.serverManager.socket.emit("getAllRooms")
+                }
+                
+                print(self.serverManager.socket.status.description)
+            #endif
             
             self.lastSecondUpdate = currentTime
         }
         
         
-        let rootObject: [String: AnyObject] = ["event": "someEvent", "object": "someData"]
-        
-        let data = NSKeyedArchiver.archivedDataWithRootObject(rootObject)
-        
-        do {
-            //TODO: session.sendData
-            //try GameScene.session.sendData(data, toPeers: GameScene.session.connectedPeers, withMode: MCSessionSendDataMode.Reliable)
-        } catch _ {
-            
-        }
+//        let rootObject: [String: AnyObject] = ["event": "someEvent", "object": "someData"]
+//        
+//        let data = NSKeyedArchiver.archivedDataWithRootObject(rootObject)
+//        
+//        do {
+//            //TODO: session.sendData
+//            //try GameScene.session.sendData(data, toPeers: GameScene.session.connectedPeers, withMode: MCSessionSendDataMode.Reliable)
+//        } catch _ {
+//            
+//        }
     }
 }
