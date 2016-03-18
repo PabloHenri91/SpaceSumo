@@ -185,7 +185,7 @@ class HangarScene: GameScene {
                 break
                 
             case states.multiplayer:
-                self.view?.presentScene(MultiplayerLobby(), transition: self.transition)
+                self.view?.presentScene(MultiplayerLobbyScene(), transition: self.transition)
                 break
                 
             default:

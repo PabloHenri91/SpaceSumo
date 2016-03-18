@@ -107,9 +107,9 @@
 		84944CEA1C7646C2006F49CE /* kenpixel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84944CE91C7646C2006F49CE /* kenpixel.ttf */; };
 		84944CEB1C7646C2006F49CE /* kenpixel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84944CE91C7646C2006F49CE /* kenpixel.ttf */; };
 		84944CEC1C7646C2006F49CE /* kenpixel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84944CE91C7646C2006F49CE /* kenpixel.ttf */; };
-		84A47D901C93114300433807 /* MultiplayerLobby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A47D8F1C93114300433807 /* MultiplayerLobby.swift */; };
-		84A47D911C93114300433807 /* MultiplayerLobby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A47D8F1C93114300433807 /* MultiplayerLobby.swift */; };
-		84A47D921C93114300433807 /* MultiplayerLobby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A47D8F1C93114300433807 /* MultiplayerLobby.swift */; };
+		84A47D901C93114300433807 /* MultiplayerLobbyScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A47D8F1C93114300433807 /* MultiplayerLobbyScene.swift */; };
+		84A47D911C93114300433807 /* MultiplayerLobbyScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A47D8F1C93114300433807 /* MultiplayerLobbyScene.swift */; };
+		84A47D921C93114300433807 /* MultiplayerLobbyScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A47D8F1C93114300433807 /* MultiplayerLobbyScene.swift */; };
 		84A47DAA1C93445800433807 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848679511C74C0750049BB1F /* MainMenuScene.swift */; };
 		84A47DC71C93475A00433807 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848679511C74C0750049BB1F /* MainMenuScene.swift */; };
 		84A47DC81C93475A00433807 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848679511C74C0750049BB1F /* MainMenuScene.swift */; };
@@ -233,13 +233,13 @@
 		8486791F1C748F2C0049BB1F /* Music.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
 		848679511C74C0750049BB1F /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		848679551C74C1100049BB1F /* MissionScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionScene.swift; sourceTree = "<group>"; };
-		84944CDD1C763EC8006F49CE /* OptionsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionsScene.swift; path = Scenes/OptionsScene.swift; sourceTree = "<group>"; };
+		84944CDD1C763EC8006F49CE /* OptionsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsScene.swift; sourceTree = "<group>"; };
 		84944CDF1C763F54006F49CE /* CreditsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsScene.swift; sourceTree = "<group>"; };
 		84944CE11C7641D7006F49CE /* SectorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectorCell.swift; sourceTree = "<group>"; };
 		84944CE51C764535006F49CE /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		84944CE91C7646C2006F49CE /* kenpixel.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = kenpixel.ttf; sourceTree = "<group>"; };
 		84A47D8E1C92EB2900433807 /* SpaceGame.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SpaceGame.entitlements; sourceTree = "<group>"; };
-		84A47D8F1C93114300433807 /* MultiplayerLobby.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerLobby.swift; sourceTree = "<group>"; };
+		84A47D8F1C93114300433807 /* MultiplayerLobbyScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerLobbyScene.swift; sourceTree = "<group>"; };
 		84AADFDE1C7B5C0400AE04DD /* SocketAckEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckEmitter.swift; sourceTree = "<group>"; };
 		84AADFDF1C7B5C0400AE04DD /* SocketAckManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckManager.swift; sourceTree = "<group>"; };
 		84AADFE01C7B5C0400AE04DD /* SocketAnyEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAnyEvent.swift; sourceTree = "<group>"; };
@@ -382,7 +382,6 @@
 				8486790D1C748DC60049BB1F /* Scenes */,
 				8486790C1C748DBC0049BB1F /* Fonts */,
 				848679081C748CD30049BB1F /* Media.xcassets */,
-				84944CDD1C763EC8006F49CE /* OptionsScene.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -403,7 +402,8 @@
 				840661411C74FB4F00D8C1CD /* HangarScene.swift */,
 				848679511C74C0750049BB1F /* MainMenuScene.swift */,
 				848679551C74C1100049BB1F /* MissionScene.swift */,
-				84A47D8F1C93114300433807 /* MultiplayerLobby.swift */,
+				84A47D8F1C93114300433807 /* MultiplayerLobbyScene.swift */,
+				84944CDD1C763EC8006F49CE /* OptionsScene.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -687,7 +687,7 @@
 				84AAE00E1C7B5C0400AE04DD /* SocketEngineWebsocket.swift in Sources */,
 				84AAE0141C7B5C0400AE04DD /* SocketIOClient.swift in Sources */,
 				84AAE02F1C7B5C0400AE04DD /* WebSocket.swift in Sources */,
-				84A47D901C93114300433807 /* MultiplayerLobby.swift in Sources */,
+				84A47D901C93114300433807 /* MultiplayerLobbyScene.swift in Sources */,
 				84AAE0201C7B5C0400AE04DD /* SocketPacket.swift in Sources */,
 				848679381C748F2C0049BB1F /* CropBox.swift in Sources */,
 				84A47DC81C93475A00433807 /* MainMenuScene.swift in Sources */,
@@ -737,7 +737,7 @@
 				84AADFF71C7B5C0400AE04DD /* SocketAckManager.swift in Sources */,
 				8407F6351C8DE7CB004F253F /* Parallax.swift in Sources */,
 				848679331C748F2C0049BB1F /* Button.swift in Sources */,
-				84A47D911C93114300433807 /* MultiplayerLobby.swift in Sources */,
+				84A47D911C93114300433807 /* MultiplayerLobbyScene.swift in Sources */,
 				84A83E5C1C96EDFA00BA8E82 /* CharacterGenerator.swift in Sources */,
 				848679301C748F2C0049BB1F /* GameCamera.swift in Sources */,
 				84AAE01E1C7B5C0400AE04DD /* SocketLogger.swift in Sources */,
@@ -781,7 +781,7 @@
 				8407F6391C8DE7CB004F253F /* PlayerShip.swift in Sources */,
 				84944CE81C764535006F49CE /* Label.swift in Sources */,
 				8486793D1C748F2C0049BB1F /* ScrollNode.swift in Sources */,
-				84A47D921C93114300433807 /* MultiplayerLobby.swift in Sources */,
+				84A47D921C93114300433807 /* MultiplayerLobbyScene.swift in Sources */,
 				84AAE0311C7B5C0400AE04DD /* WebSocket.swift in Sources */,
 				84AAE0281C7B5C0400AE04DD /* SocketStringReader.swift in Sources */,
 				848678F71C748B470049BB1F /* AppDelegate.swift in Sources */,

@@ -28,6 +28,7 @@ class Ufo: Control {
         self.enemyNode = enemyNode
         super.init()
         
+        //TODO: distancia baseada no tamanho da tela
         var distance = CGPoint.distance(self.position, enemyNode.position)
         
         //while(false) {

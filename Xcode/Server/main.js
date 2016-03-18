@@ -75,8 +75,6 @@ Game.prototype.addHandlers = function() {
                 socket.emit('getRoom', message);
                 console.log(socket.name + ' emit getRoom: ');
                 console.log(message);
-                
-                message = null;
             }
         });
 

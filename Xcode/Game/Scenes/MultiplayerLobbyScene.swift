@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class MultiplayerLobby: GameScene {
+class MultiplayerLobbyScene: GameScene {
     
     enum states {
         //Estado principal
@@ -60,6 +60,20 @@ class MultiplayerLobby: GameScene {
                     switch(socketAnyEvent.event) {
                         
                     case "getRoom":
+                        if let message = socketAnyEvent.items?.firstObject as? Dictionary<String, AnyObject> {
+                            
+                            if let roomId = message["roomId"] as? String {
+                                print(roomId)
+                                
+                                if let usersDisplayInfo = message["usersDisplayInfo"] as? Array<AnyObject> {
+                                    for item in usersDisplayInfo {
+                                        if let userDisplayInfo = item as? String {
+                                            print(userDisplayInfo)
+                                        }
+                                    }
+                                }
+                            }
+                        }
                         break
                         
                     default:
@@ -91,7 +105,6 @@ class MultiplayerLobby: GameScene {
             
             self.lastSecondUpdate = currentTime
         }
-        
         
 //        let rootObject: [String: AnyObject] = ["event": "someEvent", "object": "someData"]
 //        
