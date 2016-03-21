@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		840272FA1CA0715200E6691F /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
 		840272FB1CA0715200E6691F /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
+		840272FD1CA0810500E6691F /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840272FC1CA0810500E6691F /* StringExtension.swift */; };
+		840272FE1CA0817900E6691F /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840272FC1CA0810500E6691F /* StringExtension.swift */; };
+		840272FF1CA0817900E6691F /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840272FC1CA0810500E6691F /* StringExtension.swift */; };
 		840661421C74FB4F00D8C1CD /* HangarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661411C74FB4F00D8C1CD /* HangarScene.swift */; };
 		840661431C74FB4F00D8C1CD /* HangarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661411C74FB4F00D8C1CD /* HangarScene.swift */; };
 		840661441C74FB4F00D8C1CD /* HangarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661411C74FB4F00D8C1CD /* HangarScene.swift */; };
@@ -194,6 +197,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		840272FC1CA0810500E6691F /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		840661411C74FB4F00D8C1CD /* HangarScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangarScene.swift; sourceTree = "<group>"; };
 		840661451C7502AF00D8C1CD /* ChooseSector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseSector.swift; sourceTree = "<group>"; };
 		8407F6281C8DE7CB004F253F /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
@@ -448,6 +452,7 @@
 				8486791B1C748F2C0049BB1F /* ScrollNode.swift */,
 				843D392A1CA018FB00EF7A01 /* ScrollNodeExtensions.swift */,
 				84557B551C997E7100C8A11A /* ServerManager.swift */,
+				840272FC1CA0810500E6691F /* StringExtension.swift */,
 			);
 			name = _src;
 			path = src;
@@ -713,6 +718,7 @@
 				84AAE0111C7B5C0400AE04DD /* SocketEventHandler.swift in Sources */,
 				848679261C748F2C0049BB1F /* Config.swift in Sources */,
 				84AAE0081C7B5C0400AE04DD /* SocketEnginePollable.swift in Sources */,
+				840272FD1CA0810500E6691F /* StringExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -756,6 +762,7 @@
 				84A83E5C1C96EDFA00BA8E82 /* CharacterGenerator.swift in Sources */,
 				848679301C748F2C0049BB1F /* GameCamera.swift in Sources */,
 				84AAE01E1C7B5C0400AE04DD /* SocketLogger.swift in Sources */,
+				840272FE1CA0817900E6691F /* StringExtension.swift in Sources */,
 				8407F6381C8DE7CB004F253F /* PlayerShip.swift in Sources */,
 				840661431C74FB4F00D8C1CD /* HangarScene.swift in Sources */,
 				84AAE0211C7B5C0400AE04DD /* SocketPacket.swift in Sources */,
@@ -818,6 +825,7 @@
 				84C77A601C96DD9200B180BB /* CharacterGenerator.swift in Sources */,
 				848679311C748F2C0049BB1F /* GameCamera.swift in Sources */,
 				84AAE0191C7B5C0400AE04DD /* SocketIOClientOption.swift in Sources */,
+				840272FF1CA0817900E6691F /* StringExtension.swift in Sources */,
 				8407F6331C8DE7CB004F253F /* Laser.swift in Sources */,
 				84AAE02E1C7B5C0400AE04DD /* SwiftRegex.swift in Sources */,
 				848679431C748F2C0049BB1F /* GameColors.swift in Sources */,

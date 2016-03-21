@@ -30,15 +30,15 @@ class RoomCell: Control {
             switch i {
                 
             case 0:
-                self.labelName0 = Label(text: name, x:54, y:15, xAlign: .left, yAlign: .up)
+                self.labelName0 = Label(text: name.truncate(19, trailing: "..."), x:54, y:15, xAlign: .left, yAlign: .up)
                 self.addChild(self.labelName0)
                 break
             case 1:
-                self.labelName1 = Label(text: name, x:118, y:32, xAlign: .left, yAlign: .up)
+                self.labelName1 = Label(text: name.truncate(19, trailing: "..."), x:118, y:32, xAlign: .left, yAlign: .up)
                 self.addChild(self.labelName1)
                 break
             case 2:
-                self.labelName2 = Label(text: name, x:182, y:15, xAlign: .left, yAlign: .up)
+                self.labelName2 = Label(text: name.truncate(19, trailing: "..."), x:182, y:15, xAlign: .left, yAlign: .up)
                 self.addChild(self.labelName2)
                 break
                 
