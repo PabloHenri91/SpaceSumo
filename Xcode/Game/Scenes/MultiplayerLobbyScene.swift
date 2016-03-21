@@ -70,14 +70,22 @@ class MultiplayerLobbyScene: GameScene {
                         if let message = socketAnyEvent.items?.firstObject as? Dictionary<String, AnyObject> {
                             
                             if let roomId = message["roomId"] as? String {
-                                print(roomId)
-                                scene.roomScrollNode.append(RoomCell(roomId: roomId))
                                 
-                                if let usersDisplayInfo = message["usersDisplayInfo"] as? Array<AnyObject> {
-                                    for item in usersDisplayInfo {
-                                        if let userDisplayInfo = item as? String {
-                                            print(userDisplayInfo)
+                                var doIHaveThisRoom = false
+                                
+                                for cell in scene.roomScrollNode.cells {
+                                    if let roomCell = cell as? RoomCell {
+                                        if(roomCell.roomId == roomId) {
+                                            doIHaveThisRoom = true
                                         }
+                                    }
+                                }
+                                
+                                if (doIHaveThisRoom == true) {
+                                    
+                                } else {
+                                    if let usersDisplayInfo = message["usersDisplayInfo"] as? Array<String> {
+                                        scene.roomScrollNode.append(RoomCell(roomId: roomId, names: usersDisplayInfo))
                                     }
                                 }
                             }
@@ -106,7 +114,7 @@ class MultiplayerLobbyScene: GameScene {
                     //TODO: connectionClosed
                 } else {
                     if self.needToGetAllRooms == true {
-                        self.needToGetAllRooms = false
+                        //self.needToGetAllRooms = false
                         self.serverManager.socket.emit("getAllRooms")
                     }
                 }
