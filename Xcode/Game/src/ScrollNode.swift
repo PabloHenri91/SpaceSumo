@@ -46,7 +46,7 @@ class ScrollNode: Control {
             self.resetPosition()
             
             self.cells = cells
-            self.canScroll = true//TODO: vindo por parametro
+            self.canScroll = self.cells.count > 0//TODO: vindo por parametro
             
             var i = 0
             for control in self.cells {
@@ -102,92 +102,93 @@ class ScrollNode: Control {
     
     class func update() {
         for scrollNode in ScrollNode.scrollNodeList {
-            
-            var containsPoins = false
-            
-            for touch in Control.touchesArray {
-                if scrollNode.containsPoint(touch.0.locationInNode(scrollNode.parent!)) {
-                    containsPoins = true
-                    break
-                }
-            }
-            
-            if (scrollNode.canScroll == true) {
+            if scrollNode.canScroll == true {
+                var containsPoins = false
                 
-                switch scrollNode.scrollDirection {
-                    
-                case scrollDirections.horizontal:
-                    
-                    var outOfBounds = false
-                    
-                    if !(scrollNode.cells[scrollNode.cells.count - 1].position.x >= scrollNode.firstCellPositionX) {
-                        outOfBounds = true
-                        let auxMove:Int = Int(scrollNode.cells[scrollNode.cells.count - 1].position.x - scrollNode.firstCellPositionX)
-                        for cell in scrollNode.cells {
-                            cell.physicsBody!.applyForce(CGVector(dx: -auxMove * scrollNode.force/10, dy: 0))
-                        }
+                for touch in Control.touchesArray {
+                    if scrollNode.containsPoint(touch.0.locationInNode(scrollNode.parent!)) {
+                        containsPoins = true
+                        break
                     }
+                }
+                
+                if (scrollNode.canScroll == true) {
                     
-                    if !(scrollNode.cells[0].position.x <= scrollNode.firstCellPositionX) {
-                        outOfBounds = true
-                        let auxMove:Int = Int(scrollNode.cells[0].position.x - scrollNode.firstCellPositionX)
-                        for cell in scrollNode.cells {
-                            cell.physicsBody!.applyForce(CGVector(dx: -auxMove * scrollNode.force/10, dy: 0))
-                        }
-                    }
-                    
-                    if(!outOfBounds && !containsPoins) {
+                    switch scrollNode.scrollDirection {
                         
-                        if(abs(scrollNode.cells[0].physicsBody!.velocity.dx) < 20) {
-                            
-                            let i = round((scrollNode.firstCellPositionX - scrollNode.cells[0].position.x) / CGFloat(scrollNode.width + scrollNode.spacing/Int(Config.screenScale)))
-                            
-                            var auxMove:CGFloat = 0
-                            
-                            auxMove = scrollNode.firstCellPositionX - scrollNode.cells[Int(i)].position.x
-                            
+                    case scrollDirections.horizontal:
+                        
+                        var outOfBounds = false
+                        
+                        if !(scrollNode.cells[scrollNode.cells.count - 1].position.x >= scrollNode.firstCellPositionX) {
+                            outOfBounds = true
+                            let auxMove:Int = Int(scrollNode.cells[scrollNode.cells.count - 1].position.x - scrollNode.firstCellPositionX)
                             for cell in scrollNode.cells {
-                                cell.physicsBody!.applyForce(CGVector(dx: auxMove, dy: 0))
+                                cell.physicsBody!.applyForce(CGVector(dx: -auxMove * scrollNode.force/10, dy: 0))
                             }
                         }
-                    }
-                    
-                    break
-                    
-                case scrollDirections.vertical:
-                    
-                    var outOfBounds = false
-                    
-                    if !(scrollNode.cells[0].position.y >= scrollNode.firstCellPositionY) {
-                        outOfBounds = true
-                        let auxMove:Int = Int(scrollNode.cells[0].position.y - scrollNode.firstCellPositionY)
-                        for cell in scrollNode.cells {
-                            cell.physicsBody!.applyForce(CGVector(dx: 0, dy: -auxMove * scrollNode.force/10))
-                        }
-                    }
-                    if !(scrollNode.cells[scrollNode.cells.count - 1].position.y <= scrollNode.firstCellPositionY) {
-                        outOfBounds = true
-                        let auxMove:Int = Int(scrollNode.cells[scrollNode.cells.count - 1].position.y - scrollNode.firstCellPositionY)
-                        for cell in scrollNode.cells {
-                            cell.physicsBody!.applyForce(CGVector(dx: 0, dy: -auxMove * scrollNode.force/10))
-                        }
-                    }
-                    
-                    if(!outOfBounds && !containsPoins) {
                         
-                        if(abs(scrollNode.cells[0].physicsBody!.velocity.dy) < 20) {
-                            
-                            let i = round((scrollNode.cells[0].position.y - scrollNode.firstCellPositionY) / CGFloat(scrollNode.height + scrollNode.spacing/Int(Config.screenScale)))
-                            
-                            let auxMove = scrollNode.firstCellPositionY - scrollNode.cells[Int(i)].position.y
-                            
+                        if !(scrollNode.cells[0].position.x <= scrollNode.firstCellPositionX) {
+                            outOfBounds = true
+                            let auxMove:Int = Int(scrollNode.cells[0].position.x - scrollNode.firstCellPositionX)
                             for cell in scrollNode.cells {
-                                cell.physicsBody!.applyForce(CGVector(dx: 0, dy: auxMove))
+                                cell.physicsBody!.applyForce(CGVector(dx: -auxMove * scrollNode.force/10, dy: 0))
                             }
                         }
+                        
+                        if(!outOfBounds && !containsPoins) {
+                            
+                            if(abs(scrollNode.cells[0].physicsBody!.velocity.dx) < 20) {
+                                
+                                let i = round((scrollNode.firstCellPositionX - scrollNode.cells[0].position.x) / CGFloat(scrollNode.width + scrollNode.spacing/Int(Config.screenScale)))
+                                
+                                var auxMove:CGFloat = 0
+                                
+                                auxMove = scrollNode.firstCellPositionX - scrollNode.cells[Int(i)].position.x
+                                
+                                for cell in scrollNode.cells {
+                                    cell.physicsBody!.applyForce(CGVector(dx: auxMove, dy: 0))
+                                }
+                            }
+                        }
+                        
+                        break
+                        
+                    case scrollDirections.vertical:
+                        
+                        var outOfBounds = false
+                        
+                        if !(scrollNode.cells[0].position.y >= scrollNode.firstCellPositionY) {
+                            outOfBounds = true
+                            let auxMove:Int = Int(scrollNode.cells[0].position.y - scrollNode.firstCellPositionY)
+                            for cell in scrollNode.cells {
+                                cell.physicsBody!.applyForce(CGVector(dx: 0, dy: -auxMove * scrollNode.force/10))
+                            }
+                        }
+                        if !(scrollNode.cells[scrollNode.cells.count - 1].position.y <= scrollNode.firstCellPositionY) {
+                            outOfBounds = true
+                            let auxMove:Int = Int(scrollNode.cells[scrollNode.cells.count - 1].position.y - scrollNode.firstCellPositionY)
+                            for cell in scrollNode.cells {
+                                cell.physicsBody!.applyForce(CGVector(dx: 0, dy: -auxMove * scrollNode.force/10))
+                            }
+                        }
+                        
+                        if(!outOfBounds && !containsPoins) {
+                            
+                            if(abs(scrollNode.cells[0].physicsBody!.velocity.dy) < 20) {
+                                
+                                let i = round((scrollNode.cells[0].position.y - scrollNode.firstCellPositionY) / CGFloat(scrollNode.height + scrollNode.spacing/Int(Config.screenScale)))
+                                
+                                let auxMove = scrollNode.firstCellPositionY - scrollNode.cells[Int(i)].position.y
+                                
+                                for cell in scrollNode.cells {
+                                    cell.physicsBody!.applyForce(CGVector(dx: 0, dy: auxMove))
+                                }
+                            }
+                        }
+                        
+                        break
                     }
-                    
-                    break
                 }
             }
         }

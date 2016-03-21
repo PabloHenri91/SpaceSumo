@@ -35,11 +35,12 @@
 		8407F6421C8DE7EF004F253F /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407F6401C8DE7EF004F253F /* World.swift */; };
 		8407F6431C8DE7EF004F253F /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407F6401C8DE7EF004F253F /* World.swift */; };
 		84148FC41C87158500CF689C /* GameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB32F1C85D81A0033D00B /* GameTextField.swift */; };
+		843D392B1CA018FB00EF7A01 /* ScrollNodeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D392A1CA018FB00EF7A01 /* ScrollNodeExtensions.swift */; };
+		843D392C1CA018FB00EF7A01 /* ScrollNodeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D392A1CA018FB00EF7A01 /* ScrollNodeExtensions.swift */; };
+		843D392D1CA018FB00EF7A01 /* ScrollNodeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D392A1CA018FB00EF7A01 /* ScrollNodeExtensions.swift */; };
 		844AB3301C85D81A0033D00B /* GameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB32F1C85D81A0033D00B /* GameTextField.swift */; };
 		84557B561C997E7200C8A11A /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84557B551C997E7100C8A11A /* ServerManager.swift */; };
 		84557B581C997E7200C8A11A /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84557B551C997E7100C8A11A /* ServerManager.swift */; };
-		846A46B41C75E2350028DBA8 /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
-		846A46B51C75E2360028DBA8 /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
 		8483B5C11C885C3200556D40 /* GameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB32F1C85D81A0033D00B /* GameTextField.swift */; };
 		848678C41C748B0C0049BB1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848678C31C748B0C0049BB1F /* AppDelegate.swift */; };
 		848678CA1C748B0C0049BB1F /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848678C91C748B0C0049BB1F /* GameViewController.swift */; };
@@ -185,6 +186,9 @@
 		84C77A621C96DDF700B180BB /* DefaultNameList in Resources */ = {isa = PBXBuildFile; fileRef = 84C77A611C96DDF700B180BB /* DefaultNameList */; };
 		84C77A631C96DDF700B180BB /* DefaultNameList in Resources */ = {isa = PBXBuildFile; fileRef = 84C77A611C96DDF700B180BB /* DefaultNameList */; };
 		84C77A641C96DDF700B180BB /* DefaultNameList in Resources */ = {isa = PBXBuildFile; fileRef = 84C77A611C96DDF700B180BB /* DefaultNameList */; };
+		84D8B08A1C9C7FC1001F8C1F /* RoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D8B0891C9C7FC1001F8C1F /* RoomCell.swift */; };
+		84D8B08B1C9C7FC1001F8C1F /* RoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D8B0891C9C7FC1001F8C1F /* RoomCell.swift */; };
+		84D8B08C1C9C7FC1001F8C1F /* RoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D8B0891C9C7FC1001F8C1F /* RoomCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -197,6 +201,7 @@
 		8407F62C1C8DE7CB004F253F /* Thumbstick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thumbstick.swift; sourceTree = "<group>"; };
 		8407F62D1C8DE7CB004F253F /* Ufo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ufo.swift; sourceTree = "<group>"; };
 		8407F6401C8DE7EF004F253F /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
+		843D392A1CA018FB00EF7A01 /* ScrollNodeExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollNodeExtensions.swift; sourceTree = "<group>"; };
 		844AB32F1C85D81A0033D00B /* GameTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameTextField.swift; sourceTree = "<group>"; };
 		84557B551C997E7100C8A11A /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
 		848678C11C748B0C0049BB1F /* Game iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Game iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -268,6 +273,7 @@
 		84B762CA1C85CA7F0016C24B /* BlackSpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackSpriteNode.swift; sourceTree = "<group>"; };
 		84C77A5F1C96DD9200B180BB /* CharacterGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterGenerator.swift; sourceTree = "<group>"; };
 		84C77A611C96DDF700B180BB /* DefaultNameList */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DefaultNameList; sourceTree = "<group>"; };
+		84D8B0891C9C7FC1001F8C1F /* RoomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -439,6 +445,7 @@
 				8486791F1C748F2C0049BB1F /* Music.swift */,
 				8486791B1C748F2C0049BB1F /* ScrollNode.swift */,
 				84557B551C997E7100C8A11A /* ServerManager.swift */,
+				843D392A1CA018FB00EF7A01 /* ScrollNodeExtensions.swift */,
 			);
 			name = _src;
 			path = src;
@@ -455,14 +462,15 @@
 		848679111C748E1E0049BB1F /* _Game */ = {
 			isa = PBXGroup;
 			children = (
-				8407F6401C8DE7EF004F253F /* World.swift */,
 				8407F6281C8DE7CB004F253F /* Enemy.swift */,
 				8407F6291C8DE7CB004F253F /* Laser.swift */,
 				8407F62A1C8DE7CB004F253F /* Parallax.swift */,
 				8407F62B1C8DE7CB004F253F /* PlayerShip.swift */,
+				84D8B0891C9C7FC1001F8C1F /* RoomCell.swift */,
+				84944CE11C7641D7006F49CE /* SectorCell.swift */,
 				8407F62C1C8DE7CB004F253F /* Thumbstick.swift */,
 				8407F62D1C8DE7CB004F253F /* Ufo.swift */,
-				84944CE11C7641D7006F49CE /* SectorCell.swift */,
+				8407F6401C8DE7EF004F253F /* World.swift */,
 			);
 			name = _Game;
 			path = Game;
@@ -661,6 +669,7 @@
 				8407F6311C8DE7CB004F253F /* Laser.swift in Sources */,
 				848678C41C748B0C0049BB1F /* AppDelegate.swift in Sources */,
 				848679201C748F2C0049BB1F /* GeometryExtensions.swift in Sources */,
+				84D8B08A1C9C7FC1001F8C1F /* RoomCell.swift in Sources */,
 				848679351C748F2C0049BB1F /* Box.swift in Sources */,
 				84AAE0021C7B5C0400AE04DD /* SocketEngineClient.swift in Sources */,
 				84A83E5B1C96EDFA00BA8E82 /* CharacterGenerator.swift in Sources */,
@@ -676,7 +685,6 @@
 				84944CE61C764535006F49CE /* Label.swift in Sources */,
 				84944CE21C7641D7006F49CE /* SectorCell.swift in Sources */,
 				84B762CB1C85CA7F0016C24B /* BlackSpriteNode.swift in Sources */,
-				846A46B51C75E2360028DBA8 /* ScrollNode.swift in Sources */,
 				84557B561C997E7200C8A11A /* ServerManager.swift in Sources */,
 				84AAE02C1C7B5C0400AE04DD /* SwiftRegex.swift in Sources */,
 				8407F63A1C8DE7CB004F253F /* Thumbstick.swift in Sources */,
@@ -698,6 +706,7 @@
 				8407F6371C8DE7CB004F253F /* PlayerShip.swift in Sources */,
 				84AAE0051C7B5C0400AE04DD /* SocketEnginePacketType.swift in Sources */,
 				848679441C748F2C0049BB1F /* GameFonts.swift in Sources */,
+				843D392B1CA018FB00EF7A01 /* ScrollNodeExtensions.swift in Sources */,
 				84AAE0111C7B5C0400AE04DD /* SocketEventHandler.swift in Sources */,
 				848679261C748F2C0049BB1F /* Config.swift in Sources */,
 				84AAE0081C7B5C0400AE04DD /* SocketEnginePollable.swift in Sources */,
@@ -716,6 +725,7 @@
 				848678E41C748B1F0049BB1F /* GameViewController.swift in Sources */,
 				84AAE0271C7B5C0400AE04DD /* SocketStringReader.swift in Sources */,
 				84AAE02A1C7B5C0400AE04DD /* SocketTypes.swift in Sources */,
+				843D392C1CA018FB00EF7A01 /* ScrollNodeExtensions.swift in Sources */,
 				84944CE71C764535006F49CE /* Label.swift in Sources */,
 				84AADFFA1C7B5C0400AE04DD /* SocketAnyEvent.swift in Sources */,
 				84AAE0091C7B5C0400AE04DD /* SocketEnginePollable.swift in Sources */,
@@ -724,6 +734,7 @@
 				848679571C74C1100049BB1F /* MissionScene.swift in Sources */,
 				8407F6321C8DE7CB004F253F /* Laser.swift in Sources */,
 				848678DE1C748B1F0049BB1F /* AppDelegate.swift in Sources */,
+				84D8B08B1C9C7FC1001F8C1F /* RoomCell.swift in Sources */,
 				84AADFFD1C7B5C0400AE04DD /* SocketClientSpec.swift in Sources */,
 				8407F63B1C8DE7CB004F253F /* Thumbstick.swift in Sources */,
 				8407F6421C8DE7EF004F253F /* World.swift in Sources */,
@@ -743,7 +754,6 @@
 				84AAE01E1C7B5C0400AE04DD /* SocketLogger.swift in Sources */,
 				8407F6381C8DE7CB004F253F /* PlayerShip.swift in Sources */,
 				840661431C74FB4F00D8C1CD /* HangarScene.swift in Sources */,
-				846A46B41C75E2350028DBA8 /* ScrollNode.swift in Sources */,
 				84AAE0211C7B5C0400AE04DD /* SocketPacket.swift in Sources */,
 				84AAE0181C7B5C0400AE04DD /* SocketIOClientOption.swift in Sources */,
 				848679481C748F2C0049BB1F /* Music.swift in Sources */,
@@ -784,6 +794,7 @@
 				84A47D921C93114300433807 /* MultiplayerLobbyScene.swift in Sources */,
 				84AAE0311C7B5C0400AE04DD /* WebSocket.swift in Sources */,
 				84AAE0281C7B5C0400AE04DD /* SocketStringReader.swift in Sources */,
+				84D8B08C1C9C7FC1001F8C1F /* RoomCell.swift in Sources */,
 				848678F71C748B470049BB1F /* AppDelegate.swift in Sources */,
 				84AADFF51C7B5C0400AE04DD /* SocketAckEmitter.swift in Sources */,
 				8483B5C11C885C3200556D40 /* GameTextField.swift in Sources */,
@@ -817,6 +828,7 @@
 				84AAE0071C7B5C0400AE04DD /* SocketEnginePacketType.swift in Sources */,
 				84AAE0131C7B5C0400AE04DD /* SocketEventHandler.swift in Sources */,
 				848679581C74C1100049BB1F /* MissionScene.swift in Sources */,
+				843D392D1CA018FB00EF7A01 /* ScrollNodeExtensions.swift in Sources */,
 				84B762CD1C85CA7F0016C24B /* BlackSpriteNode.swift in Sources */,
 				84AAE0251C7B5C0400AE04DD /* SocketParsable.swift in Sources */,
 				84A47DAA1C93445800433807 /* MainMenuScene.swift in Sources */,

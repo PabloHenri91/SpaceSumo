@@ -30,6 +30,9 @@ class MultiplayerLobbyScene: GameScene {
     #endif
     
     var lastSecondUpdate:NSTimeInterval = 0
+    
+    var roomScrollNode:ScrollNode!
+    var needToGetAllRooms = true
 
     override func didMoveToView(view: SKView) {
         super.didMoveToView(view)
@@ -47,6 +50,10 @@ class MultiplayerLobbyScene: GameScene {
             self.addHandlers()
             self.serverManager.socket.emit("leaveRooms")
         #endif
+        
+        self.roomScrollNode = ScrollNode(cells: Array<Control>(), x: 72, y: 83, xAlign: .center, yAlign: .center, spacing: 19, scrollDirection: .vertical)
+        
+        self.addChild(self.roomScrollNode)
     }
     
     func addHandlers() {
@@ -64,6 +71,7 @@ class MultiplayerLobbyScene: GameScene {
                             
                             if let roomId = message["roomId"] as? String {
                                 print(roomId)
+                                scene.roomScrollNode.append(RoomCell(roomId: roomId))
                                 
                                 if let usersDisplayInfo = message["usersDisplayInfo"] as? Array<AnyObject> {
                                     for item in usersDisplayInfo {
@@ -97,7 +105,10 @@ class MultiplayerLobbyScene: GameScene {
                 if (self.serverManager.socket.status == .Closed) {
                     //TODO: connectionClosed
                 } else {
-                    self.serverManager.socket.emit("getAllRooms")
+                    if self.needToGetAllRooms == true {
+                        self.needToGetAllRooms = false
+                        self.serverManager.socket.emit("getAllRooms")
+                    }
                 }
                 
                 print(self.serverManager.socket.status.description)
