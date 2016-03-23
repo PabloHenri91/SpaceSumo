@@ -55,12 +55,12 @@ class MissionScene: GameScene {
         
         self.gameCamera.update(self.playerShip.position)
         
-        for var x = 0; x < 250; x++ {
+        for _ in 0 ..< 250 {
             let ufo = Ufo(enemyNode: self.playerShip)
             self.world.addChild(ufo)
         }
         
-        for var x = 0; x < 250; x++ {
+        for _ in 0 ..< 250 {
             let enemy = Enemy(enemyNode: self.playerShip)
             self.world.addChild(enemy)
         }

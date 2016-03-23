@@ -235,7 +235,7 @@ class Button: Control {
             if let parent = self.parent {
                 let location = touch.0.locationInNode(parent)
                 if self.containsPoint(location) {
-                    i++
+                    i += 1
                 }
             }
         }

@@ -23,6 +23,9 @@ Game.prototype.addHandlers = function() {
             console.log(socket.name + ' on createRoom: ');
             
             socket.join(socket.id);
+            
+            socket.emit('currentRoomId', socket.id);
+            console.log(socket.name + ' emit currentRoomId: ' + socket.id);
         });
         
         socket.on('userDisplayInfo', function (userDisplayInfo) {

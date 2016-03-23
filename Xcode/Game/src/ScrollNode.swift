@@ -79,7 +79,7 @@ class ScrollNode: Control {
                 
                 //TODO: nao remover da lista mas marcar que nao deve ser alinhado automaticamente
                 Control.controlList.remove(control)
-                i++
+                i += 1
             }
             
             if let position = cells.first?.position {

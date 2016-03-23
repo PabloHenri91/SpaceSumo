@@ -36,6 +36,8 @@ class HangarScene: GameScene {
     var buttonGameInfo:Button!
     var buttonChooseMission:Button!
     
+    var currentRoom:RoomCell!
+    
     var nextSector = 0
     
     var offlineMode = true
@@ -104,6 +106,9 @@ class HangarScene: GameScene {
             self.addHandlers()
             self.serverManager.socket.emit("createRoom")
         #endif
+        
+        self.currentRoom = RoomCell(x: 91, y: 146, xAlign: .center, yAlign: .center)
+        self.addChild(self.currentRoom)
     }
     
     override func update(currentTime: NSTimeInterval) {
@@ -139,7 +144,7 @@ class HangarScene: GameScene {
                 
                 break
             }
-        }  else {
+        } else {
             self.state = self.nextState
             
             //Próximo estado
@@ -203,6 +208,15 @@ class HangarScene: GameScene {
                 if(scene.state == states.hangar && scene.nextState == states.hangar) {
                     
                     switch (socketAnyEvent.event) {
+                    case "currentRoomId":
+                        print(socketAnyEvent.description)
+                        
+                        if let currentRoomId = socketAnyEvent.items?.firstObject as? String {
+                            scene.currentRoom.loadRoomInfo(roomId: currentRoomId, names: [scene.serverManager.peerID.displayName])
+                        }
+                        
+                        break
+                        
                     case "error":
                         if let message = socketAnyEvent.items?.firstObject as? String {
                             scene.lastSocketErrorMessage = message

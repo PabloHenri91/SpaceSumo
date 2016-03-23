@@ -47,8 +47,8 @@ class Parallax: SKNode {
         
         self.zPosition = -Config.HUDZPosition
         
-        for var x = -1; x <= Int(Config.currentSceneSize.width/textureStarsBack.size().width) + 1; x++ {
-            for var y = -1; y <= Int(Config.currentSceneSize.height/textureStarsBack.size().height + 1); y++ {
+        for _ in -1 ... Int(Config.currentSceneSize.width/textureStarsBack.size().width) + 1 {
+            for _ in -1 ... Int(Config.currentSceneSize.height/textureStarsBack.size().height + 1) {
                 let spriteNode = SKSpriteNode(texture: textureStarsBack)
                 spriteNode.anchorPoint = CGPoint(x: 0, y: 1)
                 spriteNode.zPosition = self.zPosition + CGFloat(1)
@@ -57,8 +57,8 @@ class Parallax: SKNode {
             }
         }
         
-        for var x = -1; x <= Int(Config.currentSceneSize.width/textureStarsFront.size().width) + 1; x++ {
-            for var y = -1; y <= Int(Config.currentSceneSize.height/textureStarsFront.size().height + 1); y++ {
+        for _ in -1 ... Int(Config.currentSceneSize.width/textureStarsFront.size().width) + 1 {
+            for _ in -1 ... Int(Config.currentSceneSize.height/textureStarsFront.size().height + 1) {
                 let spriteNode = SKSpriteNode(texture: textureStarsFront)
                 spriteNode.anchorPoint = CGPoint(x: 0, y: 1)
                 spriteNode.zPosition = self.zPosition + CGFloat(2)
@@ -74,29 +74,27 @@ class Parallax: SKNode {
     
     func update(position:CGPoint) {
         
-        var i = 0
-        for var x = -1; x <= Int(Config.currentSceneSize.width/textureStarsBack.size().width) + 1; x++ {
-            for var y = -1; y <= Int(Config.currentSceneSize.height/textureStarsBack.size().height) + 1; y++ {
-                let spriteNode = self.spriteNodesBack[i]
+        var i = self.spriteNodesBack.generate()
+        for x in -1 ... Int(Config.currentSceneSize.width/textureStarsBack.size().width) + 1 {
+            for y in -1 ... Int(Config.currentSceneSize.height/textureStarsBack.size().height) + 1 {
                 
-                spriteNode.position = CGPoint(
-                    x: (-position.x/2 % spriteNode.size.width) + (spriteNode.size.width * CGFloat(x)),
-                    y: (-position.y/2 % spriteNode.size.height) - (spriteNode.size.height * CGFloat(y)))
-                
-                i++
+                if let spriteNode = i.next() {
+                    spriteNode.position = CGPoint(
+                        x: (-position.x/2 % spriteNode.size.width) + (spriteNode.size.width * CGFloat(x)),
+                        y: (-position.y/2 % spriteNode.size.height) - (spriteNode.size.height * CGFloat(y)))
+                }
             }
         }
         
-        i = 0
-        for var x = -1; x <= Int(Config.currentSceneSize.width/textureStarsFront.size().width) + 1; x++ {
-            for var y = -1; y <= Int(Config.currentSceneSize.height/textureStarsFront.size().height) + 1; y++ {
-                let spriteNode = self.spriteNodesFront[i]
+        i = self.spriteNodesFront.generate()
+        for x in -1 ... Int(Config.currentSceneSize.width/textureStarsBack.size().width) + 1 {
+            for y in -1 ... Int(Config.currentSceneSize.height/textureStarsBack.size().height) + 1 {
                 
-                spriteNode.position = CGPoint(
-                    x: (-position.x % spriteNode.size.width) + (spriteNode.size.width * CGFloat(x)),
-                    y: (-position.y % spriteNode.size.height) - (spriteNode.size.height * CGFloat(y)))
-                
-                i++
+                if let spriteNode = i.next() {
+                    spriteNode.position = CGPoint(
+                        x: (-position.x % spriteNode.size.width) + (spriteNode.size.width * CGFloat(x)),
+                        y: (-position.y % spriteNode.size.height) - (spriteNode.size.height * CGFloat(y)))
+                }
             }
         }
     }

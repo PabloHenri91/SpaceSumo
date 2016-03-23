@@ -39,7 +39,7 @@ class ChooseSector: GameScene {
         var cells = Array<Control>()
         
         //TODO: 10 setores???
-        for var i = 0; i < 10; i++ {
+        for i in 0 ..< 10 {
             cells.append(SectorCell(type: i))
         }
         

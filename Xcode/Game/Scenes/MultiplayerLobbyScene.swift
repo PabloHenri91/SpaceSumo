@@ -85,7 +85,9 @@ class MultiplayerLobbyScene: GameScene {
                                     
                                 } else {
                                     if let usersDisplayInfo = message["usersDisplayInfo"] as? Array<String> {
-                                        scene.roomScrollNode.append(RoomCell(roomId: roomId, names: usersDisplayInfo))
+                                        let roomCell = RoomCell()
+                                        roomCell.loadLobbyRoom(roomId: roomId, names: usersDisplayInfo)
+                                        scene.roomScrollNode.append(roomCell)
                                     }
                                 }
                             }
