@@ -133,7 +133,7 @@ class HangarScene: GameScene {
                     default:
                         break
                     }
-                    print(self.serverManager.socket.status.description)
+                    //print(self.serverManager.socket.status.description)
                 #endif
                 
                 self.lastSecondUpdate = currentTime
@@ -203,13 +203,15 @@ class HangarScene: GameScene {
         #if os(iOS) || os(OSX)
             self.serverManager.socket.onAny { [weak self] (socketAnyEvent:SocketAnyEvent) -> Void in
                 
+                //print(socketAnyEvent.description)
+                
                 guard let scene = self else { return }
                 
-                if(scene.state == states.hangar && scene.nextState == states.hangar) {
+                switch scene.state {
+                case states.hangar:
                     
                     switch (socketAnyEvent.event) {
                     case "currentRoomId":
-                        print(socketAnyEvent.description)
                         
                         if let currentRoomId = socketAnyEvent.items?.firstObject as? String {
                             scene.currentRoom.loadRoomInfo(roomId: currentRoomId, names: [scene.serverManager.peerID.displayName])
@@ -226,12 +228,15 @@ class HangarScene: GameScene {
                         break
                         
                     default:
-                        print(socketAnyEvent.description)
+                        print(socketAnyEvent.event + " nao foi processado!")
                         break
                     }
-                } else {
+                    
+                    break
+                    
+                default:
                     print("Evento recebido fora do estado esperado")
-                    print(socketAnyEvent.description)
+                    break
                 }
             }
         #endif

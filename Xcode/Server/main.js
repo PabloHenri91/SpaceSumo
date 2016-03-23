@@ -81,10 +81,10 @@ Game.prototype.addHandlers = function() {
             }
         });
 
-        socket.on('joinRoom', function(room) {
-            console.log(socket.name + ' on joinRoom: ' + room);
+        socket.on('joinRoom', function(roomId) {
+            console.log(socket.name + ' on joinRoom: ' + roomId);
             
-            socket.join(room);
+            socket.join(roomId);
         });
         
         socket.on('disconnect', function() {

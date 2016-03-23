@@ -19,6 +19,7 @@ class MainMenuScene: GameScene {
         case credits
         case hangar
         case connect
+        case connecting
     }
     
     //Estados iniciais
@@ -36,6 +37,8 @@ class MainMenuScene: GameScene {
     #if os(iOS) || os(OSX)
     var serverManager:ServerManager! //Por seguranca o serverManager nao deve ser iniciado ainda.
     #endif
+    
+    var connectTime: NSTimeInterval = 0
     
     override func didMoveToView(view: SKView) {
         super.didMoveToView(view)
@@ -66,6 +69,18 @@ class MainMenuScene: GameScene {
         //Estado atual
         if(self.state == self.nextState) {
             switch (self.state) {
+                
+            case states.connecting:
+                
+                if self.buttonOfflineMode.hidden == true {
+                    if currentTime - self.connectTime > 3 {
+                        self.buttonOfflineMode.hidden = false
+                        GameScene.selectedButton = self.buttonOfflineMode
+                    }
+                }
+                
+                break
+                
             default:
                 break
             }
@@ -80,29 +95,29 @@ class MainMenuScene: GameScene {
                 self.view?.presentScene(scene, transition: self.transition)
                 break
             case states.connect:
-                #if os(tvOS)
-                    self.nextState = states.hangar
-                #endif
                 
-                #if os(iOS) || os(OSX)
-                    self.addHandlers()
+                self.connectTime = currentTime
+                
+                self.addHandlers()
+                
+                let box = Control(textureName: "boxWhite128x64", x:176, y:103, xAlign:.center, yAlign:.center)
+                box.zPosition = box.zPosition * 4
+                self.labelConnectStatus = Label(text: "connecting to server...", x:64, y:32)
+                box.addChild(self.labelConnectStatus)
+                self.addChild(box)
+                
+                self.serverManager.socket.connect(timeoutAfter: 33, withTimeoutHandler: { [weak self] () -> Void in
+                    guard let scene = self else { return }
                     
-                    let box = Control(textureName: "boxWhite128x64", x:176, y:103, xAlign:.center, yAlign:.center)
-                    box.zPosition = box.zPosition * 4
-                    self.labelConnectStatus = Label(text: "connecting to server...", x:64, y:32)
-                    box.addChild(self.labelConnectStatus)
-                    self.addChild(box)
+                    if(scene.state == states.connect) {
+                        scene.labelConnectStatus.setText("connection timed out")
+                        ServerManager.sharedInstance.socket.disconnect()
+                    }
                     
-                    self.serverManager.socket.connect(timeoutAfter: 33, withTimeoutHandler: { [weak self] () -> Void in
-                        guard let scene = self else { return }
-                        
-                        if(scene.state == states.connect && scene.nextState == states.connect) {
-                            scene.labelConnectStatus.setText("connection timed out")
-                            ServerManager.sharedInstance.socket.disconnect()
-                        }
-                        
-                        })
-                #endif
+                    })
+                
+                self.nextState = states.connecting
+                
                 break
                 
             default:
@@ -117,12 +132,13 @@ class MainMenuScene: GameScene {
             
             self.serverManager.socket.onAny { [weak self] (socketAnyEvent:SocketAnyEvent) -> Void in
                 
+                //print(socketAnyEvent.description)
+                
                 guard let scene = self else { return }
                 
-                if(scene.state == states.connect && scene.nextState == states.connect) {
+                switch scene.state {
                     
-                    print(socketAnyEvent.description)
-                    
+                case states.connecting:
                     switch(socketAnyEvent.event) {
                         
                     case "connect":
@@ -131,11 +147,14 @@ class MainMenuScene: GameScene {
                         scene.serverManager.socket.emit("userDisplayInfo", scene.serverManager.peerID.displayName)
                         break
                         
-                    case "error":
+                    case "reconnect":
                         scene.buttonOfflineMode.hidden = false
+                        GameScene.selectedButton = scene.buttonOfflineMode
                         break
                         
-                    case "reconnect":
+                    case "error":
+                        scene.buttonOfflineMode.hidden = false
+                        GameScene.selectedButton = scene.buttonOfflineMode
                         break
                         
                     case "reconnectAttempt":
@@ -143,11 +162,15 @@ class MainMenuScene: GameScene {
                         break
                         
                     default:
+                        print(socketAnyEvent.event + " nao foi processado")
                         break
                     }
-                } else {
+                    
+                    break
+                    
+                default:
                     print("Evento recebido fora do estado esperado")
-                    print(socketAnyEvent.description)
+                    break
                 }
             }
         #endif

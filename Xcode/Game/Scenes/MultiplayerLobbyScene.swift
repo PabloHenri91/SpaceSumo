@@ -16,11 +16,14 @@ class MultiplayerLobbyScene: GameScene {
         
         //Estados de saida da scene
         case hangar
+        case joinRoom
     }
     
     //Estados iniciais
     var state = states.multiplayerLobby
     var nextState = states.multiplayerLobby
+    
+    var nextRoomId = ""
     
     //buttons
     var buttonBack:Button!
@@ -60,13 +63,18 @@ class MultiplayerLobbyScene: GameScene {
         #if os(iOS) || os(OSX)
             self.serverManager.socket.onAny { [weak self] (socketAnyEvent:SocketAnyEvent) -> Void in
                 
+                //print(socketAnyEvent.description)
+                
                 guard let scene = self else { return }
                 
-                if(scene.state == states.multiplayerLobby && scene.nextState == states.multiplayerLobby) {
+                switch scene.state {
+                    
+                case states.multiplayerLobby:
                     
                     switch(socketAnyEvent.event) {
                         
                     case "getRoom":
+                        
                         if let message = socketAnyEvent.items?.firstObject as? Dictionary<String, AnyObject> {
                             
                             if let roomId = message["roomId"] as? String {
@@ -87,20 +95,31 @@ class MultiplayerLobbyScene: GameScene {
                                     if let usersDisplayInfo = message["usersDisplayInfo"] as? Array<String> {
                                         let roomCell = RoomCell()
                                         roomCell.loadLobbyRoom(roomId: roomId, names: usersDisplayInfo)
+                                        
+                                        roomCell.buttonJoin.addHandler({
+                                            scene.serverManager.socket.emit("joinRoom", roomId)
+                                            scene.nextRoomId = roomId
+                                            scene.nextState = MultiplayerLobbyScene.states.joinRoom
+                                        })
+                                        
                                         scene.roomScrollNode.append(roomCell)
                                     }
                                 }
                             }
                         }
+                        
                         break
                         
                     default:
-                        print(socketAnyEvent.description)
+                        print(socketAnyEvent.event + " nao foi processado!")
                         break
                     }
-                } else {
+                    
+                    break
+                    
+                default:
                     print("Evento recebido fora do estado esperado")
-                    print(socketAnyEvent.description)
+                    break
                 }
             }
         #endif
