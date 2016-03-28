@@ -72,6 +72,10 @@ class MainMenuScene: GameScene {
                 
             case states.connecting:
                 
+                #if os(tvOS)
+                    self.nextState = states.hangar
+                #endif
+                
                 if self.buttonOfflineMode.hidden == true {
                     if currentTime - self.connectTime > 3 {
                         self.buttonOfflineMode.hidden = false
@@ -106,15 +110,17 @@ class MainMenuScene: GameScene {
                 box.addChild(self.labelConnectStatus)
                 self.addChild(box)
                 
-                self.serverManager.socket.connect(timeoutAfter: 33, withTimeoutHandler: { [weak self] () -> Void in
-                    guard let scene = self else { return }
-                    
-                    if(scene.state == states.connect) {
-                        scene.labelConnectStatus.setText("connection timed out")
-                        ServerManager.sharedInstance.socket.disconnect()
-                    }
-                    
-                    })
+                #if os(iOS) || os(OSX)
+                    self.serverManager.socket.connect(timeoutAfter: 33, withTimeoutHandler: { [weak self] () -> Void in
+                        guard let scene = self else { return }
+                        
+                        if(scene.state == states.connect) {
+                            scene.labelConnectStatus.setText("connection timed out")
+                            ServerManager.sharedInstance.socket.disconnect()
+                        }
+                        
+                        })
+                #endif
                 
                 self.nextState = states.connecting
                 
@@ -190,7 +196,7 @@ class MainMenuScene: GameScene {
                     }
                     break
                     
-                case states.connect:
+                case states.connecting:
                     if(self.buttonOfflineMode.containsPoint(touch.locationInNode(self))) {
                         self.nextState = states.hangar
                         return
