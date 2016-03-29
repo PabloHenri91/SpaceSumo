@@ -34,8 +34,9 @@ class Laser: Control {
         self.zRotation = zRotation
         self.physicsBody?.velocity = CGVector(dx: (-sin(zRotation) * 1000) + shooter.velocity.dx, dy: (cos(zRotation) * 1000) + shooter.velocity.dy)
         
-        self.runAction({ let a = SKAction(); a.duration = 3; return a }()) { () -> Void in
-            self.removeFromParent()
+        self.runAction({ let a = SKAction(); a.duration = 3; return a }()) { [weak self] in
+            guard let laser = self else { return }
+            laser.removeFromParent()
         }
         
         Laser.laserSet.insert(self)
