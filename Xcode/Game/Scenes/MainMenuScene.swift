@@ -150,6 +150,7 @@ class MainMenuScene: GameScene {
                         
                     case "connect":
                         scene.labelConnectStatus.parent?.removeFromParent()
+                        //Troca de scene
                         scene.nextState = states.hangar
                         scene.serverManager.socket.emit("userDisplayInfo", scene.serverManager.peerID.displayName)
                         break

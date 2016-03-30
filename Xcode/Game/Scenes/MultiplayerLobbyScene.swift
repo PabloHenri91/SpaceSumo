@@ -164,7 +164,7 @@ class MultiplayerLobbyScene: GameScene {
                     }
                 }
                 
-                print(self.serverManager.socket.status.description)
+                //print(self.serverManager.socket.status.description)
             #endif
             
             self.lastSecondUpdate = currentTime

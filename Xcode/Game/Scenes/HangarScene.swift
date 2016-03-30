@@ -20,6 +20,7 @@ class HangarScene: GameScene {
         case mission
         case connectionClosed
         case multiplayer
+        case reconnecting
     }
     
     //Estados iniciais
@@ -120,7 +121,7 @@ class HangarScene: GameScene {
                 #if os(iOS) || os(OSX)
                     switch (self.state) {
                         
-                    case states.hangar:
+                    case states.reconnecting:
                         if(!self.offlineMode) {
                             if (self.serverManager.socket.status == .Closed) {
                                 self.nextState = states.connectionClosed
@@ -182,6 +183,7 @@ class HangarScene: GameScene {
                 
                 button.addHandler( { [weak self] in
                     guard let scene = self else { return }
+                    //Troca de scene
                     scene.nextState = states.mainMenu
                     })
                 
@@ -206,9 +208,73 @@ class HangarScene: GameScene {
                 guard let scene = self else { return }
                 
                 switch scene.state {
+                    
+                case states.reconnecting:
+                    
+                    switch (socketAnyEvent.event) {
+                        
+                    case "getRoom":
+                        //TODO: peguei de volta as informacoes da sala, e agora?
+                        //print(socketAnyEvent.description)
+                        break
+                        
+                    case "joinRoom":
+                        //recebi do server a confirmacao de que voltei para a minha sala
+                        break
+                        
+                    case "disconnect":
+                        //nao foi possivel reconectar, nao preciso fazer nada aqui
+                        break
+                        
+                    case "error":
+                        if let message = socketAnyEvent.items?.firstObject as? String {
+                            scene.lastSocketErrorMessage = message
+                        } else {
+                            scene.lastSocketErrorMessage = "Something went very very wrong.. oops!!"
+                        }
+                        break
+                        
+                    case "connect":
+                        print("reconectou!")
+                        
+                        //reconnect foi bem sussedido, preciso avisar o server quem sou eu
+                        scene.serverManager.socket.emit("userDisplayInfo", scene.serverManager.peerID.displayName)
+                        
+                        //Voltar para a sala atual
+                        scene.serverManager.socket.emit("joinRoom", scene.currentRoom.roomId)
+                        //o servidor vai me emitir getRoom para que eu pegue novamente as informacoes dos sockets da sala?
+                        
+                        break
+                        
+                    case "reconnectAttempt":
+                        print("reconnecting...")
+                        break
+                        
+                    default:
+                        print(socketAnyEvent.event + " nao foi processado em HangarScene " + scene.state.rawValue)
+                        break
+                    }
+                    
+                    break
                 case states.hangar:
                     
                     switch (socketAnyEvent.event) {
+                        
+                    case "joinRoom":
+                        //Algum player entrou na minha sala?
+                        if let otherName = socketAnyEvent.items?.firstObject as? String {
+                            var names = [scene.serverManager.peerID.displayName]
+                            names.append(otherName)
+                            scene.currentRoom.loadRoomInfo(roomId: scene.currentRoom.roomId, names: names)
+                        }
+                        break
+                        
+                    case "reconnect":
+                        print("reconnecting...")
+                        scene.state = states.reconnecting
+                        scene.nextState = states.reconnecting
+                        break
+                        
                     case "currentRoomId":
                         
                         if let currentRoomId = socketAnyEvent.items?.firstObject as? String {

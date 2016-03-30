@@ -84,10 +84,11 @@ Game.prototype.addHandlers = function() {
         socket.on('joinRoom', function(roomId) {
             console.log(socket.name + ' on joinRoom: ' + roomId);
             
-            socket.join(roomId);
+            for (var room in socket.adapter.sids[socket.id]) {
+                socket.leave(room);
+            }
             
-            socket.emit('joinRoom', true);
-            console.log(socket.name + ' emit joinRoom: ');
+            socket.join(roomId);
             
             var room = allRooms[roomId];
             var message = {};
@@ -97,17 +98,23 @@ Game.prototype.addHandlers = function() {
 
             for (var socketsId in room.sockets) {
                 var someSocket = connectedSockets[socketsId];
-
+                
+                someSocket.emit('joinRoom', socket.userDisplayInfo);
+                console.log(socket.name + ' emit joinRoom: ');
+                
                 message.usersDisplayInfo.push(someSocket.userDisplayInfo);
             }
 
-            socket.emit('getRoom', message);
-            console.log(socket.name + ' emit getRoom: ');
+            socket.emit('joinRoom', message);
+            console.log(socket.name + ' emit joinRoom: ' + message);
         });
         
         socket.on('disconnect', function() {
             console.log(socket.name + ' on disconnect: ');
             
+            for (var roomId in socket.adapter.sids[socket.id]) {
+                socket.leave(roomId);
+            }
         });
     });
 };
