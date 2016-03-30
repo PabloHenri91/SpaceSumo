@@ -10,7 +10,7 @@ import SpriteKit
 
 class HangarScene: GameScene {
     
-    enum states {
+    enum states : String {
         //Estado principal
         case hangar
         
@@ -52,16 +52,6 @@ class HangarScene: GameScene {
     
     init() {
         super.init()
-        
-        #if os(iOS) || os(OSX)
-            if  self.serverManager.socket.status == .Connected {
-                self.offlineMode = false
-                self.addHandlers()
-            } else {
-                self.serverManager.socket.disconnect()
-            }
-        #endif
-        
         self.nextSector = 0
     }
     
@@ -72,6 +62,20 @@ class HangarScene: GameScene {
     
     override func didMoveToView(view: SKView) {
         super.didMoveToView(view)
+        
+        #if os(iOS) || os(OSX)
+            
+            self.offlineMode = !(self.serverManager.socket.status == .Connected)
+            
+            if self.offlineMode {
+                self.serverManager.socket.onAny({ (SocketAnyEvent) in
+                })
+                self.serverManager.socket.disconnect()
+            } else {
+                self.addHandlers()
+                self.serverManager.socket.emit("createRoom")
+            }
+        #endif
         
         self.addChild(Control(textureName: "background", z:-1000, xAlign: .center, yAlign: .center))
         
@@ -102,11 +106,6 @@ class HangarScene: GameScene {
         //Serve para setar o foco inicial no tvOS
         GameScene.selectedButton = self.buttonGo
         
-        #if os(iOS) || os(OSX)
-            self.addHandlers()
-            self.serverManager.socket.emit("createRoom")
-        #endif
-        
         self.currentRoom = RoomCell(x: 91, y: 146, xAlign: .center, yAlign: .center)
         self.addChild(self.currentRoom)
     }
@@ -123,7 +122,6 @@ class HangarScene: GameScene {
                         
                     case states.hangar:
                         if(!self.offlineMode) {
-                            
                             if (self.serverManager.socket.status == .Closed) {
                                 self.nextState = states.connectionClosed
                             }
@@ -228,14 +226,14 @@ class HangarScene: GameScene {
                         break
                         
                     default:
-                        print(socketAnyEvent.event + " nao foi processado!")
+                        print(socketAnyEvent.event + " nao foi processado em HangarScene " + scene.state.rawValue)
                         break
                     }
                     
                     break
                     
                 default:
-                    print("Evento recebido fora do estado esperado")
+                    print(socketAnyEvent.event + " recebido fora do estado esperado em HangarScene " + scene.state.rawValue)
                     break
                 }
             }

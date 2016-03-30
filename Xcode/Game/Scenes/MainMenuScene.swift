@@ -10,7 +10,7 @@ import SpriteKit
 
 class MainMenuScene: GameScene {
     
-    enum states {
+    enum states : String {
         //Estado principal
         case mainMenu
         
@@ -102,28 +102,29 @@ class MainMenuScene: GameScene {
                 
                 self.connectTime = currentTime
                 
-                self.addHandlers()
-                
                 let box = Control(textureName: "boxWhite128x64", x:176, y:103, xAlign:.center, yAlign:.center)
                 box.zPosition = box.zPosition * 4
                 self.labelConnectStatus = Label(text: "connecting to server...", x:64, y:32)
                 box.addChild(self.labelConnectStatus)
                 self.addChild(box)
                 
+                self.nextState = states.connecting
+                self.state = states.connecting
+                
                 #if os(iOS) || os(OSX)
-                    self.serverManager.socket.connect(timeoutAfter: 33, withTimeoutHandler: { [weak self] () -> Void in
+                    self.addHandlers()
+                    
+                    self.serverManager.socket.connect(timeoutAfter: 10, withTimeoutHandler: { [weak self] in
                         guard let scene = self else { return }
-                        
-                        if(scene.state == states.connect) {
-                            scene.labelConnectStatus.setText("connection timed out")
-                            ServerManager.sharedInstance.socket.disconnect()
-                        }
-                        
+                        scene.labelConnectStatus.setText("connection timed out")
+                        scene.serverManager.socket.disconnect()
                         })
                 #endif
                 
-                self.nextState = states.connecting
+                break
                 
+            case states.connecting:
+                fatalError()// nao pode ter preparacao para troca deste estado
                 break
                 
             default:
@@ -167,15 +168,19 @@ class MainMenuScene: GameScene {
                         scene.labelConnectStatus.setText("Reconnect Attempt:  " + (ServerManager.sharedInstance.socket.reconnectAttempts + 1 - (socketAnyEvent.items?.firstObject as! Int)).description)
                         break
                         
+                    case "disconnect":
+                        scene.labelConnectStatus.setText("connection timed out")
+                        break
+                        
                     default:
-                        print(socketAnyEvent.event + " nao foi processado")
+                        print(socketAnyEvent.event + " nao foi processado em MainMenuScene " + scene.state.rawValue)
                         break
                     }
                     
                     break
                     
                 default:
-                    print("Evento recebido fora do estado esperado")
+                    print(socketAnyEvent.event + " recebido fora do estado esperado em MainMenuScene " + scene.state.rawValue)
                     break
                 }
             }

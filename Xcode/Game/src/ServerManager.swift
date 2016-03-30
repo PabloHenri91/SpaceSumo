@@ -37,8 +37,11 @@ class ServerManager: NSObject, MCNearbyServiceBrowserDelegate, MCNearbyServiceAd
     override init() {
         super.init()
         
+        let options = Set<SocketIOClientOption>(arrayLiteral: SocketIOClientOption.ReconnectAttempts(30), SocketIOClientOption.ReconnectWait(2)
+        )
+        
         //self.socket = SocketIOClient(socketURL: NSURL(string:"http://Pablos-MacBook-Pro.local:8900")!)
-        self.socket = SocketIOClient(socketURL: NSURL(string:"http://172.16.3.149:8900")!)
+        self.socket = SocketIOClient(socketURL: NSURL(string:"http://172.16.3.149:8900")!, options: options)
         
         
         #if os(iOS)

@@ -10,13 +10,14 @@ import SpriteKit
 
 class MultiplayerLobbyScene: GameScene {
     
-    enum states {
+    enum states : String {
         //Estado principal
         case multiplayerLobby
         
         //Estados de saida da scene
         case hangar
         case joinRoom
+        case joinRoomAccepted
     }
     
     //Estados iniciais
@@ -63,7 +64,7 @@ class MultiplayerLobbyScene: GameScene {
         #if os(iOS) || os(OSX)
             self.serverManager.socket.onAny { [weak self] (socketAnyEvent:SocketAnyEvent) -> Void in
                 
-                //print(socketAnyEvent.description)
+            //print(socketAnyEvent.description)
                 
                 guard let scene = self else { return }
                 
@@ -72,6 +73,10 @@ class MultiplayerLobbyScene: GameScene {
                 case states.multiplayerLobby:
                     
                     switch(socketAnyEvent.event) {
+                        
+                    case "joinRoom":
+                        scene.nextState = states.joinRoomAccepted
+                        break
                         
                     case "getRoom":
                         
@@ -111,14 +116,14 @@ class MultiplayerLobbyScene: GameScene {
                         break
                         
                     default:
-                        print(socketAnyEvent.event + " nao foi processado!")
+                        print(socketAnyEvent.event + " nao foi processado em MultiplayerLobbyScene " + scene.state.rawValue)
                         break
                     }
                     
                     break
                     
                 default:
-                    print("Evento recebido fora do estado esperado")
+                    print(socketAnyEvent.event + " recebido fora do estado esperado " + scene.state.rawValue)
                     break
                 }
             }
@@ -127,6 +132,25 @@ class MultiplayerLobbyScene: GameScene {
     
     override func update(currentTime: NSTimeInterval) {
         super.update(currentTime)
+        
+        //Estado atual
+        if(self.state == self.nextState) {
+            switch (self.state) {
+            default:
+                break
+            }
+        } else {
+            self.state = self.nextState
+            
+            //Próximo estado
+            switch (self.nextState) {
+            case states.hangar:
+                self.view?.presentScene(HangarScene(), transition: self.transition)
+                break
+            default:
+                break
+            }
+        }
         
         if currentTime - self.lastSecondUpdate > 1 { // Executado uma vez por segundo
             
@@ -145,16 +169,46 @@ class MultiplayerLobbyScene: GameScene {
             
             self.lastSecondUpdate = currentTime
         }
-        
-//        let rootObject: [String: AnyObject] = ["event": "someEvent", "object": "someData"]
-//        
-//        let data = NSKeyedArchiver.archivedDataWithRootObject(rootObject)
-//        
-//        do {
-//            //TODO: session.sendData
-//            //try GameScene.session.sendData(data, toPeers: GameScene.session.connectedPeers, withMode: MCSessionSendDataMode.Reliable)
-//        } catch _ {
-//            
-//        }
     }
+    
+    override func touchesEnded(taps touches: Set<UITouch>) {
+        super.touchesEnded(taps: touches)
+        
+        //Estado atual
+        if(self.state == self.nextState) {
+            for touch in touches {
+                let location = touch.locationInNode(self)
+                switch (self.state) {
+                case states.multiplayerLobby:
+                    if(self.buttonBack.containsPoint(location)) {
+                        self.nextState = states.hangar
+                        return
+                    }
+                    
+                    break
+                default:
+                    break
+                }
+            }
+        }
+    }
+    
+    #if os(tvOS)
+    override func pressBegan(press: UIPress) -> Bool {
+        
+        switch press.type {
+        case .Menu:
+            self.nextState = states.hangar
+            break
+            
+        case .Select:
+            self.touchesEnded(taps: Set<UITouch>([UITouch()]))
+            break
+        default:
+            break
+        }
+        
+        return false
+    }
+    #endif
 }
