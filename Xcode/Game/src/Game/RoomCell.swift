@@ -20,6 +20,7 @@ class RoomCell: Control {
     var labelName0:Label?
     var labelName1:Label?
     var labelName2:Label?
+    var labelName3:Label?
     
     init(x:Int = 0, y:Int = 0, xAlign:Control.xAlignments = .left, yAlign:Control.yAlignments = .up) {
         super.init(textureName: "boxWhite299x105", x:x, y:y, xAlign:xAlign, yAlign:yAlign)
@@ -51,6 +52,9 @@ class RoomCell: Control {
         if let label = self.labelName2 {
             label.removeFromParent()
         }
+        if let label = self.labelName3 {
+            label.removeFromParent()
+        }
         
         self.roomId = roomId
         self.names = names
@@ -73,6 +77,12 @@ class RoomCell: Control {
                 self.labelName2 = Label(text: name.truncate(19, trailing: "..."), x:182, y:15, xAlign: .left, yAlign: .up)
                 self.labelName2!.zPosition = self.zPosition + 2
                 self.addChild(self.labelName2!)
+                break
+                
+            case 3:
+                self.labelName3 = Label(text: name.truncate(19, trailing: "..."), x:246, y:32, xAlign: .left, yAlign: .up)
+                self.labelName3!.zPosition = self.zPosition + 2
+                self.addChild(self.labelName3!)
                 break
                 
             default:

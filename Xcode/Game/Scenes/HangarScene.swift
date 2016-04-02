@@ -47,9 +47,7 @@ class HangarScene: GameScene {
     
     var lastSocketErrorMessage = ""
     
-    #if os(iOS) || os(OSX)
     var serverManager = ServerManager.sharedInstance
-    #endif
     
     init() {
         super.init()
@@ -62,34 +60,31 @@ class HangarScene: GameScene {
     
     override func didMoveToView(view: SKView) {
         super.didMoveToView(view)
+            
+        self.offlineMode = !(self.serverManager.socket.status == .Connected)
         
-        #if os(iOS) || os(OSX)
-            
-            self.offlineMode = !(self.serverManager.socket.status == .Connected)
-            
-            if self.offlineMode {
-                self.serverManager.socket.onAny({ (SocketAnyEvent) in
-                })
-                self.serverManager.socket.disconnect()
-            } else {
-                if let roomCell = self.currentRoom {
-                    //entrei no hangar mas ja estava em uma sala
-                    roomCell.screenPosition = CGPoint(x: 91, y: 146)
-                    roomCell.xAlign = .center
-                    roomCell.yAlign = .center
-                    roomCell.buttonJoin.removeFromParent()
-                    roomCell.resetPosition()
-                    
-                    roomCell.names.append(self.serverManager.peerID.displayName)
-                    roomCell.loadRoomInfo(roomId: roomCell.roomId!, names: roomCell.names)
-                } else {
-                    self.currentRoom = RoomCell(x: 91, y: 146, xAlign: .center, yAlign: .center)
-                    self.serverManager.socket.emit("createRoom")
-                }
-                self.addHandlers()
+        if self.offlineMode {
+            self.serverManager.socket.onAny({ (SocketAnyEvent) in
+            })
+            self.serverManager.socket.disconnect()
+            self.currentRoom = RoomCell(x: 91, y: 146, xAlign: .center, yAlign: .center)
+        } else {
+            if let roomCell = self.currentRoom {
+                //entrei no hangar mas ja estava em uma sala
+                roomCell.screenPosition = CGPoint(x: 91, y: 146)
+                roomCell.xAlign = .center
+                roomCell.yAlign = .center
+                roomCell.buttonJoin.removeFromParent()
+                roomCell.resetPosition()
                 
+                roomCell.names.append(self.serverManager.displayName)
+                roomCell.loadRoomInfo(roomId: roomCell.roomId!, names: roomCell.names)
+            } else {
+                self.currentRoom = RoomCell(x: 91, y: 146, xAlign: .center, yAlign: .center)
+                self.serverManager.socket.emit("createRoom")
             }
-        #endif
+            self.addHandlers()
+        }
         
         self.addChild(Control(textureName: "background", z:-1000, xAlign: .center, yAlign: .center))
         
@@ -130,22 +125,20 @@ class HangarScene: GameScene {
         if(self.state == self.nextState) {
             
             if currentTime - self.lastSecondUpdate > 1 { // Executado uma vez por segundo
-                #if os(iOS) || os(OSX)
-                    switch (self.state) {
-                        
-                    case states.reconnecting:
-                        if(!self.offlineMode) {
-                            if (self.serverManager.socket.status == .Closed) {
-                                self.nextState = states.connectionClosed
-                            }
+                switch (self.state) {
+                    
+                case states.reconnecting:
+                    if(!self.offlineMode) {
+                        if (self.serverManager.socket.status == .Closed) {
+                            self.nextState = states.connectionClosed
                         }
-                        break
-                        
-                    default:
-                        break
                     }
-                    //print(self.serverManager.socket.status.description)
-                #endif
+                    break
+                    
+                default:
+                    break
+                }
+                //print(self.serverManager.socket.status.description)
                 
                 self.lastSecondUpdate = currentTime
             }
@@ -162,9 +155,7 @@ class HangarScene: GameScene {
             switch (self.nextState) {
             case states.mainMenu:
                 if(!self.offlineMode) {
-                    #if os(iOS) || os(OSX)
-                        self.serverManager.socket.disconnect()
-                    #endif
+                    self.serverManager.socket.disconnect()
                 }
                 
                 self.view?.presentScene(MainMenuScene(), transition: self.transition)
@@ -212,131 +203,129 @@ class HangarScene: GameScene {
     }
     
     func addHandlers() {
-        #if os(iOS) || os(OSX)
-            self.serverManager.socket.onAny { [weak self] (socketAnyEvent:SocketAnyEvent) -> Void in
+        self.serverManager.socket.onAny { [weak self] (socketAnyEvent:SocketAnyEvent) -> Void in
+            
+            //print(socketAnyEvent.description)
+            
+            guard let scene = self else { return }
+            
+            switch scene.state {
                 
-                //print(socketAnyEvent.description)
+            case states.mainMenu:
                 
-                guard let scene = self else { return }
-                
-                switch scene.state {
+                switch (socketAnyEvent.event) {
                     
-                case states.mainMenu:
-                    
-                    switch (socketAnyEvent.event) {
-                        
-                    case "disconnect":
-                        //Desconectou para ir para o mainMenu
-                        break
-                        
-                    default:
-                        print(socketAnyEvent.event + " nao foi processado em HangarScene " + scene.state.rawValue)
-                        break
-                    }
-                    
-                    break
-                    
-                case states.reconnecting:
-                    
-                    switch (socketAnyEvent.event) {
-                        
-                    case "disconnect":
-                        print("disconnect")
-                        //nao foi possivel reconectar, nao preciso fazer nada aqui
-                        break
-                        
-                    case "error":
-                        if let message = socketAnyEvent.items?.firstObject as? String {
-                            scene.lastSocketErrorMessage = message
-                        } else {
-                            scene.lastSocketErrorMessage = "Something went very very wrong.. oops!!"
-                        }
-                        break
-                        
-                    case "connect":
-                        print("reconectou!")
-                        
-                        //reconnect foi bem sussedido, preciso avisar o server quem sou eu
-                        scene.serverManager.socket.emit("userDisplayInfo", scene.serverManager.peerID.displayName)
-                        scene.state = states.hangar
-                        scene.nextState = states.hangar
-                        
-                        break
-                        
-                    case "reconnectAttempt":
-                        print("reconnecting...")
-                        break
-                        
-                    default:
-                        print(socketAnyEvent.event + " nao foi processado em HangarScene " + scene.state.rawValue)
-                        break
-                    }
-                    
-                    break
-                case states.hangar:
-                    
-                    switch (socketAnyEvent.event) {
-                        
-                    case "roomInfo":
-                        //Recebi informacoes da sala
-                        if let message = socketAnyEvent.items?.firstObject as? Dictionary<String, AnyObject> {
-                            if let roomId = message["roomId"] as? String {
-                                if let usersDisplayInfo = message["usersDisplayInfo"] as? Array<String> {
-                                    scene.currentRoom?.loadRoomInfo(roomId: roomId, names: usersDisplayInfo)
-                                }
-                            }
-                        }
-                        break
-                        
-                    case "removePlayer":
-                        //TODO: Alguem saiu da sala
-                        scene.serverManager.socket.emit("getRoomInfo", (scene.currentRoom?.roomId)!)
-                        break
-                        
-                    case "addPlayer":
-                        //Algum player entrou na minha sala?
-                        if let otherName = socketAnyEvent.items?.firstObject as? String {
-                            var names = scene.currentRoom?.names
-                            names?.append(otherName)
-                            scene.currentRoom!.loadRoomInfo(roomId: scene.currentRoom!.roomId!, names: names!)
-                        }
-                        break
-                        
-                    case "reconnect":
-                        print("reconnecting...")
-                        scene.state = states.reconnecting
-                        scene.nextState = states.reconnecting
-                        break
-                        
-                    case "currentRoomId":
-                        
-                        if let currentRoomId = socketAnyEvent.items?.firstObject as? String {
-                            scene.currentRoom!.loadRoomInfo(roomId: currentRoomId, names: [scene.serverManager.peerID.displayName])
-                        }
-                        
-                        break
-                        
-                    case "error":
-                        if let message = socketAnyEvent.items?.firstObject as? String {
-                            scene.lastSocketErrorMessage = message
-                        } else {
-                            scene.lastSocketErrorMessage = "Something went very very wrong.. oops!!"
-                        }
-                        break
-                        
-                    default:
-                        print(socketAnyEvent.event + " nao foi processado em HangarScene " + scene.state.rawValue)
-                        break
-                    }
-                    
+                case "disconnect":
+                    //Desconectou para ir para o mainMenu
                     break
                     
                 default:
-                    print(socketAnyEvent.event + " recebido fora do estado esperado em HangarScene " + scene.state.rawValue)
+                    print(socketAnyEvent.event + " nao foi processado em HangarScene " + scene.state.rawValue)
                     break
                 }
+                
+                break
+                
+            case states.reconnecting:
+                
+                switch (socketAnyEvent.event) {
+                    
+                case "disconnect":
+                    print("disconnect")
+                    //nao foi possivel reconectar, nao preciso fazer nada aqui
+                    break
+                    
+                case "error":
+                    if let message = socketAnyEvent.items?.firstObject as? String {
+                        scene.lastSocketErrorMessage = message
+                    } else {
+                        scene.lastSocketErrorMessage = "Something went very very wrong.. oops!!"
+                    }
+                    break
+                    
+                case "connect":
+                    print("reconectou!")
+                    
+                    //reconnect foi bem sussedido, preciso avisar o server quem sou eu
+                    scene.serverManager.socket.emit("userDisplayInfo", scene.serverManager.displayName)
+                    scene.state = states.hangar
+                    scene.nextState = states.hangar
+                    
+                    break
+                    
+                case "reconnectAttempt":
+                    print("reconnecting...")
+                    break
+                    
+                default:
+                    print(socketAnyEvent.event + " nao foi processado em HangarScene " + scene.state.rawValue)
+                    break
+                }
+                
+                break
+            case states.hangar:
+                
+                switch (socketAnyEvent.event) {
+                    
+                case "roomInfo":
+                    //Recebi informacoes da sala
+                    if let message = socketAnyEvent.items?.firstObject as? Dictionary<String, AnyObject> {
+                        if let roomId = message["roomId"] as? String {
+                            if let usersDisplayInfo = message["usersDisplayInfo"] as? Array<String> {
+                                scene.currentRoom?.loadRoomInfo(roomId: roomId, names: usersDisplayInfo)
+                            }
+                        }
+                    }
+                    break
+                    
+                case "removePlayer":
+                    //TODO: Alguem saiu da sala
+                    scene.serverManager.socket.emit("getRoomInfo", (scene.currentRoom?.roomId)!)
+                    break
+                    
+                case "addPlayer":
+                    //Algum player entrou na minha sala?
+                    if let otherName = socketAnyEvent.items?.firstObject as? String {
+                        var names = scene.currentRoom?.names
+                        names?.append(otherName)
+                        scene.currentRoom!.loadRoomInfo(roomId: scene.currentRoom!.roomId!, names: names!)
+                    }
+                    break
+                    
+                case "reconnect":
+                    print("reconnecting...")
+                    scene.state = states.reconnecting
+                    scene.nextState = states.reconnecting
+                    break
+                    
+                case "currentRoomId":
+                    
+                    if let currentRoomId = socketAnyEvent.items?.firstObject as? String {
+                        scene.currentRoom!.loadRoomInfo(roomId: currentRoomId, names: [scene.serverManager.displayName])
+                    }
+                    
+                    break
+                    
+                case "error":
+                    if let message = socketAnyEvent.items?.firstObject as? String {
+                        scene.lastSocketErrorMessage = message
+                    } else {
+                        scene.lastSocketErrorMessage = "Something went very very wrong.. oops!!"
+                    }
+                    break
+                    
+                default:
+                    print(socketAnyEvent.event + " nao foi processado em HangarScene " + scene.state.rawValue)
+                    break
+                }
+                
+                break
+                
+            default:
+                print(socketAnyEvent.event + " recebido fora do estado esperado em HangarScene " + scene.state.rawValue)
+                break
             }
-        #endif
+        }
     }
     
     override func touchesEnded(taps touches: Set<UITouch>) {

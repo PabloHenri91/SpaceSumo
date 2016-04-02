@@ -34,9 +34,7 @@ class MainMenuScene: GameScene {
     
     var labelConnectStatus:Label!
     
-    #if os(iOS) || os(OSX)
     var serverManager:ServerManager! //Por seguranca o serverManager nao deve ser iniciado ainda.
-    #endif
     
     var connectTime: NSTimeInterval = 0
     
@@ -71,10 +69,6 @@ class MainMenuScene: GameScene {
             switch (self.state) {
                 
             case states.connecting:
-                
-                #if os(tvOS)
-                    self.nextState = states.hangar
-                #endif
                 
                 if self.buttonOfflineMode.hidden == true {
                     if currentTime - self.connectTime > 3 {
@@ -111,15 +105,13 @@ class MainMenuScene: GameScene {
                 self.nextState = states.connecting
                 self.state = states.connecting
                 
-                #if os(iOS) || os(OSX)
-                    self.addHandlers()
-                    
-                    self.serverManager.socket.connect(timeoutAfter: 10, withTimeoutHandler: { [weak self] in
-                        guard let scene = self else { return }
-                        scene.labelConnectStatus.setText("connection timed out")
-                        scene.serverManager.socket.disconnect()
-                        })
-                #endif
+                self.addHandlers()
+                
+                self.serverManager.socket.connect(timeoutAfter: 10, withTimeoutHandler: { [weak self] in
+                    guard let scene = self else { return }
+                    scene.labelConnectStatus.setText("connection timed out")
+                    scene.serverManager.socket.disconnect()
+                    })
                 
                 break
                 
@@ -134,58 +126,56 @@ class MainMenuScene: GameScene {
     }
     
     func addHandlers() {
-        #if os(iOS) || os(OSX)
-            self.serverManager = ServerManager.sharedInstance
+        self.serverManager = ServerManager.sharedInstance
+        
+        self.serverManager.socket.onAny { [weak self] (socketAnyEvent:SocketAnyEvent) -> Void in
             
-            self.serverManager.socket.onAny { [weak self] (socketAnyEvent:SocketAnyEvent) -> Void in
+            //print(socketAnyEvent.description)
+            
+            guard let scene = self else { return }
+            
+            switch scene.state {
                 
-                //print(socketAnyEvent.description)
-                
-                guard let scene = self else { return }
-                
-                switch scene.state {
+            case states.connecting:
+                switch(socketAnyEvent.event) {
                     
-                case states.connecting:
-                    switch(socketAnyEvent.event) {
-                        
-                    case "connect":
-                        scene.labelConnectStatus.parent?.removeFromParent()
-                        //Troca de scene
-                        scene.nextState = states.hangar
-                        scene.serverManager.socket.emit("userDisplayInfo", scene.serverManager.peerID.displayName)
-                        break
-                        
-                    case "reconnect":
-                        scene.buttonOfflineMode.hidden = false
-                        GameScene.selectedButton = scene.buttonOfflineMode
-                        break
-                        
-                    case "error":
-                        scene.buttonOfflineMode.hidden = false
-                        GameScene.selectedButton = scene.buttonOfflineMode
-                        break
-                        
-                    case "reconnectAttempt":
-                        scene.labelConnectStatus.setText("Reconnect Attempt:  " + (ServerManager.sharedInstance.socket.reconnectAttempts + 1 - (socketAnyEvent.items?.firstObject as! Int)).description)
-                        break
-                        
-                    case "disconnect":
-                        scene.labelConnectStatus.setText("connection timed out")
-                        break
-                        
-                    default:
-                        print(socketAnyEvent.event + " nao foi processado em MainMenuScene " + scene.state.rawValue)
-                        break
-                    }
+                case "connect":
+                    scene.labelConnectStatus.parent?.removeFromParent()
+                    //Troca de scene
+                    scene.nextState = states.hangar
+                    scene.serverManager.socket.emit("userDisplayInfo", scene.serverManager.displayName)
+                    break
                     
+                case "reconnect":
+                    scene.buttonOfflineMode.hidden = false
+                    GameScene.selectedButton = scene.buttonOfflineMode
+                    break
+                    
+                case "error":
+                    scene.buttonOfflineMode.hidden = false
+                    GameScene.selectedButton = scene.buttonOfflineMode
+                    break
+                    
+                case "reconnectAttempt":
+                    scene.labelConnectStatus.setText("Reconnect Attempt:  " + (ServerManager.sharedInstance.socket.reconnectAttempts + 1 - (socketAnyEvent.items?.firstObject as! Int)).description)
+                    break
+                    
+                case "disconnect":
+                    scene.labelConnectStatus.setText("connection timed out")
                     break
                     
                 default:
-                    print(socketAnyEvent.event + " recebido fora do estado esperado em MainMenuScene " + scene.state.rawValue)
+                    print(socketAnyEvent.event + " nao foi processado em MainMenuScene " + scene.state.rawValue)
                     break
                 }
+                
+                break
+                
+            default:
+                print(socketAnyEvent.event + " recebido fora do estado esperado em MainMenuScene " + scene.state.rawValue)
+                break
             }
-        #endif
+        }
     }
     
     override func touchesEnded(taps touches: Set<UITouch>) {
