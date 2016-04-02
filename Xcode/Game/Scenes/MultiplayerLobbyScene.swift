@@ -24,14 +24,14 @@ class MultiplayerLobbyScene: GameScene {
     var state = states.multiplayerLobby
     var nextState = states.multiplayerLobby
     
-    var nextRoomId = ""
-    
     //buttons
     var buttonBack:Button!
     
     #if os(iOS) || os(OSX)
     var serverManager:ServerManager!
     #endif
+    
+    var nextRoom:RoomCell!
     
     var lastSecondUpdate:NSTimeInterval = 0
     
@@ -52,7 +52,7 @@ class MultiplayerLobbyScene: GameScene {
             self.serverManager = ServerManager.sharedInstance
             
             self.addHandlers()
-            self.serverManager.socket.emit("leaveRooms")
+            self.serverManager.socket.emit("leaveAllRooms")
         #endif
         
         self.roomScrollNode = ScrollNode(cells: Array<Control>(), x: 72, y: 83, xAlign: .center, yAlign: .center, spacing: 19, scrollDirection: .vertical)
@@ -70,15 +70,27 @@ class MultiplayerLobbyScene: GameScene {
                 
                 switch scene.state {
                     
+                case states.joinRoom:
+                    
+                    switch(socketAnyEvent.event) {
+                        
+                    case "roomInfo":
+                        //Recebeu a confirmacao do servidor, ja pode ir para o hangar do outro player
+                        scene.nextState = states.joinRoomAccepted
+                        break
+                        
+                    default:
+                        print(socketAnyEvent.event + " nao foi processado em MultiplayerLobbyScene " + scene.state.rawValue)
+                        break
+                    }
+                    
+                    break
+                    
                 case states.multiplayerLobby:
                     
                     switch(socketAnyEvent.event) {
                         
-                    case "joinRoom":
-                        scene.nextState = states.joinRoomAccepted
-                        break
-                        
-                    case "getRoom":
+                    case "roomInfo":
                         
                         if let message = socketAnyEvent.items?.firstObject as? Dictionary<String, AnyObject> {
                             
@@ -103,7 +115,8 @@ class MultiplayerLobbyScene: GameScene {
                                         
                                         roomCell.buttonJoin.addHandler({
                                             scene.serverManager.socket.emit("joinRoom", roomId)
-                                            scene.nextRoomId = roomId
+                                            scene.nextRoom = roomCell
+                                            scene.state = MultiplayerLobbyScene.states.joinRoom
                                             scene.nextState = MultiplayerLobbyScene.states.joinRoom
                                         })
                                         
@@ -146,6 +159,12 @@ class MultiplayerLobbyScene: GameScene {
             switch (self.nextState) {
             case states.hangar:
                 self.view?.presentScene(HangarScene(), transition: self.transition)
+                break
+            case states.joinRoomAccepted:
+                let hangarScene = HangarScene()
+                self.nextRoom.removeFromParent()
+                hangarScene.currentRoom = self.nextRoom
+                self.view?.presentScene(hangarScene, transition: self.transition)
                 break
             default:
                 break

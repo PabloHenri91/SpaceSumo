@@ -37,7 +37,7 @@ class HangarScene: GameScene {
     var buttonGameInfo:Button!
     var buttonChooseMission:Button!
     
-    var currentRoom:RoomCell!
+    var currentRoom:RoomCell?
     
     var nextSector = 0
     
@@ -60,7 +60,6 @@ class HangarScene: GameScene {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     override func didMoveToView(view: SKView) {
         super.didMoveToView(view)
         
@@ -73,8 +72,22 @@ class HangarScene: GameScene {
                 })
                 self.serverManager.socket.disconnect()
             } else {
+                if let roomCell = self.currentRoom {
+                    //entrei no hangar mas ja estava em uma sala
+                    roomCell.screenPosition = CGPoint(x: 91, y: 146)
+                    roomCell.xAlign = .center
+                    roomCell.yAlign = .center
+                    roomCell.buttonJoin.removeFromParent()
+                    roomCell.resetPosition()
+                    
+                    roomCell.names.append(self.serverManager.peerID.displayName)
+                    roomCell.loadRoomInfo(roomId: roomCell.roomId!, names: roomCell.names)
+                } else {
+                    self.currentRoom = RoomCell(x: 91, y: 146, xAlign: .center, yAlign: .center)
+                    self.serverManager.socket.emit("createRoom")
+                }
                 self.addHandlers()
-                self.serverManager.socket.emit("createRoom")
+                
             }
         #endif
         
@@ -106,9 +119,8 @@ class HangarScene: GameScene {
         
         //Serve para setar o foco inicial no tvOS
         GameScene.selectedButton = self.buttonGo
-        
-        self.currentRoom = RoomCell(x: 91, y: 146, xAlign: .center, yAlign: .center)
-        self.addChild(self.currentRoom)
+       
+        self.addChild(self.currentRoom!)//TODO disconnect recebido fora do estado esperado em HangarScene mainMenu, fatal error: unexpectedly found nil while unwrapping an Optional value
     }
     
     override func update(currentTime: NSTimeInterval) {
@@ -209,20 +221,27 @@ class HangarScene: GameScene {
                 
                 switch scene.state {
                     
+                case states.mainMenu:
+                    
+                    switch (socketAnyEvent.event) {
+                        
+                    case "disconnect":
+                        //Desconectou para ir para o mainMenu
+                        break
+                        
+                    default:
+                        print(socketAnyEvent.event + " nao foi processado em HangarScene " + scene.state.rawValue)
+                        break
+                    }
+                    
+                    break
+                    
                 case states.reconnecting:
                     
                     switch (socketAnyEvent.event) {
                         
-                    case "getRoom":
-                        //TODO: peguei de volta as informacoes da sala, e agora?
-                        //print(socketAnyEvent.description)
-                        break
-                        
-                    case "joinRoom":
-                        //recebi do server a confirmacao de que voltei para a minha sala
-                        break
-                        
                     case "disconnect":
+                        print("disconnect")
                         //nao foi possivel reconectar, nao preciso fazer nada aqui
                         break
                         
@@ -239,10 +258,8 @@ class HangarScene: GameScene {
                         
                         //reconnect foi bem sussedido, preciso avisar o server quem sou eu
                         scene.serverManager.socket.emit("userDisplayInfo", scene.serverManager.peerID.displayName)
-                        
-                        //Voltar para a sala atual
-                        scene.serverManager.socket.emit("joinRoom", scene.currentRoom.roomId)
-                        //o servidor vai me emitir getRoom para que eu pegue novamente as informacoes dos sockets da sala?
+                        scene.state = states.hangar
+                        scene.nextState = states.hangar
                         
                         break
                         
@@ -260,12 +277,28 @@ class HangarScene: GameScene {
                     
                     switch (socketAnyEvent.event) {
                         
-                    case "joinRoom":
+                    case "roomInfo":
+                        //Recebi informacoes da sala
+                        if let message = socketAnyEvent.items?.firstObject as? Dictionary<String, AnyObject> {
+                            if let roomId = message["roomId"] as? String {
+                                if let usersDisplayInfo = message["usersDisplayInfo"] as? Array<String> {
+                                    scene.currentRoom?.loadRoomInfo(roomId: roomId, names: usersDisplayInfo)
+                                }
+                            }
+                        }
+                        break
+                        
+                    case "removePlayer":
+                        //TODO: Alguem saiu da sala
+                        scene.serverManager.socket.emit("getRoomInfo", (scene.currentRoom?.roomId)!)
+                        break
+                        
+                    case "addPlayer":
                         //Algum player entrou na minha sala?
                         if let otherName = socketAnyEvent.items?.firstObject as? String {
-                            var names = [scene.serverManager.peerID.displayName]
-                            names.append(otherName)
-                            scene.currentRoom.loadRoomInfo(roomId: scene.currentRoom.roomId, names: names)
+                            var names = scene.currentRoom?.names
+                            names?.append(otherName)
+                            scene.currentRoom!.loadRoomInfo(roomId: scene.currentRoom!.roomId!, names: names!)
                         }
                         break
                         
@@ -278,7 +311,7 @@ class HangarScene: GameScene {
                     case "currentRoomId":
                         
                         if let currentRoomId = socketAnyEvent.items?.firstObject as? String {
-                            scene.currentRoom.loadRoomInfo(roomId: currentRoomId, names: [scene.serverManager.peerID.displayName])
+                            scene.currentRoom!.loadRoomInfo(roomId: currentRoomId, names: [scene.serverManager.peerID.displayName])
                         }
                         
                         break
