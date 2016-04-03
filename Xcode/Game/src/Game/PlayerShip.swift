@@ -10,8 +10,6 @@ import SpriteKit
 
 class PlayerShip: Control {
     
-    static var playerShipSet = Set<PlayerShip>()
-    
     var healthPoints = 10
     
     var maxAngularVelocity:CGFloat = 3
@@ -69,8 +67,6 @@ class PlayerShip: Control {
         self.physicsBody?.linearDamping = 1
         self.physicsBody?.angularDamping = 1
         self.physicsBody?.restitution = 0.5
-        
-        PlayerShip.playerShipSet.insert(self)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -157,10 +153,5 @@ class PlayerShip: Control {
                 self.lastLaser = currentTime
             }
         }
-    }
-    
-    override func removeFromParent() {
-        PlayerShip.playerShipSet.remove(self)
-        super.removeFromParent()
     }
 }

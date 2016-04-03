@@ -49,15 +49,6 @@ class HangarScene: GameScene {
     
     var serverManager = ServerManager.sharedInstance
     
-    init() {
-        super.init()
-        self.nextSector = 0
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func didMoveToView(view: SKView) {
         super.didMoveToView(view)
             

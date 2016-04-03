@@ -68,7 +68,11 @@ class GameScene: SKScene {
         self.blackSpriteNode = BlackSpriteNode()
         self.addChild(self.blackSpriteNode)
         
+        //
         Parallax.parallaxSet = Set<Parallax>()
+        Ufo.ufoSet = Set<Ufo>()
+        Enemy.enemySet = Set<Enemy>()
+        AllyShip.allyShipSet = Set<AllyShip>()
     }
     
     override func didMoveToView(view: SKView) {

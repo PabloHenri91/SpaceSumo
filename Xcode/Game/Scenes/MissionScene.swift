@@ -190,17 +190,19 @@ class MissionScene: GameScene {
                 }
                 
                 if !self.offlineMode {
-                    var data = [AnyObject]()
-                    data.append(self.serverManager.displayName)
-                    data.append(self.playerShip.position.x)
-                    data.append(self.playerShip.position.y)
-                    data.append(self.playerShip.zRotation)
-                    if let physicsBody = self.playerShip.physicsBody {
-                        data.append(physicsBody.velocity.dx)
-                        data.append(physicsBody.velocity.dy)
-                        data.append(physicsBody.angularVelocity)
+                    if AllyShip.allyShipSet.count > 0 {
+                        var data = [AnyObject]()
+                        data.append(self.serverManager.displayName)
+                        data.append(self.playerShip.position.x)
+                        data.append(self.playerShip.position.y)
+                        data.append(self.playerShip.zRotation)
+                        if let physicsBody = self.playerShip.physicsBody {
+                            data.append(physicsBody.velocity.dx)
+                            data.append(physicsBody.velocity.dy)
+                            data.append(physicsBody.angularVelocity)
+                        }
+                        self.serverManager.socket.emit("update", data)
                     }
-                    self.serverManager.socket.emit("update", data)
                 }
                 
                 Ufo.update(currentTime)
