@@ -92,9 +92,9 @@ class MissionScene: GameScene {
         if let roomCell = self.currentRoom {
             for name in roomCell.names {
                 if name != self.serverManager.displayName {
-                    let newPlayerShip = PlayerShip()
-                    newPlayerShip.name = name
-                    self.world.addChild(newPlayerShip)
+                    let newAllyShip = AllyShip()
+                    newAllyShip.name = name
+                    self.world.addChild(newAllyShip)
                 }
             }
         }
@@ -114,19 +114,19 @@ class MissionScene: GameScene {
                     
                 case "update":
                     if let message = socketAnyEvent.items?.firstObject as? [AnyObject] {
-                        for player in PlayerShip.playerShipSet {
+                        for ally in AllyShip.allyShipSet {
                             if let name = message[0] as? String {//TODO: remover message[i]
-                                if player.name == name {
+                                if ally.name == name {
                                     if let x = message[1] as? Double {
-                                        player.position.x = CGFloat(x)
+                                        ally.position.x = CGFloat(x)
                                     }
                                     if let y = message[2] as? Double {
-                                        player.position.y = CGFloat(y)
+                                        ally.position.y = CGFloat(y)
                                     }
                                     if let zRotation = message[3] as? Double {
-                                        player.zRotation = CGFloat(zRotation)
+                                        ally.zRotation = CGFloat(zRotation)
                                     }
-                                    if let physicsBody = player.physicsBody {
+                                    if let physicsBody = ally.physicsBody {
                                         if let dx = message[4] as? Double {
                                             physicsBody.velocity.dx = CGFloat(dx)
                                         }
@@ -137,6 +137,7 @@ class MissionScene: GameScene {
                                             physicsBody.angularVelocity = CGFloat(angularVelocity)
                                         }
                                     }
+                                    break //Encontrou o ally em allyShipSet
                                 }
                             }
                         }
@@ -149,9 +150,9 @@ class MissionScene: GameScene {
                     
                 case "addPlayer":
                     if let message = socketAnyEvent.items?.firstObject as? String {
-                        let newPlayerShip = PlayerShip()
-                        newPlayerShip.name = message
-                        scene.world.addChild(newPlayerShip)
+                        let newAllyShip = AllyShip()
+                        newAllyShip.name = message
+                        scene.world.addChild(newAllyShip)
                     }
                     break
                     
@@ -184,6 +185,10 @@ class MissionScene: GameScene {
                 }
                 
                 self.playerShip.update(currentTime, applyAngularImpulse: applyAngularImpulse, applyForce: applyForce)
+                
+                for ally in AllyShip.allyShipSet {
+                    ally.update(currentTime)
+                }
                 
                 if !self.offlineMode {
                     var data = [AnyObject]()

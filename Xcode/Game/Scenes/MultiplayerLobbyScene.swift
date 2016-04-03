@@ -84,6 +84,10 @@ class MultiplayerLobbyScene: GameScene {
                         }
                         break
                         
+                    case "update":
+                        //Comecou a receber os updates dos outros players
+                        break
+                        
                     case "roomInfo":
                         //Recebeu a confirmacao do servidor, ja pode ir para o hangar do outro player
                         scene.nextState = states.joinRoomAccepted

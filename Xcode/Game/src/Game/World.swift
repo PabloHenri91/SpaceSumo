@@ -59,6 +59,9 @@ class World: SKNode, SKPhysicsContactDelegate {
         case World.categoryBitMask.enemy.rawValue:
             bodyAcategoryBitMask = "enemy"
             break
+        case World.categoryBitMask.allyShip.rawValue:
+            bodyAcategoryBitMask = "allyShip"
+            break
         default:
             bodyAcategoryBitMask = "unknown"
             break
@@ -80,6 +83,9 @@ class World: SKNode, SKPhysicsContactDelegate {
         case World.categoryBitMask.enemy.rawValue:
             bodyBcategoryBitMask = "enemy"
             break
+        case World.categoryBitMask.allyShip.rawValue:
+            bodyBcategoryBitMask = "allyShip"
+            break
         default:
             bodyBcategoryBitMask = "unknown"
             break
@@ -100,6 +106,10 @@ class World: SKNode, SKPhysicsContactDelegate {
             //laser foi criado dentro de ufo precisa fazer nada ainda.
             break
             
+        case World.categoryBitMask.myLaser.rawValue + World.categoryBitMask.allyShip.rawValue:
+            //laser foi criado dentro de allyShip precisa fazer nada ainda.
+            break
+            
         case World.categoryBitMask.laser.rawValue + World.categoryBitMask.enemy.rawValue:
             (self.bodyB.node as? Enemy)?.didBeginContact(self.bodyA, contact: contact)
             break
@@ -109,7 +119,7 @@ class World: SKNode, SKPhysicsContactDelegate {
             break
             
         default:
-            //print("didBeginContact: " + bodyAcategoryBitMask + " -> " + bodyBcategoryBitMask)
+            print("didBeginContact: " + bodyAcategoryBitMask + " -> " + bodyBcategoryBitMask)
             break
         }
     }
@@ -145,6 +155,9 @@ class World: SKNode, SKPhysicsContactDelegate {
         case World.categoryBitMask.enemy.rawValue:
             bodyAcategoryBitMask = "enemy"
             break
+        case World.categoryBitMask.allyShip.rawValue:
+            bodyAcategoryBitMask = "allyShip"
+            break
         default:
             bodyAcategoryBitMask = "unknown"
             break
@@ -165,6 +178,9 @@ class World: SKNode, SKPhysicsContactDelegate {
             break
         case World.categoryBitMask.enemy.rawValue:
             bodyBcategoryBitMask = "enemy"
+            break
+        case World.categoryBitMask.allyShip.rawValue:
+            bodyBcategoryBitMask = "allyShip"
             break
         default:
             bodyBcategoryBitMask = "unknown"
@@ -188,6 +204,10 @@ class World: SKNode, SKPhysicsContactDelegate {
             (self.bodyB.node as? Enemy)?.didEndContact(self.bodyA, contact: contact)
             break
             
+        case World.categoryBitMask.myLaser.rawValue + World.categoryBitMask.allyShip.rawValue:
+            (self.bodyB.node as! AllyShip).didEndContact(self.bodyA, contact: contact)
+            break
+            
         case World.categoryBitMask.playerShip.rawValue + World.categoryBitMask.laser.rawValue:
             //laser ricocheteou no playerShip
             break
@@ -201,7 +221,7 @@ class World: SKNode, SKPhysicsContactDelegate {
             break
             
         default:
-            //print("didEndContact: " + bodyAcategoryBitMask + " -> " + bodyBcategoryBitMask)
+            print("didEndContact: " + bodyAcategoryBitMask + " -> " + bodyBcategoryBitMask)
             break
         }
     }
@@ -223,6 +243,7 @@ class World: SKNode, SKPhysicsContactDelegate {
         static var laser: categoryBitMask { return categoryBitMask(1 << 2) }
         static var ufo: categoryBitMask { return categoryBitMask(1 << 3) }
         static var enemy: categoryBitMask { return categoryBitMask(1 << 4) }
+        static var allyShip: categoryBitMask { return categoryBitMask(1 << 5) }
     }
     
     struct collisionBitMask {
@@ -230,30 +251,36 @@ class World: SKNode, SKPhysicsContactDelegate {
         static var none: UInt32 = 0
         
         static var playerShip: UInt32 =
-        categoryBitMask.playerShip.rawValue |
-            categoryBitMask.laser.rawValue |
-            categoryBitMask.ufo.rawValue |
-            categoryBitMask.enemy.rawValue
+            categoryBitMask.playerShip.rawValue |
+                categoryBitMask.allyShip.rawValue |
+                categoryBitMask.laser.rawValue |
+                categoryBitMask.ufo.rawValue |
+                categoryBitMask.enemy.rawValue
         
         static var myLaser: UInt32 = 0
         
         static var laser: UInt32 =
-        categoryBitMask.playerShip.rawValue |
-            categoryBitMask.laser.rawValue |
-            categoryBitMask.ufo.rawValue |
-            categoryBitMask.enemy.rawValue
+            categoryBitMask.playerShip.rawValue |
+                categoryBitMask.allyShip.rawValue |
+                categoryBitMask.laser.rawValue |
+                categoryBitMask.ufo.rawValue |
+                categoryBitMask.enemy.rawValue
         
         static var ufo: UInt32 =
-        categoryBitMask.playerShip.rawValue |
-            categoryBitMask.laser.rawValue |
-            categoryBitMask.ufo.rawValue |
-            categoryBitMask.enemy.rawValue
+            categoryBitMask.playerShip.rawValue |
+                categoryBitMask.allyShip.rawValue |
+                categoryBitMask.laser.rawValue |
+                categoryBitMask.ufo.rawValue |
+                categoryBitMask.enemy.rawValue
         
         static var enemy: UInt32 =
-        categoryBitMask.playerShip.rawValue |
-            categoryBitMask.laser.rawValue |
-            categoryBitMask.ufo.rawValue |
-            categoryBitMask.enemy.rawValue
+            categoryBitMask.playerShip.rawValue |
+                categoryBitMask.allyShip.rawValue |
+                categoryBitMask.laser.rawValue |
+                categoryBitMask.ufo.rawValue |
+                categoryBitMask.enemy.rawValue
+        
+        static var allyShip: UInt32 = 0
     }
     
     struct contactTestBitMask {
@@ -264,11 +291,13 @@ class World: SKNode, SKPhysicsContactDelegate {
         
         static var myLaser: UInt32 =
         categoryBitMask.playerShip.rawValue |
+            categoryBitMask.allyShip.rawValue |
             categoryBitMask.ufo.rawValue |
             categoryBitMask.enemy.rawValue
         
         static var laser: UInt32 =
         categoryBitMask.playerShip.rawValue |
+            categoryBitMask.allyShip.rawValue |
             categoryBitMask.ufo.rawValue |
             categoryBitMask.enemy.rawValue
         
@@ -279,6 +308,10 @@ class World: SKNode, SKPhysicsContactDelegate {
         static var enemy: UInt32 =
         categoryBitMask.myLaser.rawValue |
             categoryBitMask.laser.rawValue
+        
+        static var allyShip: UInt32 =
+            categoryBitMask.myLaser.rawValue |
+                categoryBitMask.laser.rawValue
         
     }
 }
