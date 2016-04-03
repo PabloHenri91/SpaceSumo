@@ -109,7 +109,7 @@ class World: SKNode, SKPhysicsContactDelegate {
             break
             
         default:
-            print("didBeginContact: " + bodyAcategoryBitMask + " -> " + bodyBcategoryBitMask)
+            //print("didBeginContact: " + bodyAcategoryBitMask + " -> " + bodyBcategoryBitMask)
             break
         }
     }
@@ -201,7 +201,7 @@ class World: SKNode, SKPhysicsContactDelegate {
             break
             
         default:
-            print("didEndContact: " + bodyAcategoryBitMask + " -> " + bodyBcategoryBitMask)
+            //print("didEndContact: " + bodyAcategoryBitMask + " -> " + bodyBcategoryBitMask)
             break
         }
     }

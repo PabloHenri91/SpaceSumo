@@ -10,7 +10,7 @@ import SpriteKit
 
 class MissionScene: GameScene {
     
-    enum states {
+    enum states : String {
         //Estado principal
         case mission
         
@@ -36,6 +36,10 @@ class MissionScene: GameScene {
     
     var parallax:Parallax!
     
+    var offlineMode = true
+    var serverManager = ServerManager.sharedInstance
+    var currentRoom:RoomCell?
+    
     override func didMoveToView(view: SKView) {
         
         super.didMoveToView(view)
@@ -55,15 +59,15 @@ class MissionScene: GameScene {
         
         self.gameCamera.update(self.playerShip.position)
         
-        for _ in 0 ..< 250 {
-            let ufo = Ufo(enemyNode: self.playerShip)
-            self.world.addChild(ufo)
-        }
-        
-        for _ in 0 ..< 250 {
-            let enemy = Enemy(enemyNode: self.playerShip)
-            self.world.addChild(enemy)
-        }
+//        for _ in 0 ..< 250 {
+//            let ufo = Ufo(enemyNode: self.playerShip)
+//            self.world.addChild(ufo)
+//        }
+//        
+//        for _ in 0 ..< 250 {
+//            let enemy = Enemy(enemyNode: self.playerShip)
+//            self.world.addChild(enemy)
+//        }
         
         #if os(iOS) || os(OSX)
             self.buttonBack = Button(textureName: "buttonGraySquare", icon: "back", x: 10, y: 228, xAlign: .left, yAlign: .down)
@@ -72,6 +76,93 @@ class MissionScene: GameScene {
         
         //Serve para setar o foco inicial no tvOS
         GameScene.selectedButton = self.buttonBack
+        
+        self.offlineMode = !(self.serverManager.socket.status == .Connected)
+        
+        if self.offlineMode {
+            self.serverManager.socket.onAny({ (SocketAnyEvent) in
+            })
+        } else {
+            self.addHandlers()
+            self.addPlayers()
+        }
+    }
+    
+    func addPlayers() {
+        if let roomCell = self.currentRoom {
+            for name in roomCell.names {
+                if name != self.serverManager.displayName {
+                    let newPlayerShip = PlayerShip()
+                    newPlayerShip.name = name
+                    self.world.addChild(newPlayerShip)
+                }
+            }
+        }
+    }
+    
+    func addHandlers() {
+        self.serverManager.socket.onAny { [weak self] (socketAnyEvent:SocketAnyEvent) in
+            
+            //print(socketAnyEvent.description)
+            
+            guard let scene = self else { return }
+            
+            switch scene.state {
+                
+            case states.mission:
+                switch (socketAnyEvent.event) {
+                    
+                case "update":
+                    if let message = socketAnyEvent.items?.firstObject as? [AnyObject] {
+                        for player in PlayerShip.playerShipSet {
+                            if let name = message[0] as? String {
+                                if player.name == name {
+                                    if let x = message[1] as? Double {
+                                        player.position.x = CGFloat(x)
+                                    }
+                                    if let y = message[2] as? Double {
+                                        player.position.y = CGFloat(y)
+                                    }
+                                    if let zRotation = message[3] as? Double {
+                                        player.zRotation = CGFloat(zRotation)
+                                    }
+                                    if let physicsBody = player.physicsBody {
+                                        if let dx = message[4] as? Int64 {
+                                            physicsBody.velocity.dx = CGFloat(dx)
+                                        }
+                                        if let dy = message[5] as? Int64 {
+                                            physicsBody.velocity.dx = CGFloat(dy)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    break
+                    
+                case "removePlayer":
+                    print(socketAnyEvent.description)//TODO remover player
+                    break
+                    
+                case "addPlayer":
+                    if let message = socketAnyEvent.items?.firstObject as? String {
+                        let newPlayerShip = PlayerShip()
+                        newPlayerShip.name = message
+                        scene.world.addChild(newPlayerShip)
+                    }
+                    break
+                    
+                default:
+                    print(socketAnyEvent.event + " nao foi processado em MissionScene " + scene.state.rawValue)
+                    break
+                }
+                break
+                
+            default:
+                print(socketAnyEvent.event + " recebido fora do estado esperado em MissionScene " + scene.state.rawValue)
+                break
+            }
+        }
     }
     
     override func update(currentTime: NSTimeInterval) {
@@ -90,6 +181,19 @@ class MissionScene: GameScene {
                 }
                 
                 self.playerShip.update(currentTime, applyAngularImpulse: applyAngularImpulse, applyForce: applyForce)
+                
+                if !self.offlineMode {
+                    var data = [AnyObject]()
+                    data.append(self.serverManager.displayName)
+                    data.append(self.playerShip.position.x)
+                    data.append(self.playerShip.position.y)
+                    data.append(self.playerShip.zRotation)
+                    if let physicsBody = self.playerShip.physicsBody {
+                        data.append(physicsBody.velocity.dx)
+                        data.append(physicsBody.velocity.dy)
+                    }
+                    self.serverManager.socket.emit("update", data)
+                }
                 
                 Ufo.update(currentTime)
                 Enemy.update(currentTime)

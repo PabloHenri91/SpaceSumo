@@ -166,8 +166,10 @@ class HangarScene: GameScene {
                 break
                 
             case states.mission:
-                
+                self.serverManager.socket.emit("update", "go!")
                 let scene = MissionScene(size:CGSize(width: 1920.0/2, height: 1080.0/2))
+                self.currentRoom?.removeFromParent()
+                scene.currentRoom = self.currentRoom
                 self.view?.presentScene(scene, transition: self.transition)
                 break
                 
@@ -203,7 +205,7 @@ class HangarScene: GameScene {
     }
     
     func addHandlers() {
-        self.serverManager.socket.onAny { [weak self] (socketAnyEvent:SocketAnyEvent) -> Void in
+        self.serverManager.socket.onAny { [weak self] (socketAnyEvent:SocketAnyEvent) in
             
             //print(socketAnyEvent.description)
             
@@ -281,6 +283,15 @@ class HangarScene: GameScene {
                     } else {
                         scene.lastSocketErrorMessage = "Something went very very wrong.. oops!!"
                     }
+                    break
+                    
+                case "update":
+                    if let message = socketAnyEvent.items?.firstObject {
+                        if message as? String == "go!" {
+                            scene.nextState = states.mission
+                        }
+                    }
+                    
                     break
                     
                 case "roomInfo":
