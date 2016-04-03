@@ -20,7 +20,7 @@ function Player(game, socket) {
     
     // Aqui são definidos os comportamentos de todos os handlers.
     // Não devem ser atribuidas muitas linhas de código para cada handler 
-    // pois estas linhas são alocadas novamente para cada socket conectado.
+    // pois estas linhas são alocadas novamente para cada Socket conectado.
     
     // Cada socket.on é executado quando o Game recebe um evento do Socket.
     
@@ -113,7 +113,7 @@ Player.prototype.createRoom = function() {
 Player.prototype.setUserDisplayInfo = function(userDisplayInfo) {
     
     // Definindo userDisplayInfo para manter informaçõees basicas do player
-    // de forma que possam ser acessadas diretamente pelo socket.
+    // de forma que possam ser acessadas diretamente pelo Socket.
     this.socket.userDisplayInfo = userDisplayInfo;
 };
 
@@ -149,7 +149,7 @@ Player.prototype.getRoomInfo = function(roomId) {
         roomInfo.usersDisplayInfo.push(someSocket.userDisplayInfo);
     }
     
-    // Respondendo ao Socket com a informação de uma sala e Sockets 
+    // Respondendo ao Socket com a informação de uma sala e Sockets da sala. 
     this.socket.emit('roomInfo', roomInfo);
     console.log(this.socket.name + ' emit roomInfo ');
 };
@@ -188,16 +188,16 @@ Game.prototype.addHandlers = function() {
     // Evita retenção do Game dentro dos handlers.
     var game = this;
     
-    // Define a referência da lista de todos os sockets conectados. 
-    // esta lista é atualizada automaticamente pelo socket.io.
+    // Define a referência da lista de todos os Sockets conectados. 
+    // Esta lista é atualizada automaticamente pelo socket.io.
     this.connectedSockets = this.io.sockets.connected;
     
     // Define a referência da lista de todas as salas ativas.
-    // esta lista é atualizada automaticamente pelo socket.io
+    // Esta lista é atualizada automaticamente pelo socket.io
     this.allRooms = this.io.sockets.adapter.rooms;
     
-    // Todos os sockets que quando conectados passam por aqui.
-    // Depois disso são tradados pelos handlers do Players.
+    // Todo evento connection passa por aqui.
+    // Depois disso o tratamento dos outros eventos é definido pelo Player.
     this.io.sockets.on("connection", function(socket) {
         
         // Define um nome ao Socket, somente para debug.
