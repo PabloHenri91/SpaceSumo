@@ -284,7 +284,7 @@
 		84B762CA1C85CA7F0016C24B /* BlackSpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackSpriteNode.swift; sourceTree = "<group>"; };
 		84C77A5F1C96DD9200B180BB /* CharacterGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterGenerator.swift; sourceTree = "<group>"; };
 		84C77A611C96DDF700B180BB /* DefaultNameList */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DefaultNameList; sourceTree = "<group>"; };
-		84CA57F61CA2DE940095811F /* SpaceGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		84CA57F61CA2DE940095811F /* Game tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Game tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D3D3061CB1699D00F192B6 /* AllyShip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllyShip.swift; sourceTree = "<group>"; };
 		84D8B0891C9C7FC1001F8C1F /* RoomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -515,7 +515,7 @@
 			children = (
 				848678C11C748B0C0049BB1F /* Game iOS.app */,
 				848678F41C748B470049BB1F /* Game OSX.app */,
-				84CA57F61CA2DE940095811F /* SpaceGame.app */,
+				84CA57F61CA2DE940095811F /* Game tvOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -557,9 +557,9 @@
 			productReference = 848678F41C748B470049BB1F /* Game OSX.app */;
 			productType = "com.apple.product-type.application";
 		};
-		84CA57F51CA2DE940095811F /* SpaceGame */ = {
+		84CA57F51CA2DE940095811F /* Game tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 84CA58081CA2DE950095811F /* Build configuration list for PBXNativeTarget "SpaceGame" */;
+			buildConfigurationList = 84CA58081CA2DE950095811F /* Build configuration list for PBXNativeTarget "Game tvOS" */;
 			buildPhases = (
 				84CA57F21CA2DE940095811F /* Sources */,
 				84CA57F31CA2DE940095811F /* Frameworks */,
@@ -569,9 +569,9 @@
 			);
 			dependencies = (
 			);
-			name = SpaceGame;
+			name = "Game tvOS";
 			productName = "Game tvOS";
-			productReference = 84CA57F61CA2DE940095811F /* SpaceGame.app */;
+			productReference = 84CA57F61CA2DE940095811F /* Game tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -618,7 +618,7 @@
 			targets = (
 				848678C01C748B0C0049BB1F /* Game iOS */,
 				848678F31C748B470049BB1F /* Game OSX */,
-				84CA57F51CA2DE940095811F /* SpaceGame */,
+				84CA57F51CA2DE940095811F /* Game tvOS */,
 			);
 		};
 /* End PBXProject section */
@@ -906,10 +906,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Game iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PabloHenri91.SpaceGame--iOS-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Game iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -921,10 +923,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Game iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PabloHenri91.SpaceGame--iOS-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Game iOS-Bridging-Header.h";
 			};
 			name = Release;
@@ -1113,7 +1117,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		84CA58081CA2DE950095811F /* Build configuration list for PBXNativeTarget "SpaceGame" */ = {
+		84CA58081CA2DE950095811F /* Build configuration list for PBXNativeTarget "Game tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84CA58091CA2DE950095811F /* Debug */,

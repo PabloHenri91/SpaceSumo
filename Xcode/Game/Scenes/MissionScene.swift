@@ -136,8 +136,7 @@ class MissionScene: GameScene {
                                         if let angularVelocity = message[6] as? Double {
                                             physicsBody.angularVelocity = CGFloat(angularVelocity)
                                         }
-                                    }
-                                    break //Encontrou o ally em allyShipSet
+                                    } //Encontrou o ally em allyShipSet
                                 }
                             }
                         }
