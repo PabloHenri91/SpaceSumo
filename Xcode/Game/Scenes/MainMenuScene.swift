@@ -139,6 +139,11 @@ class MainMenuScene: GameScene {
             case states.connecting:
                 switch(socketAnyEvent.event) {
                     
+                case "error":
+                    scene.buttonOfflineMode.hidden = false
+                    GameScene.selectedButton = scene.buttonOfflineMode
+                    break
+                    
                 case "connect":
                     scene.labelConnectStatus.parent?.removeFromParent()
                     //Troca de scene
@@ -147,11 +152,6 @@ class MainMenuScene: GameScene {
                     break
                     
                 case "reconnect":
-                    scene.buttonOfflineMode.hidden = false
-                    GameScene.selectedButton = scene.buttonOfflineMode
-                    break
-                    
-                case "error":
                     scene.buttonOfflineMode.hidden = false
                     GameScene.selectedButton = scene.buttonOfflineMode
                     break

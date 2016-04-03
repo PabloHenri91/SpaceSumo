@@ -18,6 +18,8 @@ class MultiplayerLobbyScene: GameScene {
         case hangar
         case joinRoom
         case joinRoomAccepted
+        case connectionClosed
+        case mainMenu
     }
     
     //Estados iniciais
@@ -27,9 +29,7 @@ class MultiplayerLobbyScene: GameScene {
     //buttons
     var buttonBack:Button!
     
-    #if os(iOS) || os(OSX)
     var serverManager:ServerManager!
-    #endif
     
     var nextRoom:RoomCell!
     
@@ -37,6 +37,8 @@ class MultiplayerLobbyScene: GameScene {
     
     var roomScrollNode:ScrollNode!
     var needToGetAllRooms = true
+    
+    var lastSocketErrorMessage = ""
 
     override func didMoveToView(view: SKView) {
         super.didMoveToView(view)
@@ -74,6 +76,14 @@ class MultiplayerLobbyScene: GameScene {
                     
                     switch(socketAnyEvent.event) {
                         
+                    case "error":
+                        if let message = socketAnyEvent.items?.firstObject as? String {
+                            scene.lastSocketErrorMessage = message
+                        } else {
+                            scene.lastSocketErrorMessage = "Something went very very wrong.. oops!!"
+                        }
+                        break
+                        
                     case "roomInfo":
                         //Recebeu a confirmacao do servidor, ja pode ir para o hangar do outro player
                         scene.nextState = states.joinRoomAccepted
@@ -89,6 +99,14 @@ class MultiplayerLobbyScene: GameScene {
                 case states.multiplayerLobby:
                     
                     switch(socketAnyEvent.event) {
+                        
+                    case "error":
+                        if let message = socketAnyEvent.items?.firstObject as? String {
+                            scene.lastSocketErrorMessage = message
+                        } else {
+                            scene.lastSocketErrorMessage = "Something went very very wrong.. oops!!"
+                        }
+                        break
                         
                     case "roomInfo":
                         
@@ -166,6 +184,26 @@ class MultiplayerLobbyScene: GameScene {
                 hangarScene.currentRoom = self.nextRoom
                 self.view?.presentScene(hangarScene, transition: self.transition)
                 break
+            case states.connectionClosed:
+                let box = Box(textureName: "boxWhite256x64")
+                let label = Label(text: self.lastSocketErrorMessage, x:128, y:32)
+                box.addChild(label)
+                self.addChild(box)
+                
+                self.blackSpriteNode.zPosition = box.zPosition - 1
+                self.blackSpriteNode.hidden = false
+                
+                let button = Button(textureName: "buttonGray", text:"ok   D:", x: 119, y: 142, xAlign: .center, yAlign: .down)
+                self.addChild(button)
+                button.zPosition = self.blackSpriteNode.zPosition + 1
+                
+                button.addHandler( { [weak self] in
+                    guard let scene = self else { return }
+                    //Troca de scene
+                    scene.nextState = states.mainMenu
+                    })
+                
+                break
             default:
                 break
             }
@@ -173,18 +211,16 @@ class MultiplayerLobbyScene: GameScene {
         
         if currentTime - self.lastSecondUpdate > 1 { // Executado uma vez por segundo
             
-            #if os(iOS) || os(OSX)
-                if (self.serverManager.socket.status == .Closed) {
-                    //TODO: connectionClosed
-                } else {
-                    if self.needToGetAllRooms == true {
-                        //self.needToGetAllRooms = false
-                        self.serverManager.socket.emit("getAllRooms")
-                    }
+            if (self.serverManager.socket.status == .Closed) {
+                self.nextState = states.connectionClosed
+            } else {
+                if self.needToGetAllRooms == true {
+                    //self.needToGetAllRooms = false
+                    self.serverManager.socket.emit("getAllRooms")
                 }
-                
-                //print(self.serverManager.socket.status.description)
-            #endif
+            }
+            
+            //print(self.serverManager.socket.status.description)
             
             self.lastSecondUpdate = currentTime
         }

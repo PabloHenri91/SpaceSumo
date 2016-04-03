@@ -215,6 +215,14 @@ class HangarScene: GameScene {
                 
                 switch (socketAnyEvent.event) {
                     
+                case "error":
+                    if let message = socketAnyEvent.items?.firstObject as? String {
+                        scene.lastSocketErrorMessage = message
+                    } else {
+                        scene.lastSocketErrorMessage = "Something went very very wrong.. oops!!"
+                    }
+                    break
+                    
                 case "disconnect":
                     //Desconectou para ir para o mainMenu
                     break
@@ -230,17 +238,17 @@ class HangarScene: GameScene {
                 
                 switch (socketAnyEvent.event) {
                     
-                case "disconnect":
-                    print("disconnect")
-                    //nao foi possivel reconectar, nao preciso fazer nada aqui
-                    break
-                    
                 case "error":
                     if let message = socketAnyEvent.items?.firstObject as? String {
                         scene.lastSocketErrorMessage = message
                     } else {
                         scene.lastSocketErrorMessage = "Something went very very wrong.. oops!!"
                     }
+                    break
+                    
+                case "disconnect":
+                    print("disconnect")
+                    //nao foi possivel reconectar, nao preciso fazer nada aqui
                     break
                     
                 case "connect":
@@ -267,6 +275,14 @@ class HangarScene: GameScene {
                 
                 switch (socketAnyEvent.event) {
                     
+                case "error":
+                    if let message = socketAnyEvent.items?.firstObject as? String {
+                        scene.lastSocketErrorMessage = message
+                    } else {
+                        scene.lastSocketErrorMessage = "Something went very very wrong.. oops!!"
+                    }
+                    break
+                    
                 case "roomInfo":
                     //Recebi informacoes da sala
                     if let message = socketAnyEvent.items?.firstObject as? Dictionary<String, AnyObject> {
@@ -279,7 +295,6 @@ class HangarScene: GameScene {
                     break
                     
                 case "removePlayer":
-                    //TODO: Alguem saiu da sala
                     scene.serverManager.socket.emit("getRoomInfo", (scene.currentRoom?.roomId)!)
                     break
                     
@@ -304,14 +319,6 @@ class HangarScene: GameScene {
                         scene.currentRoom!.loadRoomInfo(roomId: currentRoomId, names: [scene.serverManager.displayName])
                     }
                     
-                    break
-                    
-                case "error":
-                    if let message = socketAnyEvent.items?.firstObject as? String {
-                        scene.lastSocketErrorMessage = message
-                    } else {
-                        scene.lastSocketErrorMessage = "Something went very very wrong.. oops!!"
-                    }
                     break
                     
                 default:
