@@ -115,7 +115,7 @@ class MissionScene: GameScene {
                 case "update":
                     if let message = socketAnyEvent.items?.firstObject as? [AnyObject] {
                         for player in PlayerShip.playerShipSet {
-                            if let name = message[0] as? String {
+                            if let name = message[0] as? String {//TODO: remover message[i]
                                 if player.name == name {
                                     if let x = message[1] as? Double {
                                         player.position.x = CGFloat(x)
@@ -127,11 +127,14 @@ class MissionScene: GameScene {
                                         player.zRotation = CGFloat(zRotation)
                                     }
                                     if let physicsBody = player.physicsBody {
-                                        if let dx = message[4] as? Int64 {
+                                        if let dx = message[4] as? Double {
                                             physicsBody.velocity.dx = CGFloat(dx)
                                         }
-                                        if let dy = message[5] as? Int64 {
-                                            physicsBody.velocity.dx = CGFloat(dy)
+                                        if let dy = message[5] as? Double {
+                                            physicsBody.velocity.dy = CGFloat(dy)
+                                        }
+                                        if let angularVelocity = message[6] as? Double {
+                                            physicsBody.angularVelocity = CGFloat(angularVelocity)
                                         }
                                     }
                                 }
@@ -191,6 +194,7 @@ class MissionScene: GameScene {
                     if let physicsBody = self.playerShip.physicsBody {
                         data.append(physicsBody.velocity.dx)
                         data.append(physicsBody.velocity.dy)
+                        data.append(physicsBody.angularVelocity)
                     }
                     self.serverManager.socket.emit("update", data)
                 }

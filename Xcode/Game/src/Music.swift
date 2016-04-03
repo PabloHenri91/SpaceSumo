@@ -23,7 +23,7 @@ class Music: NSObject {
             
             var auxName:[String] = name.componentsSeparatedByString(".")
             
-            let backgroundMusicURL = NSBundle.mainBundle().URLForResource(auxName[0], withExtension: auxName[1])
+            let backgroundMusicURL = NSBundle.mainBundle().URLForResource(auxName[0], withExtension: auxName[1])// TODO: remover auxName[i]
             
             do {
                 try self.audioPlayer = AVAudioPlayer(contentsOfURL: backgroundMusicURL!)
