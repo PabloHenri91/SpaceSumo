@@ -50,12 +50,10 @@ class MultiplayerLobbyScene: GameScene {
             self.addChild(self.buttonBack)
         #endif
         
-        #if os(iOS) || os(OSX)
-            self.serverManager = ServerManager.sharedInstance
-            
-            self.setHandlers()
-            self.serverManager.socket.emit("leaveAllRooms")
-        #endif
+        self.serverManager = ServerManager.sharedInstance
+        
+        self.setHandlers()
+        self.serverManager.socket.emit("leaveAllRooms")
         
         self.roomScrollNode = ScrollNode(cells: Array<Control>(), x: 72, y: 83, xAlign: .center, yAlign: .center, spacing: 19, scrollDirection: .vertical)
         
@@ -63,7 +61,6 @@ class MultiplayerLobbyScene: GameScene {
     }
     
     func setHandlers() {
-        #if os(iOS) || os(OSX)
             self.serverManager.socket.onAny { [weak self] (socketAnyEvent:SocketAnyEvent) -> Void in
                 
             //print(socketAnyEvent.description)
@@ -169,7 +166,6 @@ class MultiplayerLobbyScene: GameScene {
                     break
                 }
             }
-        #endif
     }
     
     override func update(currentTime: NSTimeInterval) {
@@ -246,7 +242,7 @@ class MultiplayerLobbyScene: GameScene {
                 let location = touch.locationInNode(self)
                 switch (self.state) {
                 case states.multiplayerLobby:
-                    if(self.buttonBack.containsPoint(location)) {
+                    if(self.buttonBack.containsPoint(location)) {//TODO: fatal error: unexpectedly found nil while unwrapping an Optional value
                         self.nextState = states.hangar
                         return
                     }

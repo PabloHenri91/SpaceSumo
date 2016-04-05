@@ -64,11 +64,9 @@ class HangarScene: GameScene {
             self.setHandlers()
             if let roomId = self.serverManager.roomId {
                 
+                // Entrei no hangar mas ja estava em uma sala.
                 self.serverManager.socket.emit("getRoomInfo", roomId)
                 
-                // Entrei no hangar mas ja estava em uma sala.
-                // Carregando informacoes da sala na roomCell.
-                self.serverManager.usersDisplayInfo.append(self.serverManager.userDisplayInfo)
                 self.roomCell.loadRoomInfo(roomId: roomId, usersDisplayInfo: self.serverManager.usersDisplayInfo)
             } else {
                 self.serverManager.usersDisplayInfo = [UserDisplayInfo]()
