@@ -53,7 +53,7 @@ class MultiplayerLobbyScene: GameScene {
         #if os(iOS) || os(OSX)
             self.serverManager = ServerManager.sharedInstance
             
-            self.addHandlers()
+            self.setHandlers()
             self.serverManager.socket.emit("leaveAllRooms")
         #endif
         
@@ -62,7 +62,7 @@ class MultiplayerLobbyScene: GameScene {
         self.addChild(self.roomScrollNode)
     }
     
-    func addHandlers() {
+    func setHandlers() {
         #if os(iOS) || os(OSX)
             self.serverManager.socket.onAny { [weak self] (socketAnyEvent:SocketAnyEvent) -> Void in
                 
@@ -131,9 +131,16 @@ class MultiplayerLobbyScene: GameScene {
                                 if (doIHaveThisRoom == true) {
                                     
                                 } else {
-                                    if let usersDisplayInfo = message["usersDisplayInfo"] as? Array<String> {
+                                    if let rawUsersDisplayInfo = message["usersDisplayInfo"] as? [[String]] {
+                                        
                                         let roomCell = RoomCell()
-                                        roomCell.loadLobbyRoom(roomId: roomId, names: usersDisplayInfo)
+                                        var usersDisplayInfo = [UserDisplayInfo]()
+                                        
+                                        for var rawUserDisplayInfo in rawUsersDisplayInfo {
+                                            usersDisplayInfo.append(UserDisplayInfo(socketId: rawUserDisplayInfo[0], displayName: rawUserDisplayInfo[1]))
+                                        }
+                                        
+                                        roomCell.loadLobbyRoom(roomId: roomId, usersDisplayInfo: usersDisplayInfo)
                                         
                                         roomCell.buttonJoin.addHandler({
                                             scene.serverManager.socket.emit("joinRoom", roomId)
@@ -184,8 +191,8 @@ class MultiplayerLobbyScene: GameScene {
                 break
             case states.joinRoomAccepted:
                 let hangarScene = HangarScene()
-                self.nextRoom.removeFromParent()
-                hangarScene.currentRoom = self.nextRoom
+                hangarScene.serverManager.roomId = nextRoom.roomId
+                hangarScene.serverManager.usersDisplayInfo = nextRoom.usersDisplayInfo
                 self.view?.presentScene(hangarScene, transition: self.transition)
                 break
             case states.connectionClosed:

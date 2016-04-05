@@ -105,7 +105,7 @@ class MainMenuScene: GameScene {
                 self.nextState = states.connecting
                 self.state = states.connecting
                 
-                self.addHandlers()
+                self.setHandlers()
                 
                 self.serverManager.socket.connect(timeoutAfter: 10, withTimeoutHandler: { [weak self] in
                     guard let scene = self else { return }
@@ -125,7 +125,7 @@ class MainMenuScene: GameScene {
         }
     }
     
-    func addHandlers() {
+    func setHandlers() {
         self.serverManager = ServerManager.sharedInstance
         
         self.serverManager.socket.onAny { [weak self] (socketAnyEvent:SocketAnyEvent) -> Void in
@@ -148,7 +148,7 @@ class MainMenuScene: GameScene {
                     scene.labelConnectStatus.parent?.removeFromParent()
                     //Troca de scene
                     scene.nextState = states.hangar
-                    scene.serverManager.socket.emit("userDisplayInfo", scene.serverManager.displayName)
+                    scene.serverManager.socket.emit("userDisplayInfo", scene.serverManager.userDisplayInfo.displayName!)
                     break
                     
                 case "reconnect":

@@ -105,16 +105,16 @@ Player.prototype.createRoom = function() {
     //Definindo roomId no Socket para marcar a sala criada.
     this.socket.roomId = this.socket.id;
     
-    // Respondendo ao Socket para que ele saiba o id da sala em que esta dentro.
-    this.socket.emit('currentRoomId', this.socket.id);
-    console.log(this.socket.name + ' emit currentRoomId ');
+    // Respondendo ao Socket para que ele saiba o seu id.
+    this.socket.emit('mySocketId', this.socket.id);
+    console.log(this.socket.name + ' emit mySocketId ');
 };
 
 Player.prototype.setUserDisplayInfo = function(userDisplayInfo) {
     
     // Definindo userDisplayInfo para manter informaçõees basicas do player
     // de forma que possam ser acessadas diretamente pelo Socket.
-    this.socket.userDisplayInfo = userDisplayInfo;
+    this.socket.userDisplayInfo = [this.socket.id, userDisplayInfo];
 };
 
 Player.prototype.setUserInfo = function(userInfo) {
@@ -183,7 +183,7 @@ Player.prototype.disconnect = function() {
 
 // Adicionando handlers ao Game
 Game.prototype.addHandlers = function() {
-    console.log('addHandlers()');
+    console.log('setHandlers()');
     
     // Evita retenção do Game dentro dos handlers.
     var game = this;

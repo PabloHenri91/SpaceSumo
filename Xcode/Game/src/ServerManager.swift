@@ -21,7 +21,10 @@ class ServerManager {
     //Multiplayer Online
     var socket:SocketIOClient!
     
-    var displayName:String!
+    var userDisplayInfo:UserDisplayInfo!
+    
+    var roomId:String?
+    var usersDisplayInfo:[UserDisplayInfo]!
     
      init() {
     
@@ -29,16 +32,16 @@ class ServerManager {
         )
         
         //self.socket = SocketIOClient(socketURL: NSURL(string:"http://Pablos-MacBook-Pro.local:8900")!, options: options)
-        //self.socket = SocketIOClient(socketURL: NSURL(string:"http://172.16.3.149:8900")!, options: options)
-        self.socket = SocketIOClient(socketURL: NSURL(string:"http://181.41.197.181:8900")!, options: options)// Host1Plus
+        self.socket = SocketIOClient(socketURL: NSURL(string:"http://172.16.3.149:8900")!, options: options)
+        //self.socket = SocketIOClient(socketURL: NSURL(string:"http://181.41.197.181:8900")!, options: options)// Host1Plus
         
         
         #if os(iOS) || os(tvOS)
-            self.displayName = UIDevice.currentDevice().name
+            self.userDisplayInfo = UserDisplayInfo(displayName: UIDevice.currentDevice().name)
         #endif
         
         #if os(OSX)
-            self.displayName = NSHost.currentHost().localizedName!
+            self.userDisplayInfo = UserDisplayInfo(displayName: NSHost.currentHost().localizedName!)
         #endif
         
         //self.displayName = CharacterGenerator().getName(.random, gender: .random)

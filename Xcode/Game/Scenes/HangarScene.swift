@@ -37,7 +37,7 @@ class HangarScene: GameScene {
     var buttonGameInfo:Button!
     var buttonChooseMission:Button!
     
-    var currentRoom:RoomCell?
+    var roomCell:RoomCell!
     
     var nextSector = 0
     
@@ -54,27 +54,26 @@ class HangarScene: GameScene {
             
         self.offlineMode = !(self.serverManager.socket.status == .Connected)
         
+        self.roomCell = RoomCell(x: 91, y: 146, xAlign: .center, yAlign: .center)
+        
         if self.offlineMode {
             self.serverManager.socket.onAny({ (SocketAnyEvent) in
             })
             self.serverManager.socket.disconnect()
-            self.currentRoom = RoomCell(x: 91, y: 146, xAlign: .center, yAlign: .center)
         } else {
-            if let roomCell = self.currentRoom {
-                //entrei no hangar mas ja estava em uma sala
-                roomCell.screenPosition = CGPoint(x: 91, y: 146)
-                roomCell.xAlign = .center
-                roomCell.yAlign = .center
-                roomCell.buttonJoin.removeFromParent()
-                roomCell.resetPosition()
+            self.setHandlers()
+            if let roomId = self.serverManager.roomId {
                 
-                roomCell.names.append(self.serverManager.displayName)
-                roomCell.loadRoomInfo(roomId: roomCell.roomId!, names: roomCell.names)
+                self.serverManager.socket.emit("getRoomInfo", roomId)
+                
+                // Entrei no hangar mas ja estava em uma sala.
+                // Carregando informacoes da sala na roomCell.
+                self.serverManager.usersDisplayInfo.append(self.serverManager.userDisplayInfo)
+                self.roomCell.loadRoomInfo(roomId: roomId, usersDisplayInfo: self.serverManager.usersDisplayInfo)
             } else {
-                self.currentRoom = RoomCell(x: 91, y: 146, xAlign: .center, yAlign: .center)
+                self.serverManager.usersDisplayInfo = [UserDisplayInfo]()
                 self.serverManager.socket.emit("createRoom")
             }
-            self.addHandlers()
         }
         
         self.addChild(Control(textureName: "background", z:-1000, xAlign: .center, yAlign: .center))
@@ -106,7 +105,7 @@ class HangarScene: GameScene {
         //Serve para setar o foco inicial no tvOS
         GameScene.selectedButton = self.buttonGo
        
-        self.addChild(self.currentRoom!)//TODO disconnect recebido fora do estado esperado em HangarScene mainMenu, fatal error: unexpectedly found nil while unwrapping an Optional value
+        self.addChild(self.roomCell)
     }
     
     override func update(currentTime: NSTimeInterval) {
@@ -158,9 +157,7 @@ class HangarScene: GameScene {
                 
             case states.mission:
                 self.serverManager.socket.emit("update", "go!")
-                let scene = MissionScene(size:CGSize(width: 1920.0/2, height: 1080.0/2))
-                self.currentRoom?.removeFromParent()
-                scene.currentRoom = self.currentRoom
+                let scene = MissionScene(size:CGSize(width: (1920.0 + 1334)/2, height: (1080.0 + 750)/2))
                 self.view?.presentScene(scene, transition: self.transition)
                 break
                 
@@ -195,7 +192,7 @@ class HangarScene: GameScene {
         }
     }
     
-    func addHandlers() {
+    func setHandlers() {
         self.serverManager.socket.onAny { [weak self] (socketAnyEvent:SocketAnyEvent) in
             
             //print(socketAnyEvent.description)
@@ -218,6 +215,7 @@ class HangarScene: GameScene {
                     
                 case "disconnect":
                     //Desconectou para ir para o mainMenu
+                    scene.serverManager.roomId = nil
                     break
                     
                 default:
@@ -248,7 +246,7 @@ class HangarScene: GameScene {
                     print("reconectou!")
                     
                     //reconnect foi bem sussedido, preciso avisar o server quem sou eu
-                    scene.serverManager.socket.emit("userDisplayInfo", scene.serverManager.displayName)
+                    scene.serverManager.socket.emit("userDisplayInfo", scene.serverManager.userDisplayInfo.displayName!)
                     scene.state = states.hangar
                     scene.nextState = states.hangar
                     
@@ -287,26 +285,26 @@ class HangarScene: GameScene {
                     
                 case "roomInfo":
                     //Recebi informacoes da sala
-                    if let message = socketAnyEvent.items?.firstObject as? Dictionary<String, AnyObject> {
+                    if let message = socketAnyEvent.items?.firstObject as? [String : AnyObject] {
                         if let roomId = message["roomId"] as? String {
-                            if let usersDisplayInfo = message["usersDisplayInfo"] as? Array<String> {
-                                scene.currentRoom?.loadRoomInfo(roomId: roomId, names: usersDisplayInfo)
+                            if let rawUsersDisplayInfo = message["usersDisplayInfo"] as? [[String]] {
+                                var usersDisplayInfo = [UserDisplayInfo]()
+                                for var rawUserDisplayInfo in rawUsersDisplayInfo {
+                                    usersDisplayInfo.append(UserDisplayInfo(socketId: rawUserDisplayInfo[0], displayName: rawUserDisplayInfo[1]))
+                                }
+                                scene.serverManager.usersDisplayInfo = usersDisplayInfo
+                                scene.roomCell.loadRoomInfo(roomId: roomId, usersDisplayInfo: usersDisplayInfo)
                             }
                         }
                     }
                     break
                     
                 case "removePlayer":
-                    scene.serverManager.socket.emit("getRoomInfo", (scene.currentRoom?.roomId)!)
+                    scene.serverManager.socket.emit("getRoomInfo", scene.serverManager.roomId!)//TODO: nao precisa emitir
                     break
                     
                 case "addPlayer":
-                    //Algum player entrou na minha sala?
-                    if let otherName = socketAnyEvent.items?.firstObject as? String {
-                        var names = scene.currentRoom?.names
-                        names?.append(otherName)
-                        scene.currentRoom!.loadRoomInfo(roomId: scene.currentRoom!.roomId!, names: names!)
-                    }
+                     scene.serverManager.socket.emit("getRoomInfo", scene.serverManager.roomId!)//TODO: nao precisa emitir
                     break
                     
                 case "reconnect":
@@ -315,12 +313,13 @@ class HangarScene: GameScene {
                     scene.nextState = states.reconnecting
                     break
                     
-                case "currentRoomId":
-                    
-                    if let currentRoomId = socketAnyEvent.items?.firstObject as? String {
-                        scene.currentRoom!.loadRoomInfo(roomId: currentRoomId, names: [scene.serverManager.displayName])
+                case "mySocketId":
+                    if let mySocketId = socketAnyEvent.items?.firstObject as? String {
+                        scene.serverManager.roomId = mySocketId
+                        scene.serverManager.userDisplayInfo.socketId = mySocketId
+                        scene.serverManager.usersDisplayInfo = [scene.serverManager.userDisplayInfo]
+                        scene.roomCell.loadRoomInfo(roomId: mySocketId, usersDisplayInfo: scene.serverManager.usersDisplayInfo)
                     }
-                    
                     break
                     
                 default:

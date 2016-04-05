@@ -262,7 +262,6 @@ class World: SKNode, SKPhysicsContactDelegate {
         static var laser: UInt32 =
             categoryBitMask.playerShip.rawValue |
                 categoryBitMask.allyShip.rawValue |
-                categoryBitMask.laser.rawValue |
                 categoryBitMask.ufo.rawValue |
                 categoryBitMask.enemy.rawValue
         

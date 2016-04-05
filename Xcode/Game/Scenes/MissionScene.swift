@@ -38,7 +38,6 @@ class MissionScene: GameScene {
     
     var offlineMode = true
     var serverManager = ServerManager.sharedInstance
-    var currentRoom:RoomCell?
     
     override func didMoveToView(view: SKView) {
         
@@ -83,24 +82,23 @@ class MissionScene: GameScene {
             self.serverManager.socket.onAny({ (SocketAnyEvent) in
             })
         } else {
-            self.addHandlers()
+            self.setHandlers()
             self.addPlayers()
         }
     }
     
     func addPlayers() {
-        if let roomCell = self.currentRoom {
-            for name in roomCell.names {
-                if name != self.serverManager.displayName {
-                    let newAllyShip = AllyShip()
-                    newAllyShip.name = name
-                    self.world.addChild(newAllyShip)
-                }
+        for userDisplayInfo in self.serverManager.usersDisplayInfo {
+            print(userDisplayInfo.socketId! + " " + self.serverManager.userDisplayInfo.socketId!)
+            if userDisplayInfo.socketId! != self.serverManager.userDisplayInfo.socketId! {
+                let newAllyShip = AllyShip()
+                newAllyShip.name = userDisplayInfo.socketId!
+                self.world.addChild(newAllyShip)
             }
         }
     }
     
-    func addHandlers() {
+    func setHandlers() {
         self.serverManager.socket.onAny { [weak self] (socketAnyEvent:SocketAnyEvent) in
             
             //print(socketAnyEvent.description)
@@ -115,8 +113,8 @@ class MissionScene: GameScene {
                 case "update":
                     if let message = socketAnyEvent.items?.firstObject as? [AnyObject] {
                         for ally in AllyShip.allyShipSet {
-                            if let name = message[0] as? String {//TODO: remover message[i]
-                                if ally.name == name {
+                            if let socketId = message[0] as? String {//TODO: remover message[i]
+                                if ally.name! == socketId {
                                     if let x = message[1] as? Double {
                                         ally.position.x = CGFloat(x)
                                     }
@@ -136,7 +134,7 @@ class MissionScene: GameScene {
                                         if let angularVelocity = message[6] as? Double {
                                             physicsBody.angularVelocity = CGFloat(angularVelocity)
                                         }
-                                    } //Encontrou o ally em allyShipSet
+                                    } //TODO: Encontrou o ally em allyShipSet
                                 }
                             }
                         }
@@ -145,12 +143,19 @@ class MissionScene: GameScene {
                     
                 case "removePlayer":
                     print(socketAnyEvent.description)//TODO remover player
+                    if let message = socketAnyEvent.items?.firstObject as? String {
+                        for allyShip in AllyShip.allyShipSet {
+                            if allyShip.name! == message {
+                                allyShip.removeFromParent()
+                            }
+                        }
+                    }
                     break
                     
                 case "addPlayer":
-                    if let message = socketAnyEvent.items?.firstObject as? String {
+                    if let message = socketAnyEvent.items?.firstObject as? [String] {
                         let newAllyShip = AllyShip()
-                        newAllyShip.name = message
+                        newAllyShip.name = message[0]
                         scene.world.addChild(newAllyShip)
                     }
                     break
@@ -192,7 +197,7 @@ class MissionScene: GameScene {
                 if !self.offlineMode {
                     if AllyShip.allyShipSet.count > 0 {
                         var data = [AnyObject]()
-                        data.append(self.serverManager.displayName)
+                        data.append(self.serverManager.userDisplayInfo.socketId!)//TODO: if let
                         data.append(self.playerShip.position.x)
                         data.append(self.playerShip.position.y)
                         data.append(self.playerShip.zRotation)
