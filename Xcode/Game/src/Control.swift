@@ -110,6 +110,12 @@ class Control: SKNode {
             y: -Int(screenPosition.y/Config.screenScale) - Int(Config.translate.y * CGFloat(yAlign.rawValue)))
     }
     
+    func getPositionWithScreenPosition(screenPosition:CGPoint) -> CGPoint {
+        return CGPoint(
+            x: Int(screenPosition.x/Config.screenScale) + Int(Config.translate.x * CGFloat(xAlign.rawValue)),
+            y: -Int(screenPosition.y/Config.screenScale) - Int(Config.translate.y * CGFloat(yAlign.rawValue)))
+    }
+    
     override func removeFromParent() {
         Control.controlList.remove(self)
         super.removeFromParent()

@@ -16,6 +16,7 @@ class AllyShip: Control {
     var maxAngularVelocity:CGFloat = 3
     
     var lastLaser:NSTimeInterval = 0
+    var lastOnScreen:NSTimeInterval = 0
     
     var force:CGFloat = 50
     
@@ -26,22 +27,22 @@ class AllyShip: Control {
         var textureName:String!
         let i = Int.random(min: 1, max: 3).description
         
-        switch Int.random(4) {
-        case 0:
-            textureName = "playerShip\(i)_blue"
-            break
-        case 1:
-            textureName = "playerShip\(i)_green"
-            break
-        case 2:
-            textureName = "playerShip\(i)_orange"
-            break
-        case 3:
+//        switch Int.random(4) {
+//        case 0:
+//            textureName = "playerShip\(i)_blue"
+//            break
+//        case 1:
+//            textureName = "playerShip\(i)_green"
+//            break
+//        case 2:
+//            textureName = "playerShip\(i)_orange"
+//            break
+//        case 3:
             textureName = "playerShip\(i)_red"
-            break
-        default:
-            break
-        }
+//            break
+//        default:
+//            break
+//        }
         
         let spriteNode = SKSpriteNode(imageNamed: textureName)
         spriteNode.texture?.filteringMode = .Linear
@@ -156,6 +157,24 @@ class AllyShip: Control {
                 self.lastLaser = currentTime
             }
         }
+    }
+    
+    func isOnScree() -> Bool {
+        
+        if(self.position.x >  Config.currentSceneSize.width) {
+            return false
+        }
+        if(self.position.x < 0) {
+            return false
+        }
+        if(self.position.y > 0) {
+            return false
+        }
+        if(self.position.y <  -Config.currentSceneSize.height) {
+            return false
+        }
+        
+        return true
     }
     
     override func removeFromParent() {

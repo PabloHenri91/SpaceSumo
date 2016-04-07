@@ -10,6 +10,8 @@ import SpriteKit
 
 class CharacterGenerator {
     
+    static let sharedInstance = CharacterGenerator()
+    
     struct indexOfNames : OptionSetType {
         typealias RawValue = UInt32
         private var value: UInt32 = 0

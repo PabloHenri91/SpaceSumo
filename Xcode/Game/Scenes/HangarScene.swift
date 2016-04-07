@@ -155,7 +155,7 @@ class HangarScene: GameScene {
                 
             case states.mission:
                 self.serverManager.socket.emit("update", "go!")
-                let scene = MissionScene(size:CGSize(width: (1920.0 + 1334)/2, height: (1080.0 + 750)/2))
+                let scene = MissionScene(size:CGSize(width: ((1920/2) + 1334)/2, height: ((1080/2) + 750)/2))
                 self.view?.presentScene(scene, transition: self.transition)
                 break
                 

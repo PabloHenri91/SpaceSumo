@@ -44,8 +44,13 @@ function Player(game, socket) {
     });
     
     this.socket.on('update', function(data) {
-        //console.log(socket.name + ' on update ');
+        console.log(socket.name + ' on update ');
         player.update(data);
+    });
+    
+    this.socket.on('someData', function(data) {
+        console.log(socket.name + ' on someData ');
+        player.someData(data);
     });
     
     this.socket.on('leaveAllRooms', function() {
@@ -127,7 +132,14 @@ Player.prototype.setUserInfo = function(userInfo) {
 Player.prototype.update = function(data) {
     for (var roomId in this.socket.adapter.sids[this.socket.id]) {
         this.socket.broadcast.to(roomId).emit('update', data);
-        //console.log(this.socket.name + ' broadcast emit update ');
+        console.log(this.socket.name + ' broadcast emit update ');
+    }
+};
+
+Player.prototype.someData = function(data) {
+    for (var roomId in this.socket.adapter.sids[this.socket.id]) {
+        this.socket.broadcast.to(roomId).emit('someData', data);
+        console.log(this.socket.name + ' broadcast emit someData ');
     }
 };
 

@@ -203,6 +203,9 @@
 		84D8A16B1CB08590001DCA50 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AADFF21C7B5C0400AE04DD /* WebSocket.swift */; };
 		84D8B08A1C9C7FC1001F8C1F /* RoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D8B0891C9C7FC1001F8C1F /* RoomCell.swift */; };
 		84D8B08C1C9C7FC1001F8C1F /* RoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D8B0891C9C7FC1001F8C1F /* RoomCell.swift */; };
+		84ED10811CB671FE007DFEBE /* BotAllyShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ED10801CB671FE007DFEBE /* BotAllyShip.swift */; };
+		84ED10821CB67286007DFEBE /* BotAllyShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ED10801CB671FE007DFEBE /* BotAllyShip.swift */; };
+		84ED10831CB67287007DFEBE /* BotAllyShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ED10801CB671FE007DFEBE /* BotAllyShip.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -291,6 +294,7 @@
 		84CA57F61CA2DE940095811F /* SpaceGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D3D3061CB1699D00F192B6 /* AllyShip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllyShip.swift; sourceTree = "<group>"; };
 		84D8B0891C9C7FC1001F8C1F /* RoomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomCell.swift; sourceTree = "<group>"; };
+		84ED10801CB671FE007DFEBE /* BotAllyShip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BotAllyShip.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -481,6 +485,7 @@
 			isa = PBXGroup;
 			children = (
 				84D3D3061CB1699D00F192B6 /* AllyShip.swift */,
+				84ED10801CB671FE007DFEBE /* BotAllyShip.swift */,
 				8407F6281C8DE7CB004F253F /* Enemy.swift */,
 				8407F6291C8DE7CB004F253F /* Laser.swift */,
 				8407F62A1C8DE7CB004F253F /* Parallax.swift */,
@@ -714,6 +719,7 @@
 				8407F62E1C8DE7CB004F253F /* Enemy.swift in Sources */,
 				848679411C748F2C0049BB1F /* GameColors.swift in Sources */,
 				84AAE0171C7B5C0400AE04DD /* SocketIOClientOption.swift in Sources */,
+				84ED10811CB671FE007DFEBE /* BotAllyShip.swift in Sources */,
 				84AAE00E1C7B5C0400AE04DD /* SocketEngineWebsocket.swift in Sources */,
 				84AAE0141C7B5C0400AE04DD /* SocketIOClient.swift in Sources */,
 				84AAE02F1C7B5C0400AE04DD /* WebSocket.swift in Sources */,
@@ -758,6 +764,7 @@
 				84AAE0311C7B5C0400AE04DD /* WebSocket.swift in Sources */,
 				84AAE0281C7B5C0400AE04DD /* SocketStringReader.swift in Sources */,
 				84D8B08C1C9C7FC1001F8C1F /* RoomCell.swift in Sources */,
+				84ED10821CB67286007DFEBE /* BotAllyShip.swift in Sources */,
 				84359D6D1CB2F7DA00BA030C /* UserDisplayInfo.swift in Sources */,
 				848678F71C748B470049BB1F /* AppDelegate.swift in Sources */,
 				84AADFF51C7B5C0400AE04DD /* SocketAckEmitter.swift in Sources */,
@@ -847,6 +854,7 @@
 				841440811CA970F900BD1528 /* Laser.swift in Sources */,
 				84D8A1661CB08590001DCA50 /* SocketPacket.swift in Sources */,
 				841440841CA970F900BD1528 /* RoomCell.swift in Sources */,
+				84ED10831CB67287007DFEBE /* BotAllyShip.swift in Sources */,
 				8414406C1CA970F100BD1528 /* Box.swift in Sources */,
 				8414406F1CA970F100BD1528 /* Config.swift in Sources */,
 				841440761CA970F100BD1528 /* GameFonts.swift in Sources */,
@@ -1068,7 +1076,6 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Game tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PabloHenri91.SpaceGame--tvOS-";
@@ -1087,7 +1094,6 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Game tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PabloHenri91.SpaceGame--tvOS-";

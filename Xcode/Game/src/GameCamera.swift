@@ -10,8 +10,8 @@ import SpriteKit
 
 class GameCamera: SKNode {
     
-    let arenaSizeWidth:CGFloat = (1920.0 + 1334)/2
-    let arenaSizeHeight:CGFloat = (1080.0 + 750)/2
+    let arenaSizeWidth:CGFloat = ((1920/2) + 1334)/2
+    let arenaSizeHeight:CGFloat = ((1080/2) + 750)/2
     
     func update(newPosition:CGPoint) {
         

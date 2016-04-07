@@ -15,6 +15,7 @@ class PlayerShip: Control {
     var maxAngularVelocity:CGFloat = 3
     
     var lastLaser:NSTimeInterval = 0
+    var lastOnScreen:NSTimeInterval = 0
     
     var force:CGFloat = 25
     
@@ -25,22 +26,22 @@ class PlayerShip: Control {
         var textureName:String!
         let i = Int.random(min: 1, max: 3).description
         
-        switch Int.random(4) {
-        case 0:
+//        switch Int.random(4) {
+//        case 0:
             textureName = "playerShip\(i)_blue"
-            break
-        case 1:
-            textureName = "playerShip\(i)_green"
-            break
-        case 2:
-            textureName = "playerShip\(i)_orange"
-            break
-        case 3:
-            textureName = "playerShip\(i)_red"
-            break
-        default:
-            break
-        }
+//            break
+//        case 1:
+//            textureName = "playerShip\(i)_green"
+//            break
+//        case 2:
+//            textureName = "playerShip\(i)_orange"
+//            break
+//        case 3:
+//            textureName = "playerShip\(i)_red"
+//            break
+//        default:
+//            break
+//        }
         
         let spriteNode = SKSpriteNode(imageNamed: textureName)
         spriteNode.texture?.filteringMode = .Linear
@@ -52,7 +53,7 @@ class PlayerShip: Control {
         spriteNode.size = CGSize(width: size.width * scale, height: size.height * scale)
         
         
-        self.screenPosition = CGPoint(x: Int.random(Int((1920.0 + 1334)/2)), y: Int.random(Int((1080.0 + 750)/2)))//TODO: posicao inicial
+        self.screenPosition = CGPoint(x: Int.random(Int(((1920/2) + 1334)/2)), y: Int.random(Int(((1080/2) + 750)/2)))//TODO: posicao inicial
         self.yAlign = .center
         self.xAlign = .center
         
@@ -121,6 +122,16 @@ class PlayerShip: Control {
         
         if self.healthPoints > 0 {
             
+            if isOnScree() {
+                self.lastOnScreen = currentTime
+            }
+            
+            if currentTime - self.lastOnScreen > 1 {
+                self.screenPosition = CGPoint(x: ((1920/2) + 1334)/4, y: ((1080/2) + 750)/4)
+                self.resetPosition()
+                self.physicsBody?.velocity = CGVector.zero
+            }
+            
             if applyAngularImpulse || applyForce {
                 
                 let dx = Float(Control.totalDx)
@@ -154,5 +165,23 @@ class PlayerShip: Control {
                 self.lastLaser = currentTime
             }
         }
+    }
+    
+    func isOnScree() -> Bool {
+        
+        if(self.position.x >  Config.currentSceneSize.width) {
+            return false
+        }
+        if(self.position.x < 0) {
+            return false
+        }
+        if(self.position.y > 0) {
+            return false
+        }
+        if(self.position.y <  -Config.currentSceneSize.height) {
+            return false
+        }
+        
+        return true
     }
 }
