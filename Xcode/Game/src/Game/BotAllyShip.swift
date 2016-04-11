@@ -10,6 +10,8 @@ import SpriteKit
 
 class BotAllyShip: AllyShip {
     
+    static var botAllyShipSet = Set<BotAllyShip>()
+    
     var lastMovingChange:Double = 0
     var movingChangeInterval:Double = 0
     var movingType = 0
@@ -25,10 +27,19 @@ class BotAllyShip: AllyShip {
         self.physicsBody?.categoryBitMask = World.categoryBitMask.botAllyShip.rawValue
         self.physicsBody?.collisionBitMask = World.collisionBitMask.botAllyShip
         self.physicsBody?.contactTestBitMask = World.contactTestBitMask.botAllyShip
+        
+        AllyShip.allyShipSet.remove(self)
+        BotAllyShip.botAllyShipSet.insert(self)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override class func update(currentTime: NSTimeInterval) {
+        for botAllyShip in BotAllyShip.botAllyShipSet {
+            botAllyShip.update(currentTime)
+        }
     }
 
     override func update(currentTime: NSTimeInterval) {
@@ -56,8 +67,8 @@ class BotAllyShip: AllyShip {
                 
             case 0:
                 break
-              
-                //I want to go to the center of the screen
+                
+            //I want to go to the center of the screen
             case 1:
                 self.destination = self.getPositionWithScreenPosition(CGPoint(x: ((1920/2) + 1334)/4, y: ((1080/2) + 750)/4))
                 self.needToMove = true
@@ -91,5 +102,10 @@ class BotAllyShip: AllyShip {
                 }
             }
         }
+    }
+    
+    override func removeFromParent() {
+        BotAllyShip.botAllyShipSet.remove(self)
+        super.removeFromParent()
     }
 }

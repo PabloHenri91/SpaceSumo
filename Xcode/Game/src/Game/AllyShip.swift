@@ -66,8 +66,8 @@ class AllyShip: Control {
         self.physicsBody?.collisionBitMask = World.collisionBitMask.allyShip
         self.physicsBody?.contactTestBitMask = World.contactTestBitMask.allyShip
         
-        self.physicsBody?.linearDamping = 1
-        self.physicsBody?.angularDamping = 1
+        self.physicsBody?.linearDamping = 2
+        self.physicsBody?.angularDamping = 2
         self.physicsBody?.restitution = 0.5
         
         AllyShip.allyShipSet.insert(self)
@@ -120,37 +120,17 @@ class AllyShip: Control {
         }
     }
     
+    class func update(currentTime: NSTimeInterval) {
+        for allyShip in AllyShip.allyShipSet {
+            allyShip.update(currentTime)
+        }
+    }
+    
     func update(currentTime: NSTimeInterval) {
         
         if self.healthPoints > 0 {
             
-//            if applyAngularImpulse || applyForce {
-//                
-//                let dx = Float(Control.totalDx)
-//                let dy = Float(Control.totalDy)
-//                let auxRotation = CGFloat(-atan2f(dx, dy))
-//                var totalRotation = auxRotation - self.zRotation
-//                
-//                if applyAngularImpulse  {
-//                    
-//                    if(abs(self.physicsBody!.angularVelocity) < self.maxAngularVelocity) {
-//                        
-//                        while(totalRotation < -CGFloat(M_PI)) { totalRotation += CGFloat(M_PI * 2) }
-//                        while(totalRotation >  CGFloat(M_PI)) { totalRotation -= CGFloat(M_PI * 2) }
-//                        
-//                        self.physicsBody?.applyAngularImpulse(totalRotation * 0.0001)
-//                    }
-//                }
-//                
-//                if applyForce {
-//                    if(abs(totalRotation) < 1) {
-//                        self.physicsBody?.applyForce(CGVector(dx: -sin(self.zRotation) * self.force, dy: cos(self.zRotation) * self.force))
-//                    }
-//                }
-//            }
-            
             //Laser
-            
             if currentTime - self.lastLaser > 0.1 {
                 let laser = Laser(position: self.position, zRotation: self.zRotation, shooter: self.physicsBody!)
                 self.parent?.addChild(laser)

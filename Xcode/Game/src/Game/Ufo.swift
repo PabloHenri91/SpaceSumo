@@ -74,8 +74,8 @@ class Ufo: Control {
         self.physicsBody?.collisionBitMask = World.collisionBitMask.ufo
         self.physicsBody?.contactTestBitMask = World.contactTestBitMask.ufo
         
-        self.physicsBody?.linearDamping = 1
-        self.physicsBody?.angularDamping = 1
+        self.physicsBody?.linearDamping = 2
+        self.physicsBody?.angularDamping = 2
         self.physicsBody?.restitution = 0.5
         
         Ufo.ufoSet.insert(self)

@@ -6,6 +6,15 @@ app.listen(8900);
 function Game() {
     console.log('Game()');
     this.io = require('socket.io')(app);
+    
+    // Define a referência da lista de todos os Sockets conectados. 
+    // Esta lista é atualizada automaticamente pelo socket.io.
+    this.connectedSockets = this.io.sockets.connected;
+    
+    // Define a referência da lista de todas as salas ativas.
+    // Esta lista é atualizada automaticamente pelo socket.io
+    this.allRooms = this.io.sockets.adapter.rooms;
+    
     this.addHandlers();
 }
 
@@ -187,7 +196,7 @@ Player.prototype.joinRoom = function(roomId) {
 Player.prototype.disconnect = function() {
     
     //Executa leaveRoom ao ser desconectado para avisar aos outros Sockets que foi desconectado.
-    this.leaveRoom(this.socket.roomId);
+    this.leaveAllRooms();
 };
 
 // Fim da implementacao das funções do Player.
@@ -199,14 +208,6 @@ Game.prototype.addHandlers = function() {
     
     // Evita retenção do Game dentro dos handlers.
     var game = this;
-    
-    // Define a referência da lista de todos os Sockets conectados. 
-    // Esta lista é atualizada automaticamente pelo socket.io.
-    this.connectedSockets = this.io.sockets.connected;
-    
-    // Define a referência da lista de todas as salas ativas.
-    // Esta lista é atualizada automaticamente pelo socket.io
-    this.allRooms = this.io.sockets.adapter.rooms;
     
     // Todo evento connection passa por aqui.
     // Depois disso o tratamento dos outros eventos é definido pelo Player.

@@ -39,7 +39,8 @@ class MissionScene: GameScene {
     var offlineMode = true
     var serverManager = ServerManager.sharedInstance
     
-    var botNames:[String]?
+    var lastEmit:NSTimeInterval = 0
+    var emitInterval:NSTimeInterval = 1/30
     
     override func didMoveToView(view: SKView) {
         
@@ -60,16 +61,6 @@ class MissionScene: GameScene {
         
         self.gameCamera.update(self.playerShip.position)
         
-//        for _ in 0 ..< 250 {
-//            let ufo = Ufo(enemyNode: self.playerShip)
-//            self.world.addChild(ufo)
-//        }
-//        
-//        for _ in 0 ..< 250 {
-//            let enemy = Enemy(enemyNode: self.playerShip)
-//            self.world.addChild(enemy)
-//        }
-        
         #if os(iOS) || os(OSX)
             self.buttonBack = Button(textureName: "buttonGraySquare", icon: "back", x: 10, y: 228, xAlign: .left, yAlign: .down)
             self.addChild(self.buttonBack)
@@ -81,11 +72,22 @@ class MissionScene: GameScene {
         self.offlineMode = !(self.serverManager.socket.status == .Connected)
         
         if self.offlineMode {
+            self.addBots()
             self.serverManager.socket.onAny({ (SocketAnyEvent) in
             })
         } else {
             self.setHandlers()
             self.addPlayers()
+        }
+    }
+    
+    func addBots() {
+        for _ in 0..<2 {
+            let newAllyShip = BotAllyShip()
+            var someName = CharacterGenerator.sharedInstance.getName(.random, gender: .random)
+            someName = someName.componentsSeparatedByString(" ").first!
+            newAllyShip.name = "Bot " + someName
+            self.world.addChild(newAllyShip)
         }
     }
     
@@ -103,23 +105,18 @@ class MissionScene: GameScene {
         }
         
         if self.serverManager.roomId! == self.serverManager.userDisplayInfo.socketId! {
+            var botNames = [String]()
+            botNames.append("botNames")
             
-            self.botNames = [String]()
-            
-            if var botNames = self.botNames {
-                botNames.append("botNames")
-                
-                for _ in i..<3 {
-                    let newAllyShip = BotAllyShip()
-                    var someName = CharacterGenerator.sharedInstance.getName(.random, gender: .random)
-                    someName = someName.componentsSeparatedByString(" ").first!
-                    newAllyShip.name = "Bot " + someName
-                    botNames.append(newAllyShip.name!)
-                    self.world.addChild(newAllyShip)
-                }
-                self.serverManager.socket.emit("someData", botNames)
-                self.botNames = botNames
+            for _ in i..<3 {
+                let newBotAllyShip = BotAllyShip()
+                var someName = CharacterGenerator.sharedInstance.getName(.random, gender: .random)
+                someName = someName.componentsSeparatedByString(" ").first!
+                newBotAllyShip.name = "Bot " + someName
+                botNames.append(newBotAllyShip.name!)
+                self.world.addChild(newBotAllyShip)
             }
+            self.serverManager.socket.emit("someData", botNames)
         }
     }
     
@@ -157,7 +154,8 @@ class MissionScene: GameScene {
                 case "update":
                     if let message = socketAnyEvent.items?.firstObject as? [AnyObject] {
                         for ally in AllyShip.allyShipSet {
-                            if let socketId = message[0] as? String {//TODO: remover message[i]
+                            if let socketId = message[0] as? String {//TODO: remover message[i] ???
+                                
                                 if ally.name! == socketId {
                                     if let x = message[1] as? Double {
                                         ally.position.x = CGFloat(x)
@@ -166,19 +164,20 @@ class MissionScene: GameScene {
                                         ally.position.y = CGFloat(y)
                                     }
                                     if let zRotation = message[3] as? Double {
-                                        ally.zRotation = CGFloat(zRotation)
+                                        ally.zRotation = CGFloat(zRotation/1000000)
                                     }
                                     if let physicsBody = ally.physicsBody {
                                         if let dx = message[4] as? Double {
-                                            physicsBody.velocity.dx = CGFloat(dx)
+                                            physicsBody.velocity.dx = CGFloat(dx/1000000)
                                         }
                                         if let dy = message[5] as? Double {
-                                            physicsBody.velocity.dy = CGFloat(dy)
+                                            physicsBody.velocity.dy = CGFloat(dy/1000000)
                                         }
                                         if let angularVelocity = message[6] as? Double {
-                                            physicsBody.angularVelocity = CGFloat(angularVelocity)
+                                            physicsBody.angularVelocity = CGFloat(angularVelocity/1000000)
                                         }
-                                    } //TODO: Encontrou o ally em allyShipSet
+                                    }
+                                    break
                                 }
                             }
                         }
@@ -216,6 +215,46 @@ class MissionScene: GameScene {
         }
     }
     
+    override func didSimulatePhysics() {
+        super.didSimulatePhysics()
+        
+        if !self.offlineMode {
+            if AllyShip.allyShipSet.count > 0 {
+                
+                if GameScene.currentTime - self.lastEmit > self.emitInterval {
+                    self.lastEmit = GameScene.currentTime
+                    
+                    var data = [AnyObject]()
+                    data.append(self.serverManager.userDisplayInfo.socketId!)//TODO: if let
+                    data.append(Int(self.playerShip.position.x))
+                    data.append(Int(self.playerShip.position.y))
+                    data.append(Int(self.playerShip.zRotation * 1000000))
+                    if let physicsBody = self.playerShip.physicsBody {
+                        data.append(Int(physicsBody.velocity.dx * 1000000))
+                        data.append(Int(physicsBody.velocity.dy * 1000000))
+                        data.append(Int(physicsBody.angularVelocity * 1000000))
+                    }
+                    
+                    self.serverManager.socket.emit("update", data)
+                    
+                    for botAllyShip in BotAllyShip.botAllyShipSet {
+                        var data = [AnyObject]()
+                        data.append(botAllyShip.name!)
+                        data.append(Int(botAllyShip.position.x))
+                        data.append(Int(botAllyShip.position.y))
+                        data.append(Int(botAllyShip.zRotation * 1000000))
+                        if let physicsBody = botAllyShip.physicsBody {
+                            data.append(Int(physicsBody.velocity.dx * 1000000))
+                            data.append(Int(physicsBody.velocity.dy * 1000000))
+                            data.append(Int(physicsBody.angularVelocity * 1000000))
+                        }
+                        self.serverManager.socket.emit("update", data)
+                    }
+                }
+            }
+        }
+    }
+    
     override func update(currentTime: NSTimeInterval) {
         super.update(currentTime)
         
@@ -232,51 +271,9 @@ class MissionScene: GameScene {
                 }
                 
                 self.playerShip.update(currentTime, applyAngularImpulse: applyAngularImpulse, applyForce: applyForce)
+                AllyShip.update(currentTime)
+                BotAllyShip.update(currentTime)
                 
-                for ally in AllyShip.allyShipSet {
-                    ally.update(currentTime)
-                }
-                
-                if !self.offlineMode {
-                    if AllyShip.allyShipSet.count > 0 {
-                        var data = [AnyObject]()
-                        data.append(self.serverManager.userDisplayInfo.socketId!)//TODO: if let
-                        data.append(self.playerShip.position.x)
-                        data.append(self.playerShip.position.y)
-                        data.append(self.playerShip.zRotation)
-                        if let physicsBody = self.playerShip.physicsBody {
-                            data.append(physicsBody.velocity.dx)
-                            data.append(physicsBody.velocity.dy)
-                            data.append(physicsBody.angularVelocity)
-                        }
-                        
-                        self.serverManager.socket.emit("update", data)
-                        
-                        if let botNames = self.botNames {
-                            for botName in botNames {
-                                for allyShip in AllyShip.allyShipSet {
-                                    if allyShip.name! == botName {
-                                        var data = [AnyObject]()
-                                        print(allyShip.name!)
-                                        data.append(allyShip.name!)
-                                        data.append(allyShip.position.x)
-                                        data.append(allyShip.position.y)
-                                        data.append(allyShip.zRotation)
-                                        if let physicsBody = allyShip.physicsBody {
-                                            data.append(physicsBody.velocity.dx)
-                                            data.append(physicsBody.velocity.dy)
-                                            data.append(physicsBody.angularVelocity)
-                                        }
-                                        self.serverManager.socket.emit("update", data)
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                
-                Ufo.update(currentTime)
-                Enemy.update(currentTime)
                 break
             default:
                 break

@@ -154,7 +154,7 @@ class HangarScene: GameScene {
                 break
                 
             case states.mission:
-                self.serverManager.socket.emit("update", "go!")
+                self.serverManager.socket.emit("someData", "go!")
                 let scene = MissionScene(size:CGSize(width: ((1920/2) + 1334)/2, height: ((1080/2) + 750)/2))
                 self.view?.presentScene(scene, transition: self.transition)
                 break
@@ -272,7 +272,7 @@ class HangarScene: GameScene {
                     }
                     break
                     
-                case "update":
+                case "someData":
                     if let message = socketAnyEvent.items?.firstObject {
                         if message as? String == "go!" {
                             scene.nextState = states.mission

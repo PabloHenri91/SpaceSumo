@@ -79,8 +79,8 @@ class Enemy: Control {
         self.physicsBody?.collisionBitMask = World.collisionBitMask.enemy
         self.physicsBody?.contactTestBitMask = World.contactTestBitMask.enemy
         
-        self.physicsBody?.linearDamping = 1
-        self.physicsBody?.angularDamping = 1
+        self.physicsBody?.linearDamping = 2
+        self.physicsBody?.angularDamping = 2
         self.physicsBody?.restitution = 0.5
         
         Enemy.enemySet.insert(self)

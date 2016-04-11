@@ -66,8 +66,8 @@ class PlayerShip: Control {
         self.physicsBody?.collisionBitMask = World.collisionBitMask.playerShip
         self.physicsBody?.contactTestBitMask = World.contactTestBitMask.playerShip
         
-        self.physicsBody?.linearDamping = 1
-        self.physicsBody?.angularDamping = 1
+        self.physicsBody?.linearDamping = 2
+        self.physicsBody?.angularDamping = 2
         self.physicsBody?.restitution = 0.5
     }
     

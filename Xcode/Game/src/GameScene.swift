@@ -73,6 +73,7 @@ class GameScene: SKScene {
         Ufo.ufoSet = Set<Ufo>()
         Enemy.enemySet = Set<Enemy>()
         AllyShip.allyShipSet = Set<AllyShip>()
+        BotAllyShip.botAllyShipSet = Set<BotAllyShip>()
     }
     
     override func didMoveToView(view: SKView) {
