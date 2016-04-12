@@ -21,8 +21,7 @@ class BotAllyShip: AllyShip {
     override init() {
         super.init()
         
-        self.screenPosition = CGPoint(x: Int.random(Int(((1920/2) + 1334)/2)), y: Int.random(Int(((1080/2) + 750)/2)))
-        self.resetPosition()
+        self.position = CGPoint(x: Int.random(Int(GameCamera.arenaSizeWidth)), y: -Int.random(Int(GameCamera.arenaSizeHeight)))
         
         self.physicsBody?.categoryBitMask = World.categoryBitMask.botAllyShip.rawValue
         self.physicsBody?.collisionBitMask = World.collisionBitMask.botAllyShip
@@ -51,9 +50,9 @@ class BotAllyShip: AllyShip {
                 self.lastOnScreen = currentTime
             }
             
-            if currentTime - self.lastOnScreen > 1 {
-                self.screenPosition = CGPoint(x: ((1920/2) + 1334)/4, y: ((1080/2) + 750)/4)
-                self.resetPosition()
+            if currentTime - self.lastOnScreen > 0 {
+                self.position = CGPoint(x: GameCamera.arenaSizeWidth/2, y: -GameCamera.arenaSizeHeight/2)
+                
                 self.physicsBody?.velocity = CGVector.zero
                 
                 if let name = self.name {
@@ -81,7 +80,7 @@ class BotAllyShip: AllyShip {
                 
             //I want to go to the center of the screen
             case 1:
-                self.destination = self.getPositionWithScreenPosition(CGPoint(x: ((1920/2) + 1334)/4, y: ((1080/2) + 750)/4))
+                self.destination = CGPoint(x: GameCamera.arenaSizeWidth/2, y: -GameCamera.arenaSizeHeight/2)
                 self.needToMove = true
                 break
                 

@@ -59,7 +59,7 @@ class HangarScene: GameScene {
         if self.offlineMode {
             self.serverManager.socket.onAny({ (SocketAnyEvent) in
             })
-            self.serverManager.socket.disconnect()
+            self.serverManager.disconnect()
         } else {
             self.setHandlers()
             if let roomId = self.serverManager.roomId {
@@ -143,7 +143,7 @@ class HangarScene: GameScene {
             switch (self.nextState) {
             case states.mainMenu:
                 if(!self.offlineMode) {
-                    self.serverManager.socket.disconnect()
+                    self.serverManager.disconnect()
                 }
                 
                 self.view?.presentScene(MainMenuScene(), transition: self.transition)
@@ -154,7 +154,7 @@ class HangarScene: GameScene {
                 break
                 
             case states.mission:
-                self.serverManager.socket.emit("someData", "go!")
+                self.serverManager.socket.emit("someData", ["go!"])
                 let scene = MissionScene(size:CGSize(width: ((1920/2) + 1334)/2, height: ((1080/2) + 750)/2))
                 self.view?.presentScene(scene, transition: self.transition)
                 break
@@ -272,10 +272,25 @@ class HangarScene: GameScene {
                     }
                     break
                     
+                case "update":
+                    //ja estou recebendo update de players que estao na partida jogando.
+                    break
+                    
                 case "someData":
-                    if let message = socketAnyEvent.items?.firstObject {
-                        if message as? String == "go!" {
+                    
+                    if let message = socketAnyEvent.items?.firstObject as? [String] {
+                        var i = message.generate()
+                        
+                        switch (i.next()!) {
+                        case "go!":
                             scene.nextState = states.mission
+                            break
+                        case "botNames":
+                            //TODO: recebi muito rápido o nome dos bots que preciso carregar
+                            break
+                        default:
+                            print(socketAnyEvent.description + " nao foi processado em HangarScene " + scene.state.rawValue)
+                            break
                         }
                     }
                     

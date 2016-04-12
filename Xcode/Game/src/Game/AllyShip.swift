@@ -158,7 +158,7 @@ class AllyShip: Control {
     
     func isOnScree() -> Bool {
         
-        if(self.position.x >  Config.currentSceneSize.width) {
+        if(self.position.x > GameCamera.arenaSizeWidth) {
             return false
         }
         if(self.position.x < 0) {
@@ -167,7 +167,7 @@ class AllyShip: Control {
         if(self.position.y > 0) {
             return false
         }
-        if(self.position.y <  -Config.currentSceneSize.height) {
+        if(self.position.y <  -GameCamera.arenaSizeHeight) {
             return false
         }
         
@@ -175,9 +175,8 @@ class AllyShip: Control {
     }
     
     override func removeFromParent() {
-        if let label = self.labelName {
-            label.removeFromParent()
-        }
+        self.labelName?.removeFromParent()
+        self.labelScore?.removeFromParent()
         AllyShip.allyShipSet.remove(self)
         super.removeFromParent()
     }

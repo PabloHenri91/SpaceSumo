@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class World: SKNode, SKPhysicsContactDelegate {
+class World: Control, SKPhysicsContactDelegate {
     
     var physicsWorld:SKPhysicsWorld!
     var defaultGravity = CGVector(dx: 0, dy: 0)
@@ -17,7 +17,7 @@ class World: SKNode, SKPhysicsContactDelegate {
     var bodyB: SKPhysicsBody!
     
     init(physicsWorld:SKPhysicsWorld) {
-        super.init()
+        super.init(textureName: "missionBackground", z:10000, xAlign: .center, yAlign: .center)
         
         self.physicsWorld = physicsWorld
         physicsWorld.gravity = self.defaultGravity

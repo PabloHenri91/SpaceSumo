@@ -13,6 +13,9 @@ class MissionScene: GameScene {
     enum states : String {
         //Estado principal
         case mission
+        case reconnecting
+        case connectionClosed
+        case mainMenu
         
         //Estados de saida da scene
         case hangar
@@ -41,6 +44,8 @@ class MissionScene: GameScene {
     
     var lastEmit:NSTimeInterval = 0
     var emitInterval:NSTimeInterval = 1/30
+    
+    var lastSocketErrorMessage = ""
     
     override func didMoveToView(view: SKView) {
         
@@ -83,7 +88,7 @@ class MissionScene: GameScene {
     }
     
     func addBots() {
-        for _ in 0..<2 {
+        for _ in 0..<1 {
             let newAllyShip = BotAllyShip()
             var someName = CharacterGenerator.sharedInstance.getName(.random, gender: .random)
             someName = someName.componentsSeparatedByString(" ").first!
@@ -112,7 +117,7 @@ class MissionScene: GameScene {
             var botNames = [String]()
             botNames.append("botNames")
             
-            for _ in i..<3 {
+            for _ in i..<1 {
                 let newBotAllyShip = BotAllyShip()
                 var someName = CharacterGenerator.sharedInstance.getName(.random, gender: .random)
                 someName = someName.componentsSeparatedByString(" ").first!
@@ -134,8 +139,61 @@ class MissionScene: GameScene {
             
             switch scene.state {
                 
+            case states.reconnecting:
+                
+                switch (socketAnyEvent.event) {
+                    
+                case "error":
+                    if let message = socketAnyEvent.items?.firstObject as? String {
+                        scene.lastSocketErrorMessage = message
+                    } else {
+                        scene.lastSocketErrorMessage = "Something went very very wrong.. oops!!"
+                    }
+                    break
+                    
+                case "disconnect":
+                    print("disconnect")
+                    //nao foi possivel reconectar, nao preciso fazer nada aqui
+                    break
+                    
+                case "connect":
+                    print("reconectou!")
+                    
+                    //reconnect foi bem sussedido, preciso avisar o server quem sou eu
+                    scene.serverManager.socket.emit("userDisplayInfo", scene.serverManager.userDisplayInfo.displayName!)
+                    scene.serverManager.socket.emit("joinRoom", scene.serverManager.roomId!)
+                    scene.state = states.mission
+                    scene.nextState = states.mission
+                    
+                    break
+                    
+                case "reconnectAttempt":
+                    print("reconnecting...")
+                    break
+                    
+                default:
+                    print(socketAnyEvent.event + " nao foi processado em HangarScene " + scene.state.rawValue)
+                    break
+                }
+                
+                break
+                
             case states.mission:
                 switch (socketAnyEvent.event) {
+                    
+                case "error":
+                    if let message = socketAnyEvent.items?.firstObject as? String {
+                        scene.lastSocketErrorMessage = message
+                    } else {
+                        scene.lastSocketErrorMessage = "Something went very very wrong.. oops!!"
+                    }
+                    break
+                    
+                case "reconnect":
+                    print("reconnecting...")
+                    scene.state = states.reconnecting
+                    scene.nextState = states.reconnecting
+                    break
                     
                 case "someData":
                     if let message = socketAnyEvent.items?.firstObject as? [String] {
@@ -175,6 +233,7 @@ class MissionScene: GameScene {
                             }
                             break
                         default:
+                            print(socketAnyEvent.description + " nao foi processado em MissionScene " + scene.state.rawValue)
                             break
                         }
                     }
@@ -224,11 +283,18 @@ class MissionScene: GameScene {
                     break
                     
                 case "addPlayer":
+                    //TODO: readdPlayer
                     if let message = socketAnyEvent.items?.firstObject as? [String] {
+                        
                         let newAllyShip = AllyShip()
                         newAllyShip.name = message[0]
                         scene.world.addChild(newAllyShip)
                         newAllyShip.setNameLabel()
+                        newAllyShip.labelName?.setText(message[1])
+                        
+                        for botAllyShip in BotAllyShip.botAllyShipSet {
+                            botAllyShip.removeFromParent()
+                        }
                     }
                     break
                     
@@ -291,6 +357,15 @@ class MissionScene: GameScene {
         //Estado atual
         if(self.state == self.nextState) {
             switch (self.state) {
+                
+            case states.reconnecting:
+                if(!self.offlineMode) {
+                    if (self.serverManager.socket.status == .Closed) {
+                        self.nextState = states.connectionClosed
+                    }
+                }
+                break
+                
             case states.mission:
                 var applyAngularImpulse = false
                 var applyForce = false
@@ -313,6 +388,36 @@ class MissionScene: GameScene {
             
             //Próximo estado
             switch (self.nextState) {
+                
+            case states.mainMenu:
+                if(!self.offlineMode) {
+                    self.serverManager.disconnect()
+                }
+                
+                self.view?.presentScene(MainMenuScene(), transition: self.transition)
+                break
+                
+            case states.connectionClosed:
+                let box = Box(textureName: "boxWhite256x64")
+                let label = Label(text: self.lastSocketErrorMessage, x:128, y:32)
+                box.addChild(label)
+                self.addChild(box)
+                
+                self.blackSpriteNode.zPosition = box.zPosition - 1
+                self.blackSpriteNode.hidden = false
+                
+                let button = Button(textureName: "buttonGray", text:"ok   D:", x: 119, y: 142, xAlign: .center, yAlign: .down)
+                self.addChild(button)
+                button.zPosition = self.blackSpriteNode.zPosition + 1
+                
+                button.addHandler( { [weak self] in
+                    guard let scene = self else { return }
+                    //Troca de scene
+                    scene.nextState = states.mainMenu
+                    })
+                
+                break
+                
             case states.hangar:
                 Config.sceneSize = CGSize(width: 480/Config.screenScale, height: 270/Config.screenScale)
                 Config.updateSceneSize()

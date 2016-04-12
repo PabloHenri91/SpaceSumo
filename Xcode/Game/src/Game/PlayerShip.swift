@@ -55,11 +55,7 @@ class PlayerShip: Control {
         spriteNode.size = CGSize(width: size.width * scale, height: size.height * scale)
         
         
-        self.screenPosition = CGPoint(x: Int.random(Int(((1920/2) + 1334)/2)), y: Int.random(Int(((1080/2) + 750)/2)))//TODO: posicao inicial
-        self.yAlign = .center
-        self.xAlign = .center
-        
-        self.resetPosition()
+        self.position = CGPoint(x: Int.random(Int(GameCamera.arenaSizeWidth)), y: -Int.random(Int(GameCamera.arenaSizeHeight)))
         
         self.zPosition = 1
         
@@ -141,9 +137,9 @@ class PlayerShip: Control {
                 self.lastOnScreen = currentTime
             }
             
-            if currentTime - self.lastOnScreen > 1 {
-                self.screenPosition = CGPoint(x: ((1920/2) + 1334)/4, y: ((1080/2) + 750)/4)
-                self.resetPosition()
+            if currentTime - self.lastOnScreen > 0 {
+                self.position = CGPoint(x: GameCamera.arenaSizeWidth/2, y: -GameCamera.arenaSizeHeight/2)
+                
                 self.physicsBody?.velocity = CGVector.zero
                 
                 if let label = self.labelScore {
@@ -195,7 +191,7 @@ class PlayerShip: Control {
     
     func isOnScree() -> Bool {
         
-        if(self.position.x >  Config.currentSceneSize.width) {
+        if(self.position.x > GameCamera.arenaSizeWidth) {
             return false
         }
         if(self.position.x < 0) {
@@ -204,7 +200,7 @@ class PlayerShip: Control {
         if(self.position.y > 0) {
             return false
         }
-        if(self.position.y <  -Config.currentSceneSize.height) {
+        if(self.position.y <  -GameCamera.arenaSizeHeight) {
             return false
         }
         

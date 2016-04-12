@@ -10,28 +10,28 @@ import SpriteKit
 
 class GameCamera: SKNode {
     
-    let arenaSizeWidth:CGFloat = ((1920/2) + 1334)/2
-    let arenaSizeHeight:CGFloat = ((1080/2) + 750)/2
+    static let arenaSizeWidth:CGFloat = ((1920/2) + 1334)/2
+    static let arenaSizeHeight:CGFloat = ((1080/2) + 750)/2
     
     func update(newPosition:CGPoint) {
         
-        self.position = CGPoint(x: newPosition.x - self.scene!.size.width/2, y: newPosition.y + self.scene!.size.height/2)
+        self.position = CGPoint(x: Config.translate.x, y: Config.translate.y)//(x: newPosition.x - self.scene!.size.width/2, y: newPosition.y + self.scene!.size.height/2)
         
-        if(self.position.x <= 0) {
-            position.x = 0
-        }
-        
-        if self.position.x >= (arenaSizeWidth - self.scene!.size.width) {
-            position.x = (arenaSizeWidth - self.scene!.size.width)
-        }
-        
-        if self.position.y >= 0 {
-            position.y = 0
-        }
-        
-        if self.position.y <= -(arenaSizeHeight - self.scene!.size.height) {
-            position.y = -(arenaSizeHeight - self.scene!.size.height)
-        }
+//        if(self.position.x <= 0) {
+//            position.x = 0
+//        }
+//        
+//        if self.position.x >= (arenaSizeWidth - self.scene!.size.width) {
+//            position.x = (arenaSizeWidth - self.scene!.size.width)
+//        }
+//        
+//        if self.position.y >= 0 {
+//            position.y = 0
+//        }
+//        
+//        if self.position.y <= -(arenaSizeHeight - self.scene!.size.height) {
+//            position.y = -(arenaSizeHeight - self.scene!.size.height)
+//        }
         
         self.scene!.centerOnNode(self)
     }

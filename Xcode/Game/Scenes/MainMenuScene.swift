@@ -110,7 +110,7 @@ class MainMenuScene: GameScene {
                 self.serverManager.socket.connect(timeoutAfter: 10, withTimeoutHandler: { [weak self] in
                     guard let scene = self else { return }
                     scene.labelConnectStatus.setText("connection timed out")
-                    scene.serverManager.socket.disconnect()
+                    scene.serverManager.disconnect()
                     })
                 
                 break

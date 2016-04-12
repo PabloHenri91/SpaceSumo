@@ -4,7 +4,7 @@ var app = require('http').createServer();
 app.listen(8900);
 
 function Game() {
-    console.log('Game()');
+    //console.log('Game()');
     this.io = require('socket.io')(app);
     
     // Define a referência da lista de todos os Sockets conectados. 
@@ -34,7 +34,7 @@ function Player(game, socket) {
     // Cada socket.on é executado quando o Game recebe um evento do Socket.
     
     this.socket.on('createRoom', function() {
-        console.log(socket.name + ' on createRoom ');
+        //console.log(socket.name + ' on createRoom ');
         player.createRoom();
     });
     
@@ -48,42 +48,42 @@ function Player(game, socket) {
     });
 
     this.socket.on('userInfo', function(userInfo) {
-        console.log(socket.name + ' on userInfo ');
+        //console.log(socket.name + ' on userInfo ');
         player.setUserInfo(userInfo);
     });
     
     this.socket.on('update', function(data) {
-        console.log(socket.name + ' on update ');
+        //console.log(socket.name + ' on update ');
         player.update(data);
     });
     
     this.socket.on('someData', function(data) {
-        console.log(socket.name + ' on someData ');
+        //console.log(socket.name + ' on someData ');
         player.someData(data);
     });
     
     this.socket.on('leaveAllRooms', function() {
-        console.log(socket.name + ' on leaveAllRooms ');
+        //console.log(socket.name + ' on leaveAllRooms ');
         player.leaveAllRooms();
     });
     
     this.socket.on('getAllRooms', function() {
-        console.log(socket.name + ' on getAllRooms ');
+        //console.log(socket.name + ' on getAllRooms ');
         player.getAllRooms();
     });
     
     this.socket.on('getRoomInfo', function(roomId) {
-        console.log(socket.name + ' on getRoomInfo ');
+        //console.log(socket.name + ' on getRoomInfo ');
         player.getRoomInfo(roomId);
     });
     
     this.socket.on('joinRoom', function(roomId) {
-        console.log(socket.name + ' on joinRoom ');
+        //console.log(socket.name + ' on joinRoom ');
         player.joinRoom(roomId);
     });
     
     this.socket.on('disconnect', function() {
-        console.log(socket.name + ' on disconnect ');
+        //console.log(socket.name + ' on disconnect ');
         player.disconnect();
     });
     
@@ -105,7 +105,7 @@ Player.prototype.leaveRoom = function(roomId) {
     
     // Avisa aos Sockets da sala que está saindo.
     this.socket.broadcast.to(roomId).emit('removePlayer', this.socket.id);
-    console.log(this.socket.name + ' broadcast emit removePlayer ');
+    //console.log(this.socket.name + ' broadcast emit removePlayer ');
     
     // Saindo da sala
     this.socket.leave(roomId);
@@ -121,7 +121,7 @@ Player.prototype.createRoom = function() {
     
     // Respondendo ao Socket para que ele saiba o seu id.
     this.socket.emit('mySocketId', this.socket.id);
-    console.log(this.socket.name + ' emit mySocketId ');
+    //console.log(this.socket.name + ' emit mySocketId ');
 };
 
 Player.prototype.setUserDisplayInfo = function(userDisplayInfo) {
@@ -141,14 +141,14 @@ Player.prototype.setUserInfo = function(userInfo) {
 Player.prototype.update = function(data) {
     for (var roomId in this.socket.adapter.sids[this.socket.id]) {
         this.socket.broadcast.to(roomId).emit('update', data);
-        console.log(this.socket.name + ' broadcast emit update ');
+        //console.log(this.socket.name + ' broadcast emit update ');
     }
 };
 
 Player.prototype.someData = function(data) {
     for (var roomId in this.socket.adapter.sids[this.socket.id]) {
         this.socket.broadcast.to(roomId).emit('someData', data);
-        console.log(this.socket.name + ' broadcast emit someData ');
+        //console.log(this.socket.name + ' broadcast emit someData ');
     }
 };
 
@@ -172,7 +172,7 @@ Player.prototype.getRoomInfo = function(roomId) {
     
     // Respondendo ao Socket com a informação de uma sala e Sockets da sala. 
     this.socket.emit('roomInfo', roomInfo);
-    console.log(this.socket.name + ' emit roomInfo ');
+    //console.log(this.socket.name + ' emit roomInfo ');
 };
 
 Player.prototype.joinRoom = function(roomId) {
@@ -182,7 +182,7 @@ Player.prototype.joinRoom = function(roomId) {
     
     // Avisa aos Sockets da sala que esta entrando e envia suas informações básicas.
     this.socket.broadcast.to(roomId).emit('addPlayer', this.socket.userDisplayInfo);
-    console.log(this.socket.name + ' broadcast emit addPlayer ');
+    //console.log(this.socket.name + ' broadcast emit addPlayer ');
     
     // Entrando na sala
     this.socket.join(roomId);
@@ -196,7 +196,7 @@ Player.prototype.joinRoom = function(roomId) {
 Player.prototype.disconnect = function() {
     
     //Executa leaveRoom ao ser desconectado para avisar aos outros Sockets que foi desconectado.
-    this.leaveAllRooms();
+    this.leaveRoom(this.socket.roomId);
 };
 
 // Fim da implementacao das funções do Player.
@@ -204,7 +204,7 @@ Player.prototype.disconnect = function() {
 
 // Adicionando handlers ao Game
 Game.prototype.addHandlers = function() {
-    console.log('setHandlers()');
+    //console.log('setHandlers()');
     
     // Evita retenção do Game dentro dos handlers.
     var game = this;
@@ -216,7 +216,7 @@ Game.prototype.addHandlers = function() {
         // Define um nome ao Socket, somente para debug.
         socket.name = socket.id;
         
-        console.log(socket.name + ' on connection ');
+        //console.log(socket.name + ' on connection ');
         new Player(game, socket);
     });
 };
