@@ -29,6 +29,7 @@ class Laser: Control {
         
         self.physicsBody?.linearDamping = 0
         self.physicsBody?.angularDamping = 0
+        self.physicsBody?.restitution = 1
         
         self.position = position
         self.zRotation = zRotation

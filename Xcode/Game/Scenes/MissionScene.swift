@@ -58,6 +58,7 @@ class MissionScene: GameScene {
         
         self.playerShip = PlayerShip()
         self.world.addChild(self.playerShip)
+        self.playerShip.setNameLabel(self.serverManager.userDisplayInfo.displayName!)
         
         self.gameCamera.update(self.playerShip.position)
         
@@ -88,6 +89,7 @@ class MissionScene: GameScene {
             someName = someName.componentsSeparatedByString(" ").first!
             newAllyShip.name = "Bot " + someName
             self.world.addChild(newAllyShip)
+            newAllyShip.setNameLabel()
         }
     }
     
@@ -100,6 +102,8 @@ class MissionScene: GameScene {
                 let newAllyShip = AllyShip()
                 newAllyShip.name = userDisplayInfo.socketId!
                 self.world.addChild(newAllyShip)
+                newAllyShip.setNameLabel()
+                newAllyShip.labelName!.setText(userDisplayInfo.displayName!)
                 i += 1
             }
         }
@@ -115,6 +119,7 @@ class MissionScene: GameScene {
                 newBotAllyShip.name = "Bot " + someName
                 botNames.append(newBotAllyShip.name!)
                 self.world.addChild(newBotAllyShip)
+                newBotAllyShip.setNameLabel()
             }
             self.serverManager.socket.emit("someData", botNames)
         }
@@ -143,7 +148,31 @@ class MissionScene: GameScene {
                                     let newAllyShip = AllyShip()
                                     newAllyShip.name = name
                                     scene.world.addChild(newAllyShip)
+                                    newAllyShip.setNameLabel()
                                 }
+                            break
+                        case "score":
+                            let name = i.next()!
+                            for allyShip in AllyShip.allyShipSet {
+                                if name == allyShip.name! {
+                                    let score = i.next()!
+                                    allyShip.labelScore?.setText(score)
+                                    break
+                                }
+                            }
+                            
+                            break
+                        case "removeBots":
+                            for _ in 1..<message.count {
+                                let name = i.next()!
+                                
+                                for allyShip in AllyShip.allyShipSet {
+                                    if name == allyShip.name! {
+                                        allyShip.removeFromParent()
+                                        break
+                                    }
+                                }
+                            }
                             break
                         default:
                             break
@@ -199,6 +228,7 @@ class MissionScene: GameScene {
                         let newAllyShip = AllyShip()
                         newAllyShip.name = message[0]
                         scene.world.addChild(newAllyShip)
+                        newAllyShip.setNameLabel()
                     }
                     break
                     
@@ -286,6 +316,17 @@ class MissionScene: GameScene {
             case states.hangar:
                 Config.sceneSize = CGSize(width: 480/Config.screenScale, height: 270/Config.screenScale)
                 Config.updateSceneSize()
+                
+                var botNames = [String]()
+                botNames.append("removeBots")
+                
+                for botAllyShip in BotAllyShip.botAllyShipSet {
+                    botNames.append(botAllyShip.name!)
+                }
+                
+                self.serverManager.socket.emit("someData", botNames)
+                self.serverManager.leaveAllRooms()
+                
                 self.view?.presentScene(HangarScene(), transition: self.transition)
                 break
                 

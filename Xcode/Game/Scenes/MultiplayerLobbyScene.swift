@@ -53,8 +53,7 @@ class MultiplayerLobbyScene: GameScene {
         self.serverManager = ServerManager.sharedInstance
         
         self.setHandlers()
-        self.serverManager.roomId = nil
-        self.serverManager.socket.emit("leaveAllRooms")
+        self.serverManager.leaveAllRooms()
         
         self.roomScrollNode = ScrollNode(cells: Array<Control>(), x: 72, y: 83, xAlign: .center, yAlign: .center, spacing: 19, scrollDirection: .vertical)
         

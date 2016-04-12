@@ -55,6 +55,17 @@ class BotAllyShip: AllyShip {
                 self.screenPosition = CGPoint(x: ((1920/2) + 1334)/4, y: ((1080/2) + 750)/4)
                 self.resetPosition()
                 self.physicsBody?.velocity = CGVector.zero
+                
+                if let name = self.name {
+                    if let label = self.labelScore {
+                        label.setText(String(Int(label.getText())! + 1))
+                        if let scene = self.scene {
+                            if let missionScene = scene as? MissionScene {
+                                missionScene.serverManager.socket.emit("someData", ["score", name, label.getText()])
+                            }
+                        }
+                    }
+                }
             }
             
             if (currentTime - self.lastMovingChange > self.movingChangeInterval) {
@@ -105,7 +116,7 @@ class BotAllyShip: AllyShip {
     }
     
     override func removeFromParent() {
-        BotAllyShip.botAllyShipSet.remove(self)
         super.removeFromParent()
+        BotAllyShip.botAllyShipSet.remove(self)
     }
 }

@@ -19,6 +19,8 @@ class PlayerShip: Control {
     
     var force:CGFloat = 25
     
+    var labelName:Label?
+    var labelScore:Label?
     
     override init() {
         super.init()
@@ -118,7 +120,20 @@ class PlayerShip: Control {
         }
     }
     
+    func setNameLabel(name:String) {
+        if let parent = self.parent {
+            self.labelName = Label(color: GameColors.white, text: name, fontSize: GameFonts.fontSize.large)
+            parent.addChild(self.labelName!)
+            
+            self.labelScore = Label(color: GameColors.white, text: "0", fontSize: GameFonts.fontSize.large)
+            parent.addChild(self.labelScore!)
+        }
+    }
+    
     func update(currentTime: NSTimeInterval, applyAngularImpulse:Bool, applyForce:Bool) {
+        
+        self.labelName?.position = CGPoint(x: self.position.x, y: self.position.y + 64)
+        self.labelScore?.position = CGPoint(x: self.position.x, y: self.position.y + -64)
         
         if self.healthPoints > 0 {
             
@@ -130,6 +145,17 @@ class PlayerShip: Control {
                 self.screenPosition = CGPoint(x: ((1920/2) + 1334)/4, y: ((1080/2) + 750)/4)
                 self.resetPosition()
                 self.physicsBody?.velocity = CGVector.zero
+                
+                if let label = self.labelScore {
+                    label.setText(String(Int(label.getText())! + 1))
+                    if let scene = self.scene {
+                        if let missionScene = scene as? MissionScene {
+                            if let name = missionScene.serverManager.userDisplayInfo.socketId {
+                                missionScene.serverManager.socket.emit("someData", ["score", name, label.getText()])
+                            }
+                        }
+                    }
+                }
             }
             
             if applyAngularImpulse || applyForce {

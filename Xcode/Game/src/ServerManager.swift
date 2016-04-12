@@ -46,4 +46,11 @@ class ServerManager {
         
         //self.displayName = CharacterGenerator().getName(.random, gender: .random)
     }
+    
+    
+    
+    func leaveAllRooms() {
+        self.roomId = nil
+        self.socket.emit("leaveAllRooms")
+    }
 }

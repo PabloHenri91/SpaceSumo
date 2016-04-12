@@ -20,6 +20,8 @@ class AllyShip: Control {
     
     var force:CGFloat = 50
     
+    var labelName:Label?
+    var labelScore:Label?
     
     override init() {
         super.init()
@@ -120,6 +122,18 @@ class AllyShip: Control {
         }
     }
     
+    func setNameLabel() {
+        if let name = self.name {
+            if let parent = self.parent {
+                self.labelName = Label(color: GameColors.white, text: name, fontSize: GameFonts.fontSize.large)
+                parent.addChild(self.labelName!)
+                
+                self.labelScore = Label(color: GameColors.white, text: "0", fontSize: GameFonts.fontSize.large)
+                parent.addChild(self.labelScore!)
+            }
+        }
+    }
+    
     class func update(currentTime: NSTimeInterval) {
         for allyShip in AllyShip.allyShipSet {
             allyShip.update(currentTime)
@@ -127,6 +141,9 @@ class AllyShip: Control {
     }
     
     func update(currentTime: NSTimeInterval) {
+        
+        self.labelName?.position = CGPoint(x: self.position.x, y: self.position.y + 64)
+        self.labelScore?.position = CGPoint(x: self.position.x, y: self.position.y + -64)
         
         if self.healthPoints > 0 {
             
@@ -158,6 +175,9 @@ class AllyShip: Control {
     }
     
     override func removeFromParent() {
+        if let label = self.labelName {
+            label.removeFromParent()
+        }
         AllyShip.allyShipSet.remove(self)
         super.removeFromParent()
     }
