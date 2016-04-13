@@ -17,7 +17,7 @@ class PlayerShip: Control {
     var lastLaser:NSTimeInterval = 0
     var lastOnScreen:NSTimeInterval = 0
     
-    var force:CGFloat = 25
+    var force:CGFloat = 50
     
     var labelName:Label?
     var labelScore:Label?

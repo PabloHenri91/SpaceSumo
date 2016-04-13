@@ -18,6 +18,10 @@ class BotAllyShip: AllyShip {
     var destination = CGPoint.zero
     var needToMove = false
     
+    var auxRotation:CGFloat = 0
+    
+    var targetNode:SKNode?
+    
     override init() {
         super.init()
         
@@ -39,6 +43,15 @@ class BotAllyShip: AllyShip {
         for botAllyShip in BotAllyShip.botAllyShipSet {
             botAllyShip.update(currentTime)
         }
+    }
+    
+    func setRandomMovingType(currentTime: NSTimeInterval) {
+        self.lastMovingChange = currentTime
+        
+        self.targetNode = nil
+        
+        self.movingChangeInterval = Double.random(min: 0.5, max: 2.5)
+        self.movingType = Int.random(2) + 1 //integer between 0 and 3-1.
     }
 
     override func update(currentTime: NSTimeInterval) {
@@ -68,14 +81,13 @@ class BotAllyShip: AllyShip {
             }
             
             if (currentTime - self.lastMovingChange > self.movingChangeInterval) {
-                self.lastMovingChange = currentTime
-                self.movingChangeInterval = Double.random(min: 0.5, max: 2.5)
-                self.movingType = 1
+                self.setRandomMovingType(currentTime)
             }
             
             switch (self.movingType) {
                 
             case 0:
+                self.setRandomMovingType(currentTime)
                 break
                 
             //I want to go to the center of the screen
@@ -84,18 +96,43 @@ class BotAllyShip: AllyShip {
                 self.needToMove = true
                 break
                 
+            case 2:
+                let botAllyShip = BotAllyShip.botAllyShipSet[BotAllyShip.botAllyShipSet.startIndex.advancedBy(Int.random(BotAllyShip.botAllyShipSet.count))]
+                
+                if botAllyShip.name != self.name {
+                    self.targetNode = botAllyShip
+                } else {
+                    if AllyShip.allyShipSet.count > 0 {
+//                        let allyShip = AllyShip.allyShipSet[AllyShip.allyShipSet.startIndex.advancedBy(Int.random(AllyShip.allyShipSet.count))]
+//                        self.targetNode = allyShip
+                    } else {
+                        if let scene = self.scene as? MissionScene {
+                            self.targetNode = scene.playerShip
+                        }
+                    }
+                }
+                
+                self.needToMove = true
+                break
+                
             default:
                 break
             }
             
             if (self.needToMove) {
+                
+                if let nodePosition = self.targetNode?.position {
+                    self.destination = nodePosition
+                }
+                
                 if CGPoint.distance(self.position, self.destination) < 64 {
                     self.needToMove = false
+                    self.movingType = 0
                 } else {
                     let dx = Float(self.destination.x - self.position.x)
                     let dy = Float(self.destination.y - self.position.y)
-                    let auxRotation = CGFloat(-atan2f(dx, dy))
-                    var totalRotation = auxRotation - self.zRotation
+                    self.auxRotation = CGFloat(-atan2f(dx, dy))
+                    var totalRotation = self.auxRotation - self.zRotation
                     
                     
                     if(abs(self.physicsBody!.angularVelocity) < self.maxAngularVelocity) {
@@ -103,12 +140,22 @@ class BotAllyShip: AllyShip {
                         while(totalRotation < -CGFloat(M_PI)) { totalRotation += CGFloat(M_PI * 2) }
                         while(totalRotation >  CGFloat(M_PI)) { totalRotation -= CGFloat(M_PI * 2) }
                         
-                        self.physicsBody?.applyAngularImpulse(totalRotation * 0.0001)
+                        self.physicsBody?.applyAngularImpulse(totalRotation * 0.0005)
                     }
                     
                     if(abs(totalRotation) < 1) {
                         self.physicsBody?.applyForce(CGVector(dx: -sin(self.zRotation) * self.force, dy: cos(self.zRotation) * self.force))
                     }
+                }
+            } else {
+                if(abs(self.physicsBody!.angularVelocity) < self.maxAngularVelocity) {
+                    
+                    var totalRotation = self.auxRotation - self.zRotation
+                    
+                    while(totalRotation < -CGFloat(M_PI)) { totalRotation += CGFloat(M_PI * 2) }
+                    while(totalRotation >  CGFloat(M_PI)) { totalRotation -= CGFloat(M_PI * 2) }
+                    
+                    self.physicsBody?.applyAngularImpulse(totalRotation * 0.0005)
                 }
             }
         }

@@ -88,7 +88,7 @@ class MissionScene: GameScene {
     }
     
     func addBots() {
-        for _ in 0..<1 {
+        for _ in 0..<2 {
             let newAllyShip = BotAllyShip()
             var someName = CharacterGenerator.sharedInstance.getName(.random, gender: .random)
             someName = someName.componentsSeparatedByString(" ").first!
