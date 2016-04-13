@@ -22,6 +22,8 @@ class PlayerShip: Control {
     var labelName:Label?
     var labelScore:Label?
     
+    var auxRotation:CGFloat = 0
+    
     override init() {
         super.init()
         
@@ -65,7 +67,7 @@ class PlayerShip: Control {
         self.physicsBody?.contactTestBitMask = World.contactTestBitMask.playerShip
         
         self.physicsBody?.linearDamping = 2
-        self.physicsBody?.angularDamping = 2
+        self.physicsBody?.angularDamping = 3
         self.physicsBody?.restitution = 0.5
     }
     
@@ -158,8 +160,8 @@ class PlayerShip: Control {
                 
                 let dx = Float(Control.totalDx)
                 let dy = Float(Control.totalDy)
-                let auxRotation = CGFloat(-atan2f(dx, dy))
-                var totalRotation = auxRotation - self.zRotation
+                self.auxRotation = CGFloat(-atan2f(dx, dy))
+                var totalRotation = self.auxRotation - self.zRotation
                 
                 if applyAngularImpulse {
                     
@@ -168,7 +170,7 @@ class PlayerShip: Control {
                         while(totalRotation < -CGFloat(M_PI)) { totalRotation += CGFloat(M_PI * 2) }
                         while(totalRotation >  CGFloat(M_PI)) { totalRotation -= CGFloat(M_PI * 2) }
                         
-                        self.physicsBody?.applyAngularImpulse(totalRotation * 0.0001)
+                        self.physicsBody?.applyAngularImpulse(totalRotation * 0.0005)
                     }
                 }
                 
@@ -176,6 +178,16 @@ class PlayerShip: Control {
                     if(abs(totalRotation) < 1) {
                         self.physicsBody?.applyForce(CGVector(dx: -sin(self.zRotation) * self.force, dy: cos(self.zRotation) * self.force))
                     }
+                }
+            } else {
+                if(abs(self.physicsBody!.angularVelocity) < self.maxAngularVelocity) {
+                    
+                    var totalRotation = self.auxRotation - self.zRotation
+                    
+                    while(totalRotation < -CGFloat(M_PI)) { totalRotation += CGFloat(M_PI * 2) }
+                    while(totalRotation >  CGFloat(M_PI)) { totalRotation -= CGFloat(M_PI * 2) }
+                    
+                    self.physicsBody?.applyAngularImpulse(totalRotation * 0.0005)
                 }
             }
             

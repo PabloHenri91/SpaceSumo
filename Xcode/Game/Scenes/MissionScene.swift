@@ -117,16 +117,18 @@ class MissionScene: GameScene {
             var botNames = [String]()
             botNames.append("botNames")
             
-            for _ in i..<1 {
-                let newBotAllyShip = BotAllyShip()
-                var someName = CharacterGenerator.sharedInstance.getName(.random, gender: .random)
-                someName = someName.componentsSeparatedByString(" ").first!
-                newBotAllyShip.name = "Bot " + someName
-                botNames.append(newBotAllyShip.name!)
-                self.world.addChild(newBotAllyShip)
-                newBotAllyShip.setNameLabel()
+            if i < 1 {
+                for _ in i..<1 {
+                    let newBotAllyShip = BotAllyShip()
+                    var someName = CharacterGenerator.sharedInstance.getName(.random, gender: .random)
+                    someName = someName.componentsSeparatedByString(" ").first!
+                    newBotAllyShip.name = "Bot " + someName
+                    botNames.append(newBotAllyShip.name!)
+                    self.world.addChild(newBotAllyShip)
+                    newBotAllyShip.setNameLabel()
+                }
+                self.serverManager.socket.emit("someData", botNames)
             }
-            self.serverManager.socket.emit("someData", botNames)
         }
     }
     
