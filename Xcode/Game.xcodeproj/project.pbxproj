@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A03C14B1CBE82CC009D66FC /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A03C1491CBE82CC009D66FC /* Fabric.framework */; };
+		3A03C14C1CBE82CC009D66FC /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A03C14A1CBE82CC009D66FC /* Crashlytics.framework */; };
+		3A85A7C01CBEA9EE0094C117 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A03C14F1CBE8602009D66FC /* Fabric.framework */; };
+		3A85A7C11CBEA9FD0094C117 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A03C1501CBE8602009D66FC /* Crashlytics.framework */; };
 		840272FA1CA0715200E6691F /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
 		840272FD1CA0810500E6691F /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840272FC1CA0810500E6691F /* StringExtension.swift */; };
 		840272FF1CA0817900E6691F /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840272FC1CA0810500E6691F /* StringExtension.swift */; };
@@ -209,6 +213,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A03C1491CBE82CC009D66FC /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		3A03C14A1CBE82CC009D66FC /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		3A03C14F1CBE8602009D66FC /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		3A03C1501CBE8602009D66FC /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		840272FC1CA0810500E6691F /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		840661411C74FB4F00D8C1CD /* HangarScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangarScene.swift; sourceTree = "<group>"; };
 		840661451C7502AF00D8C1CD /* ChooseSector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseSector.swift; sourceTree = "<group>"; };
@@ -302,6 +310,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A03C14C1CBE82CC009D66FC /* Crashlytics.framework in Frameworks */,
+				3A03C14B1CBE82CC009D66FC /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +326,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A85A7C11CBEA9FD0094C117 /* Crashlytics.framework in Frameworks */,
+				3A85A7C01CBEA9EE0094C117 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +366,8 @@
 		848678C21C748B0C0049BB1F /* Game iOS */ = {
 			isa = PBXGroup;
 			children = (
+				3A03C1491CBE82CC009D66FC /* Fabric.framework */,
+				3A03C14A1CBE82CC009D66FC /* Crashlytics.framework */,
 				848678C31C748B0C0049BB1F /* AppDelegate.swift */,
 				848678C91C748B0C0049BB1F /* GameViewController.swift */,
 				848678CB1C748B0C0049BB1F /* Main.storyboard */,
@@ -367,6 +381,8 @@
 		848678DC1C748B1F0049BB1F /* Game tvOS */ = {
 			isa = PBXGroup;
 			children = (
+				3A03C14F1CBE8602009D66FC /* Fabric.framework */,
+				3A03C1501CBE8602009D66FC /* Crashlytics.framework */,
 				848678DD1C748B1F0049BB1F /* AppDelegate.swift */,
 				848678E31C748B1F0049BB1F /* GameViewController.swift */,
 				848678E71C748B1F0049BB1F /* Main.storyboard */,
@@ -540,6 +556,7 @@
 				848678BD1C748B0C0049BB1F /* Sources */,
 				848678BE1C748B0C0049BB1F /* Frameworks */,
 				848678BF1C748B0C0049BB1F /* Resources */,
+				3A03C14D1CBE83A2009D66FC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -574,6 +591,7 @@
 				84CA57F21CA2DE940095811F /* Sources */,
 				84CA57F31CA2DE940095811F /* Frameworks */,
 				84CA57F41CA2DE940095811F /* Resources */,
+				3A03C14E1CBE85A6009D66FC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -672,6 +690,35 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3A03C14D1CBE83A2009D66FC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run cd1df67a6122636fb31c48b8886ef27326202193 0c14db341c9848f33d16ff3bac36e9d26006be0f6dd61fc529dc6564651472c1";
+		};
+		3A03C14E1CBE85A6009D66FC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run cd1df67a6122636fb31c48b8886ef27326202193 0c14db341c9848f33d16ff3bac36e9d26006be0f6dd61fc529dc6564651472c1";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		848678BD1C748B0C0049BB1F /* Sources */ = {
@@ -923,6 +970,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Game",
+					iOS,
+				);
 				INFOPLIST_FILE = "Game iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PabloHenri91.SpaceGame--iOS-";
@@ -940,6 +992,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Game",
+					iOS,
+				);
 				INFOPLIST_FILE = "Game iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PabloHenri91.SpaceGame--iOS-";
@@ -1076,6 +1133,13 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Game",
+					tvOS,
+					"$(PROJECT_DIR)/Game",
+					tvOS,
+				);
 				INFOPLIST_FILE = "Game tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PabloHenri91.SpaceGame--tvOS-";
@@ -1094,6 +1158,13 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Game",
+					tvOS,
+					"$(PROJECT_DIR)/Game",
+					tvOS,
+				);
 				INFOPLIST_FILE = "Game tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PabloHenri91.SpaceGame--tvOS-";
