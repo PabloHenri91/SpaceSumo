@@ -100,6 +100,15 @@ class World: Control, SKPhysicsContactDelegate {
         
         switch (self.bodyA.categoryBitMask + self.bodyB.categoryBitMask) {
             
+        case World.categoryBitMask.playerShip.rawValue + World.categoryBitMask.laser.rawValue:
+            (self.bodyA.node as? PlayerShip)?.lastShooterName = (self.bodyB.node as? Laser)?.shooterName
+            break
+            
+        case World.categoryBitMask.laser.rawValue + World.categoryBitMask.botAllyShip.rawValue:
+            //laser foi criado dentro de botAllyShip precisa fazer nada ainda.
+            (self.bodyB.node as? BotAllyShip)?.lastShooterName = (self.bodyA.node as? Laser)?.shooterName
+            break
+            
         case World.categoryBitMask.playerShip.rawValue + World.categoryBitMask.myLaser.rawValue:
             //laser foi criado dentro de playerShip precisa fazer nada ainda.
             break

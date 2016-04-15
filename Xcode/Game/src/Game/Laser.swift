@@ -11,9 +11,12 @@ import SpriteKit
 class Laser: Control {
     
     static var laserSet = Set<Laser>()
+    var shooterName: String!
     
-    init(position: CGPoint, zRotation: CGFloat, shooter:SKPhysicsBody) {
+    init(position: CGPoint, zRotation: CGFloat, shooter:SKPhysicsBody, shooterName:String) {
         super.init()
+        
+        self.shooterName = shooterName
         
         let spriteNode = SKSpriteNode(imageNamed: "laserBlue02")
         spriteNode.texture?.filteringMode = .Linear
