@@ -62,6 +62,7 @@ class MissionScene: GameScene {
         self.world.addChild(self.gameCamera)
         
         self.playerShip = PlayerShip()
+        self.playerShip.name = self.serverManager.userDisplayInfo.socketId!
         self.world.addChild(self.playerShip)
         self.playerShip.setNameLabel(self.serverManager.userDisplayInfo.displayName!)
         
@@ -211,12 +212,12 @@ class MissionScene: GameScene {
                                     newAllyShip.setNameLabel()
                                 }
                             break
-                        case "score":
+                        case "scoreUp":
                             let name = i.next()!
                             for allyShip in AllyShip.allyShipSet {
                                 if name == allyShip.name! {
-                                    let score = i.next()!
-                                    allyShip.labelScore?.setText(score)
+                                    let score = Int((allyShip.labelScore?.getText())!)! + 1
+                                    allyShip.labelScore?.setText(String(score))
                                     break
                                 }
                             }

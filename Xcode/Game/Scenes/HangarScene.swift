@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+//import Crashlytics
 
 class HangarScene: GameScene {
     
@@ -51,6 +52,8 @@ class HangarScene: GameScene {
     
     override func didMoveToView(view: SKView) {
         super.didMoveToView(view)
+        
+        //Crashlytics.sharedInstance().crash()
             
         self.offlineMode = !(self.serverManager.socket.status == .Connected)
         

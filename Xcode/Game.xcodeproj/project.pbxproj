@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3A03C14B1CBE82CC009D66FC /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A03C1491CBE82CC009D66FC /* Fabric.framework */; };
-		3A03C14C1CBE82CC009D66FC /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A03C14A1CBE82CC009D66FC /* Crashlytics.framework */; };
 		3A85A7C01CBEA9EE0094C117 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A03C14F1CBE8602009D66FC /* Fabric.framework */; };
 		3A85A7C11CBEA9FD0094C117 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A03C1501CBE8602009D66FC /* Crashlytics.framework */; };
+		3A85A7C21CBEAAFB0094C117 /* HangarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661411C74FB4F00D8C1CD /* HangarScene.swift */; };
+		3A85A7C31CC16F6B0094C117 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A03C14A1CBE82CC009D66FC /* Crashlytics.framework */; };
+		3A85A7C41CC16F6B0094C117 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A03C1491CBE82CC009D66FC /* Fabric.framework */; };
 		840272FA1CA0715200E6691F /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
 		840272FD1CA0810500E6691F /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840272FC1CA0810500E6691F /* StringExtension.swift */; };
 		840272FF1CA0817900E6691F /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840272FC1CA0810500E6691F /* StringExtension.swift */; };
 		840661421C74FB4F00D8C1CD /* HangarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661411C74FB4F00D8C1CD /* HangarScene.swift */; };
-		840661441C74FB4F00D8C1CD /* HangarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661411C74FB4F00D8C1CD /* HangarScene.swift */; };
 		840661461C7502AF00D8C1CD /* ChooseSector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661451C7502AF00D8C1CD /* ChooseSector.swift */; };
 		840661481C7502AF00D8C1CD /* ChooseSector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661451C7502AF00D8C1CD /* ChooseSector.swift */; };
 		8407F62E1C8DE7CB004F253F /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407F6281C8DE7CB004F253F /* Enemy.swift */; };
@@ -310,8 +310,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A03C14C1CBE82CC009D66FC /* Crashlytics.framework in Frameworks */,
-				3A03C14B1CBE82CC009D66FC /* Fabric.framework in Frameworks */,
+				3A85A7C31CC16F6B0094C117 /* Crashlytics.framework in Frameworks */,
+				3A85A7C41CC16F6B0094C117 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -816,7 +816,6 @@
 				848678F71C748B470049BB1F /* AppDelegate.swift in Sources */,
 				84AADFF51C7B5C0400AE04DD /* SocketAckEmitter.swift in Sources */,
 				8483B5C11C885C3200556D40 /* GameTextField.swift in Sources */,
-				840661441C74FB4F00D8C1CD /* HangarScene.swift in Sources */,
 				84AAE01F1C7B5C0400AE04DD /* SocketLogger.swift in Sources */,
 				84AAE00A1C7B5C0400AE04DD /* SocketEnginePollable.swift in Sources */,
 				84AAE0011C7B5C0400AE04DD /* SocketEngine.swift in Sources */,
@@ -852,6 +851,7 @@
 				84B762CD1C85CA7F0016C24B /* BlackSpriteNode.swift in Sources */,
 				84AAE0251C7B5C0400AE04DD /* SocketParsable.swift in Sources */,
 				84A47DAA1C93445800433807 /* MainMenuScene.swift in Sources */,
+				3A85A7C21CBEAAFB0094C117 /* HangarScene.swift in Sources */,
 				848679401C748F2C0049BB1F /* Event.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -974,6 +974,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Game",
 					iOS,
+					"$(PROJECT_DIR)/Game",
+					iOS,
 				);
 				INFOPLIST_FILE = "Game iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -994,6 +996,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/Game",
+					iOS,
 					"$(PROJECT_DIR)/Game",
 					iOS,
 				);

@@ -22,6 +22,8 @@ class PlayerShip: Control {
     var labelName:Label?
     var labelScore:Label?
     
+    var lastShooterName: String?
+    
     var auxRotation:CGFloat = 0
     
     override init() {
@@ -144,16 +146,41 @@ class PlayerShip: Control {
                 
                 self.physicsBody?.velocity = CGVector.zero
                 
-                if let label = self.labelScore {
-                    label.setText(String(Int(label.getText())! + 1))
-                    if let scene = self.scene {
-                        if let missionScene = scene as? MissionScene {
-                            if let name = missionScene.serverManager.userDisplayInfo.socketId {
-                                missionScene.serverManager.socket.emit("someData", ["score", name, label.getText()])
+//                if let label = self.labelScore {
+//                    label.setText(String(Int(label.getText())! + 1))
+//                    if let scene = self.scene {
+//                        if let missionScene = scene as? MissionScene {
+//                            
+//                            if let name = missionScene.serverManager.userDisplayInfo.socketId {
+//                                missionScene.serverManager.socket.emit("someData", ["score", name, label.getText()])
+//                            }
+//
+//                            
+//                        }
+//                    }
+//                }
+                
+                if let scene = self.scene {
+                    if let missionScene = scene as? MissionScene {
+                        if let name = self.lastShooterName {
+                            missionScene.serverManager.socket.emit("someData", ["scoreUp", name])
+                            
+                            for allyShip in AllyShip.allyShipSet {
+                                if name == allyShip.name! {
+                                    let score = Int((allyShip.labelScore?.getText())!)! + 1
+                                    
+                                    print("score " + String(score))
+                                    allyShip.labelScore?.setText(String(score))
+                                    break
+                                }
                             }
+                            
                         }
                     }
+                    
                 }
+                
+                
             }
             
             if applyAngularImpulse || applyForce {
@@ -194,9 +221,19 @@ class PlayerShip: Control {
             //Laser
             
             if currentTime - self.lastLaser > 0.1 {
-                let laser = Laser(position: self.position, zRotation: self.zRotation, shooter: self.physicsBody!)
-                self.parent?.addChild(laser)
-                self.lastLaser = currentTime
+                
+                if let name = self.name {
+                    
+                    let laser = Laser(position: self.position, zRotation: self.zRotation, shooter: self.physicsBody!, shooterName: name)
+                    
+                    self.parent?.addChild(laser)
+                    self.lastLaser = currentTime
+                    
+                }
+                
+                
+                
+                
             }
         }
     }

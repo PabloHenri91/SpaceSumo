@@ -149,7 +149,7 @@ class AllyShip: Control {
             
             //Laser
             if currentTime - self.lastLaser > 0.1 {
-                let laser = Laser(position: self.position, zRotation: self.zRotation, shooter: self.physicsBody!)
+                let laser = Laser(position: self.position, zRotation: self.zRotation, shooter: self.physicsBody!, shooterName: self.name!)
                 self.parent?.addChild(laser)
                 self.lastLaser = currentTime
             }

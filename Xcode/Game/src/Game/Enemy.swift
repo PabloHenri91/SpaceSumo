@@ -225,8 +225,8 @@ class Enemy: Control {
             //Laser
             
             if currentTime - self.lastLaser > 0.1 {
-                let laser = Laser(position: self.position, zRotation: self.zRotation, shooter: self.physicsBody!)
-                self.parent?.addChild(laser)
+                //let laser = Laser(position: self.position, zRotation: self.zRotation, shooter: self.physicsBody!)
+                //self.parent?.addChild(laser)
                 self.lastLaser = currentTime
             }
             
