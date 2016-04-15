@@ -14,7 +14,7 @@ class Enemy: Control {
     static var noEnemiesOnScreen = true
     
     var maxAngularVelocity:CGFloat = 3
-    var force:CGFloat = 50
+    var force:CGFloat = 25
     var onScreen = false
     var enemyNode:SKNode
     var totalRotationToEnemyNode:CGFloat = 0

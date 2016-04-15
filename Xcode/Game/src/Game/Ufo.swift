@@ -13,7 +13,7 @@ class Ufo: Control {
     static var ufoSet = Set<Ufo>()
     static var noUfosOnScreen = true
     
-    var force:CGFloat = 50
+    var force:CGFloat = 25
     var onScreen = false
     var enemyNode:SKNode
     var movingType = 0

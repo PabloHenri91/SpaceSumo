@@ -18,7 +18,7 @@ class AllyShip: Control {
     var lastLaser:NSTimeInterval = 0
     var lastOnScreen:NSTimeInterval = 0
     
-    var force:CGFloat = 50
+    var force:CGFloat = 25
     
     var labelName:Label?
     var labelScore:Label?
