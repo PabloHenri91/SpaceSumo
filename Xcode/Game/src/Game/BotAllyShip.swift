@@ -17,6 +17,7 @@ class BotAllyShip: AllyShip {
     var movingType = 0
     var destination = CGPoint.zero
     var needToMove = false
+    var lastShooterName: String?
     
     override init() {
         super.init()
@@ -55,15 +56,54 @@ class BotAllyShip: AllyShip {
                 
                 self.physicsBody?.velocity = CGVector.zero
                 
-                if let name = self.name {
-                    if let label = self.labelScore {
-                        label.setText(String(Int(label.getText())! + 1))
-                        if let scene = self.scene {
-                            if let missionScene = scene as? MissionScene {
-                                missionScene.serverManager.socket.emit("someData", ["score", name, label.getText()])
+                if let scene = self.scene {
+                    if let missionScene = scene as? MissionScene {
+                        if let name = self.lastShooterName {
+                            missionScene.serverManager.socket.emit("someData", ["scoreUp", name])
+                            
+                            if let selfName = self.name {
+                                missionScene.serverManager.socket.emit("someData", ["dead", selfName])
                             }
+                            
+                            self.labelScore?.setText("0")
+                            print("morri para o " + name)
+                            
+                            if (missionScene.playerShip.name! == name) {
+                                
+                                let score = Int((missionScene.playerShip.labelScore?.getText())!)! + 1
+                                
+                                print("score " + String(score))
+                                missionScene.playerShip.labelScore?.setText(String(score))
+                                
+                            } else {
+                                
+                                for allyShip in AllyShip.allyShipSet {
+                                    if name == allyShip.name! {
+                                        let score = Int((allyShip.labelScore?.getText())!)! + 1
+                                        
+                                        print("score " + String(score))
+                                        allyShip.labelScore?.setText(String(score))
+                                        break
+                                    }
+                                }
+                                
+                                for botAllyShip in BotAllyShip.botAllyShipSet {
+                                    if name == botAllyShip.name! {
+                                        let score = Int((botAllyShip.labelScore?.getText())!)! + 1
+                                        
+                                        print("score " + String(score))
+                                        botAllyShip.labelScore?.setText(String(score))
+                                        break
+                                    }
+                                }
+                                
+                            }
+                            
+                            
+                            
                         }
                     }
+                    
                 }
             }
             

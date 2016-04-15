@@ -214,13 +214,29 @@ class MissionScene: GameScene {
                             break
                         case "scoreUp":
                             let name = i.next()!
+                            print(name + " matou alguem")
+                            
                             for allyShip in AllyShip.allyShipSet {
                                 if name == allyShip.name! {
                                     let score = Int((allyShip.labelScore?.getText())!)! + 1
+                                    
+                                    print("score " + String(score))
                                     allyShip.labelScore?.setText(String(score))
                                     break
                                 }
                             }
+                            
+                        case "dead":
+                            let name = i.next()!
+                            print(name + "morri")
+                            
+                            for allyShip in AllyShip.allyShipSet {
+                                if name == allyShip.name! {
+                                    allyShip.labelScore?.setText("0")
+                                    break
+                                }
+                            }
+                        
                             
                             break
                         case "removeBots":
