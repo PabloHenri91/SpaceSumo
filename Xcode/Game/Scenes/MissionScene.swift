@@ -84,23 +84,47 @@ class MissionScene: GameScene {
         } else {
             self.setHandlers()
             self.addPlayers()
+            self.addBots()
         }
     }
     
     func addBots() {
-        for _ in 0..<2 {
-            let newAllyShip = BotAllyShip()
-            var someName = CharacterGenerator.sharedInstance.getName(.random, gender: .random)
-            someName = someName.componentsSeparatedByString(" ").first!
-            newAllyShip.name = "Bot " + someName
-            self.world.addChild(newAllyShip)
-            newAllyShip.setNameLabel()
+        
+        let maxAllyShipCount = 3
+        let i = AllyShip.allyShipSet.count + BotAllyShip.botAllyShipSet.count
+        
+        if self.offlineMode {
+            if i < maxAllyShipCount {
+                for _ in i..<maxAllyShipCount {
+                    let newBotAllyShip = BotAllyShip()
+                    self.world.addChild(newBotAllyShip)
+                    newBotAllyShip.setNameLabel()
+                }
+            }
+        } else {
+            if self.serverManager.roomId! == self.serverManager.userDisplayInfo.socketId! {
+                
+                if i < maxAllyShipCount {
+                    for _ in i..<maxAllyShipCount {
+                        let newBotAllyShip = BotAllyShip()
+                        self.world.addChild(newBotAllyShip)
+                        newBotAllyShip.setNameLabel()
+                    }
+                }
+                
+                var botNames = [String]()
+                botNames.append("botNames")
+                
+                for botAllyShip in BotAllyShip.botAllyShipSet {
+                    botNames.append(botAllyShip.name!)
+                }
+                
+                self.serverManager.socket.emit("someData", botNames)
+            }
         }
     }
     
     func addPlayers() {
-        
-        var i = 0
         
         for userDisplayInfo in self.serverManager.usersDisplayInfo {
             if userDisplayInfo.socketId! != self.serverManager.userDisplayInfo.socketId! {
@@ -109,25 +133,6 @@ class MissionScene: GameScene {
                 self.world.addChild(newAllyShip)
                 newAllyShip.setNameLabel()
                 newAllyShip.labelName!.setText(userDisplayInfo.displayName!)
-                i += 1
-            }
-        }
-        
-        if self.serverManager.roomId! == self.serverManager.userDisplayInfo.socketId! {
-            var botNames = [String]()
-            botNames.append("botNames")
-            
-            if i < 1 {
-                for _ in i..<1 {
-                    let newBotAllyShip = BotAllyShip()
-                    var someName = CharacterGenerator.sharedInstance.getName(.random, gender: .random)
-                    someName = someName.componentsSeparatedByString(" ").first!
-                    newBotAllyShip.name = "Bot " + someName
-                    botNames.append(newBotAllyShip.name!)
-                    self.world.addChild(newBotAllyShip)
-                    newBotAllyShip.setNameLabel()
-                }
-                self.serverManager.socket.emit("someData", botNames)
             }
         }
     }
@@ -205,10 +210,22 @@ class MissionScene: GameScene {
                             case "botNames":
                                 for _ in 1..<message.count {
                                     let name = i.next()!
-                                    let newAllyShip = AllyShip()
-                                    newAllyShip.name = name
-                                    scene.world.addChild(newAllyShip)
-                                    newAllyShip.setNameLabel()
+                                    
+                                    var doIHaveThisAllyShip = false
+                                    
+                                    for allyShip in AllyShip.allyShipSet {
+                                        if allyShip.name! == name {
+                                            doIHaveThisAllyShip = true
+                                            break
+                                        }
+                                    }
+                                    
+                                    if !doIHaveThisAllyShip {
+                                        let newAllyShip = AllyShip()
+                                        newAllyShip.name = name
+                                        scene.world.addChild(newAllyShip)
+                                        newAllyShip.setNameLabel()
+                                    }
                                 }
                             break
                         case "score":
@@ -281,11 +298,11 @@ class MissionScene: GameScene {
                                 allyShip.removeFromParent()
                             }
                         }
+                        scene.addBots()
                     }
                     break
                     
                 case "addPlayer":
-                    //TODO: readdPlayer
                     if let message = socketAnyEvent.items?.firstObject as? [String] {
                         
                         let newAllyShip = AllyShip()
@@ -294,7 +311,8 @@ class MissionScene: GameScene {
                         newAllyShip.setNameLabel()
                         newAllyShip.labelName?.setText(message[1])
                         
-                        for botAllyShip in BotAllyShip.botAllyShipSet {
+                        if BotAllyShip.botAllyShipSet.count > 0 {
+                            let botAllyShip = BotAllyShip.botAllyShipSet.removeFirst()
                             botAllyShip.removeFromParent()
                         }
                     }
@@ -425,7 +443,7 @@ class MissionScene: GameScene {
                 Config.updateSceneSize()
                 
                 var botNames = [String]()
-                botNames.append("removeBots")
+                botNames.append("removeAllBots")
                 
                 for botAllyShip in BotAllyShip.botAllyShipSet {
                     botNames.append(botAllyShip.name!)

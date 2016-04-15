@@ -25,6 +25,10 @@ class BotAllyShip: AllyShip {
     override init() {
         super.init()
         
+        var someName = CharacterGenerator.sharedInstance.getName(.random, gender: .random)
+        someName = someName.componentsSeparatedByString(" ").first!
+        self.name = "Bot " + someName
+        
         self.position = CGPoint(x: Int.random(Int(GameCamera.arenaSizeWidth)), y: -Int.random(Int(GameCamera.arenaSizeHeight)))
         
         self.physicsBody?.categoryBitMask = World.categoryBitMask.botAllyShip.rawValue
