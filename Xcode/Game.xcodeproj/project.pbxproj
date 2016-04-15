@@ -10,8 +10,8 @@
 		3A85A7C01CBEA9EE0094C117 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A03C14F1CBE8602009D66FC /* Fabric.framework */; };
 		3A85A7C11CBEA9FD0094C117 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A03C1501CBE8602009D66FC /* Crashlytics.framework */; };
 		3A85A7C21CBEAAFB0094C117 /* HangarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661411C74FB4F00D8C1CD /* HangarScene.swift */; };
-		3A85A7C71CC17B3E0094C117 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A03C14A1CBE82CC009D66FC /* Crashlytics.framework */; };
-		3A85A7C81CC17B3E0094C117 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A03C1491CBE82CC009D66FC /* Fabric.framework */; };
+		3A85A7C91CC17F680094C117 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A03C14A1CBE82CC009D66FC /* Crashlytics.framework */; };
+		3A85A7CA1CC17F680094C117 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A03C1491CBE82CC009D66FC /* Fabric.framework */; };
 		840272FA1CA0715200E6691F /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
 		840272FD1CA0810500E6691F /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840272FC1CA0810500E6691F /* StringExtension.swift */; };
 		840272FF1CA0817900E6691F /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840272FC1CA0810500E6691F /* StringExtension.swift */; };
@@ -310,8 +310,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A85A7C71CC17B3E0094C117 /* Crashlytics.framework in Frameworks */,
-				3A85A7C81CC17B3E0094C117 /* Fabric.framework in Frameworks */,
+				3A85A7C91CC17F680094C117 /* Crashlytics.framework in Frameworks */,
+				3A85A7CA1CC17F680094C117 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,7 +614,6 @@
 				TargetAttributes = {
 					848678C01C748B0C0049BB1F = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = JZ3J7RVLD7;
 					};
 					848678F31C748B470049BB1F = {
 						CreatedOnToolsVersion = 7.2;
@@ -980,6 +979,8 @@
 					iOS,
 					"$(PROJECT_DIR)/Game",
 					iOS,
+					"$(PROJECT_DIR)/Game",
+					iOS,
 				);
 				INFOPLIST_FILE = "Game iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1000,6 +1001,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/Game",
+					iOS,
 					"$(PROJECT_DIR)/Game",
 					iOS,
 					"$(PROJECT_DIR)/Game",

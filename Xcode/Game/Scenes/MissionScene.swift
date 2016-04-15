@@ -233,15 +233,28 @@ class MissionScene: GameScene {
                             let name = i.next()!
                             print(name + " matou alguem")
                             
-                            for allyShip in AllyShip.allyShipSet {
-                                if name == allyShip.name! {
-                                    let score = Int((allyShip.labelScore?.getText())!)! + 1
-                                    
-                                    print("score " + String(score))
-                                    allyShip.labelScore?.setText(String(score))
-                                    break
+                            if (scene.playerShip.name! == name) {
+                                
+                                let score = Int((scene.playerShip.labelScore?.getText())!)! + 1
+                                
+                                print("score " + String(score))
+                                scene.playerShip.labelScore?.setText(String(score))
+                                
+                            } else {
+                                
+                                for allyShip in AllyShip.allyShipSet {
+                                    if name == allyShip.name! {
+                                        let score = Int((allyShip.labelScore?.getText())!)! + 1
+                                        
+                                        print("score " + String(score))
+                                        allyShip.labelScore?.setText(String(score))
+                                        break
+                                    }
                                 }
+                                
                             }
+                            
+                            
                             
                         case "dead":
                             let name = i.next()!

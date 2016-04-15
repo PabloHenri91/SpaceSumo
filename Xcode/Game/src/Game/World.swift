@@ -109,6 +109,7 @@ class World: Control, SKPhysicsContactDelegate {
             (self.bodyB.node as? BotAllyShip)?.lastShooterName = (self.bodyA.node as? Laser)?.shooterName
             break
             
+            
         case World.categoryBitMask.playerShip.rawValue + World.categoryBitMask.myLaser.rawValue:
             //laser foi criado dentro de playerShip precisa fazer nada ainda.
             break
