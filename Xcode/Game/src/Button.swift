@@ -220,8 +220,8 @@ class Button: Control {
         }
         
         if let _ = GameScene.nextButton {
-            GameScene.selectedButton!.buttonRelease()//TODO: treta na apple tv. fatal error: unexpectedly found nil while unwrapping an Optional value
-            GameScene.nextButton!.buttonPress()
+            GameScene.selectedButton?.buttonRelease()
+            GameScene.nextButton?.buttonPress()
             GameScene.selectedButton = GameScene.nextButton
             GameScene.nextButton = nil
         }
