@@ -83,13 +83,10 @@ class BotAllyShip: AllyShip {
                             }
                             
                             self.labelScore?.setText("0")
-                            print("morri para o " + name)
                             
                             if (missionScene.playerShip.name! == name) {
                                 
                                 let score = Int((missionScene.playerShip.labelScore?.getText())!)! + 1
-                                
-                                print("score " + String(score))
                                 missionScene.playerShip.labelScore?.setText(String(score))
                                 
                             } else {
@@ -97,8 +94,6 @@ class BotAllyShip: AllyShip {
                                 for allyShip in AllyShip.allyShipSet {
                                     if name == allyShip.name! {
                                         let score = Int((allyShip.labelScore?.getText())!)! + 1
-                                        
-                                        print("score " + String(score))
                                         allyShip.labelScore?.setText(String(score))
                                         break
                                     }
@@ -107,8 +102,6 @@ class BotAllyShip: AllyShip {
                                 for botAllyShip in BotAllyShip.botAllyShipSet {
                                     if name == botAllyShip.name! {
                                         let score = Int((botAllyShip.labelScore?.getText())!)! + 1
-                                        
-                                        print("score " + String(score))
                                         botAllyShip.labelScore?.setText(String(score))
                                         break
                                     }

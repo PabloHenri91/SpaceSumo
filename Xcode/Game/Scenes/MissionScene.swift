@@ -47,6 +47,8 @@ class MissionScene: GameScene {
     
     var lastSocketErrorMessage = ""
     
+    var startPlaying:NSTimeInterval = 0
+    
     override func didMoveToView(view: SKView) {
         
         super.didMoveToView(view)
@@ -62,7 +64,13 @@ class MissionScene: GameScene {
         self.world.addChild(self.gameCamera)
         
         self.playerShip = PlayerShip()
-        self.playerShip.name = self.serverManager.userDisplayInfo.socketId!
+        
+        if let socketId = self.serverManager.userDisplayInfo.socketId {
+            self.playerShip.name = socketId
+        } else {
+            self.playerShip.name = "PlayerShip"
+        }
+        
         self.world.addChild(self.playerShip)
         self.playerShip.setNameLabel(self.serverManager.userDisplayInfo.displayName!)
         
@@ -87,6 +95,8 @@ class MissionScene: GameScene {
             self.addPlayers()
             self.addBots()
         }
+        
+        self.startPlaying = GameScene.currentTime
     }
     
     func addBots() {
@@ -231,13 +241,10 @@ class MissionScene: GameScene {
                             break
                         case "scoreUp":
                             let name = i.next()!
-                            print(name + " matou alguem")
                             
                             if (scene.playerShip.name! == name) {
                                 
                                 let score = Int((scene.playerShip.labelScore?.getText())!)! + 1
-                                
-                                print("score " + String(score))
                                 scene.playerShip.labelScore?.setText(String(score))
                                 
                             } else {
@@ -245,8 +252,6 @@ class MissionScene: GameScene {
                                 for allyShip in AllyShip.allyShipSet {
                                     if name == allyShip.name! {
                                         let score = Int((allyShip.labelScore?.getText())!)! + 1
-                                        
-                                        print("score " + String(score))
                                         allyShip.labelScore?.setText(String(score))
                                         break
                                     }
@@ -258,7 +263,6 @@ class MissionScene: GameScene {
                             
                         case "dead":
                             let name = i.next()!
-                            print(name + "morri")
                             
                             for allyShip in AllyShip.allyShipSet {
                                 if name == allyShip.name! {
@@ -570,6 +574,20 @@ class MissionScene: GameScene {
                     #if os(iOS) || os(OSX)
                         if(self.buttonBack.containsPoint(location)) {
                             self.nextState = states.hangar
+                            
+                            if GameScene.currentTime - self.startPlaying > 60 * 5 {
+                                let alertController = UIAlertController(title: "Feedback", message: "Hello, it looks like you're having fun with our game. Would you like to send us a feedback? Your opinion is very important for the development of this game. Thank you for testing! 😃", preferredStyle: UIAlertControllerStyle.Alert)
+                                alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (alertAction:UIAlertAction) in
+                                    UIApplication.sharedApplication().openURL(NSURL(string: "mailto:pablo_fonseca91@icloud.com?cc=henrique_2601@hotmail.com&subject=SpaceGame%20Feedback&body=")!)
+                                }))
+                                
+                                alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: { (alertAction:UIAlertAction) in
+                                    
+                                }))
+                                
+                                self.view?.window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
+                            }
+                            
                             return
                         }
                     #endif

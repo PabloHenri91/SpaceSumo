@@ -164,7 +164,6 @@ class PlayerShip: Control {
                     if let missionScene = scene as? MissionScene {
                         if let name = self.lastShooterName {
                             missionScene.serverManager.socket.emit("someData", ["scoreUp", name])
-                            print("morri para o " + name)
                             
                             if let selfName = self.name {
                                 missionScene.serverManager.socket.emit("someData", ["dead", selfName])
@@ -173,22 +172,16 @@ class PlayerShip: Control {
                             self.labelScore?.setText("0")
                             
                             for allyShip in AllyShip.allyShipSet {
-                                print(allyShip.name!)
                                 if name == allyShip.name! {
                                     let score = Int((allyShip.labelScore?.getText())!)! + 1
-                                    
-                                    print("score " + String(score))
                                     allyShip.labelScore?.setText(String(score))
                                     break
                                 }
                             }
                             
                             for botAllyShip in BotAllyShip.botAllyShipSet {
-                                print(botAllyShip.name!)
                                 if name == botAllyShip.name! {
                                     let score = Int((botAllyShip.labelScore?.getText())!)! + 1
-                                    
-                                    print("score " + String(score))
                                     botAllyShip.labelScore?.setText(String(score))
                                     break
                                 }
