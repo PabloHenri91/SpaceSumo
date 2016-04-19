@@ -386,6 +386,10 @@ class Button: Control {
     #endif
     
     func positionInScene() -> CGPoint {
-        return self.convertPoint(self.position, toNode: self.scene!)
+        if let scene = self.scene {
+            return self.convertPoint(self.position, toNode: scene)
+        }
+        print("button.scene == nil! Algo saiu errado")
+        return CGPoint.zero
     }
 }
