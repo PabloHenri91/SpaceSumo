@@ -575,18 +575,20 @@ class MissionScene: GameScene {
                         if(self.buttonBack.containsPoint(location)) {
                             self.nextState = states.hangar
                             
-                            if GameScene.currentTime - self.startPlaying > 60 * 5 {
-                                let alertController = UIAlertController(title: "Feedback", message: "Hello, it looks like you're having fun with our game. Would you like to send us a feedback? Your opinion is very important for the development of this game. Thank you for testing! 😃", preferredStyle: UIAlertControllerStyle.Alert)
-                                alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (alertAction:UIAlertAction) in
-                                    UIApplication.sharedApplication().openURL(NSURL(string: "mailto:pablo_fonseca91@icloud.com?cc=henrique_2601@hotmail.com&subject=SpaceGame%20Feedback&body=")!)
-                                }))
-                                
-                                alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: { (alertAction:UIAlertAction) in
+                            #if os(iOS)
+                                if GameScene.currentTime - self.startPlaying > 60 * 5 {
+                                    let alertController = UIAlertController(title: "Feedback", message: "Hello, it looks like you're having fun with our game. Would you like to send us a feedback? Your opinion is very important for the development of this game. Thank you for testing! 😃", preferredStyle: UIAlertControllerStyle.Alert)
+                                    alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (alertAction:UIAlertAction) in
+                                        UIApplication.sharedApplication().openURL(NSURL(string: "mailto:pablo_fonseca91@icloud.com?cc=henrique_2601@hotmail.com&subject=SpaceGame%20Feedback&body=")!)
+                                    }))
                                     
-                                }))
-                                
-                                self.view?.window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
-                            }
+                                    alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: { (alertAction:UIAlertAction) in
+                                        
+                                    }))
+                                    
+                                    self.view?.window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
+                                }
+                            #endif
                             
                             return
                         }
