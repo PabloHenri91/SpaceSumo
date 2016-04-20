@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		3A85A7C21CBEAAFB0094C117 /* HangarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661411C74FB4F00D8C1CD /* HangarScene.swift */; };
+		3AF5FE8F1CC84ABC00DF16BC /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF5FE8E1CC84ABC00DF16BC /* Crashlytics.framework */; };
+		3AF5FE911CC84AC600DF16BC /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF5FE901CC84AC600DF16BC /* Fabric.framework */; };
+		3AF5FE931CC84B6F00DF16BC /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF5FE921CC84B6F00DF16BC /* Crashlytics.framework */; };
+		3AF5FE951CC84B7A00DF16BC /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF5FE941CC84B7A00DF16BC /* Fabric.framework */; };
 		840272FA1CA0715200E6691F /* ScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486791B1C748F2C0049BB1F /* ScrollNode.swift */; };
 		840272FD1CA0810500E6691F /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840272FC1CA0810500E6691F /* StringExtension.swift */; };
 		840272FF1CA0817900E6691F /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840272FC1CA0810500E6691F /* StringExtension.swift */; };
@@ -78,8 +82,6 @@
 		844AB3301C85D81A0033D00B /* GameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB32F1C85D81A0033D00B /* GameTextField.swift */; };
 		84557B561C997E7200C8A11A /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84557B551C997E7100C8A11A /* ServerManager.swift */; };
 		84557B581C997E7200C8A11A /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84557B551C997E7100C8A11A /* ServerManager.swift */; };
-		8465BEE11CC64D5400256179 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A03C1491CBE82CC009D66FC /* Fabric.framework */; };
-		8465BEE21CC64D5600256179 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A03C14A1CBE82CC009D66FC /* Crashlytics.framework */; };
 		8483B5C11C885C3200556D40 /* GameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB32F1C85D81A0033D00B /* GameTextField.swift */; };
 		848678C41C748B0C0049BB1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848678C31C748B0C0049BB1F /* AppDelegate.swift */; };
 		848678CA1C748B0C0049BB1F /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848678C91C748B0C0049BB1F /* GameViewController.swift */; };
@@ -126,8 +128,6 @@
 		84944CE81C764535006F49CE /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84944CE51C764535006F49CE /* Label.swift */; };
 		84944CEA1C7646C2006F49CE /* kenpixel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84944CE91C7646C2006F49CE /* kenpixel.ttf */; };
 		84944CEC1C7646C2006F49CE /* kenpixel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84944CE91C7646C2006F49CE /* kenpixel.ttf */; };
-		849EACD31CC67D940010FF96 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A03C14F1CBE8602009D66FC /* Fabric.framework */; };
-		849EACD41CC67D960010FF96 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A03C1501CBE8602009D66FC /* Crashlytics.framework */; };
 		84A47D901C93114300433807 /* MultiplayerLobbyScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A47D8F1C93114300433807 /* MultiplayerLobbyScene.swift */; };
 		84A47D921C93114300433807 /* MultiplayerLobbyScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A47D8F1C93114300433807 /* MultiplayerLobbyScene.swift */; };
 		84A47DAA1C93445800433807 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848679511C74C0750049BB1F /* MainMenuScene.swift */; };
@@ -213,10 +213,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3A03C1491CBE82CC009D66FC /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = "Game iOS/Fabric.framework"; sourceTree = SOURCE_ROOT; };
-		3A03C14A1CBE82CC009D66FC /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = "Game iOS/Crashlytics.framework"; sourceTree = SOURCE_ROOT; };
-		3A03C14F1CBE8602009D66FC /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = "Game tvOS/Fabric.framework"; sourceTree = SOURCE_ROOT; };
-		3A03C1501CBE8602009D66FC /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = "Game tvOS/Crashlytics.framework"; sourceTree = SOURCE_ROOT; };
+		3AF5FE8E1CC84ABC00DF16BC /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		3AF5FE901CC84AC600DF16BC /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		3AF5FE921CC84B6F00DF16BC /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		3AF5FE941CC84B7A00DF16BC /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		840272FC1CA0810500E6691F /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		840661411C74FB4F00D8C1CD /* HangarScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangarScene.swift; sourceTree = "<group>"; };
 		840661451C7502AF00D8C1CD /* ChooseSector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseSector.swift; sourceTree = "<group>"; };
@@ -310,8 +310,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8465BEE11CC64D5400256179 /* Fabric.framework in Frameworks */,
-				8465BEE21CC64D5600256179 /* Crashlytics.framework in Frameworks */,
+				3AF5FE931CC84B6F00DF16BC /* Crashlytics.framework in Frameworks */,
+				3AF5FE951CC84B7A00DF16BC /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,8 +326,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				849EACD31CC67D940010FF96 /* Fabric.framework in Frameworks */,
-				849EACD41CC67D960010FF96 /* Crashlytics.framework in Frameworks */,
+				3AF5FE8F1CC84ABC00DF16BC /* Crashlytics.framework in Frameworks */,
+				3AF5FE911CC84AC600DF16BC /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,8 +366,8 @@
 		848678C21C748B0C0049BB1F /* Game iOS */ = {
 			isa = PBXGroup;
 			children = (
-				3A03C1491CBE82CC009D66FC /* Fabric.framework */,
-				3A03C14A1CBE82CC009D66FC /* Crashlytics.framework */,
+				3AF5FE941CC84B7A00DF16BC /* Fabric.framework */,
+				3AF5FE921CC84B6F00DF16BC /* Crashlytics.framework */,
 				848678C31C748B0C0049BB1F /* AppDelegate.swift */,
 				848678C91C748B0C0049BB1F /* GameViewController.swift */,
 				848678CB1C748B0C0049BB1F /* Main.storyboard */,
@@ -381,8 +381,8 @@
 		848678DC1C748B1F0049BB1F /* Game tvOS */ = {
 			isa = PBXGroup;
 			children = (
-				3A03C14F1CBE8602009D66FC /* Fabric.framework */,
-				3A03C1501CBE8602009D66FC /* Crashlytics.framework */,
+				3AF5FE901CC84AC600DF16BC /* Fabric.framework */,
+				3AF5FE8E1CC84ABC00DF16BC /* Crashlytics.framework */,
 				848678DD1C748B1F0049BB1F /* AppDelegate.swift */,
 				848678E31C748B1F0049BB1F /* GameViewController.swift */,
 				848678E71C748B1F0049BB1F /* Main.storyboard */,
@@ -614,7 +614,6 @@
 				TargetAttributes = {
 					848678C01C748B0C0049BB1F = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = JZ3J7RVLD7;
 					};
 					848678F31C748B470049BB1F = {
 						CreatedOnToolsVersion = 7.2;
@@ -627,7 +626,6 @@
 					};
 					84CA57F51CA2DE940095811F = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = JZ3J7RVLD7;
 					};
 				};
 			};
@@ -703,7 +701,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run cd1df67a6122636fb31c48b8886ef27326202193 0c14db341c9848f33d16ff3bac36e9d26006be0f6dd61fc529dc6564651472c1";
+			shellScript = "./'Game iOS'/Fabric.framework/run cd1df67a6122636fb31c48b8886ef27326202193 0c14db341c9848f33d16ff3bac36e9d26006be0f6dd61fc529dc6564651472c1";
 		};
 		3A03C14E1CBE85A6009D66FC /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -716,7 +714,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run cd1df67a6122636fb31c48b8886ef27326202193 0c14db341c9848f33d16ff3bac36e9d26006be0f6dd61fc529dc6564651472c1";
+			shellScript = "./'Game tvOS'/Fabric.framework/run cd1df67a6122636fb31c48b8886ef27326202193 0c14db341c9848f33d16ff3bac36e9d26006be0f6dd61fc529dc6564651472c1";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -974,6 +972,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Game",
 					iOS,
+					"$(PROJECT_DIR)/Game",
+					iOS,
 				);
 				INFOPLIST_FILE = "Game iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -994,6 +994,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/Game",
+					iOS,
 					"$(PROJECT_DIR)/Game",
 					iOS,
 				);
@@ -1137,6 +1139,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Game",
 					tvOS,
+					"$(PROJECT_DIR)/Game",
+					tvOS,
 				);
 				INFOPLIST_FILE = "Game tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1158,6 +1162,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/Game",
+					tvOS,
 					"$(PROJECT_DIR)/Game",
 					tvOS,
 				);
