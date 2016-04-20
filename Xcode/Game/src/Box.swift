@@ -25,6 +25,8 @@ class Box: Control {
         super.init(spriteNode: spriteNode, x: Int(position.x), y: Int(position.y), xAlign: xAlign, yAlign: yAlign)
         
         self.zPosition = Config.HUDZPosition * 2
+        
+        self.size = self.calculateAccumulatedFrame().size
     }
 
     required init?(coder aDecoder: NSCoder) {

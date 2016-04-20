@@ -84,12 +84,14 @@ class ChooseSector: GameScene {
         if(self.state == self.nextState) {
             for touch in touches {
                 let location = touch.locationInNode(self)
+                
+                if(self.buttonBack.containsPoint(location)) {
+                    self.nextState = states.hangar
+                    return
+                }
+                
                 switch (self.state) {
                 case states.chooseSector:
-                    if(self.buttonBack.containsPoint(location)) {
-                        self.nextState = states.hangar
-                        return
-                    }
                     
                     if(self.sectorScrollNode.containsPoint(location)) {
                         
