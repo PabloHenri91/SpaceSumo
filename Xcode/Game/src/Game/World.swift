@@ -135,6 +135,10 @@ class World: Control, SKPhysicsContactDelegate {
             (self.bodyB.node as? Ufo)?.didBeginContact(self.bodyA, contact: contact)
             break
             
+        case World.categoryBitMask.laser.rawValue + World.categoryBitMask.allyShip.rawValue:
+            //nao precisa fazer nada aqui porque nao temos dano
+            break
+            
         default:
             print("didBeginContact: " + bodyAcategoryBitMask + " -> " + bodyBcategoryBitMask)
             break
@@ -248,6 +252,10 @@ class World: Control, SKPhysicsContactDelegate {
             
         case World.categoryBitMask.laser.rawValue + World.categoryBitMask.botAllyShip.rawValue:
             //laser ricocheteou no botAllyShip
+            break
+            
+        case World.categoryBitMask.laser.rawValue + World.categoryBitMask.allyShip.rawValue:
+            //laser ricocheteou no allyShip
             break
             
         default:

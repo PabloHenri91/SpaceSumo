@@ -996,8 +996,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Game",
 					iOS,
-					"$(PROJECT_DIR)/Game",
-					iOS,
 				);
 				INFOPLIST_FILE = "Game iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
