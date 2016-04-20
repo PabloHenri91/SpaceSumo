@@ -17,7 +17,6 @@ class BotAllyShip: AllyShip {
     var movingType = 0
     var destination = CGPoint.zero
     var needToMove = false
-    var lastShooterName: String?
     
     var auxRotation:CGFloat = 0
     

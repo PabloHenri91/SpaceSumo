@@ -90,7 +90,8 @@ class PlayerShip: Control {
             break
             
         case World.categoryBitMask.laser.rawValue:
-            print("didBeginContact: playerShip -> laser")
+            self.lastShooterName = (physicsBody.node as? Laser)?.shooterName
+            physicsBody.node?.removeFromParent()
             break
             
         case World.categoryBitMask.ufo.rawValue:

@@ -23,6 +23,8 @@ class AllyShip: Control {
     var labelName:Label?
     var labelScore:Label?
     
+    var lastShooterName: String?
+    
     override init() {
         super.init()
         
@@ -92,7 +94,8 @@ class AllyShip: Control {
             break
             
         case World.categoryBitMask.laser.rawValue:
-            print("didBeginContact: allyShip -> laser")
+            self.lastShooterName = (physicsBody.node as? Laser)?.shooterName
+            physicsBody.node?.removeFromParent()
             break
             
         case World.categoryBitMask.ufo.rawValue:

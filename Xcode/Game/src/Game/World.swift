@@ -101,14 +101,12 @@ class World: Control, SKPhysicsContactDelegate {
         switch (self.bodyA.categoryBitMask + self.bodyB.categoryBitMask) {
             
         case World.categoryBitMask.playerShip.rawValue + World.categoryBitMask.laser.rawValue:
-            (self.bodyA.node as? PlayerShip)?.lastShooterName = (self.bodyB.node as? Laser)?.shooterName
+            (self.bodyA.node as? PlayerShip)?.didBeginContact(self.bodyB, contact: contact)
             break
             
         case World.categoryBitMask.laser.rawValue + World.categoryBitMask.botAllyShip.rawValue:
-            //laser foi criado dentro de botAllyShip precisa fazer nada ainda.
-            (self.bodyB.node as? BotAllyShip)?.lastShooterName = (self.bodyA.node as? Laser)?.shooterName
+            (self.bodyB.node as? BotAllyShip)?.didBeginContact(self.bodyA, contact: contact)
             break
-            
             
         case World.categoryBitMask.playerShip.rawValue + World.categoryBitMask.myLaser.rawValue:
             //laser foi criado dentro de playerShip precisa fazer nada ainda.
@@ -246,6 +244,10 @@ class World: Control, SKPhysicsContactDelegate {
             
         case World.categoryBitMask.laser.rawValue + World.categoryBitMask.ufo.rawValue:
             //laser ricocheteou no ufo
+            break
+            
+        case World.categoryBitMask.laser.rawValue + World.categoryBitMask.botAllyShip.rawValue:
+            //laser ricocheteou no botAllyShip
             break
             
         default:

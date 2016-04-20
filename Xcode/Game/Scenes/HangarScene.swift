@@ -31,12 +31,8 @@ class HangarScene: GameScene {
     //buttons
     var buttonBack:Button!
     
-    var buttonLevelUp:Button!
     var buttonGo:Button!
-    var buttonWeapons:Button!
     var buttonMultiplayer:Button!
-    var buttonGameInfo:Button!
-    var buttonChooseMission:Button!
     
     var roomCell:RoomCell!
     
@@ -82,26 +78,11 @@ class HangarScene: GameScene {
         self.buttonBack = Button(textureName: "buttonGraySquare", icon: "back", x: 10, y: 228, xAlign: .left, yAlign: .down)
         self.addChild(self.buttonBack)
         
-        self.buttonLevelUp = Button(textureName: "buttonGreen", text:"leve up!", x: 139, y: 20, xAlign: .center, yAlign: .center)
-        self.addChild(self.buttonLevelUp)
-        
         self.buttonGo = Button(textureName: "buttonYellow", text:"go!", x: 245, y: 20, xAlign: .center, yAlign: .center)
         self.addChild(self.buttonGo)
         
-        self.buttonWeapons = Button(textureName: "buttonGreen", text:"weapons", x: 139, y: 62, xAlign: .center, yAlign: .center)
-        self.addChild(self.buttonWeapons)
-        
         self.buttonMultiplayer = Button(textureName: "buttonGreen", text:"multiplayer", x: 245, y: 62, xAlign: .center, yAlign: .center)
         self.addChild(self.buttonMultiplayer)
-        
-        self.buttonGameInfo = Button(textureName: "buttonGreen", text:"game info", x: 139, y: 104, xAlign: .center, yAlign: .center)
-        self.addChild(self.buttonGameInfo)
-        
-        self.buttonChooseMission = Button(textureName: "buttonGreen", text:"choose mission", x: 245, y: 104, xAlign: .center, yAlign: .center)
-        self.addChild(self.buttonChooseMission)
-        
-        let sectorCell = SectorCell(type: self.nextSector, x:351, y:20, xAlign: .center, yAlign: .center)
-        self.addChild(sectorCell)
         
         //Serve para setar o foco inicial no tvOS
         GameScene.selectedButton = self.buttonGo
@@ -158,7 +139,7 @@ class HangarScene: GameScene {
                 
             case states.mission:
                 self.serverManager.socket.emit("someData", ["go!"])
-                let scene = MissionScene(size:CGSize(width: ((1920/2) + 1334)/2, height: ((1080/2) + 750)/2))
+                let scene = MissionScene(size:MissionScene.defaultSize)
                 self.view?.presentScene(scene, transition: self.transition)
                 break
                 
@@ -363,11 +344,6 @@ class HangarScene: GameScene {
                 case states.hangar:
                     if(self.buttonBack.containsPoint(location)) {
                         self.nextState = states.mainMenu
-                        return
-                    }
-                    
-                    if(self.buttonChooseMission.containsPoint(location)) {
-                        self.nextState = states.chooseSector
                         return
                     }
                     

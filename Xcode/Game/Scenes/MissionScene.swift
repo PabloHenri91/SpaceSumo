@@ -25,6 +25,8 @@ class MissionScene: GameScene {
     var state = states.mission
     var nextState = states.mission
     
+    static let defaultSize = CGSize(width: 1147.0, height: 645.0)
+    
     //buttons
     var buttonBack:Button!
     
@@ -77,7 +79,7 @@ class MissionScene: GameScene {
         self.gameCamera.update(self.playerShip.position)
         
         #if os(iOS) || os(OSX)
-            self.buttonBack = Button(textureName: "buttonGraySquare", icon: "back", x: 10, y: 228, xAlign: .left, yAlign: .down)
+            self.buttonBack = Button(textureName: "buttonGraySquareBig", icon: "back", x: 24, y: 544, xAlign: .left, yAlign: .down, alpha: CGFloat(0.5))
             self.addChild(self.buttonBack)
         #endif
         
@@ -473,7 +475,7 @@ class MissionScene: GameScene {
                 break
                 
             case states.hangar:
-                Config.sceneSize = CGSize(width: 480/Config.screenScale, height: 270/Config.screenScale)
+                Config.sceneSize = Config.defaultSceneSize
                 Config.updateSceneSize()
                 
                 var botNames = [String]()
