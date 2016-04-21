@@ -7,7 +7,7 @@
 //
 
 import SpriteKit
-//import Crashlytics
+import Crashlytics
 
 class HangarScene: GameScene {
     
