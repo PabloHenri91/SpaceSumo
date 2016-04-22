@@ -204,20 +204,12 @@ class Button: Control {
     #endif
     
     #if os(tvOS)
+    
+    class func raiseSelectedButtonEvent() {
+        GameScene.selectedButton?.event?.raise()
+    }
+    
     class func update(touches: Set<UITouch>) {
-        for button in Button.buttonList {
-            if let event = button.event {
-                for touch in touches {
-                    if let parent = button.parent {
-                        let location = touch.locationInNode(parent)
-                        if button.containsPoint(location) {
-                            event.raise()
-                        }
-                    }
-                }
-            }
-            button.update()
-        }
         
         if let _ = GameScene.nextButton {
             GameScene.selectedButton?.buttonRelease()

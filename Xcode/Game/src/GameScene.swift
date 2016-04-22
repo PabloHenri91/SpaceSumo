@@ -20,7 +20,8 @@ class GameScene: SKScene {
     static var selectedButton:Button? {
         willSet(newValue) {
             #if os(tvOS)
-            newValue?.buttonPress()
+                selectedButton?.buttonRelease()
+                newValue?.buttonPress()
             #endif
         }
     }

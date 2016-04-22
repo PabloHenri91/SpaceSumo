@@ -462,7 +462,7 @@ class MissionScene: GameScene {
                 self.blackSpriteNode.zPosition = box.zPosition - 1
                 self.blackSpriteNode.hidden = false
                 
-                let button = Button(textureName: "buttonGray", text:"ok   D:", x: 119, y: 142, xAlign: .center, yAlign: .down)
+                let button = Button(textureName: "buttonGray", text:"ok   😓", x:192, y:228, xAlign: .center, yAlign: .down)
                 self.addChild(button)
                 button.zPosition = self.blackSpriteNode.zPosition + 1
                 

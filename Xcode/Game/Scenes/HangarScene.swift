@@ -22,6 +22,7 @@ class HangarScene: GameScene {
         case connectionClosed
         case multiplayer
         case reconnecting
+        case tvOSMultiplayer
     }
     
     //Estados iniciais
@@ -81,7 +82,7 @@ class HangarScene: GameScene {
         self.buttonGo = Button(textureName: "buttonYellow", text:"go!", x: 245, y: 20, xAlign: .center, yAlign: .center)
         self.addChild(self.buttonGo)
         
-        self.buttonMultiplayer = Button(textureName: "buttonGreen", text:"multiplayer", x: 245, y: 62, xAlign: .center, yAlign: .center)
+        self.buttonMultiplayer = Button(textureName: (self.offlineMode ? "buttonGray" : "buttonGreen"), text:"multiplayer", x: 245, y: 62, xAlign: .center, yAlign: .center)
         self.addChild(self.buttonMultiplayer)
         
         //Serve para setar o foco inicial no tvOS
@@ -125,6 +126,48 @@ class HangarScene: GameScene {
             
             //Próximo estado
             switch (self.nextState) {
+                
+            case states.hangar:
+                break
+                
+            case states.tvOSMultiplayer:
+                let box = Box(textureName: "boxWhite337x105")
+                box.zPosition *= 2
+                
+                let label0 = Label(text: "Your online room have already been created.")
+                let label1 = Label(text: "Ask your friends to join the room: " + self.serverManager.userDisplayInfo.displayName!)
+                
+                label0.zPosition = box.zPosition + 1
+                label0.screenPosition = CGPoint(x: 168, y: 42)
+                label0.resetPosition()
+                box.addChild(label0)
+                
+                label1.zPosition = box.zPosition + 1
+                label1.screenPosition = CGPoint(x: 168, y: 62)
+                label1.resetPosition()
+                box.addChild(label1)
+                
+                self.blackSpriteNode.hidden = false
+                self.blackSpriteNode.zPosition = box.zPosition - 1
+                self.addChild(box)
+                
+                let button = Button(textureName: "buttonGreen", text:"roger that! 👍", x:192, y:228, xAlign: .center, yAlign: .down)
+                GameScene.selectedButton = button
+                
+                button.zPosition = box.zPosition + 1
+                button.addHandler({ [weak self] in
+                     guard let scene = self else { return }
+                    scene.nextState = states.hangar
+                    box.removeFromParent()
+                    button.removeFromParent()
+                    scene.blackSpriteNode.hidden = true
+                    GameScene.selectedButton = scene.buttonGo
+                })
+                self.addChild(button)
+                self.buttonBack.zPosition = self.blackSpriteNode.zPosition + 1
+                
+                break
+                
             case states.mainMenu:
                 if(!self.offlineMode) {
                     self.serverManager.disconnect()
@@ -152,7 +195,7 @@ class HangarScene: GameScene {
                 self.blackSpriteNode.zPosition = box.zPosition - 1
                 self.blackSpriteNode.hidden = false
                 
-                let button = Button(textureName: "buttonGray", text:"ok   D:", x: 119, y: 142, xAlign: .center, yAlign: .down)
+                let button = Button(textureName: "buttonGray", text:"ok   😓", x:192, y:228, xAlign: .center, yAlign: .down)
                 self.addChild(button)
                 button.zPosition = self.blackSpriteNode.zPosition + 1
                 
@@ -165,7 +208,14 @@ class HangarScene: GameScene {
                 break
                 
             case states.multiplayer:
-                self.view?.presentScene(MultiplayerLobbyScene(), transition: self.transition)
+                #if os(tvOS)
+                    if !self.offlineMode {
+                        self.nextState = states.tvOSMultiplayer
+                    }
+                #else
+                    self.view?.presentScene(MultiplayerLobbyScene(), transition: self.transition)
+                #endif
+                
                 break
                 
             default:
@@ -244,7 +294,7 @@ class HangarScene: GameScene {
                 }
                 
                 break
-            case states.hangar:
+            case states.hangar, states.tvOSMultiplayer:
                 
                 switch (socketAnyEvent.event) {
                     
@@ -340,21 +390,25 @@ class HangarScene: GameScene {
         if(self.state == self.nextState) {
             for touch in touches {
                 let location = touch.locationInNode(self)
+                
+                if(self.buttonBack.containsPoint(location)) {
+                    self.nextState = states.mainMenu
+                    return
+                }
+                
                 switch (self.state) {
                 case states.hangar:
-                    if(self.buttonBack.containsPoint(location)) {
-                        self.nextState = states.mainMenu
-                        return
-                    }
                     
                     if(self.buttonGo.containsPoint(location)) {
                         self.nextState = states.mission
                         return
                     }
                     
-                    if(self.buttonMultiplayer.containsPoint(location)) {
-                        self.nextState = states.multiplayer
-                        return
+                    if !self.offlineMode {
+                        if(self.buttonMultiplayer.containsPoint(location)) {
+                            self.nextState = states.multiplayer
+                            return
+                        }
                     }
                     
                     break
@@ -375,6 +429,7 @@ class HangarScene: GameScene {
             break
             
         case .Select:
+            Button.raiseSelectedButtonEvent()
             self.touchesEnded(taps: Set<UITouch>([UITouch()]))
             break
         default:
