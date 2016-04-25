@@ -16,6 +16,7 @@ class MissionScene: GameScene {
         case reconnecting
         case connectionClosed
         case mainMenu
+        case result
         
         //Estados de saida da scene
         case hangar
@@ -26,6 +27,9 @@ class MissionScene: GameScene {
     var nextState = states.mission
     
     static let defaultSize = CGSize(width: 1147.0, height: 645.0)
+    
+    //labels
+    var labelTime:Label?
     
     //buttons
     var buttonBack:Button!
@@ -97,6 +101,12 @@ class MissionScene: GameScene {
             self.addPlayers()
             self.addBots()
         }
+        
+        
+        self.labelTime = Label(color: SKColor.whiteColor(), text: "60", fontSize: GameFonts.fontSize.large , x: 580, y: 50)
+        //self.labelTime?.position = CGPoint(x: self.frame.width/2 , y: self.frame.height/2)
+        self.addChild(self.labelTime!)
+        
         
         self.startPlaying = GameScene.currentTime
     }
@@ -263,18 +273,18 @@ class MissionScene: GameScene {
                             
                             
                             
-                        case "dead":
-                            let name = i.next()!
-                            
-                            for allyShip in AllyShip.allyShipSet {
-                                if name == allyShip.name! {
-                                    allyShip.labelScore?.setText("0")
-                                    break
-                                }
-                            }
-                        
-                            
-                            break
+//                        case "dead":
+//                            let name = i.next()!
+//                            
+//                            for allyShip in AllyShip.allyShipSet {
+//                                if name == allyShip.name! {
+//                                    allyShip.labelScore?.setText("0")
+//                                    break
+//                                }
+//                            }
+//                        
+//                            
+//                            break
                         case "removeBots":
                             for _ in 1..<message.count {
                                 let name = i.next()!
@@ -353,6 +363,19 @@ class MissionScene: GameScene {
                         }
                     }
                     break
+                    
+                case "time":
+                    if let message = socketAnyEvent.items?.firstObject as? [String] {
+                        
+                        self?.labelTime?.setText(message[0])
+                    }
+                    break
+                    
+                    
+                case "endGame":
+                    //TODO:
+                    break
+                    
                     
                 default:
                     print(socketAnyEvent.event + " nao foi processado em MissionScene " + scene.state.rawValue)
@@ -435,6 +458,26 @@ class MissionScene: GameScene {
                 AllyShip.update(currentTime)
                 BotAllyShip.update(currentTime)
                 
+                if self.serverManager.roomId! == self.serverManager.userDisplayInfo.socketId! {
+                    
+                    let time = 180 - (GameScene.currentTime - self.startPlaying)
+                    
+                    if time > 0 {
+                        
+                        self.labelTime?.setText(String(Int(time)))
+                        self.serverManager.socket.emit("someData", ["time", String(Int(time))])
+                        
+                        
+                        
+                    } else {
+                        self.nextState = .result
+                        self.serverManager.socket.emit("someData", ["endGame"])
+                    }
+                    
+                    
+                    
+                }
+                
                 break
             default:
                 break
@@ -490,6 +533,15 @@ class MissionScene: GameScene {
                 
                 self.view?.presentScene(HangarScene(), transition: self.transition)
                 break
+                
+            case states.result:
+                
+                //adciona a box
+                
+                //avisa os outros
+                
+                break
+
                 
             default:
                 break

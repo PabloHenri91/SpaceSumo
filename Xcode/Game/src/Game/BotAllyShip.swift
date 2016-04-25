@@ -81,7 +81,7 @@ class BotAllyShip: AllyShip {
                                 missionScene.serverManager.socket.emit("someData", ["dead", selfName])
                             }
                             
-                            self.labelScore?.setText("0")
+                            //self.labelScore?.setText("0")
                             
                             if (missionScene.playerShip.name! == name) {
                                 

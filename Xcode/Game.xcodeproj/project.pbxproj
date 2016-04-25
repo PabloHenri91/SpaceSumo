@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A4A38761CCA535900D7DA30 /* GameAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4A38751CCA535900D7DA30 /* GameAnalytics.framework */; };
 		3A85A7C21CBEAAFB0094C117 /* HangarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661411C74FB4F00D8C1CD /* HangarScene.swift */; };
 		3AF5FE8F1CC84ABC00DF16BC /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF5FE8E1CC84ABC00DF16BC /* Crashlytics.framework */; };
 		3AF5FE911CC84AC600DF16BC /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF5FE901CC84AC600DF16BC /* Fabric.framework */; };
@@ -213,6 +214,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A4A38751CCA535900D7DA30 /* GameAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GameAnalytics.framework; sourceTree = "<group>"; };
 		3AF5FE8E1CC84ABC00DF16BC /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		3AF5FE901CC84AC600DF16BC /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		3AF5FE921CC84B6F00DF16BC /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AF5FE931CC84B6F00DF16BC /* Crashlytics.framework in Frameworks */,
+				3A4A38761CCA535900D7DA30 /* GameAnalytics.framework in Frameworks */,
 				3AF5FE951CC84B7A00DF16BC /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,6 +369,7 @@
 		848678C21C748B0C0049BB1F /* Game iOS */ = {
 			isa = PBXGroup;
 			children = (
+				3A4A38751CCA535900D7DA30 /* GameAnalytics.framework */,
 				3AF5FE941CC84B7A00DF16BC /* Fabric.framework */,
 				3AF5FE921CC84B6F00DF16BC /* Crashlytics.framework */,
 				848678C31C748B0C0049BB1F /* AppDelegate.swift */,
@@ -971,6 +975,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/'Game iOS'",
+					"$(PROJECT_DIR)/Game",
+					iOS,
 				);
 				INFOPLIST_FILE = "Game iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -992,6 +998,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/'Game iOS'",
+					"$(PROJECT_DIR)/Game",
+					iOS,
 				);
 				INFOPLIST_FILE = "Game iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

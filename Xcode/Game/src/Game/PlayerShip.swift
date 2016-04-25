@@ -170,7 +170,7 @@ class PlayerShip: Control {
                                 missionScene.serverManager.socket.emit("someData", ["dead", selfName])
                             }
                             
-                            self.labelScore?.setText("0")
+                            //self.labelScore?.setText("0")
                             
                             for allyShip in AllyShip.allyShipSet {
                                 if name == allyShip.name! {
