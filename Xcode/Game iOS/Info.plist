@@ -32,6 +32,17 @@
 				<key>KitName</key>
 				<string>Crashlytics</string>
 			</dict>
+			<dict>
+				<key>KitInfo</key>
+				<dict>
+					<key>api-key</key>
+					<string>79af323f2df7f513674dc7a2ae9b4e6d5dcef9ff</string>
+					<key>api-secret</key>
+					<string>d9e897889d9cac4f4a16bc1113aac37b616b9ffc</string>
+				</dict>
+				<key>KitName</key>
+				<string>GameAnalytics</string>
+			</dict>
 		</array>
 	</dict>
 	<key>LSRequiresIPhoneOS</key>
