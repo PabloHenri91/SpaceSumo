@@ -367,13 +367,14 @@ class MissionScene: GameScene {
                 case "time":
                     if let message = socketAnyEvent.items?.firstObject as? [String] {
                         
-                        self?.labelTime?.setText(message[0])
+                        scene.labelTime?.setText(message[0])
                     }
                     break
                     
                     
                 case "endGame":
                     //TODO:
+                    scene.nextState = .result
                     break
                     
                     
