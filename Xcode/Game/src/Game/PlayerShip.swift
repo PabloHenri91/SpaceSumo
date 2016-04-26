@@ -26,10 +26,12 @@ class PlayerShip: Control {
     
     var auxRotation:CGFloat = 0
     
+    var textureName:String!
+    
     override init() {
         super.init()
         
-        var textureName:String!
+        
         let i = Int.random(min: 1, max: 3).description
         
 //        switch Int.random(4) {
@@ -49,7 +51,7 @@ class PlayerShip: Control {
 //            break
 //        }
         
-        let spriteNode = SKSpriteNode(imageNamed: textureName)
+        let spriteNode = SKSpriteNode(imageNamed: self.textureName)
         spriteNode.texture?.filteringMode = .Linear
         
         self.addChild(spriteNode)

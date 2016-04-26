@@ -25,10 +25,11 @@ class AllyShip: Control {
     
     var lastShooterName: String?
     
+    var textureName:String!
+    
     override init() {
         super.init()
         
-        var textureName:String!
         let i = Int.random(min: 1, max: 3).description
         
 //        switch Int.random(4) {
