@@ -166,9 +166,9 @@ class PlayerShip: Control {
                         if let name = self.lastShooterName {
                             missionScene.serverManager.socket.emit("someData", ["scoreUp", name])
                             
-                            if let selfName = self.name {
-                                missionScene.serverManager.socket.emit("someData", ["dead", selfName])
-                            }
+//                            if let selfName = self.name {
+//                                missionScene.serverManager.socket.emit("someData", ["dead", selfName])
+//                            }
                             
                             //self.labelScore?.setText("0")
                             

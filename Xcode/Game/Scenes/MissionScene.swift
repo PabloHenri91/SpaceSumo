@@ -297,6 +297,18 @@ class MissionScene: GameScene {
                                 }
                             }
                             break
+                            
+                        case "time":
+                            if let message = i.next() {
+                                scene.labelTime?.setText(message)
+                            }
+                            break
+                            
+                        case "endGame":
+                            //TODO:
+                            scene.nextState = .result
+                            break
+                            
                         default:
                             print(socketAnyEvent.description + " nao foi processado em MissionScene " + scene.state.rawValue)
                             break
@@ -363,20 +375,6 @@ class MissionScene: GameScene {
                         }
                     }
                     break
-                    
-                case "time":
-                    if let message = socketAnyEvent.items?.firstObject as? [String] {
-                        
-                        scene.labelTime?.setText(message[0])
-                    }
-                    break
-                    
-                    
-                case "endGame":
-                    //TODO:
-                    scene.nextState = .result
-                    break
-                    
                     
                 default:
                     print(socketAnyEvent.event + " nao foi processado em MissionScene " + scene.state.rawValue)
