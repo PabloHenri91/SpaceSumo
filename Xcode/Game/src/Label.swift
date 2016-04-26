@@ -42,7 +42,11 @@ class Label: Control {
     }
     
     func getText() -> String{
-        return self.labelNode.text!
+        if let text = self.labelNode.text {
+            return text
+        } else {
+           return ""
+        }
     }
     
     func setText(text:String) {

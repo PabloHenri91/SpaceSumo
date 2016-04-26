@@ -459,7 +459,7 @@ class MissionScene: GameScene {
                 
                 if self.serverManager.roomId! == self.serverManager.userDisplayInfo.socketId! {
                     
-                    let time = 180 - (GameScene.currentTime - self.startPlaying)
+                    let time = 18 - (GameScene.currentTime - self.startPlaying)
                     
                     if time > 0 {
                         
@@ -486,6 +486,40 @@ class MissionScene: GameScene {
             
             //Próximo estado
             switch (self.nextState) {
+                
+            case states.result:
+                
+                var result = [CellMissionResult]()
+                result.append(CellMissionResult(playerShip: self.playerShip))
+                
+                for botAllyShip in BotAllyShip.botAllyShipSet {
+                    result.append(CellMissionResult(allyShip: botAllyShip))
+                }
+                
+                for allyShip in AllyShip.allyShipSet {
+                    result.append(CellMissionResult(allyShip: allyShip))
+                }
+                
+                let box = BoxMissionResult(result: result)
+                self.addChild(box)
+                box.zPosition *= 10
+                
+                self.blackSpriteNode.zPosition = box.zPosition - 1
+                self.blackSpriteNode.hidden = false
+                
+                let button = Button(textureName: "buttonGreenBig", text:"ok   😃", fontSize:.large, x:459, y:548, xAlign: .center, yAlign: .down)
+                self.addChild(button)
+                button.zPosition = self.blackSpriteNode.zPosition + 1
+                
+                button.addHandler( { [weak self] in
+                    guard let scene = self else { return }
+                    //Troca de scene
+                    scene.nextState = states.hangar
+                    scene.blackSpriteNode.hidden = true
+                    })
+                
+                
+                break
                 
             case states.mainMenu:
                 if(!self.offlineMode) {
@@ -532,15 +566,6 @@ class MissionScene: GameScene {
                 
                 self.view?.presentScene(HangarScene(), transition: self.transition)
                 break
-                
-            case states.result:
-                
-                //adciona a box
-                
-                //avisa os outros
-                
-                break
-
                 
             default:
                 break
