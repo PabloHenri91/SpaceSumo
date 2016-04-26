@@ -631,17 +631,39 @@ class MissionScene: GameScene {
                             self.nextState = states.hangar
                             
                             #if os(iOS)
-                                if GameScene.currentTime - self.startPlaying > 60 * 5 {
-                                    let alertController = UIAlertController(title: "Feedback", message: "Hello, it looks like you're having fun with our game. Would you like to send us a feedback? Your opinion is very important for the development of this game. Thank you for testing! 😃", preferredStyle: UIAlertControllerStyle.Alert)
-                                    alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (alertAction:UIAlertAction) in
-                                        UIApplication.sharedApplication().openURL(NSURL(string: "mailto:pablo_fonseca91@icloud.com?cc=henrique_2601@hotmail.com&subject=SpaceGame%20Feedback&body=")!)
-                                    }))
+                                if GameScene.currentTime - self.startPlaying > 60 {
                                     
-                                    alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: { (alertAction:UIAlertAction) in
+                                    let defaults = NSUserDefaults.standardUserDefaults()
+                                    
+                                    let dontAsk = defaults.boolForKey("DontAskFeedback")
+                                    
+                                    if (dontAsk == false) {
                                         
-                                    }))
+                                        let alertController = UIAlertController(title: "Feedback", message: "Hello, it looks like you're having fun with our game. Would you like to send us a feedback? Your opinion is very important for the development of this game. Thank you for testing! 😃", preferredStyle: UIAlertControllerStyle.Alert)
+                                        alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (alertAction:UIAlertAction) in
+                                            UIApplication.sharedApplication().openURL(NSURL(string: "mailto:pablo_fonseca91@icloud.com?cc=henrique_2601@hotmail.com&subject=SpaceGame%20Feedback&body=")!)
+                                            
+                                            defaults.setBool(true, forKey: "DontAskFeedback")
+                                            
+                                        }))
+                                        
+                                        alertController.addAction(UIAlertAction(title: "Later", style: UIAlertActionStyle.Default, handler: { (alertAction:UIAlertAction) in
+                                            
+                                        }))
+                                        
+                                        alertController.addAction(UIAlertAction(title: "Never", style: UIAlertActionStyle.Cancel, handler: { (alertAction:UIAlertAction) in
+                                            
+                                            
+                                            defaults.setBool(true, forKey: "DontAskFeedback")
+                                            
+                                        }))
+                                        
+                                        self.view?.window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
+                                        
+                                    }
                                     
-                                    self.view?.window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
+                                    
+                                   
                                 }
                             #endif
                             
