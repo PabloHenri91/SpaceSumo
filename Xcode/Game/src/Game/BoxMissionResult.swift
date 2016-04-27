@@ -46,7 +46,7 @@ class CellMissionResult: Control {
     init(allyShip:AllyShip) {
         super.init()
         self.score = Int(allyShip.labelScore!.getText())!
-        let label0 = Label(text: allyShip.name!, fontSize:GameFonts.fontSize.large, horizontalAlignmentMode:.Left)
+        let label0 = Label(text: allyShip.labelName!.getText(), fontSize:GameFonts.fontSize.large, horizontalAlignmentMode:.Left)
         label0.screenPosition = CGPoint(x: 72, y: 14)
         label0.resetPosition()
         

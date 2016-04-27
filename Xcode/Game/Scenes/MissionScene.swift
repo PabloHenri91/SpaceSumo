@@ -111,9 +111,22 @@ class MissionScene: GameScene {
         self.startPlaying = GameScene.currentTime
     }
     
+    func removeAllBots() {
+        var botNames = [String]()
+        botNames.append("removeAllBots")
+        
+        for botAllyShip in BotAllyShip.botAllyShipSet {
+            botNames.append(botAllyShip.name!)
+        }
+        
+        if botNames.count > 0 {
+            self.serverManager.socket.emit("someData", botNames)
+        }
+    }
+    
     func addBots() {
         
-        let maxAllyShipCount = 3
+        let maxAllyShipCount = 2
         let i = AllyShip.allyShipSet.count + BotAllyShip.botAllyShipSet.count
         
         if self.offlineMode {
@@ -143,6 +156,10 @@ class MissionScene: GameScene {
                 }
                 
                 self.serverManager.socket.emit("someData", botNames)
+            } else {
+                if i < maxAllyShipCount {
+                    self.serverManager.socket.emit("someData", ["needMoreBots"])
+                }
             }
         }
     }
@@ -230,6 +247,10 @@ class MissionScene: GameScene {
                         var i = message.generate()
                         
                         switch (i.next()!) {
+                        case "needMoreBots":
+                            scene.addBots()
+                            break
+                            
                             case "botNames":
                                 for _ in 1..<message.count {
                                     let name = i.next()!
@@ -285,7 +306,7 @@ class MissionScene: GameScene {
 //                        
 //                            
 //                            break
-                        case "removeBots":
+                        case "removeAllBots":
                             for _ in 1..<message.count {
                                 let name = i.next()!
                                 
@@ -373,6 +394,9 @@ class MissionScene: GameScene {
                             let botAllyShip = BotAllyShip.botAllyShipSet.removeFirst()
                             botAllyShip.removeFromParent()
                         }
+                        
+                        scene.addBots()
+                        
                     }
                     break
                     
@@ -459,22 +483,15 @@ class MissionScene: GameScene {
                 
                 if self.serverManager.roomId! == self.serverManager.userDisplayInfo.socketId! {
                     
-                    let time = 180 - (GameScene.currentTime - self.startPlaying)
+                    let time = Int(180 - (GameScene.currentTime - self.startPlaying))
                     
                     if time > 0 {
-                        
-                        self.labelTime?.setText(String(Int(time)))
-                        self.serverManager.socket.emit("someData", ["time", String(Int(time))])
-                        
-                        
-                        
+                        self.labelTime?.setText(String(time))
+                        self.serverManager.socket.emit("someData", ["time", String(time)])
                     } else {
                         self.nextState = .result
                         self.serverManager.socket.emit("someData", ["endGame"])
                     }
-                    
-                    
-                    
                 }
                 
                 break
@@ -525,7 +542,7 @@ class MissionScene: GameScene {
                 if(!self.offlineMode) {
                     self.serverManager.disconnect()
                 }
-                
+                // Deu treta
                 self.view?.presentScene(MainMenuScene(), transition: self.transition)
                 break
                 
@@ -554,16 +571,9 @@ class MissionScene: GameScene {
                 Config.sceneSize = Config.defaultSceneSize
                 Config.updateSceneSize()
                 
-                var botNames = [String]()
-                botNames.append("removeAllBots")
-                
-                for botAllyShip in BotAllyShip.botAllyShipSet {
-                    botNames.append(botAllyShip.name!)
-                }
-                
-                self.serverManager.socket.emit("someData", botNames)
+                self.removeAllBots()
                 self.serverManager.leaveAllRooms()
-                
+                self.feedback()
                 self.view?.presentScene(HangarScene(), transition: self.transition)
                 break
                 
@@ -652,44 +662,6 @@ class MissionScene: GameScene {
                     #if os(iOS) || os(OSX)
                         if(self.buttonBack.containsPoint(location)) {
                             self.nextState = states.hangar
-                            
-                            #if os(iOS)
-                                if GameScene.currentTime - self.startPlaying > 60 {
-                                    
-                                    let defaults = NSUserDefaults.standardUserDefaults()
-                                    
-                                    let dontAsk = defaults.boolForKey("DontAskFeedback")
-                                    
-                                    if (dontAsk == false) {
-                                        
-                                        let alertController = UIAlertController(title: "Feedback", message: "Hello, it looks like you're having fun with our game. Would you like to send us a feedback? Your opinion is very important for the development of this game. Thank you for testing! 😃", preferredStyle: UIAlertControllerStyle.Alert)
-                                        alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (alertAction:UIAlertAction) in
-                                            UIApplication.sharedApplication().openURL(NSURL(string: "mailto:pablo_fonseca91@icloud.com?cc=henrique_2601@hotmail.com&subject=SpaceGame%20Feedback&body=")!)
-                                            
-                                            defaults.setBool(true, forKey: "DontAskFeedback")
-                                            
-                                        }))
-                                        
-                                        alertController.addAction(UIAlertAction(title: "Later", style: UIAlertActionStyle.Default, handler: { (alertAction:UIAlertAction) in
-                                            
-                                        }))
-                                        
-                                        alertController.addAction(UIAlertAction(title: "Never", style: UIAlertActionStyle.Cancel, handler: { (alertAction:UIAlertAction) in
-                                            
-                                            
-                                            defaults.setBool(true, forKey: "DontAskFeedback")
-                                            
-                                        }))
-                                        
-                                        self.view?.window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
-                                        
-                                    }
-                                    
-                                    
-                                   
-                                }
-                            #endif
-                            
                             return
                         }
                     #endif
@@ -702,22 +674,61 @@ class MissionScene: GameScene {
         }
     }
     
+    func feedback() {
+        #if os(iOS)
+            if GameScene.currentTime - self.startPlaying > 60 {
+                
+                let defaults = NSUserDefaults.standardUserDefaults()
+                
+                let dontAsk = defaults.boolForKey("DontAskFeedback")
+                
+                if (dontAsk == false) {
+                    
+                    let alertController = UIAlertController(title: "Feedback", message: "Hello, it looks like you're having fun with our game. Would you like to send us a feedback? Your opinion is very important for the development of this game. Thank you for testing! 😃", preferredStyle: UIAlertControllerStyle.Alert)
+                    alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (alertAction:UIAlertAction) in
+                        UIApplication.sharedApplication().openURL(NSURL(string: "mailto:pablo_fonseca91@icloud.com?cc=henrique_2601@hotmail.com&subject=SpaceGame%20Feedback&body=")!)
+                        
+                        defaults.setBool(true, forKey: "DontAskFeedback")
+                        
+                    }))
+                    
+                    alertController.addAction(UIAlertAction(title: "Later", style: UIAlertActionStyle.Default, handler: { (alertAction:UIAlertAction) in
+                        
+                    }))
+                    
+                    alertController.addAction(UIAlertAction(title: "Never", style: UIAlertActionStyle.Cancel, handler: { (alertAction:UIAlertAction) in
+                        
+                        
+                        defaults.setBool(true, forKey: "DontAskFeedback")
+                        
+                    }))
+                    
+                    self.view?.window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
+                    
+                }
+                
+                
+                
+            }
+        #endif
+    }
+    
     #if os(tvOS)
     override func pressBegan(press: UIPress) -> Bool {
-        
-        
+    
+    
         switch press.type {
         case .Menu:
             self.nextState = states.hangar
             break
-            
+    
         case .Select:
             self.touchesEnded(taps: Set<UITouch>([UITouch()]))
             break
         default:
             break
         }
-        
+    
         return false
     }
     #endif

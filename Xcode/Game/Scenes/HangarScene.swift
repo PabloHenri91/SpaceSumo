@@ -7,7 +7,6 @@
 //
 
 import SpriteKit
-//import Crashlytics
 
 class HangarScene: GameScene {
     
@@ -321,6 +320,10 @@ class HangarScene: GameScene {
                             break
                         case "botNames":
                             //TODO: recebi muito rápido o nome dos bots que preciso carregar
+                            break
+                        case "time":
+                            // A partida já está em andamento
+                            scene.nextState = states.mission
                             break
                         default:
                             print(socketAnyEvent.description + " nao foi processado em HangarScene " + scene.state.rawValue)

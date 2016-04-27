@@ -133,14 +133,25 @@ class BotAllyShip: AllyShip {
                 break
                 
             case 2:
+                
                 let botAllyShip = BotAllyShip.botAllyShipSet[BotAllyShip.botAllyShipSet.startIndex.advancedBy(Int.random(BotAllyShip.botAllyShipSet.count))]
                 
                 if botAllyShip.name != self.name {
                     self.targetNode = botAllyShip
                 } else {
                     if AllyShip.allyShipSet.count > 0 {
-//                        let allyShip = AllyShip.allyShipSet[AllyShip.allyShipSet.startIndex.advancedBy(Int.random(AllyShip.allyShipSet.count))]
-//                        self.targetNode = allyShip
+                        
+                        let targetIndex = Int.random(AllyShip.allyShipSet.count + 1)
+                        
+                        if targetIndex >= AllyShip.allyShipSet.count {
+                            if let scene = self.scene as? MissionScene {
+                                self.targetNode = scene.playerShip
+                            }
+                        } else {
+                            let allyShip = AllyShip.allyShipSet[AllyShip.allyShipSet.startIndex.advancedBy(targetIndex)]
+                            self.targetNode = allyShip
+                        }
+                        
                     } else {
                         if let scene = self.scene as? MissionScene {
                             self.targetNode = scene.playerShip
