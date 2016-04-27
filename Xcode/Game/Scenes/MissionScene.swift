@@ -459,7 +459,7 @@ class MissionScene: GameScene {
                 
                 if self.serverManager.roomId! == self.serverManager.userDisplayInfo.socketId! {
                     
-                    let time = 18 - (GameScene.currentTime - self.startPlaying)
+                    let time = 180 - (GameScene.currentTime - self.startPlaying)
                     
                     if time > 0 {
                         
