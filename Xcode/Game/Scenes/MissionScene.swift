@@ -481,16 +481,28 @@ class MissionScene: GameScene {
                 AllyShip.update(currentTime)
                 BotAllyShip.update(currentTime)
                 
-                if self.serverManager.roomId! == self.serverManager.userDisplayInfo.socketId! {
+                if self.offlineMode {
                     
                     let time = Int(180 - (GameScene.currentTime - self.startPlaying))
                     
                     if time > 0 {
                         self.labelTime?.setText(String(time))
-                        self.serverManager.socket.emit("someData", ["time", String(time)])
                     } else {
                         self.nextState = .result
-                        self.serverManager.socket.emit("someData", ["endGame"])
+                    }
+                    
+                } else {
+                    if self.serverManager.roomId! == self.serverManager.userDisplayInfo.socketId! {
+                        
+                        let time = Int(180 - (GameScene.currentTime - self.startPlaying))
+                        
+                        if time > 0 {
+                            self.labelTime?.setText(String(time))
+                            self.serverManager.socket.emit("someData", ["time", String(time)])
+                        } else {
+                            self.nextState = .result
+                            self.serverManager.socket.emit("someData", ["endGame"])
+                        }
                     }
                 }
                 

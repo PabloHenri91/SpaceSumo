@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3A4A38761CCA535900D7DA30 /* GameAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4A38751CCA535900D7DA30 /* GameAnalytics.framework */; };
 		3A85A7C21CBEAAFB0094C117 /* HangarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840661411C74FB4F00D8C1CD /* HangarScene.swift */; };
 		3AF5FE8F1CC84ABC00DF16BC /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF5FE8E1CC84ABC00DF16BC /* Crashlytics.framework */; };
 		3AF5FE911CC84AC600DF16BC /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF5FE901CC84AC600DF16BC /* Fabric.framework */; };
@@ -184,6 +183,7 @@
 		84C77A601C96DD9200B180BB /* CharacterGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C77A5F1C96DD9200B180BB /* CharacterGenerator.swift */; };
 		84C77A621C96DDF700B180BB /* DefaultNameList in Resources */ = {isa = PBXBuildFile; fileRef = 84C77A611C96DDF700B180BB /* DefaultNameList */; };
 		84C77A641C96DDF700B180BB /* DefaultNameList in Resources */ = {isa = PBXBuildFile; fileRef = 84C77A611C96DDF700B180BB /* DefaultNameList */; };
+		84CBB18A1CD29A490043BE09 /* GameAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CBB1891CD29A490043BE09 /* GameAnalytics.framework */; };
 		84D3D3071CB1699D00F192B6 /* AllyShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D3D3061CB1699D00F192B6 /* AllyShip.swift */; };
 		84D3D3081CB1699D00F192B6 /* AllyShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D3D3061CB1699D00F192B6 /* AllyShip.swift */; };
 		84D3D3091CB1699D00F192B6 /* AllyShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D3D3061CB1699D00F192B6 /* AllyShip.swift */; };
@@ -217,7 +217,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3A4A38751CCA535900D7DA30 /* GameAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GameAnalytics.framework; sourceTree = "<group>"; };
 		3AF5FE8E1CC84ABC00DF16BC /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		3AF5FE901CC84AC600DF16BC /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		3AF5FE921CC84B6F00DF16BC /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
@@ -306,6 +305,7 @@
 		84C77A5F1C96DD9200B180BB /* CharacterGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterGenerator.swift; sourceTree = "<group>"; };
 		84C77A611C96DDF700B180BB /* DefaultNameList */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DefaultNameList; sourceTree = "<group>"; };
 		84CA57F61CA2DE940095811F /* Game tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Game tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		84CBB1891CD29A490043BE09 /* GameAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GameAnalytics.framework; sourceTree = "<group>"; };
 		84D3D3061CB1699D00F192B6 /* AllyShip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllyShip.swift; sourceTree = "<group>"; };
 		84D8B0891C9C7FC1001F8C1F /* RoomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomCell.swift; sourceTree = "<group>"; };
 		84ED10801CB671FE007DFEBE /* BotAllyShip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BotAllyShip.swift; sourceTree = "<group>"; };
@@ -317,7 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AF5FE931CC84B6F00DF16BC /* Crashlytics.framework in Frameworks */,
-				3A4A38761CCA535900D7DA30 /* GameAnalytics.framework in Frameworks */,
+				84CBB18A1CD29A490043BE09 /* GameAnalytics.framework in Frameworks */,
 				3AF5FE951CC84B7A00DF16BC /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,7 +373,7 @@
 		848678C21C748B0C0049BB1F /* Game iOS */ = {
 			isa = PBXGroup;
 			children = (
-				3A4A38751CCA535900D7DA30 /* GameAnalytics.framework */,
+				84CBB1891CD29A490043BE09 /* GameAnalytics.framework */,
 				3AF5FE941CC84B7A00DF16BC /* Fabric.framework */,
 				3AF5FE921CC84B6F00DF16BC /* Crashlytics.framework */,
 				848678C31C748B0C0049BB1F /* AppDelegate.swift */,
@@ -623,6 +623,7 @@
 				TargetAttributes = {
 					848678C01C748B0C0049BB1F = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = JZ3J7RVLD7;
 					};
 					848678F31C748B470049BB1F = {
 						CreatedOnToolsVersion = 7.2;
@@ -710,7 +711,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ]; then\n./'Game iOS'/Fabric.framework/run cd1df67a6122636fb31c48b8886ef27326202193 0c14db341c9848f33d16ff3bac36e9d26006be0f6dd61fc529dc6564651472c1\nfi";
+			shellScript = "./'Game iOS'/Fabric.framework/run cd1df67a6122636fb31c48b8886ef27326202193 0c14db341c9848f33d16ff3bac36e9d26006be0f6dd61fc529dc6564651472c1";
 		};
 		3A03C14E1CBE85A6009D66FC /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
