@@ -77,6 +77,7 @@ class BotAllyShip: AllyShip {
                         if let name = self.lastShooterName {
                             missionScene.serverManager.socket.emit("someData", ["scoreUp", name])
                             
+                            
 //                            if let selfName = self.name {
 //                                missionScene.serverManager.socket.emit("someData", ["dead", selfName])
 //                            }
@@ -85,6 +86,8 @@ class BotAllyShip: AllyShip {
                             
                             if (missionScene.playerShip.name! == name) {
                                 
+                              
+                                
                                 let score = Int((missionScene.playerShip.labelScore?.getText())!)! + 1
                                 missionScene.playerShip.labelScore?.setText(String(score))
                                 
@@ -92,6 +95,8 @@ class BotAllyShip: AllyShip {
                                 
                                 for allyShip in AllyShip.allyShipSet {
                                     if name == allyShip.name! {
+                                        
+                                        
                                         let score = Int((allyShip.labelScore?.getText())!)! + 1
                                         allyShip.labelScore?.setText(String(score))
                                         break

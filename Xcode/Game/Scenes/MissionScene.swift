@@ -290,6 +290,14 @@ class MissionScene: GameScene {
                                     }
                                 }
                                 
+                                for botAllyShip in BotAllyShip.botAllyShipSet {
+                                    if name == botAllyShip.name! {
+                                        let score = Int((botAllyShip.labelScore?.getText())!)! + 1
+                                        botAllyShip.labelScore?.setText(String(score))
+                                        break
+                                    }
+                                }
+                                
                             }
                             
                             
