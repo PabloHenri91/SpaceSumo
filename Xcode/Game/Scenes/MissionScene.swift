@@ -111,6 +111,48 @@ class MissionScene: GameScene {
         self.startPlaying = GameScene.currentTime
     }
     
+    func emitScore() {
+        if self.serverManager.roomId! == self.serverManager.userDisplayInfo.socketId! {
+            
+            var data = [[String]]()
+            
+            if let labelScore = self.playerShip.labelScore {
+                if let name = self.playerShip.name {
+                    data.append([name, labelScore.getText()])
+                }
+            }
+            
+            for botAllyShip in BotAllyShip.botAllyShipSet {
+                if let labelScore = botAllyShip.labelScore {
+                    if let name = botAllyShip.name {
+                        data.append([name, labelScore.getText()])
+                    }
+                }
+            }
+            
+            for allyShip in AllyShip.allyShipSet {
+                if let labelScore = allyShip.labelScore {
+                    if let name = allyShip.name {
+                        data.append([name, labelScore.getText()])
+                    }
+                }
+            }
+            
+            self.serverManager.socket.emit("someData", ["score", data])
+        }
+    }
+    
+    func removeBot() {
+        if BotAllyShip.botAllyShipSet.count > 0 {
+            let botAllyShip = BotAllyShip.botAllyShipSet.removeFirst()
+            var botNames = [String]()
+            botNames.append("removeAllBots")
+            botNames.append(botAllyShip.name!)
+            self.serverManager.socket.emit("someData", botNames)
+            botAllyShip.removeFromParent()
+        }
+    }
+    
     func removeAllBots() {
         var botNames = [String]()
         botNames.append("removeAllBots")
@@ -162,6 +204,8 @@ class MissionScene: GameScene {
                 }
             }
         }
+        
+        self.serverManager.socket.emit("someData", ["needScore"])
     }
     
     func addPlayers() {
@@ -247,6 +291,11 @@ class MissionScene: GameScene {
                         var i = message.generate()
                         
                         switch (i.next()!) {
+                            
+                        case "needScore":
+                            scene.emitScore()
+                            break
+                            
                         case "needMoreBots":
                             scene.addBots()
                             break
@@ -398,13 +447,7 @@ class MissionScene: GameScene {
                         newAllyShip.setNameLabel()
                         newAllyShip.labelName?.setText(message[1])
                         
-                        if BotAllyShip.botAllyShipSet.count > 0 {
-                            let botAllyShip = BotAllyShip.botAllyShipSet.removeFirst()
-                            botAllyShip.removeFromParent()
-                        }
-                        
-                        scene.addBots()
-                        
+                        scene.removeBot()
                     }
                     break
                     
