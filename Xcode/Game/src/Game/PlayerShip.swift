@@ -149,30 +149,10 @@ class PlayerShip: Control {
                 
                 self.physicsBody?.velocity = CGVector.zero
                 
-//                if let label = self.labelScore {
-//                    label.setText(String(Int(label.getText())! + 1))
-//                    if let scene = self.scene {
-//                        if let missionScene = scene as? MissionScene {
-//                            
-//                            if let name = missionScene.serverManager.userDisplayInfo.socketId {
-//                                missionScene.serverManager.socket.emit("someData", ["score", name, label.getText()])
-//                            }
-//
-//                            
-//                        }
-//                    }
-//                }
-                
                 if let scene = self.scene {
                     if let missionScene = scene as? MissionScene {
                         if let name = self.lastShooterName {
                             missionScene.serverManager.socket.emit("someData", ["scoreUp", name])
-                            
-//                            if let selfName = self.name {
-//                                missionScene.serverManager.socket.emit("someData", ["dead", selfName])
-//                            }
-                            
-                            //self.labelScore?.setText("0")
                             
                             for allyShip in AllyShip.allyShipSet {
                                 if name == allyShip.name! {
@@ -189,14 +169,11 @@ class PlayerShip: Control {
                                     break
                                 }
                             }
-                            
                         }
                     }
-                    
                 }
                 
                 self.lastShooterName = ""
-                
             }
             
             if applyAngularImpulse || applyForce {

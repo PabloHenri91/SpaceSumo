@@ -311,10 +311,10 @@ class HangarScene: GameScene {
                     
                 case "someData":
                     
-                    if let message = socketAnyEvent.items?.firstObject as? [String] {
+                    if let message = socketAnyEvent.items?.firstObject as? [AnyObject] {
                         var i = message.generate()
                         
-                        switch (i.next()!) {
+                        switch (i.next() as! String) {
                         case "go!":
                             scene.nextState = states.mission
                             break

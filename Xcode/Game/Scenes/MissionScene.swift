@@ -114,18 +114,19 @@ class MissionScene: GameScene {
     func emitScore() {
         if self.serverManager.roomId! == self.serverManager.userDisplayInfo.socketId! {
             
-            var data = [[String]]()
+            var scoreData = [AnyObject]()
+            scoreData.append("score")
             
             if let labelScore = self.playerShip.labelScore {
                 if let name = self.playerShip.name {
-                    data.append([name, labelScore.getText()])
+                    scoreData.append([name, labelScore.getText()])
                 }
             }
             
             for botAllyShip in BotAllyShip.botAllyShipSet {
                 if let labelScore = botAllyShip.labelScore {
                     if let name = botAllyShip.name {
-                        data.append([name, labelScore.getText()])
+                        scoreData.append([name, labelScore.getText()])
                     }
                 }
             }
@@ -133,12 +134,12 @@ class MissionScene: GameScene {
             for allyShip in AllyShip.allyShipSet {
                 if let labelScore = allyShip.labelScore {
                     if let name = allyShip.name {
-                        data.append([name, labelScore.getText()])
+                        scoreData.append([name, labelScore.getText()])
                     }
                 }
             }
             
-            self.serverManager.socket.emit("someData", ["score", data])
+            self.serverManager.socket.emit("someData", scoreData)
         }
     }
     
@@ -202,10 +203,9 @@ class MissionScene: GameScene {
                 if i < maxAllyShipCount {
                     self.serverManager.socket.emit("someData", ["needMoreBots"])
                 }
+                self.serverManager.socket.emit("someData", ["needScore"])
             }
         }
-        
-        self.serverManager.socket.emit("someData", ["needScore"])
     }
     
     func addPlayers() {
@@ -287,10 +287,26 @@ class MissionScene: GameScene {
                     break
                     
                 case "someData":
-                    if let message = socketAnyEvent.items?.firstObject as? [String] {
+                    if let message = socketAnyEvent.items?.firstObject as? [AnyObject] {
                         var i = message.generate()
                         
-                        switch (i.next()!) {
+                        switch (i.next() as! String) {
+                            
+                        case "score":
+                            for _ in 1..<message.count {
+                                let data = i.next()
+                                if let name = data?.firstObject as? String {
+                                    if let score = data?.lastObject as? String {
+                                        for allyShip in AllyShip.allyShipSet {
+                                            if allyShip.name! == name {
+                                                allyShip.labelScore?.setText(score)
+                                                break
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            break
                             
                         case "needScore":
                             scene.emitScore()
@@ -300,10 +316,9 @@ class MissionScene: GameScene {
                             scene.addBots()
                             break
                             
-                            case "botNames":
-                                for _ in 1..<message.count {
-                                    let name = i.next()!
-                                    
+                        case "botNames":
+                            for _ in 1..<message.count {
+                                if let name = i.next() as? String {
                                     var doIHaveThisAllyShip = false
                                     
                                     for allyShip in AllyShip.allyShipSet {
@@ -320,70 +335,55 @@ class MissionScene: GameScene {
                                         newAllyShip.setNameLabel()
                                     }
                                 }
-                            break
-                        case "scoreUp":
-                            let name = i.next()!
-                            
-                            if (scene.playerShip.name! == name) {
-                                
-                                let score = Int((scene.playerShip.labelScore?.getText())!)! + 1
-                                scene.playerShip.labelScore?.setText(String(score))
-                                
-                            } else {
-                                
-                                for allyShip in AllyShip.allyShipSet {
-                                    if name == allyShip.name! {
-                                        let score = Int((allyShip.labelScore?.getText())!)! + 1
-                                        allyShip.labelScore?.setText(String(score))
-                                        break
-                                    }
-                                }
-                                
-                                for botAllyShip in BotAllyShip.botAllyShipSet {
-                                    if name == botAllyShip.name! {
-                                        let score = Int((botAllyShip.labelScore?.getText())!)! + 1
-                                        botAllyShip.labelScore?.setText(String(score))
-                                        break
-                                    }
-                                }
-                                
                             }
+                            break
                             
+                        case "scoreUp":
+                            if let name = i.next() as? String {
+                                if (scene.playerShip.name! == name) {
+                                    let score = Int((scene.playerShip.labelScore?.getText())!)! + 1
+                                    scene.playerShip.labelScore?.setText(String(score))
+                                } else {
+                                    for allyShip in AllyShip.allyShipSet {
+                                        if name == allyShip.name! {
+                                            let score = Int((allyShip.labelScore?.getText())!)! + 1
+                                            allyShip.labelScore?.setText(String(score))
+                                            break
+                                        }
+                                    }
+                                    
+                                    for botAllyShip in BotAllyShip.botAllyShipSet {
+                                        if name == botAllyShip.name! {
+                                            let score = Int((botAllyShip.labelScore?.getText())!)! + 1
+                                            botAllyShip.labelScore?.setText(String(score))
+                                            break
+                                        }
+                                    }
+                                    
+                                }
+                            }
+                            break
                             
-                            
-//                        case "dead":
-//                            let name = i.next()!
-//                            
-//                            for allyShip in AllyShip.allyShipSet {
-//                                if name == allyShip.name! {
-//                                    allyShip.labelScore?.setText("0")
-//                                    break
-//                                }
-//                            }
-//                        
-//                            
-//                            break
                         case "removeAllBots":
                             for _ in 1..<message.count {
-                                let name = i.next()!
-                                
-                                for allyShip in AllyShip.allyShipSet {
-                                    if name == allyShip.name! {
-                                        allyShip.removeFromParent()
-                                        break
+                                if let name = i.next() as? String {
+                                    for allyShip in AllyShip.allyShipSet {
+                                        if name == allyShip.name! {
+                                            allyShip.removeFromParent()
+                                            break
+                                        }
                                     }
                                 }
                             }
                             break
                             
                         case "time":
-                            if let message = i.next() {
+                            if let message = i.next() as? String {
                                 scene.labelTime?.setText(message)
                             }
                             break
                             
                         case "endGame":
-                            //TODO:
                             scene.nextState = .result
                             break
                             

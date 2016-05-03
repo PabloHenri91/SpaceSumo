@@ -28,8 +28,6 @@ class MainMenuScene: GameScene {
     
     //buttons
     var buttonPlay:Button!
-    var buttonOptions:Button!
-    var buttonCredits:Button!
     var buttonOfflineMode:Button!
     
     var labelConnectStatus:Label!
@@ -45,12 +43,6 @@ class MainMenuScene: GameScene {
         
         self.buttonPlay = Button(textureName: "buttonYellow", icon: "play", x: 192, y: 120, xAlign: .center, yAlign: .center)
         self.addChild(self.buttonPlay)
-        
-        self.buttonOptions = Button(textureName: "buttonGreenSquare", icon: "settings", x: 438, y: 228, xAlign: .right, yAlign: .down)
-        self.addChild(self.buttonOptions)
-        
-        self.buttonCredits = Button(textureName: "buttonGreenSquare", icon: "info", x: 396, y: 228, xAlign: .right, yAlign: .down)
-        self.addChild(self.buttonCredits)
         
         self.buttonOfflineMode = Button(textureName: "buttonGray", text:"offline mode", x:192, y:228, xAlign: .center, yAlign: .down)
         self.addChild(self.buttonOfflineMode)
