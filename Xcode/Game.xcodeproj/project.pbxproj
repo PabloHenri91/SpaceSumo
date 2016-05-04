@@ -183,7 +183,6 @@
 		84C77A601C96DD9200B180BB /* CharacterGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C77A5F1C96DD9200B180BB /* CharacterGenerator.swift */; };
 		84C77A621C96DDF700B180BB /* DefaultNameList in Resources */ = {isa = PBXBuildFile; fileRef = 84C77A611C96DDF700B180BB /* DefaultNameList */; };
 		84C77A641C96DDF700B180BB /* DefaultNameList in Resources */ = {isa = PBXBuildFile; fileRef = 84C77A611C96DDF700B180BB /* DefaultNameList */; };
-		84CBB18A1CD29A490043BE09 /* GameAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CBB1891CD29A490043BE09 /* GameAnalytics.framework */; };
 		84D3D3071CB1699D00F192B6 /* AllyShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D3D3061CB1699D00F192B6 /* AllyShip.swift */; };
 		84D3D3081CB1699D00F192B6 /* AllyShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D3D3061CB1699D00F192B6 /* AllyShip.swift */; };
 		84D3D3091CB1699D00F192B6 /* AllyShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D3D3061CB1699D00F192B6 /* AllyShip.swift */; };
@@ -236,7 +235,7 @@
 		84431B921CCFA0DF00A2BA0B /* BoxMissionResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxMissionResult.swift; sourceTree = "<group>"; };
 		844AB32F1C85D81A0033D00B /* GameTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameTextField.swift; sourceTree = "<group>"; };
 		84557B551C997E7100C8A11A /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
-		848678C11C748B0C0049BB1F /* Game iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Game iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		848678C11C748B0C0049BB1F /* SpaceSumo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceSumo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		848678C31C748B0C0049BB1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		848678C91C748B0C0049BB1F /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		848678CC1C748B0C0049BB1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -305,7 +304,6 @@
 		84C77A5F1C96DD9200B180BB /* CharacterGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterGenerator.swift; sourceTree = "<group>"; };
 		84C77A611C96DDF700B180BB /* DefaultNameList */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DefaultNameList; sourceTree = "<group>"; };
 		84CA57F61CA2DE940095811F /* Game tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Game tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		84CBB1891CD29A490043BE09 /* GameAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GameAnalytics.framework; sourceTree = "<group>"; };
 		84D3D3061CB1699D00F192B6 /* AllyShip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllyShip.swift; sourceTree = "<group>"; };
 		84D8B0891C9C7FC1001F8C1F /* RoomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomCell.swift; sourceTree = "<group>"; };
 		84ED10801CB671FE007DFEBE /* BotAllyShip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BotAllyShip.swift; sourceTree = "<group>"; };
@@ -317,7 +315,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AF5FE931CC84B6F00DF16BC /* Crashlytics.framework in Frameworks */,
-				84CBB18A1CD29A490043BE09 /* GameAnalytics.framework in Frameworks */,
 				3AF5FE951CC84B7A00DF16BC /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,7 +370,6 @@
 		848678C21C748B0C0049BB1F /* Game iOS */ = {
 			isa = PBXGroup;
 			children = (
-				84CBB1891CD29A490043BE09 /* GameAnalytics.framework */,
 				3AF5FE941CC84B7A00DF16BC /* Fabric.framework */,
 				3AF5FE921CC84B6F00DF16BC /* Crashlytics.framework */,
 				848678C31C748B0C0049BB1F /* AppDelegate.swift */,
@@ -548,7 +544,7 @@
 		84B9C8F31C7487160080CE52 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				848678C11C748B0C0049BB1F /* Game iOS.app */,
+				848678C11C748B0C0049BB1F /* SpaceSumo.app */,
 				848678F41C748B470049BB1F /* Game OSX.app */,
 				84CA57F61CA2DE940095811F /* Game tvOS.app */,
 			);
@@ -558,9 +554,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		848678C01C748B0C0049BB1F /* Game iOS */ = {
+		848678C01C748B0C0049BB1F /* SpaceSumo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 848678D61C748B0C0049BB1F /* Build configuration list for PBXNativeTarget "Game iOS" */;
+			buildConfigurationList = 848678D61C748B0C0049BB1F /* Build configuration list for PBXNativeTarget "SpaceSumo" */;
 			buildPhases = (
 				848678BD1C748B0C0049BB1F /* Sources */,
 				848678BE1C748B0C0049BB1F /* Frameworks */,
@@ -571,9 +567,9 @@
 			);
 			dependencies = (
 			);
-			name = "Game iOS";
+			name = SpaceSumo;
 			productName = "Game iOS";
-			productReference = 848678C11C748B0C0049BB1F /* Game iOS.app */;
+			productReference = 848678C11C748B0C0049BB1F /* SpaceSumo.app */;
 			productType = "com.apple.product-type.application";
 		};
 		848678F31C748B470049BB1F /* Game OSX */ = {
@@ -651,7 +647,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				848678C01C748B0C0049BB1F /* Game iOS */,
+				848678C01C748B0C0049BB1F /* SpaceSumo */,
 				848678F31C748B470049BB1F /* Game OSX */,
 				84CA57F51CA2DE940095811F /* Game tvOS */,
 			);
@@ -1187,7 +1183,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		848678D61C748B0C0049BB1F /* Build configuration list for PBXNativeTarget "Game iOS" */ = {
+		848678D61C748B0C0049BB1F /* Build configuration list for PBXNativeTarget "SpaceSumo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				848678D41C748B0C0049BB1F /* Debug */,

@@ -9,7 +9,6 @@
 import UIKit
 import Fabric
 import Crashlytics
-import GameAnalytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,35 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-        #if RELEASE
-            // Override point for customization after application launch.
-            Fabric.with([Crashlytics.self, GameAnalytics.self])
-            
-            
-            // Enable log to output simple details (disable in production)
-            GameAnalytics.setEnabledInfoLog(true)
-            // Enable log to output full event JSON (disable in production)
-            GameAnalytics.setEnabledVerboseLog(true)
-            
-            // Example: configure available virtual currencies and item types for later use in resource events
-            // GameAnalytics.configureAv$ailableResourceCurrencies(["gems", "gold"])
-            // GameAnalytics.configureAvailableResourceItemTypes(["boost", "lives"])
-            
-            // Example: configure available custom dimensions for later use when specifying these
-            // GameAnalytics.configureAvailableCustomDimensions01(["ninja", "samurai"])
-            // GameAnalytics.configureAvailableCustomDimensions02(["whale", "dolphin"])
-            // GameAnalytics.configureAvailableCustomDimensions03(["horde", "alliance"])
-            
-            // Configure build version
-            GameAnalytics.configureBuild("1.0.0")
-            
-            // initialize GameAnalytics - this method will use app keys injected by Fabric
-            //GameAnalytics.initializeWithConfiguredGameKeyAndGameSecret()
-            // to manually specify keys use this method:
-            GameAnalytics.initializeWithGameKey("a8db74d515830b82adcf1b3f9e531f02", gameSecret:"d9e897889d9cac4f4a16bc1113aac37b616b9ffc")
-        #endif
-        
         return true
     }
 
