@@ -25,7 +25,7 @@ class Config: NSObject {
     
     static var scale:CGFloat!
     
-    class func updateSceneSize() -> CGSize {
+    static func updateSceneSize() -> CGSize {
         
         let xScale = skViewBoundsSize.width / sceneSize.width
         let yScale = skViewBoundsSize.height / sceneSize.height

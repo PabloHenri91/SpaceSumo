@@ -223,7 +223,7 @@ class MultiplayerLobbyScene: GameScene {
         
         if currentTime - self.lastSecondUpdate > 1 { // Executado uma vez por segundo
             
-            if (self.serverManager.socket.status == .Closed) {
+            if (self.serverManager.socket.status == .NotConnected) {
                 self.nextState = states.connectionClosed
             } else {
                 if self.needToGetAllRooms == true {

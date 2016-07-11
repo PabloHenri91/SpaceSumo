@@ -85,12 +85,8 @@ class BotAllyShip: AllyShip {
                             //self.labelScore?.setText("0")
                             
                             if (missionScene.playerShip.name! == name) {
-                                
-                              
-                                
                                 let score = Int((missionScene.playerShip.labelScore?.getText())!)! + 1
                                 missionScene.playerShip.labelScore?.setText(String(score))
-                                
                             } else {
                                 
                                 for allyShip in AllyShip.allyShipSet {
@@ -110,14 +106,9 @@ class BotAllyShip: AllyShip {
                                         break
                                     }
                                 }
-                                
                             }
-                            
-                            
-                            
                         }
                     }
-                    
                 }
             }
             

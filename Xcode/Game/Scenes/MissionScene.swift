@@ -513,7 +513,7 @@ class MissionScene: GameScene {
                 
             case states.reconnecting:
                 if(!self.offlineMode) {
-                    if (self.serverManager.socket.status == .Closed) {
+                    if (self.serverManager.socket.status == .NotConnected) {
                         self.nextState = states.connectionClosed
                     }
                 }
@@ -636,7 +636,11 @@ class MissionScene: GameScene {
                 
                 self.removeAllBots()
                 self.serverManager.leaveAllRooms()
-                self.feedback()
+                if #available(iOS 8.0, *) {
+                    self.feedback()
+                } else {
+                    // Fallback on earlier versions
+                }
                 self.view?.presentScene(HangarScene(), transition: self.transition)
                 break
                 
@@ -737,6 +741,7 @@ class MissionScene: GameScene {
         }
     }
     
+    @available(iOS 8.0, *)
     func feedback() {
         #if os(iOS)
             if GameScene.currentTime - self.startPlaying > 60 {

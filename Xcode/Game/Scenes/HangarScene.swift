@@ -101,7 +101,7 @@ class HangarScene: GameScene {
                     
                 case states.reconnecting:
                     if(!self.offlineMode) {
-                        if (self.serverManager.socket.status == .Closed) {
+                        if (self.serverManager.socket.status == .NotConnected) {
                             self.nextState = states.connectionClosed
                         }
                     }
